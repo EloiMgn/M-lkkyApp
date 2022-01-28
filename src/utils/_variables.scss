@@ -1,0 +1,105 @@
+
+@font-face {
+  font-family: 'Londrina Sketch';
+  src: url('./fonts/LondrinaSketch-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./fonts/Roboto-Light.ttf') format('truetype');
+  font-weight: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./fonts/Roboto-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nixie One';
+  src: url('./fonts/NixieOne-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-display: swap;
+}
+
+:root {
+  /* COLOR */
+  --black: #121212;
+  --white: #F6F6F7;
+  --primary: #0a3d62; 
+  --secondary: #3c6382;
+  --tertiary: #60a3bc;
+
+  --dark-gray: #202020;
+  --light-gray: #eeeeee;
+
+  --dark-overlay: rgba(0, 0, 0, 0.8);
+  --light-overlay: rgba(140, 140, 140, 0.8);
+
+  --color-cursor: #6e6e6e;
+  
+  /* FONT */
+  --font-title: 'Nixie One', sans-serif;
+  --font-text: 'Roboto', sans-serif;
+
+  --fontsize-big: 4rem;
+  --fontsize-medium: 1.5rem;
+  --fontsize-small: 0.8rem;
+
+  --fontweight-light: 500;
+  --fontweight-bold: 900;
+
+  /* OTHER */
+  --border-radius-small: 15px;
+  --border-radius-big: 25px;
+
+  --transition-short: 0.3s;
+  --transition-long: 0.5s;
+
+  --margin-small: 10px;
+  --margin-medium:20px;
+  --margin-large: 50px;
+}
+
+
+.theme-light {
+  --color-background: var(--white);
+  // --background-app: url("../Assets/img/topography-light.svg");
+  
+  --font-color: var(--black);
+  --hover-color: var(--secondary);
+
+  --color-card-background: var(--light-gray);
+  --color-country-row: var(--white);
+  --color-card-overlay: var(--light-overlay);
+
+  --color-cursor: var(--font-color);
+
+  --skelton-background: #fff;
+  --skeleton-font: var(--color-card-background);
+  --skeleton-lightning: rgb(255, 255, 255, 0.5);
+
+}
+.theme-dark {
+  --color-background: var(--black);
+  // --background-app: url("../Assets/img/topography-dark.svg");
+
+  --font-color: var(--white);
+  --hover-color: var(--tertiary);
+  
+  --color-card-background: var(--black);
+  --color-country-row: var(--dark-gray);
+  --color-card-overlay: var(--dark-overlay);
+
+  --color-cursor: var(--font-color);
+
+  --skelton-background: var(--dark-gray);
+  --skeleton-font: var(--color-card-background);
+  --skeleton-lightning: rgba(102, 102, 102, 0.5);
+
+}
+

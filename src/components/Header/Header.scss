@@ -1,0 +1,11 @@
+.header{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  &__menu{
+    font-family: var(--font-text);
+    font-size: var(--fontsize-medium);
+    display: flex;
+    justify-content: space-between;
+  }
+}
