@@ -1,6 +1,12 @@
 @import '../../utils/variables';
 
-.logo{
-font-family: var(--font-title);
-font-size: var(--fontsize-big);
+.logo {
+  font-family: var(--font-title);
+  font-size: var(--fontsize-medium);
+  margin-left: 1rem;
+  height: 40px;
+  background: transparent;
+  border: none;
+  color: inherit;
+  z-index: 1;
 }

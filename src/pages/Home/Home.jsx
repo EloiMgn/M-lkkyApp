@@ -5,10 +5,9 @@ const Home = () => {
   return (
     <div id="Home" className="Home">
       <div className='Home__content'>
-        <div className='Home__content-body'>
+        {/* <div className='Home__content-body'> */}
           <Header/>
-        Welcome
-        </div>
+        {/* </div> */}
       </div>
     </div>
   )
