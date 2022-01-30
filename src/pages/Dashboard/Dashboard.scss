@@ -1,0 +1,32 @@
+.Dashboard{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  &__content{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    min-height: 80vh;
+  }
+  &__title{
+    font-size: var(--fontsize-big);
+    font-weight: var(--fontweight-bold);
+    margin-left: var(--margin-medium);
+    margin-top: var(--margin-medium);
+    text-decoration: underline;
+    color: var(--font-color);
+  }
+  &__btn{
+    justify-content: space-between;
+    align-items: center;
+    margin-left: var(--margin-medium);
+    width: 90vw;
+    height: 8vh;
+    margin-top: var(--margin-medium);
+    @media screen and(min-width: 765px) {
+      width: 20vw;
+      height: 5vh;
+    }
+  }
+}

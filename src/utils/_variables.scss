@@ -27,6 +27,7 @@
 }
 
 :root {
+
   /* COLOR */
   --black: #121212;
   --white: #F6F6F7;
@@ -35,7 +36,7 @@
   --tertiary: #60a3bc;
 
   --dark-gray: #202020;
-  --light-gray: #eeeeee;
+  --light-gray: #cccccc;
 
   --dark-overlay: rgba(0, 0, 0, 0.8);
   --light-overlay: rgba(140, 140, 140, 0.8);
@@ -64,6 +65,9 @@
   --height-btn-medium: 50px;
   --height-btn-big: 100px;
 
+  --box-shadow-light: 0 4px 6px -1px rgba(0, 0, 0, .6), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --box-shadow-dark: 0 4px 6px -1px rgba(150, 150, 150, .6), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
   /* OTHER */
   --border-radius-small: .5rem;
   --border-radius-medium: 1rem;
@@ -75,6 +79,8 @@
   --margin-small: 10px;
   --margin-medium:20px;
   --margin-large: 50px;
+
+  --box-shadow: #f2f2f2
 
 }
 
@@ -98,6 +104,8 @@
   --skeleton-font: var(--color-card-background);
   --skeleton-lightning: rgb(255, 255, 255, 0.5);
 
+  --box-shadow: var(--box-shadow-light);
+
 }
 .theme-dark {
   --color-background: var(--black);
@@ -120,5 +128,6 @@
   --skeleton-font: var(--color-card-background);
   --skeleton-lightning: rgba(102, 102, 102, 0.5);
 
+  --box-shadow: var(--box-shadow-dark);
 }
 

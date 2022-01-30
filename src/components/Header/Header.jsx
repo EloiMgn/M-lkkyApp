@@ -1,6 +1,6 @@
 import './Header.scss'
 import Logo from '../Logo/Logo'
-import { Link } from 'react-router-dom'
+
 import Navigation from '../Navigation/Navigation'
 
 

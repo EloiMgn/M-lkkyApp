@@ -9,4 +9,15 @@
     align-items: center;
     min-height: 80vh;
   }
+  &__btn{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 65vw;
+    height: 15vh;
+    @media screen and(min-width: 765px) {
+      width: 20vw;
+      height: 5vh;
+    }
+  }
 }

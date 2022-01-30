@@ -8,7 +8,7 @@ const Home = () => {
     <div id="Home" className="Home">
       <Header/>
       <main className='Home__content'>
-        <Button text='Démarrer une nouvelle partie' size={"medium"}/>
+        <Button elt={"Home"} text='Démarrer une nouvelle partie' size={"medium"} link={"/Dashboard"}/>
       </main>
       <Footer/>
     </div>

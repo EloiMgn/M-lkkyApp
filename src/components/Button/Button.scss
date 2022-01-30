@@ -2,31 +2,40 @@
 
 .btn {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  border-radius: var(--border-radius-small);
-  background-color: var(--color-background-rev);
+  background: var(--color-background-rev);
+  border: 0 solid #E2E8F0;
+  box-shadow: var(--box-shadow);
+  box-sizing: border-box;
   color: var(--font-color-rev);
-  font-family: var(--font-text);
-  font-weight: var(--fontweight-light);
-  border: none;
+  font-size: var(--fontsize-medium);
+  font-weight: var(--fontweight-medium);
+  justify-content: center;
+  line-height: 24px;
+  padding: 24px;
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  &__link{
+    color: inherit;
+    font-size: var(--fontsize-medium);
+  }
+  &__icon{
+    font-size: var(--fontsize-big);
+    margin-right: var(--margin-medium);
+  }
 }
 
 .small {
-  width: var(--width-btn-small);
-  height: var(--height-btn-small);
   font-size: var(--fontsize-small);
 }
 
 .medium {
-  width: var(--width-btn-medium);
-  height: var(--height-btn-medium);
   font-size: var(--fontsize-medium);
 }
 
 .big {
-  width: var(--width-btn-big);
-  height: var(--height-btn-big);
   font-size: var(--fontsize-big);
 }
