@@ -2,11 +2,14 @@
 
 .logo {
   font-family: var(--font-title);
-  font-size: var(--fontsize-medium);
+  font-size: var(--fontsize-big);
   margin-left: 1rem;
   height: 40px;
   background: transparent;
   border: none;
   color: inherit;
   z-index: 1;
+  &__link{
+    color: var(--font-color-rev);
+  }
 }

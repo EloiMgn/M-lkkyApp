@@ -46,16 +46,28 @@
   --font-title: 'Nixie One', sans-serif;
   --font-text: 'Roboto', sans-serif;
 
-  --fontsize-big: 4rem;
-  --fontsize-medium: 2rem;
-  --fontsize-small: 1rem;
+  --fontsize-big: 2rem;
+  --fontsize-medium: 1.2rem;
+  --fontsize-small: 0.8rem;
 
   --fontweight-light: 500;
+  --fontweight-medium: 700;
   --fontweight-bold: 900;
 
+  /* Buttons */
+
+  --width-btn-small: 125px;
+  --width-btn-medium: 200px;
+  --width-btn-big: 300px;
+
+  --height-btn-small: 35px;
+  --height-btn-medium: 50px;
+  --height-btn-big: 100px;
+
   /* OTHER */
-  --border-radius-small: 15px;
-  --border-radius-big: 25px;
+  --border-radius-small: .5rem;
+  --border-radius-medium: 1rem;
+  --border-radius-big: 1.5rem;
 
   --transition-short: 0.3s;
   --transition-long: 0.5s;
@@ -63,14 +75,17 @@
   --margin-small: 10px;
   --margin-medium:20px;
   --margin-large: 50px;
+
 }
 
 
 .theme-light {
   --color-background: var(--white);
+  --color-background-rev: var(--black);
   // --background-app: url("../Assets/img/topography-light.svg");
   
   --font-color: var(--black);
+  --font-color-rev: var(--white);
   --hover-color: var(--secondary);
 
   --color-card-background: var(--light-gray);
@@ -86,14 +101,18 @@
 }
 .theme-dark {
   --color-background: var(--black);
+  --color-background-rev: var(--white);
   // --background-app: url("../Assets/img/topography-dark.svg");
 
   --font-color: var(--white);
+  --font-color-rev: var(--black);
   --hover-color: var(--tertiary);
   
   --color-card-background: var(--black);
   --color-country-row: var(--dark-gray);
   --color-card-overlay: var(--dark-overlay);
+
+  --color-btn: var(--white);
 
   --color-cursor: var(--font-color);
 

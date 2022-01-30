@@ -1,0 +1,32 @@
+@import '../../utils/variables';
+
+.btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--border-radius-small);
+  background-color: var(--color-background-rev);
+  color: var(--font-color-rev);
+  font-family: var(--font-text);
+  font-weight: var(--fontweight-light);
+  border: none;
+}
+
+.small {
+  width: var(--width-btn-small);
+  height: var(--height-btn-small);
+  font-size: var(--fontsize-small);
+}
+
+.medium {
+  width: var(--width-btn-medium);
+  height: var(--height-btn-medium);
+  font-size: var(--fontsize-medium);
+}
+
+.big {
+  width: var(--width-btn-big);
+  height: var(--height-btn-big);
+  font-size: var(--fontsize-big);
+}

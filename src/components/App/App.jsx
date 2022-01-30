@@ -1,18 +1,22 @@
 import './App.scss';
+import { useContext } from 'react'
+import { Store } from '../../utils/Provider/Provider'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import Routing from '../../Router/Router'
 
-function App() {
+const App = () => {
+  const { theme } = useContext(Store)
+
   return (
-    <div className="App">
+    <div id="App" className={`theme-${theme}`}>
       {/* <Header/> */}
         <div className='App__content-body'>
           <Routing />
         </div>
       {/* <Footer/> */}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
