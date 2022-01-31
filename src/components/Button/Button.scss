@@ -12,19 +12,20 @@
   font-weight: var(--fontweight-medium);
   justify-content: center;
   line-height: 24px;
-  padding: 24px;
+  // padding: 24px;
   border-radius: var(--border-radius-small);
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  margin: var(--margin-medium);
   &__link{
     color: inherit;
     font-size: var(--fontsize-medium);
   }
   &__icon{
     font-size: var(--fontsize-big);
-    margin-right: var(--margin-medium);
+    margin: var(--margin-medium);
   }
 }
 

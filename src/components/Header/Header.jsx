@@ -17,6 +17,9 @@ const Header = () => {
         <header className={`navbar ${showLinks ? "show-nav" : "" }`}>
           <Logo className='navbar__logo'/>
           <ul className='navbar__links'>
+          <li className='navbar__item'>
+              <Link to="/" className='navbar__link'>Accueil</Link>
+            </li>
             <li className='navbar__item'>
               <Link to="/skittles" className='navbar__link'>Placer les quilles</Link>
             </li>

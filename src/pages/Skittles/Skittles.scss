@@ -24,6 +24,10 @@
       text-align: start;
       margin-top: var(--margin-medium);
       &__imgContainer{
+        @media screen and (min-width:767px) {
+          width: 40vw;
+          height: 70vmin;
+        }
         width: 100vw;
         min-width: 200px;
         height: 85vmin;
