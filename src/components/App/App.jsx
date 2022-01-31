@@ -10,11 +10,9 @@ const App = () => {
 
   return (
     <div id="App" className={`theme-${theme}`}>
-      {/* <Header/> */}
         <div className='App__content-body'>
           <Routing />
         </div>
-      {/* <Footer/> */}
     </div>
   )
 }

@@ -1,0 +1,43 @@
+.Rules{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &__content{
+  display: flex;
+  flex-direction: column;
+  margin: var(--margin-medium);
+  color: var(--font-color);
+  margin-top: 10vh;
+  margin-bottom: 11vh;
+  h1{
+    font-size: var(--fontsize-big);
+    font-weight: var(--fontweight-bold);
+    margin-top: var(--margin-medium);
+    margin-bottom: var(--margin-medium);
+  }
+  h2{
+    font-size: var(--fontsize-medium);
+    font-weight: var(--fontweight-bold);
+    margin-top: var(--margin-medium);
+  }
+  h3{
+    font-size: var(--fontsize-medium);
+    margin-top: var(--margin-medium);
+  }
+  p, ul{
+    margin-left: var(--margin-medium);
+    font-size: var(--fontsize-small);
+    margin-top: var(--margin-medium);
+    list-style-type: circle;
+    line-height: var(--line-height-large);
+  }
+  strong{
+    font-weight: var(--fontweight-medium);
+  }
+
+}
+}
+.endGame{
+  font-weight: var(--fontweight-bold);
+}

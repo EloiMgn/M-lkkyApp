@@ -2,10 +2,13 @@
 
 .App {
   text-align: center;
+  &__content-body{
+    // min-height: 120vh;
+  }
 }
 
 #App {
-  min-height: 120vh;
+  // min-height: 120vh;
   font-family: var(--font-text);
   font-size: var(--fontsize-small);
   font-weight: var(--fontweight-light);

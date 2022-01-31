@@ -9,7 +9,7 @@ const ToggleTheme = () => {
   return (
     <div
       onClick={changeTheme}
-      className={`magic-hover magic-hover__around switchContainer mode-${theme}`}
+      className={`switchContainer mode-${theme}`}
       >
       <div className="point"></div>
       <div className="theme">{theme}</div>

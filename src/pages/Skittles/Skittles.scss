@@ -1,0 +1,46 @@
+.Skittles{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &__body{
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+    margin-top: 10vh;
+    margin-bottom: 11vh;
+    h1{
+      font-size: var(--fontsize-medium);
+      font-weight: var(--fontweight-medium);
+      margin-left: var(--margin-medium);
+      margin-top: var(--margin-medium);
+      color: var(--font-color);
+    }
+    &__content{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: start;
+      margin-top: var(--margin-medium);
+      &__imgContainer{
+        width: 100vw;
+        min-width: 200px;
+        height: 85vmin;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: var(--margin-medium);
+        &-img {
+          display: block;
+          min-width: 100%;
+          min-height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+  
+      }
+    }
+  }
+}
