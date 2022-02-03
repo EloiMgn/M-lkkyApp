@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 export const getDateFromFolderName = (folderName) => {
   const regex = /[0-9]{8}/
   const rawDate = folderName.match(regex)

@@ -6,12 +6,13 @@ import ErrorLocalStorage from '../../pages/ErrorLocalStorage/ErrorLocalStorage'
 
 export const Store = createContext({})
 
-export const StoreProvider = ({ children }) => {
+export const StoreProvider = ({children }) => {
   // DEFAULT VALUE
   const [localStorageAvailable, setIsLocalStorageAvailable] = useState(true)
   const [theme, setTheme] = useState(null)
+  const [teams, setTeams] = useState(null)
 
-  const defaultTheme = 'dark'
+  const defaultTheme = 'light'
 
   useEffect(() => {
     isLocalStorageAvailable()
@@ -47,27 +48,38 @@ export const StoreProvider = ({ children }) => {
     })
   }
 
-  /**
-   * Update localStorage + provider
-   */
-  const updateStores = async (localStorage) => {
+  const addTeam = (Team) => {
+    setTeams(Team)
+      setLocalStorage({ date: new Date(), theme, teams })
+      console.log(Team);
+  }
+
+  // /**
+  //  * Update localStorage + provider
+  //  */
+  const updateStores = async (localStorage, Team) => {
     // on récupère les nouvelles Data
     let theme
+    let teams
 
     // si l'user est déjà venu on récupère la location et le theme
     if (localStorage) {
       theme = localStorage.theme
+      teams = [Team]
     }
     // sinon c'est qu'il faut tout initialiser (1er visite)
     else {
       theme = defaultTheme
+      teams = []
     }
     // on update le localStorage
-    setLocalStorage({ date: new Date(), theme })
+    setLocalStorage({ date: new Date(), theme, teams })
 
     // on update le provider
     setTheme(theme)
+    setTeams(Team)
   }
+
 
   const init = async () => {
     // check localStorage
@@ -103,7 +115,7 @@ export const StoreProvider = ({ children }) => {
 
   return (
     // value = contenu du state disponible aux `Consumers` de l'application
-    <Store.Provider value={{ theme: theme || defaultTheme, changeTheme }}>
+    <Store.Provider value={{ theme: theme || defaultTheme, changeTheme, addTeam }}>
       {/* [TODO] : page error with logo ...etc... */}
       {localStorageAvailable ? children : <ErrorLocalStorage/> }
     </Store.Provider>

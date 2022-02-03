@@ -3,6 +3,7 @@ import Dashboard from '../pages/Dashboard/Dashboard';
 import Home from '../pages/Home/Home'
 import Rules from '../pages/Rules/Rules';
 import Skittles from '../pages/Skittles/Skittles';
+import Team from '../pages/Team/Team';
 
 
 const Routing = () => (
@@ -12,6 +13,7 @@ const Routing = () => (
       <Route path="/Dashboard" element={<Dashboard/>} />
       <Route path="/Rules" element={<Rules/>} />
       <Route path="/Skittles" element={<Skittles/>} />
+      <Route path="/Team" element={<Team/>} />
     </Routes>
 </Router>
 )

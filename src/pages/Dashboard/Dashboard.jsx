@@ -12,11 +12,11 @@ const Dashboard = () => {
           <h1 className='Dashboard__title'>Equipes:</h1>
           <div className='team team__1'></div>
           <div className='Dashboard__createTeamBtn'>
-            <Button elt={"Dashboard"} className='Dashboard__btn' text={"Ajouter une nouvelle équipe"} link={"/team"} size={"small"} ico={"fas fa-plus-circle"}/>
+            <Button elt={"Dashboard"} className='Dashboard__btn' text={"Ajouter une nouvelle équipe"} link={"/Team"} size={"small"} ico={"fas fa-plus-circle"}/>
           </div>
         </div>
         <div className='Dashboard__startGame'>
-          <Button elt={"Dashboard"} className='Dashboard__btn' text={"Commencer à jouer"} link={"/team"} size={"small"}/>
+          <Button elt={"Dashboard"} className='Dashboard__btn' text={"Commencer à jouer"} link={"/Team"} size={"small"}/>
         </div>
       </main>
       <Footer/>
