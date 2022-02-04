@@ -10,7 +10,7 @@ export const StoreProvider = ({children }) => {
   // DEFAULT VALUE
   const [localStorageAvailable, setIsLocalStorageAvailable] = useState(true)
   const [theme, setTheme] = useState(null)
-  const [teams, setTeams] = useState(null)
+  const [teams, setTeams] = useState([])
 
   const defaultTheme = 'light'
 
@@ -47,17 +47,35 @@ export const StoreProvider = ({children }) => {
       setIsLocalStorageAvailable(false)
     })
   }
+  // const addnewTeam = (Team) => {
+  //   const rawLocalStorage = getLocalStorage()
+  //   if (rawLocalStorage !== null) {
+  //     const localStorage = JSON.parse(rawLocalStorage)
+  //     setTeams(localStorage.teams, [Team])
+  //   } else {
+  //     setTeams([Team, []])
+  //   }
+
+  // }
 
   const addTeam = (Team) => {
-    setTeams(Team)
-      setLocalStorage({ date: new Date(), theme, teams })
-      console.log(Team);
+    const newTeam = Team
+    newTeam.id = teams.length+1
+    const rawLocalStorage = getLocalStorage()
+    if (rawLocalStorage !== null) {
+      const localStorage = JSON.parse(rawLocalStorage)
+      localStorage.teams.push(newTeam)
+      setLocalStorage({ date: new Date(), theme: localStorage.theme, teams: localStorage.teams })
+
+    } else {
+      setLocalStorage({ date: new Date(), theme, teams: newTeam })
+    }
   }
 
   // /**
   //  * Update localStorage + provider
   //  */
-  const updateStores = async (localStorage, Team) => {
+  const updateStores = async (localStorage) => {
     // on récupère les nouvelles Data
     let theme
     let teams
@@ -65,7 +83,7 @@ export const StoreProvider = ({children }) => {
     // si l'user est déjà venu on récupère la location et le theme
     if (localStorage) {
       theme = localStorage.theme
-      teams = [Team]
+      teams = localStorage.teams
     }
     // sinon c'est qu'il faut tout initialiser (1er visite)
     else {
@@ -77,7 +95,7 @@ export const StoreProvider = ({children }) => {
 
     // on update le provider
     setTheme(theme)
-    setTeams(Team)
+    // setTeams(teams)
   }
 
 
@@ -91,6 +109,7 @@ export const StoreProvider = ({children }) => {
       // si l'user est déja venu aujourd'hui
       if (isToday(localStorageDateToNewDate(localStorage.date))) {
         setTheme(localStorage.theme)
+        setTeams(localStorage.teams)
       }
       // sinon on met à jours le localStorage + Store
       else {
