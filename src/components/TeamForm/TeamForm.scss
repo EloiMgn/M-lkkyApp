@@ -1,9 +1,77 @@
 .TeamForm{
+  width: 100%;
   display: flex;
   flex-direction: column;
+  h3{
+    font-weight: var(--fontweight-medium);
+  }
+  &__teamName__validated{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__teamName__unvalidated{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    input{
+      height: var(--height-btn-small);
+      width: var(--width-btn-big);
+      font-size: var(--fontsize-medium);
+      font-family: var(--font-text);
+      font-weight: var(--fontweight-medium);
+      margin: var(--margin-medium);
+      margin-left: 0;
+    }
+  }
   &__player{
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
+}
+.btn-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addPlayer{
+  &__form{
+    width: 100%;
+    margin-top: var(--margin-medium);
+    h3{
+      font-weight: var(--fontweight-medium);
+    }
+  }
+  &__input{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: var(--margin-medium);
+    margin-left: 0;
+
+    input{
+      margin-right: var(--margin-medium);
+      height: var(--height-btn-tiny);
+      width: var(--width-btn-medium);
+      font-size: var(--fontsize-small);
+      font-family: var(--font-text);
+      font-weight: var(--fontweight-light);
+      margin: var(--margin-medium);
+      margin-left: 0;
+    }
+  }
+}
+.playerName{
+  strong{
+    font-size: var(--fontsize-small);
+    font-weight: var(--fontweight-medium);
+  }
+}
+
+.teamForm__btn{
+  margin: var(--margin-small);
 }

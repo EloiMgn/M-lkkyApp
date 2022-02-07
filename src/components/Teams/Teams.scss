@@ -1,0 +1,44 @@
+.teams{
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--margin-medium);
+}
+
+.team{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5vh;
+  margin: var(--margin-small);
+  padding: var(--margin-small);
+  background-color: var(--light-overlay);
+  border-radius: var(--border-radius-small);
+  h2{
+    font-size: larger;
+    font-weight: var(--fontweight-bold);
+  }
+  &__name{
+    width: 50%;
+    height: 100%;
+    border-right: solid 1px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__datas{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &-score{
+      width: 50%;
+      margin-left: var(--margin-medium);
+      margin-right: var(--margin-medium);
+      display: flex;
+      justify-content: space-between;
+    } 
+    &-fails{
+      width: 50%;
+    }
+  }
+}

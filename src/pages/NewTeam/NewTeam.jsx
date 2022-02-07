@@ -1,13 +1,14 @@
-import './Team.scss'
+import './NewTeam.scss'
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
 import TeamForm from '../../components/TeamForm/TeamForm';
 
-const Team = () => {
+const NewTeam = () => {
+  
   return (
-    <div id="Team" className="Team">
+    <div id="newTeam" className="newTeam">
       <Header/>
-      <main className='Team__content'>
+      <main className='newTeam__content'>
         <h1>Votre équipe</h1>
           <TeamForm/>
       </main>
@@ -16,4 +17,4 @@ const Team = () => {
   )
 }
 
-export default Team
+export default NewTeam
