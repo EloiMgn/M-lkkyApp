@@ -1,0 +1,79 @@
+.Game{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &__content{
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 80vh;
+    margin-top: 10vh;
+    margin-bottom: 11vh;
+    h2{
+      font-size: var(--fontsize-big);
+    }
+  }
+}
+
+.select{
+  width: 100vmin;
+  height: 40vh;
+  margin-top: 5vh;
+  .selected{
+    background-color: var(--light-overlay);
+  }
+  &__skittle{
+    background-color: transparent;
+    border-radius: var(--border-radius-big);
+    border: solid 3px var(--primary);
+    width: 65px;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--fontsize-big);
+    font-weight: var(--fontweight-bold);
+    font-family: var(--font-title);
+  }
+  &__top, &__middleTop, &__bottom, &__middleBottom{
+    display: flex;
+    justify-content: center;
+    margin-top: -12px;
+  }
+}
+
+.playingDatas{
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  justify-content: space-between;
+  width: 80vw;
+  background-color: var(--light-gray);
+  margin: auto var(--margin-medium);
+  padding-left: var(--margin-large);
+  padding-right: var(--margin-large);
+  padding: var(--margin-medium) var(--margin-medium);
+  border-radius: var(--border-radius-medium);
+  &__data{
+    display: flex;
+    flex-direction: column;
+    
+    &-score, &-fails, &__player{
+      display: flex;
+      justify-content: space-between;
+      margin: var(--margin-small) var(--margin-medium);
+      font-size: var(--fontsize-medium);
+      font-weight: var(--fontweight-medium);
+      strong{
+        font-weight: var(--fontweight-medium);
+      }
+    }
+  }
+}
+
+.Game__btn{
+  height: var(--height-btn-medium);
+  width: var(--width-btn-big);
+}

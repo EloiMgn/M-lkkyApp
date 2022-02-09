@@ -1,19 +1,14 @@
 import { createStore } from "redux";
 import produce from "immer";
+// import { useEffect, useState } from "react";
+// import { getLocalStorage, setLocalStorage } from '../localStorage'
+// import { isToday, localStorageDateToNewDate } from '../tools'
 
-
-// state
-// const initialState = {
-//   player1: 0,
-//   player2: 0,
-//   advantage: null,
-//   winner: null,
-//   playing: true,
-// };
 
 const initialState = {
   theme: 'light',
   playing: false,
+  turn: 0,
   teams: []
 };
 
@@ -31,6 +26,19 @@ function reducer(state = initialState, action) {
         action.team
       )
     })
+  }
+  if (action.type === "startGame") {
+    return {
+      ...state,
+      playing: true,
+    };
+  }
+  if (action.type === "nextTeam") {
+    
+    return {
+      ...state,
+      turn: action.currentTeam+1
+    };
   }
   return state;
 }

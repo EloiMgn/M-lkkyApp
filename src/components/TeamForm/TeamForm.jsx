@@ -31,7 +31,6 @@ const TeamForm = () => {
     list[i].validate = true
     const players = [...playerList];
     players.splice(-1, 1);
-    console.log(playersNames);
     handleNameChange(e, i)
     setTeam({name: list.team, players: players, score: 0, fails: 0})
   }

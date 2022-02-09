@@ -4,7 +4,7 @@ import Home from '../pages/Home/Home'
 import Rules from '../pages/Rules/Rules';
 import Skittles from '../pages/Skittles/Skittles';
 import NewTeam from '../pages/NewTeam/NewTeam';
-
+import Game from '../pages/Game/Game';
 
 const Routing = () => (
   <Router className="index">
@@ -14,6 +14,7 @@ const Routing = () => (
       <Route path="/Rules" element={<Rules/>} />
       <Route path="/Skittles" element={<Skittles/>} />
       <Route path="/new-team" element={<NewTeam/>} />
+      <Route path="/game/:id" element={<Game/>} />
     </Routes>
 </Router>
 )

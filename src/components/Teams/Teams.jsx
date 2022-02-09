@@ -1,13 +1,35 @@
 import './Teams.scss'
 import Cancel from '../../utils/img/cancel.png'
 import { useSelector } from 'react-redux';
+import { getLocalStorage, setLocalStorage } from '../../utils/localStorage'
+import { isToday, localStorageDateToNewDate } from '../../utils/tools'
+
 
 const Teams = () => {
-  const teams = useSelector((state) => state.teams)
+  let state = useSelector((state) => state)
   const range = [1, 2, 3]
+
+    // check localStorage
+    const rawLocalStorage = getLocalStorage()
+    // si il y a quelqueChose dans le localStorage
+    if (rawLocalStorage !== null) {
+      const gotLocalStorage = JSON.parse(rawLocalStorage)
+  
+      if(gotLocalStorage.date){
+        // si l'user est déja venu aujourd'hui
+        if (isToday(localStorageDateToNewDate(gotLocalStorage.date))) {
+          state = gotLocalStorage.state
+        }
+      }
+      else {
+      // on update le localStorage
+      setLocalStorage({ date: new Date(), state })
+      }
+    }
+
   return (
     <div id="teams" className="teams">
-      {teams.map((team, idx) => {
+      {state.teams.map((team, idx) => {
         return (<div className={`team team__${idx}`} key={idx}>
           <div className='team__name'>
           <h2>{team.name}</h2>
