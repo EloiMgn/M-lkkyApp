@@ -33,13 +33,14 @@
     align-items: center;
     &-pts{
       font-weight: var(--fontweight-bold);
+      margin-right: var(--margin-small);
     }
     &-score{
       width: 50%;
       margin-left: var(--margin-medium);
-      margin-right: var(--margin-medium);
+
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
     } 
     &-fails{
       width: 50%;

@@ -14,7 +14,7 @@ const Routing = () => (
       <Route path="/rules" element={<Rules/>} />
       <Route path="/skittles" element={<Skittles/>} />
       <Route path="/new-team" element={<NewTeam/>} />
-      <Route path="/game/:id" element={<Game/>} />
+      <Route path="/game/:name/:id/:playerId" element={<Game/>} />
     </Routes>
 </Router>
 )

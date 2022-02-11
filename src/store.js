@@ -2,44 +2,44 @@ import { createStore } from "redux";
 import produce from "immer";
 // import { useEffect, useState } from "react";
 import { getLocalStorage } from './utils/localStorage'
-import { isToday, localStorageDateToNewDate } from './utils/tools'
+// import { isToday, localStorageDateToNewDate } from './utils/tools'
 
 
-// const createLocalStorage = (state) => {
-//   setLocalStorage({ date: new Date(), state })
-// }
+// // const createLocalStorage = (state) => {
+// //   setLocalStorage({ date: new Date(), state })
+// // }
 
-// // Vérifie qu'une partie est créee et qu'elle est en cours
-// const checkGamePlaying = (state) => {
-//   // check localStorage
-//   const rawLocalStorage = getLocalStorage()
-//   if (rawLocalStorage !== null) {
-//     const localStorage = JSON.parse(rawLocalStorage)
-//     // Vérifie si l'utilisateur est déjà venu aujourd'hui
-//       if (isToday(localStorageDateToNewDate(localStorage.date))) {
-//         // si des teams ont déjà été créées le state est mis à jour 
-//         if(localStorage.state.teams.length > 1) {
-//           createLocalStorage(localStorage.state)
-//         }
-//       }
-//   }
-// }
+// // // Vérifie qu'une partie est créee et qu'elle est en cours
+// // const checkGamePlaying = (state) => {
+// //   // check localStorage
+// //   const rawLocalStorage = getLocalStorage()
+// //   if (rawLocalStorage !== null) {
+// //     const localStorage = JSON.parse(rawLocalStorage)
+// //     // Vérifie si l'utilisateur est déjà venu aujourd'hui
+// //       if (isToday(localStorageDateToNewDate(localStorage.date))) {
+// //         // si des teams ont déjà été créées le state est mis à jour 
+// //         if(localStorage.state.teams.length > 1) {
+// //           createLocalStorage(localStorage.state)
+// //         }
+// //       }
+// //   }
+// // }
 
 
-  // // Vérifie qu'une partie est créee et qu'elle est en cours
-  // export const checkGamePlaying = () => {
-  //   // check localStorage
-  //   const rawLocalStorage = getLocalStorage()
-  //   if (rawLocalStorage !== null) {
-  //     const localStorage = JSON.parse(rawLocalStorage)
-  //     // Vérifie si l'utilisateur est déjà venu aujourd'hui
-  //       if (isToday(localStorageDateToNewDate(localStorage.date))) {
-  //         if(localStorage.state.teams.length > 1 && localStorage.state.playing) {
-  //           return true
-  //         }return false
-  //       } return false
-  //   } return false
-  // }
+//   // // Vérifie qu'une partie est créee et qu'elle est en cours
+//   // export const checkGamePlaying = () => {
+//   //   // check localStorage
+//   //   const rawLocalStorage = getLocalStorage()
+//   //   if (rawLocalStorage !== null) {
+//   //     const localStorage = JSON.parse(rawLocalStorage)
+//   //     // Vérifie si l'utilisateur est déjà venu aujourd'hui
+//   //       if (isToday(localStorageDateToNewDate(localStorage.date))) {
+//   //         if(localStorage.state.teams.length > 1 && localStorage.state.playing) {
+//   //           return true
+//   //         }return false
+//   //       } return false
+//   //   } return false
+//   // }
 
 
 const initialState = {
@@ -95,6 +95,23 @@ function reducer(state = initialState, action) {
       turn: action.currentTeam+2
     };
   }
+
+  if (action.type === "nextPlayer") {
+    return produce(state, draft => {
+      if (draft.teams[(action.team)-1].playerTurn === (draft.teams[(action.team)-1].players.length)-1) {
+        draft.teams[(action.team)-1].playerTurn = 0;
+      } else if (draft.teams[(action.team)-1].playerTurn !== (draft.teams[(action.team)-1].players.length)-1) {
+        draft.teams[(action.team)-1].playerTurn++
+        }
+      })
+  }
+
+  if (action.type === "firstPlayer") {
+    return produce(state, draft => {
+      draft.teams[(action.team)-1].playerTurn = 0;
+      })
+  }
+
   if (action.type === "firstTeam") {
     return {
       ...state,

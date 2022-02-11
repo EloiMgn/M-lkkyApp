@@ -12,10 +12,12 @@ import { useDispatch } from 'react-redux';
 import { setLocalStorage } from '../../utils/localStorage';
 
 const Game = () => {
-  const {id} = useParams();
+  const {id, playerId} = useParams();
   let state = useSelector((state) => state)
   const range = [1, 2, 3]
   const dispatch = useDispatch()
+  // const [majorTurn, setMajorTurn] = useState(1)
+  // const [minorTurn, setMinorTurn] = useState(1)
 
   useEffect(() => {
     if (state.teams.length > 1) {
@@ -24,6 +26,21 @@ const Game = () => {
       dispatch({ type: "setState"})
     }
   }, [dispatch, id, state])
+
+  // useEffect(() => {
+  //   const teamsTurnRange = state.teams.length
+  //   if(state.teams.length > 1) {
+  //     const playersTurnRange = state.teams[parseInt(id)-1].players.length
+  //     setMinorTurn(minorTurn+1)
+  //     dispatch({type: "nextPlayer", team: parseInt(id)})
+  //     console.log('hein?')
+  //     if(state.teams[parseInt(id)-1].playerTurn === playersTurnRange) {
+  //       dispatch({type: "firstPlayer", team: parseInt(id)})
+  //       console.log("ca part a vaux l'eau")
+  //     }
+  //   }
+  //   // console.log(playersTurnRange);
+  // }, [id])
 
   const [select12, setSelect12] = useState(false)
   const [select11, setSelect11] = useState(false)
@@ -106,13 +123,20 @@ const Game = () => {
     setSelect12(false)
   }
   const handleNextTeam = (i)  => {
+    // console.log(state.teams[i].name);
+    // console.log(i);
     dispatch({ type: "nextTeam", currentTeam: i })
+    dispatch({type: "nextPlayer", team: parseInt(id)})
     calculateScore(selectedSkittles, id)
     handleResetSkittles()
   }
 
   const handleNextFirstTeam = (i)  => {
+    // console.log(state.teams[i].name);
+    // console.log(i);
     dispatch({ type: "firstTeam", currentTeam: i })
+    dispatch({type: "nextPlayer", team: parseInt(id)})
+    // dispatch({type: "firstPlayer", team: parseInt(id)})
     calculateScore(selectedSkittles, id)
     handleResetSkittles()
   }
@@ -136,6 +160,7 @@ const Game = () => {
     }
     return score
   }
+  
 
   return (
     <div id="Game" className="Game">
@@ -143,6 +168,7 @@ const Game = () => {
       <main className='Game__content'>
         {state.teams.map((team, i) => {
           if ((i+1).toString() === id) {
+            console.log(i)
             return (
             <div className={`team${i+1} Game__content__body`} key={i}>
               <h2>{team.name}</h2>
@@ -186,18 +212,29 @@ const Game = () => {
                   <div className='playingDatas__data__player'>
                     <p>Joueur:</p>
                     <div className='team__datas-playerName'>
-                        {team.players.map((player) =>
-                           <span key={player.toString()}>{player}</span>
+                        {team.players.map((player) => { if (player === playerId) {
+
+                          return  <span key={player.toString()}>{player}</span>
+                            }
+                          }
                         )}
                       </div>
                   </div>
                 </div>
-                <div className={i+1 < state.teams.length? 'show' : 'hidden'}>
-                  <Button elt={"Game"} text='Equipe suivante' size={"medium"} link={`/game/${i+2}`} action={e => handleNextTeam(i)}/>
-                </div>
-                <div className={i+1 === state.teams.length? 'show' : 'hidden'}>
-                  <Button elt={"Game"} text='Equipe suivante' size={"medium"} link={`/game/1`} action={e => handleNextFirstTeam(i)}/>
-                </div>
+                {/* {majorTurn.map((turn) => {
+                  console.log(turn);
+                  <>  */}
+                    <div className={i+2 < state.teams.length ? 'show' : 'hidden'}>
+                      <Button elt={"Game"} text='Equipe suivante' size={"medium"} link={`/game/${state.teams[i+1].name}/${i + 2}/${state.teams[parseInt(id)-1].players[state.teams[parseInt(id)].playerTurn]}`} action={() => handleNextTeam(i)} />
+                    </div>
+                    {/* <div className={i+2 < state.teams.length ? 'show' : 'hidden'}>
+                      <Button elt={"Game"} text='Equipe suivante' size={"medium"} link={`/game/${state.teams[i+1].name}/${i + 2}/${state.teams[parseInt(id)-1].players[state.teams[parseInt(id)].playerTurn]}`} action={() => handleNextTeam(i)} />
+                    </div> */}
+                    <div className={i+2 === state.teams.length ? 'show' : 'hidden'}>
+                      <Button elt={"Game"} text='Equipe suivante' size={"medium"} link={`/game/${state.teams[0].name}/1/${state.teams[0].players[state.teams[0].playerTurn]}`} action={() => handleNextFirstTeam(i)} />
+                    </div>
+                  {/* </>
+                })} */}
             </div>
             )
           } 

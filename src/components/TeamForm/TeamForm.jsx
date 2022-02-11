@@ -10,7 +10,7 @@ const TeamForm = () => {
   const [teamName, setTeamName] = useState([{team: "", validate: false}])
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const playersNames = []
-  const [Team, setTeam] = useState({name: teamName[0].name, players: playersNames, score: 0, fails: 0})
+  const [Team, setTeam] = useState({name: teamName[0].name, players: playersNames, score: 0, fails: 0,playerTurn: 0})
   const [validate, setValidate] = useState(false)
   const navigate= useNavigate()
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const TeamForm = () => {
     const players = [...playerList];
     players.splice(-1, 1);
     handleNameChange(e, i)
-    setTeam({name: list.team, players: players, score: 0, fails: 0})
+    setTeam({name: list.team, players: players, score: 0, fails: 0, playerTurn: 0})
   }
 
   // handle click event of the Remove button
@@ -40,7 +40,7 @@ const TeamForm = () => {
     setTeamName([{team: "", validate: false}]);
     const players = [...playerList];
     players.splice(-1, 1);
-    setTeam({name: "", players: playersNames, score: 0, fails: 0})
+    setTeam({name: "", players: playersNames, score: 0, fails: 0, playerTurn: 0})
     handleInputChange(e, index)
   };
 
@@ -61,13 +61,13 @@ const TeamForm = () => {
     setplayerList(list);
     const players = [...playerList];
     players.splice(-1, 1);
-    setTeam({name: `${teamName[0].team}`, players: playersNames, score: 0, fails: 0})
+    setTeam({name: `${teamName[0].team}`, players: playersNames, score: 0, fails: 0, playerTurn: 0})
   };
 
   // handle hide previous input on click on add player
   const handleAddPlayer = (i) => {
     playerList[i].hide = true
-    setTeam({name: `${teamName[0].team}`, players: playersNames, score: 0, fails: 0})
+    // setTeam({name: `${teamName[0].team}`, players: playersNames, score: 0, fails: 0})
   }
 
   // handle click event of the Add button
@@ -77,9 +77,8 @@ const TeamForm = () => {
   };
 
   const handleValidate = (e) => {
-    const list = [...playerList];
-    list.splice(-1, 1);
-    setTeam({name: teamName[0].team, players: playersNames, score: 0, fails: 0})
+    Team.players.pop()
+    setTeam(Team)
     dispatch({ type: "createNewTeam", team: Team })
     navigate('/Dashboard', { replace: true })
   }
@@ -87,7 +86,7 @@ const TeamForm = () => {
   useEffect(() => {
     playerList.forEach(player => {
       playersNames.push(player.player)
-      setTeam({name: teamName[0].team, players: playersNames, score: 0, fails: 0})
+      setTeam({name: teamName[0].team, players: playersNames, score: 0, fails: 0, playerTurn: 0})
     })
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [playerList])

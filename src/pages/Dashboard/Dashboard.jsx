@@ -32,7 +32,7 @@ const dispatch = useDispatch()
     if (localStorageAvailable && localStorage && localStorage.state.teams.length === state.teams.length) {
       dispatch({ type: "setState"})
     }
-  }, [localStorage])
+  }, [dispatch])
 
   
   const handleStartGame = () => {
@@ -49,8 +49,6 @@ useEffect(() => {
   state.teams.length >= 2 ? setEnoughPlayers(true) : setEnoughPlayers(false)
 }, [state])
 
-console.log(state.turn);
-
     return (
       <div id="Dashboard" className="Dashboard">
         <Header/>
@@ -62,12 +60,16 @@ console.log(state.turn);
               <Button elt={"Dashboard"} className='Dashboard__btn' text={"Ajouter une nouvelle équipe"} link={"/new-team"} size={"small"} ico={"fas fa-plus-circle"}/>
             </div>
           </div>
-            <div className={enoughPlayers && !state.playing? 'Dashboard__startGame ' : 'hidden'}>
-              <Button elt={"Dashboard"} className='Dashboard__btn' text={"Commencer à jouer"} link={"/game/1"} size={"small"} action={handleStartGame}/>
-            </div>
-            <div className={state.playing? 'Dashboard__startGame ' : 'hidden'}>
-              <Button elt={"Dashboard"} className='Dashboard__btn' text={'Continuer la partie'} link={`/game/${state.turn}`} size={"small"}/>
-            </div>
+          {state.teams.length > 1? 
+            <>
+              <div className={enoughPlayers && !state.playing ? 'Dashboard__startGame ' : 'hidden'}>
+                <Button elt={"Dashboard"} className='Dashboard__btn' text={"Commencer à jouer"} link={`/game/${state.teams[0].name}/1/${state.teams[0].players[0]}`} size={"small"} action={handleStartGame} />
+              </div><div className={state.playing ? 'Dashboard__startGame ' : 'hidden'}>
+                <Button elt={"Dashboard"} className='Dashboard__btn' text={'Continuer la partie'} link={`/game/${state.teams[state.turn - 1].name}/${state.turn}/${state.teams[0].players[0]}`} size={"small"} />
+              </div>
+            </>
+            : null
+          }
         </main>
         <Footer/>
       </div>

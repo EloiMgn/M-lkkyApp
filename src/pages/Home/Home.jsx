@@ -25,10 +25,9 @@ const Home = () => {
     }
 
     useEffect(() => {
-      if (state.teams.length > 1) {
-        setLocalStorage({ date: new Date(), state })
-      } else if (state.teams.length <= 1) {
-        // dispatch({ type: "setState"})
+      const rawLocalStorage = getLocalStorage()
+      if (state.teams.length <= 1 && rawLocalStorage) {
+        dispatch({ type: "setState"})
       }
     }, [dispatch, state])
 
