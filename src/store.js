@@ -1,8 +1,45 @@
 import { createStore } from "redux";
 import produce from "immer";
 // import { useEffect, useState } from "react";
-// import { getLocalStorage, setLocalStorage } from '../localStorage'
-// import { isToday, localStorageDateToNewDate } from '../tools'
+import { getLocalStorage } from './utils/localStorage'
+import { isToday, localStorageDateToNewDate } from './utils/tools'
+
+
+// const createLocalStorage = (state) => {
+//   setLocalStorage({ date: new Date(), state })
+// }
+
+// // Vérifie qu'une partie est créee et qu'elle est en cours
+// const checkGamePlaying = (state) => {
+//   // check localStorage
+//   const rawLocalStorage = getLocalStorage()
+//   if (rawLocalStorage !== null) {
+//     const localStorage = JSON.parse(rawLocalStorage)
+//     // Vérifie si l'utilisateur est déjà venu aujourd'hui
+//       if (isToday(localStorageDateToNewDate(localStorage.date))) {
+//         // si des teams ont déjà été créées le state est mis à jour 
+//         if(localStorage.state.teams.length > 1) {
+//           createLocalStorage(localStorage.state)
+//         }
+//       }
+//   }
+// }
+
+
+  // // Vérifie qu'une partie est créee et qu'elle est en cours
+  // export const checkGamePlaying = () => {
+  //   // check localStorage
+  //   const rawLocalStorage = getLocalStorage()
+  //   if (rawLocalStorage !== null) {
+  //     const localStorage = JSON.parse(rawLocalStorage)
+  //     // Vérifie si l'utilisateur est déjà venu aujourd'hui
+  //       if (isToday(localStorageDateToNewDate(localStorage.date))) {
+  //         if(localStorage.state.teams.length > 1 && localStorage.state.playing) {
+  //           return true
+  //         }return false
+  //       } return false
+  //   } return false
+  // }
 
 
 const initialState = {
@@ -24,8 +61,13 @@ function reducer(state = initialState, action) {
     return produce(state, draft => {
       draft.teams.push(
         action.team
-      )
-    })
+        )
+      })
+  }
+  if (action.type === "deleteTeam") {
+    return produce(state, draft => {
+      draft.teams.splice(action.idx, 1);
+      })
   }
   if (action.type === "startGame") {
     return {
@@ -34,10 +76,19 @@ function reducer(state = initialState, action) {
     };
   }
   if (action.type === "nextTeam") {
-    
     return {
       ...state,
       turn: action.currentTeam+1
+    };
+  }
+  if (action.type === "setState") {
+    const localStorage = JSON.parse(getLocalStorage())
+    return {
+      ...state,
+      theme: localStorage.state.theme,
+      playing: true,
+      turn: localStorage.state.turn,
+      teams: localStorage.state.teams
     };
   }
   return state;

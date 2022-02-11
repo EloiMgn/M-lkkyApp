@@ -5,8 +5,8 @@ import './Game.scss'
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
 import Button from '../../components/Button/Button'
-import { getLocalStorage, setLocalStorage } from '../../utils/localStorage'
-import { isToday, localStorageDateToNewDate } from '../../utils/tools'
+// import { getLocalStorage, setLocalStorage } from '../../utils/localStorage'
+// import { isToday, localStorageDateToNewDate } from '../../utils/tools'
 import { useDispatch } from 'react-redux';
 
 const Game = () => {
@@ -15,24 +15,24 @@ const Game = () => {
   const range = [1, 2, 3]
   const dispatch = useDispatch()
 
-  setLocalStorage({ date: new Date(), state })
-    // check localStorage
-    const rawLocalStorage = getLocalStorage()
-    // si il y a quelqueChose dans le localStorage
-    if (rawLocalStorage !== null) {
-      const gotLocalStorage = JSON.parse(rawLocalStorage)
+  // setLocalStorage({ date: new Date(), state })
+  //   // check localStorage
+  //   const rawLocalStorage = getLocalStorage()
+  //   // si il y a quelqueChose dans le localStorage
+  //   if (rawLocalStorage !== null) {
+  //     const gotLocalStorage = JSON.parse(rawLocalStorage)
   
-      if(gotLocalStorage.date){
-        // si l'user est déja venu aujourd'hui
-        if (isToday(localStorageDateToNewDate(gotLocalStorage.date))) {
-          state = gotLocalStorage.state
-        }
-      }
-      else {
-      // on update le localStorage
-      setLocalStorage({ date: new Date(), state })
-      }
-    }
+  //     if(gotLocalStorage.date){
+  //       // si l'user est déja venu aujourd'hui
+  //       if (isToday(localStorageDateToNewDate(gotLocalStorage.date))) {
+  //         state = gotLocalStorage.state
+  //       }
+  //     }
+  //     else {
+  //     // on update le localStorage
+  //     setLocalStorage({ date: new Date(), state })
+  //     }
+  //   }
 
   const [select12, setSelect12] = useState(false)
   const [select11, setSelect11] = useState(false)
@@ -48,18 +48,17 @@ const Game = () => {
   const [select1, setSelect1] = useState(false)
 
   const selectedSkittles = [
-    select1,
-    select2,
-    select3,
-    select4,
-    select5,
-    select6,
-    select7,
-    select8,
-    select9,
-    select10,
-    select11,
-    select12
+    // select2,
+    // select3,
+    // select4,
+    // select5,
+    // select6,
+    // select7,
+    // select8,
+    // select9,
+    // select10,
+    // select11,
+    // select12
   ] 
 
 // Handle selection of valid skittles :
@@ -100,12 +99,18 @@ const Game = () => {
     setSelect12(!select12);
   }
   
+  const handleResetSkittles = () => {
+    selectedSkittles.forEach(skittle => {
+      console.log();
+    })
+  }
   const handleNextTeam = (i)  => {
     dispatch({ type: "nextTeam", currentTeam: i })
-
+    handleResetSkittles()
   }
-  let newState = useSelector((state) => state)
-  console.log(state);
+  // let newState = useSelector((state) => state)
+
+
   return (
     <div id="Game" className="Game">
       <Header/>
@@ -113,7 +118,7 @@ const Game = () => {
         {state.teams.map((team, i) => {
           if ((i+1).toString() === id) {
             return (
-            <div className={`team${i}`} key={i}>
+            <div className={`team${i+1} Game__content__body`} key={i}>
               <h2>{team.name}</h2>
                 <div className='select'>
                   <div className='select__top'>

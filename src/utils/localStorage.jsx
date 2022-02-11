@@ -10,3 +10,4 @@ export const setLocalStorage = (value) => {
 export const removeLocalStorage = () => {
   localStorage.removeItem('molkking_param')
 }
+

@@ -1,31 +1,31 @@
 import './Teams.scss'
-import Cancel from '../../utils/img/cancel.png'
-import { useSelector } from 'react-redux';
-import { getLocalStorage, setLocalStorage } from '../../utils/localStorage'
-import { isToday, localStorageDateToNewDate } from '../../utils/tools'
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getLocalStorage } from '../../utils/localStorage';
 
 
 const Teams = () => {
-  let state = useSelector((state) => state)
-  const range = [1, 2, 3]
 
-    // check localStorage
-    const rawLocalStorage = getLocalStorage()
-    // si il y a quelqueChose dans le localStorage
-    if (rawLocalStorage !== null) {
-      const gotLocalStorage = JSON.parse(rawLocalStorage)
-  
-      if(gotLocalStorage.date){
-        // si l'user est déja venu aujourd'hui
-        if (isToday(localStorageDateToNewDate(gotLocalStorage.date))) {
-          state = gotLocalStorage.state
-        }
-      }
-      else {
-      // on update le localStorage
-      setLocalStorage({ date: new Date(), state })
+  const range = [1, 2, 3]
+  const dispatch = useDispatch()
+  const state = useSelector((state) => state)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const checkIfTeams = () => {
+    if (state.teams.length === 0) {
+      const localStorage = JSON.parse(getLocalStorage())
+      if(localStorage && localStorage.state.teams.length > 1) {
+        dispatch({ type: "setState"})
       }
     }
+  }
+
+  const handleDelete = (idx)=> {
+    dispatch({type: "deleteTeam", idx: idx})
+  }
+
+  useEffect(() => {
+    checkIfTeams()
+  }, [checkIfTeams])
 
   return (
     <div id="teams" className="teams">
@@ -44,6 +44,9 @@ const Teams = () => {
                 team.fails >= rangeElem ? <span key={rangeElem.toString()}>❌</span> : null
               )}
             </div>
+            <div className={state.playing? 'hidden' : 'team__delete'} onClick={e => handleDelete(idx)}>
+                <div>Supprimer</div>
+            </div>
           </div>
         </div>
         )
@@ -55,44 +58,3 @@ const Teams = () => {
 export default Teams
 
 
-// ↓↓↓↓ credits for cancel icon to add in the credit page ↓↓↓↓
-
-{/* <a href="https://www.flaticon.com/free-icons/cancel" title="cancel icons">Cancel icons created by Freepik - Flaticon</a> */}
-
-
-// mocked teams card for update style of team cards 
-
-
-{/* <div className={`team team__1`} key='1'>
-<div className='team__name'>
-<h2>Equipe 1</h2>
-</div>
-<div className='team__datas'>
-  <div className='team__datas-score'>
-    <p className='team__datas-pts'>45</p>
-    <p>points</p>
-  </div>
-  <div className='team__datas-fails'>
-    {range.map((rangeElem) =>
-        3 >= rangeElem ? <span key={rangeElem.toString()}>☀️</span> : null
-    )}
-  </div>
-</div>
-</div>
-
-<div className={`team team__2`} key='2'>
-<div className='team__name'>
-<h2>Equipe 2</h2>
-</div>
-<div className='team__datas'>
-  <div className='team__datas-score'>
-    <p className='team__datas-pts'></p>
-    <p>points</p>
-  </div>
-  <div className='team__datas-fails'>
-    {range.map((rangeElem) =>
-        2 >= rangeElem ? <span key={rangeElem.toString()}>☀️</span> : null
-    )}
-  </div>
-</div>
-</div> */}

@@ -10,9 +10,9 @@ const Routing = () => (
   <Router className="index">
     <Routes>
       <Route exact path="/" element={<Home/>} />
-      <Route path="/Dashboard" element={<Dashboard/>} />
-      <Route path="/Rules" element={<Rules/>} />
-      <Route path="/Skittles" element={<Skittles/>} />
+      <Route path="/dashboard" element={<Dashboard/>} />
+      <Route path="/rules" element={<Rules/>} />
+      <Route path="/skittles" element={<Skittles/>} />
       <Route path="/new-team" element={<NewTeam/>} />
       <Route path="/game/:id" element={<Game/>} />
     </Routes>

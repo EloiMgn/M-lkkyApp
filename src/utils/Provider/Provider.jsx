@@ -10,7 +10,7 @@ export const StoreProvider = ({children }) => {
   // DEFAULT VALUE
   const [localStorageAvailable, setIsLocalStorageAvailable] = useState(true)
   const [theme, setTheme] = useState(null)
-  const [teams, setTeams] = useState([])
+  const [state, setState] = useState([])
 
   const defaultTheme = 'light'
 
@@ -58,19 +58,19 @@ export const StoreProvider = ({children }) => {
 
   // }
 
-  const addTeam = (Team) => {
-    const newTeam = Team
-    newTeam.id = teams.length+1
-    const rawLocalStorage = getLocalStorage()
-    if (rawLocalStorage !== null) {
-      const localStorage = JSON.parse(rawLocalStorage)
-      localStorage.teams.push(newTeam)
-      setLocalStorage({ date: new Date(), theme: localStorage.theme, teams: localStorage.teams })
+  // const addTeam = (Team) => {
+  //   const newTeam = Team
+  //   newTeam.id = teams.length+1
+  //   const rawLocalStorage = getLocalStorage()
+  //   if (rawLocalStorage !== null) {
+  //     const localStorage = JSON.parse(rawLocalStorage)
+  //     localStorage.teams.push(newTeam)
+  //     setLocalStorage({ date: new Date(), theme: localStorage.theme, teams: localStorage.teams })
 
-    } else {
-      setLocalStorage({ date: new Date(), theme, teams: newTeam })
-    }
-  }
+  //   } else {
+  //     setLocalStorage({ date: new Date(), theme, teams: newTeam })
+  //   }
+  // }
 
   // /**
   //  * Update localStorage + provider
@@ -109,7 +109,7 @@ export const StoreProvider = ({children }) => {
       // si l'user est déja venu aujourd'hui
       if (isToday(localStorageDateToNewDate(localStorage.date))) {
         setTheme(localStorage.theme)
-        setTeams(localStorage.teams)
+        // setTeams(localStorage.teams)
       }
       // sinon on met à jours le localStorage + Store
       else {
@@ -134,7 +134,7 @@ export const StoreProvider = ({children }) => {
 
   return (
     // value = contenu du state disponible aux `Consumers` de l'application
-    <Store.Provider value={{ theme: theme || defaultTheme, changeTheme, addTeam }}>
+    <Store.Provider value={{ theme: theme || defaultTheme, changeTheme}}>
       {/* [TODO] : page error with logo ...etc... */}
       {localStorageAvailable ? children : <ErrorLocalStorage/> }
     </Store.Provider>
