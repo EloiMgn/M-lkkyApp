@@ -57,30 +57,6 @@ function reducer(state = initialState, action) {
     return initialState;
   }
 
-  if (action.type === "createNewTeam") {
-    return produce(state, draft => {
-      draft.teams.push(
-        action.team
-        )
-      })
-  }
-  if (action.type === "deleteTeam") {
-    return produce(state, draft => {
-      draft.teams.splice(action.idx, 1);
-      })
-  }
-  if (action.type === "startGame") {
-    return {
-      ...state,
-      playing: true,
-    };
-  }
-  if (action.type === "nextTeam") {
-    return {
-      ...state,
-      turn: action.currentTeam+1
-    };
-  }
   if (action.type === "setState") {
     const localStorage = JSON.parse(getLocalStorage())
     return {
@@ -90,6 +66,45 @@ function reducer(state = initialState, action) {
       turn: localStorage.state.turn,
       teams: localStorage.state.teams
     };
+  }
+
+  if (action.type === "createNewTeam") {
+    return produce(state, draft => {
+      draft.teams.push(
+        action.team
+        )
+      })
+  }
+
+  if (action.type === "deleteTeam") {
+    return produce(state, draft => {
+      draft.teams.splice(action.idx, 1);
+      })
+  }
+
+  if (action.type === "startGame") {
+    return {
+      ...state,
+      playing: true,
+    };
+  }
+
+  if (action.type === "nextTeam") {
+    return {
+      ...state,
+      turn: action.currentTeam+1
+    };
+  }
+  if (action.type === "fail") {
+    return produce(state, draft => {
+      draft.teams[(action.team)-1].fails++;
+      })
+  }
+
+  if (action.type === "scored") {
+    return produce(state, draft => {
+      draft.teams[(action.team)-1].score += action.score;
+      })
   }
   return state;
 }

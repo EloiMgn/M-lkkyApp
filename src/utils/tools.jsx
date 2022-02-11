@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 
 export const getDateFromFolderName = (folderName) => {
   const regex = /[0-9]{8}/
@@ -26,3 +25,5 @@ export const is_touch_device = () => {
     return false
   }
 }
+
+

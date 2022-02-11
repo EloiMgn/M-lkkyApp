@@ -32,7 +32,7 @@ const dispatch = useDispatch()
     if (localStorageAvailable && localStorage && localStorage.state.teams.length === state.teams.length) {
       dispatch({ type: "setState"})
     }
-  },)
+  }, [localStorage])
 
   
   const handleStartGame = () => {

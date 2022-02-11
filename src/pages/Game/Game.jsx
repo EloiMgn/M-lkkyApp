@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import {useState } from 'react';
+import {useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './Game.scss'
 import Header from '../../components/Header/Header'
@@ -8,6 +8,8 @@ import Button from '../../components/Button/Button'
 // import { getLocalStorage, setLocalStorage } from '../../utils/localStorage'
 // import { isToday, localStorageDateToNewDate } from '../../utils/tools'
 import { useDispatch } from 'react-redux';
+// import { calculateScore } from '../../utils/tools';
+import { setLocalStorage } from '../../utils/localStorage';
 
 const Game = () => {
   const {id} = useParams();
@@ -15,24 +17,13 @@ const Game = () => {
   const range = [1, 2, 3]
   const dispatch = useDispatch()
 
-  // setLocalStorage({ date: new Date(), state })
-  //   // check localStorage
-  //   const rawLocalStorage = getLocalStorage()
-  //   // si il y a quelqueChose dans le localStorage
-  //   if (rawLocalStorage !== null) {
-  //     const gotLocalStorage = JSON.parse(rawLocalStorage)
-  
-  //     if(gotLocalStorage.date){
-  //       // si l'user est déja venu aujourd'hui
-  //       if (isToday(localStorageDateToNewDate(gotLocalStorage.date))) {
-  //         state = gotLocalStorage.state
-  //       }
-  //     }
-  //     else {
-  //     // on update le localStorage
-  //     setLocalStorage({ date: new Date(), state })
-  //     }
-  //   }
+  useEffect(() => {
+    if (state.teams.length > 1) {
+      setLocalStorage({ date: new Date(), state })
+    } else if (state.teams.length <= 1) {
+      dispatch({ type: "setState"})
+    }
+  }, [dispatch, id, state])
 
   const [select12, setSelect12] = useState(false)
   const [select11, setSelect11] = useState(false)
@@ -48,17 +39,18 @@ const Game = () => {
   const [select1, setSelect1] = useState(false)
 
   const selectedSkittles = [
-    // select2,
-    // select3,
-    // select4,
-    // select5,
-    // select6,
-    // select7,
-    // select8,
-    // select9,
-    // select10,
-    // select11,
-    // select12
+    {value: select1, id: 1},
+    {value: select2, id: 2},
+    {value: select3, id: 3},
+    {value: select4, id: 4},
+    {value: select5, id: 5},
+    {value: select6, id: 6},
+    {value: select7, id: 7},
+    {value: select8, id: 8},
+    {value: select9, id: 9},
+    {value: select10, id: 10},
+    {value: select11, id: 11},
+    {value: select12, id: 12}
   ] 
 
 // Handle selection of valid skittles :
@@ -100,16 +92,44 @@ const Game = () => {
   }
   
   const handleResetSkittles = () => {
-    selectedSkittles.forEach(skittle => {
-      console.log();
-    })
+    setSelect1(false)
+    setSelect2(false)
+    setSelect3(false)
+    setSelect4(false)
+    setSelect5(false)
+    setSelect6(false)
+    setSelect7(false)
+    setSelect8(false)
+    setSelect9(false)
+    setSelect10(false)
+    setSelect11(false)
+    setSelect12(false)
   }
   const handleNextTeam = (i)  => {
     dispatch({ type: "nextTeam", currentTeam: i })
+    calculateScore(selectedSkittles, id)
     handleResetSkittles()
   }
-  // let newState = useSelector((state) => state)
 
+  const calculateScore = (data, id) => {
+    const score = { points: 0, fail: 0}
+    const falledSkittle = []
+    data.forEach(skittle => {
+      if (skittle.value === true) {
+        falledSkittle.push(skittle)
+      }
+    })
+    if (falledSkittle.length === 0) {
+      dispatch({type: "fail", team: id})
+    }
+    if (falledSkittle.length === 1) {
+      dispatch({type: "scored", score: falledSkittle[0].id, team: id})
+    }
+    if (falledSkittle.length > 1) {
+      dispatch({type: "scored", score: falledSkittle.length, team: id})
+    }
+    return score
+  }
 
   return (
     <div id="Game" className="Game">
