@@ -49,7 +49,8 @@ useEffect(() => {
   state.teams.length >= 2 ? setEnoughPlayers(true) : setEnoughPlayers(false)
 }, [state])
 
-  if (state.playing === false) {
+console.log(state.turn);
+
     return (
       <div id="Dashboard" className="Dashboard">
         <Header/>
@@ -57,32 +58,20 @@ useEffect(() => {
           <div className='Dashboard__teams'>
             <h1 className='Dashboard__title'>Equipes:</h1>
             <Teams/>
-            <div className='Dashboard__createTeamBtn'>
+            <div className={state.playing?  'hidden' : 'Dashboard__createTeamBtn'}>
               <Button elt={"Dashboard"} className='Dashboard__btn' text={"Ajouter une nouvelle équipe"} link={"/new-team"} size={"small"} ico={"fas fa-plus-circle"}/>
             </div>
           </div>
-            <div className={enoughPlayers === true ? 'Dashboard__startGame ' : 'hidden'}>
+            <div className={enoughPlayers && !state.playing? 'Dashboard__startGame ' : 'hidden'}>
               <Button elt={"Dashboard"} className='Dashboard__btn' text={"Commencer à jouer"} link={"/game/1"} size={"small"} action={handleStartGame}/>
+            </div>
+            <div className={state.playing? 'Dashboard__startGame ' : 'hidden'}>
+              <Button elt={"Dashboard"} className='Dashboard__btn' text={'Continuer la partie'} link={`/game/${state.turn}`} size={"small"}/>
             </div>
         </main>
         <Footer/>
       </div>
     )
-  } return (
-    <div id="Dashboard" className="Dashboard">
-    <Header/>
-    <main className='Dashboard__content'>
-      <div className='Dashboard__teams'>
-        <h1 className='Dashboard__title'>Equipes:</h1>
-        <Teams/>
-      </div>
-        <div className={enoughPlayers === true ? 'Dashboard__startGame ' : 'hidden'}>
-          <Button elt={"Dashboard"} className='Dashboard__btn' text={"Continuer la partie"} link={`/game/${(state.turn)+1}`} size={"small"}/>
-        </div>
-    </main>
-    <Footer/>
-  </div>
-  )
 }
 
 export default Dashboard

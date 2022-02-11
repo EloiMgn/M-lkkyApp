@@ -45,7 +45,7 @@ import { isToday, localStorageDateToNewDate } from './utils/tools'
 const initialState = {
   theme: 'light',
   playing: false,
-  turn: 0,
+  turn: 1,
   teams: []
 };
 
@@ -92,7 +92,13 @@ function reducer(state = initialState, action) {
   if (action.type === "nextTeam") {
     return {
       ...state,
-      turn: action.currentTeam+1
+      turn: action.currentTeam+2
+    };
+  }
+  if (action.type === "firstTeam") {
+    return {
+      ...state,
+      turn: 1
     };
   }
   if (action.type === "fail") {

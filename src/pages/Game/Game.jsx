@@ -111,6 +111,12 @@ const Game = () => {
     handleResetSkittles()
   }
 
+  const handleNextFirstTeam = (i)  => {
+    dispatch({ type: "firstTeam", currentTeam: i })
+    calculateScore(selectedSkittles, id)
+    handleResetSkittles()
+  }
+
   const calculateScore = (data, id) => {
     const score = { points: 0, fail: 0}
     const falledSkittle = []
@@ -186,11 +192,15 @@ const Game = () => {
                       </div>
                   </div>
                 </div>
-              <Button elt={"Game"} text='Equipe suivante' size={"medium"} link={`/game/${i+2}`} action={e => handleNextTeam(i)}/>
+                <div className={i+1 < state.teams.length? 'show' : 'hidden'}>
+                  <Button elt={"Game"} text='Equipe suivante' size={"medium"} link={`/game/${i+2}`} action={e => handleNextTeam(i)}/>
+                </div>
+                <div className={i+1 === state.teams.length? 'show' : 'hidden'}>
+                  <Button elt={"Game"} text='Equipe suivante' size={"medium"} link={`/game/1`} action={e => handleNextFirstTeam(i)}/>
+                </div>
             </div>
             )
-          }
-          return null
+          } 
         })}
       </main>
       <Footer/>

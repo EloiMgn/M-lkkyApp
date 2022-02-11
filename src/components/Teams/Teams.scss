@@ -9,7 +9,7 @@
   justify-content: space-between;
   align-items: center;
   height: 5vh;
-  margin: var(--margin-small);
+  margin: var(--margin-small) var(--margin-medium);
   padding: var(--margin-small);
   background-color: var(--light-overlay);
   border-radius: var(--border-radius-small);
@@ -22,14 +22,18 @@
     height: 100%;
     border-right: solid 1px black;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    margin-left: var(--margin-medium);
   }
   &__datas{
     width: 50%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    &-pts{
+      font-weight: var(--fontweight-bold);
+    }
     &-score{
       width: 50%;
       margin-left: var(--margin-medium);
@@ -39,6 +43,9 @@
     } 
     &-fails{
       width: 50%;
+      display: flex;
+      justify-content: flex-end;
+      margin-right: var(--margin-small);
     }
   }
 }
