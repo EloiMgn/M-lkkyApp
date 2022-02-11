@@ -10,6 +10,7 @@ import Button from '../../components/Button/Button'
 import { useDispatch } from 'react-redux';
 // import { calculateScore } from '../../utils/tools';
 import { setLocalStorage } from '../../utils/localStorage';
+import { checkWinner } from '../../utils/tools';
 
 const Game = () => {
   const {id, playerId} = useParams();
@@ -26,21 +27,6 @@ const Game = () => {
       dispatch({ type: "setState"})
     }
   }, [dispatch, id, state])
-
-  // useEffect(() => {
-  //   const teamsTurnRange = state.teams.length
-  //   if(state.teams.length > 1) {
-  //     const playersTurnRange = state.teams[parseInt(id)-1].players.length
-  //     setMinorTurn(minorTurn+1)
-  //     dispatch({type: "nextPlayer", team: parseInt(id)})
-  //     console.log('hein?')
-  //     if(state.teams[parseInt(id)-1].playerTurn === playersTurnRange) {
-  //       dispatch({type: "firstPlayer", team: parseInt(id)})
-  //       console.log("ca part a vaux l'eau")
-  //     }
-  //   }
-  //   // console.log(playersTurnRange);
-  // }, [id])
 
   const [select12, setSelect12] = useState(false)
   const [select11, setSelect11] = useState(false)
@@ -123,26 +109,23 @@ const Game = () => {
     setSelect12(false)
   }
   const handleNextTeam = (i)  => {
-    // console.log(state.teams[i].name);
-    // console.log(i);
     dispatch({ type: "nextTeam", currentTeam: i })
     dispatch({type: "nextPlayer", team: parseInt(id)})
     calculateScore(selectedSkittles, id)
+    console.log(state.teams[i].score);
+    // checkWinner()
     handleResetSkittles()
   }
 
   const handleNextFirstTeam = (i)  => {
-    // console.log(state.teams[i].name);
-    // console.log(i);
     dispatch({ type: "firstTeam", currentTeam: i })
     dispatch({type: "nextPlayer", team: parseInt(id)})
-    // dispatch({type: "firstPlayer", team: parseInt(id)})
     calculateScore(selectedSkittles, id)
+    console.log(calculateScore(selectedSkittles, id));
     handleResetSkittles()
   }
 
   const calculateScore = (data, id) => {
-    const score = { points: 0, fail: 0}
     const falledSkittle = []
     data.forEach(skittle => {
       if (skittle.value === true) {
@@ -158,7 +141,6 @@ const Game = () => {
     if (falledSkittle.length > 1) {
       dispatch({type: "scored", score: falledSkittle.length, team: id})
     }
-    return score
   }
   
 
@@ -168,7 +150,6 @@ const Game = () => {
       <main className='Game__content'>
         {state.teams.map((team, i) => {
           if ((i+1).toString() === id) {
-            console.log(i)
             return (
             <div className={`team${i+1} Game__content__body`} key={i}>
               <h2>{team.name}</h2>
@@ -202,7 +183,7 @@ const Game = () => {
                     </div>
                     <div className='playingDatas__data-fails'>
                       <p>Lancés ratés:</p>
-                      <div className='team__datas-fails'>
+                      <div className='team__datas-failsPlaying'>
                         {range.map((rangeElem) =>
                           team.fails >= rangeElem ? <span key={rangeElem.toString()}>❌</span> : null
                         )}
@@ -212,32 +193,23 @@ const Game = () => {
                   <div className='playingDatas__data__player'>
                     <p>Joueur:</p>
                     <div className='team__datas-playerName'>
-                        {team.players.map((player) => { if (player === playerId) {
-
+                        {team.players.map((player) => { 
+                          if (player === playerId) {
                           return  <span key={player.toString()}>{player}</span>
                             }
-                          }
+                            return null
+                          } 
                         )}
                       </div>
                   </div>
                 </div>
-                {/* {majorTurn.map((turn) => {
-                  console.log(turn);
-                  <>  */}
-                    <div className={i+2 < state.teams.length ? 'show' : 'hidden'}>
-                      <Button elt={"Game"} text='Equipe suivante' size={"medium"} link={`/game/${state.teams[i+1].name}/${i + 2}/${state.teams[parseInt(id)-1].players[state.teams[parseInt(id)].playerTurn]}`} action={() => handleNextTeam(i)} />
-                    </div>
-                    {/* <div className={i+2 < state.teams.length ? 'show' : 'hidden'}>
-                      <Button elt={"Game"} text='Equipe suivante' size={"medium"} link={`/game/${state.teams[i+1].name}/${i + 2}/${state.teams[parseInt(id)-1].players[state.teams[parseInt(id)].playerTurn]}`} action={() => handleNextTeam(i)} />
-                    </div> */}
-                    <div className={i+2 === state.teams.length ? 'show' : 'hidden'}>
-                      <Button elt={"Game"} text='Equipe suivante' size={"medium"} link={`/game/${state.teams[0].name}/1/${state.teams[0].players[state.teams[0].playerTurn]}`} action={() => handleNextFirstTeam(i)} />
-                    </div>
-                  {/* </>
-                })} */}
+                  {i+1 === state.teams.length && <Button elt={"Game"} text='Equipe suivante' size={"medium"} link={`/game/${state.teams[0].name}/1/${state.teams[0].players[state.teams[0].playerTurn]}`} action={() => handleNextFirstTeam(i)} />}
+                  {i+1 < state.teams.length && <Button elt={"Game"} text='Equipe suivante' size={"medium"} link={`/game/${state.teams[i+1].name}/${i + 2}/${state.teams[i+1].players[state.teams[i+1].playerTurn]}`} action={() => handleNextTeam(i)} />}
+                  {2 > state.teams.length > i+2 && <Button elt={"Game"} text='Equipe suivante' size={"medium"} link={`/game/${state.teams[i+1].name}/${i + 2}/${state.teams[i+1].players[state.teams[i+1].playerTurn]}`} action={() => handleNextTeam(i)} />}
             </div>
             )
           } 
+          return null
         })}
       </main>
       <Footer/>

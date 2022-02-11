@@ -46,7 +46,8 @@ const initialState = {
   theme: 'light',
   playing: false,
   turn: 1,
-  teams: []
+  teams: [],
+  winner: null
 };
 
 // actions creators
@@ -128,6 +129,12 @@ function reducer(state = initialState, action) {
     return produce(state, draft => {
       draft.teams[(action.team)-1].score += action.score;
       })
+  }
+  if (action.type === "setWinner") {
+    return {
+      ...state,
+      winner: action.team
+    };
   }
   return state;
 }

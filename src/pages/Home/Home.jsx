@@ -1,5 +1,5 @@
 import './Home.scss'
-import { getLocalStorage, removeLocalStorage, setLocalStorage } from '../../utils/localStorage'
+import { getLocalStorage, removeLocalStorage } from '../../utils/localStorage'
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
 import Button from '../../components/Button/Button'

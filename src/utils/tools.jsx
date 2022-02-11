@@ -26,4 +26,9 @@ export const is_touch_device = () => {
   }
 }
 
+export const checkWinner = (teamScore) => {
+  if (teamScore === 50) {
+    return true
+  } else return false
+}
 
