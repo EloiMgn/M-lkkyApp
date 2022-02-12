@@ -15,6 +15,18 @@ const Header = () => {
     setShowLinks(!showLinks)
   }
 
+  const handleRestartGame = () => {
+    for (let i = 0; i < state.teams.length; i++) {
+      dispatch({type: "restart", idx: i})
+    }
+    // check localStorage
+    const rawLocalStorage = getLocalStorage()
+    // si il y a quelqueChose dans le localStorage
+    if (rawLocalStorage !== null) {
+        removeLocalStorage()
+      }
+    }
+    
   const handleStartNewGame = () => {
     dispatch({type: "startNewGame"})
     // check localStorage
@@ -24,6 +36,7 @@ const Header = () => {
         removeLocalStorage()
       }
     }
+    // console.log(state);
 
   return (
         <header className={`navbar ${showLinks ? "show-nav" : "" }`}>
@@ -41,6 +54,9 @@ const Header = () => {
             </li>
             <li className={state.playing? 'navbar__item' : 'hidden'}>
               <Link to="/dashboard" className='navbar__link'>Scores</Link>
+            </li>
+            <li className={state.playing? 'navbar__item' : 'hidden'}>
+              <Link to="/dashboard" className='navbar__link' onClick={handleRestartGame}>Recommencer la partie</Link>
             </li>
             <li className={state.playing? 'navbar__item' : 'hidden'}>
               <Link to="/" className='navbar__link' onClick={handleStartNewGame}>Nouvelle partie</Link>

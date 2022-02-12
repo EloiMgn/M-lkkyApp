@@ -57,6 +57,14 @@ function reducer(state = initialState, action) {
   if (action.type === "startNewGame") {
     return initialState;
   }
+  if (action.type === "restart") {
+    return produce(state, draft => {
+      console.log(action.idx);
+      draft.teams[action.idx].score = 0;
+      draft.teams[action.idx].fails = 0
+      draft.teams[action.idx].playerTurn = 0
+      })
+    }
 
   if (action.type === "setState") {
     const localStorage = JSON.parse(getLocalStorage())
@@ -121,7 +129,12 @@ function reducer(state = initialState, action) {
   }
   if (action.type === "fail") {
     return produce(state, draft => {
-      draft.teams[(action.team)-1].fails++;
+      draft.teams[(action.team)-1].fails+=1;
+      })
+  }
+  if (action.type === "unFail") {
+    return produce(state, draft => {
+      draft.teams[(action.team)-1].fails=0;
       })
   }
 

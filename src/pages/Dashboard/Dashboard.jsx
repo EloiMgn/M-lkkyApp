@@ -49,8 +49,6 @@ useEffect(() => {
   state.teams.length >= 2 ? setEnoughPlayers(true) : setEnoughPlayers(false)
 }, [state])
 
-console.log(state);
-
     return (
       <div id="Dashboard" className="Dashboard">
         <Header/>

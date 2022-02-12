@@ -14,11 +14,10 @@ import { checkWinner } from '../../utils/tools';
 
 const Game = () => {
   const {id, playerId} = useParams();
-  let state = useSelector((state) => state)
+  const state = useSelector((state) => state)
+  const score = useSelector((state) => state.teams[parseInt(id)-1].score)
   const range = [1, 2, 3]
   const dispatch = useDispatch()
-  // const [majorTurn, setMajorTurn] = useState(1)
-  // const [minorTurn, setMinorTurn] = useState(1)
 
   useEffect(() => {
     if (state.teams.length > 1) {
@@ -27,6 +26,14 @@ const Game = () => {
       dispatch({ type: "setState"})
     }
   }, [dispatch, id, state])
+
+  // useEffect(() => {
+  //   // console.log(score);
+  //   if (checkWinner(score)) {
+  //     // console.log(score);
+  //     dispatch({type: "setWinner", team: parseInt(id)})
+  //   }
+  // }, [state])
 
   const [select12, setSelect12] = useState(false)
   const [select11, setSelect11] = useState(false)
@@ -108,12 +115,13 @@ const Game = () => {
     setSelect11(false)
     setSelect12(false)
   }
+
+
   const handleNextTeam = (i)  => {
     dispatch({ type: "nextTeam", currentTeam: i })
     dispatch({type: "nextPlayer", team: parseInt(id)})
     calculateScore(selectedSkittles, id)
-    console.log(state.teams[i].score);
-    // checkWinner()
+
     handleResetSkittles()
   }
 
@@ -121,7 +129,6 @@ const Game = () => {
     dispatch({ type: "firstTeam", currentTeam: i })
     dispatch({type: "nextPlayer", team: parseInt(id)})
     calculateScore(selectedSkittles, id)
-    console.log(calculateScore(selectedSkittles, id));
     handleResetSkittles()
   }
 
@@ -137,12 +144,13 @@ const Game = () => {
     }
     if (falledSkittle.length === 1) {
       dispatch({type: "scored", score: falledSkittle[0].id, team: id})
+      dispatch({type: "unFail", team: id})
     }
     if (falledSkittle.length > 1) {
       dispatch({type: "scored", score: falledSkittle.length, team: id})
+      dispatch({type: "unFail", team: id})
     }
   }
-  
 
   return (
     <div id="Game" className="Game">
