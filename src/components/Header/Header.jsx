@@ -36,7 +36,6 @@ const Header = () => {
         removeLocalStorage()
       }
     }
-    // console.log(state);
 
   return (
         <header className={`navbar ${showLinks ? "show-nav" : "" }`}>
@@ -52,7 +51,7 @@ const Header = () => {
             <li className='navbar__item'>
               <Link to="/rules" className='navbar__link'>Règles</Link>
             </li>
-            <li className={state.playing? 'navbar__item' : 'hidden'}>
+            <li className={state.playing && state.winner === null? 'navbar__item' : 'hidden'}>
               <Link to="/dashboard" className='navbar__link'>Scores</Link>
             </li>
             <li className={state.playing? 'navbar__item' : 'hidden'}>

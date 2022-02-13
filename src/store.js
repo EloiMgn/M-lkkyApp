@@ -2,6 +2,7 @@ import { createStore } from "redux";
 import produce from "immer";
 // import { useEffect, useState } from "react";
 import { getLocalStorage } from './utils/localStorage'
+// import { useNavigate } from "react-router-dom";
 // import { isToday, localStorageDateToNewDate } from './utils/tools'
 
 
@@ -59,10 +60,13 @@ function reducer(state = initialState, action) {
   }
   if (action.type === "restart") {
     return produce(state, draft => {
-      console.log(action.idx);
-      draft.teams[action.idx].score = 0;
+      draft.teams[action.idx].score = 0
       draft.teams[action.idx].fails = 0
       draft.teams[action.idx].playerTurn = 0
+      draft.teams[action.idx].level = false
+      draft.turn = 0
+      draft.playing = false
+      draft.winner = null
       })
     }
 
@@ -143,11 +147,34 @@ function reducer(state = initialState, action) {
       draft.teams[(action.team)-1].score += action.score;
       })
   }
+
+  if (action.type === "setLevel") {
+    return produce(state, draft => {
+      draft.teams[action.team].level = true;
+      })
+  }
+
+  if (action.type === "resetScore") {
+    if(state.teams[action.team].level) {
+      return produce(state, draft => {
+        draft.teams[action.team].score = 25;
+        draft.teams[action.team].fails=0;
+        })
+    } else if(!state.teams[action.team].level) {
+      return produce(state, draft => {
+        draft.teams[action.team].score = 0;
+        draft.teams[action.team].fails=0;
+        })
+    } 
+  }
+
   if (action.type === "setWinner") {
-    return {
-      ...state,
-      winner: action.team
-    };
+    if(state.winner === null) {
+      return {
+        ...state,
+        winner: action.team
+      };
+    }
   }
   return state;
 }

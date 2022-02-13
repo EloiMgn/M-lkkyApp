@@ -5,6 +5,7 @@ import Rules from '../pages/Rules/Rules';
 import Skittles from '../pages/Skittles/Skittles';
 import NewTeam from '../pages/NewTeam/NewTeam';
 import Game from '../pages/Game/Game';
+import Winner from '../pages/Winner/Winner';
 
 const Routing = () => (
   <Router className="index">
@@ -15,6 +16,7 @@ const Routing = () => (
       <Route path="/skittles" element={<Skittles/>} />
       <Route path="/new-team" element={<NewTeam/>} />
       <Route path="/game/:name/:id/:playerId" element={<Game/>} />
+      <Route path="/winner/:id" element={<Winner/>} />
     </Routes>
 </Router>
 )

@@ -32,3 +32,23 @@ export const checkWinner = (teamScore) => {
   } else return false
 }
 
+export const setLevel = (teamScore) => {
+  if(teamScore >= 25) {
+    return true
+  } else return false
+}
+
+export const checkIfEqual = (teams, teamScore, i) => {
+  const teamScores= []
+  teams.forEach(team => {
+    if(teams[i] !== team) {
+      teamScores.push(team)
+    }
+  })
+  for (let j = 0; j < teamScores.length; j++) {
+    if(teamScore === teamScores[j].score && teamScore !== 0) {
+      return teamScores[j]
+    } else return null
+  }
+}
+

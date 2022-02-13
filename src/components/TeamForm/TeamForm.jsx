@@ -79,7 +79,7 @@ const TeamForm = () => {
     Team.players.pop()
     setTeam(Team)
     dispatch({ type: "createNewTeam", team: Team })
-    navigate('/Dashboard', { replace: true })
+    navigate('/dashboard', { replace: true })
   }
 
   useEffect(() => {
