@@ -8,6 +8,7 @@
   min-height: 10vh;
   background-color: var(--black);
   color: var(--white);
+  // font-weight: var(--fontweight-bold);
   z-index: 10;
 
   &__links {
@@ -101,10 +102,6 @@
   .show-nav .burger-bar {
     background: transparent;
   }
-
-  // .navbar__item {
-  //   // transform: translateY(-100vh);
-  // }
 
   .show-nav .navbar__item {
     transform: translateY(0);

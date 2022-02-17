@@ -8,7 +8,7 @@ import Routing from '../../Router/Router'
 
 const App = () => {
   // const { theme } = useContext(Store)
-
+  
   return (
     <div id="App" className={`theme-light`}>
         <div className='App__content-body'>

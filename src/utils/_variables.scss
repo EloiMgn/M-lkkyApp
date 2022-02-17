@@ -42,6 +42,7 @@
   --font-title: 'Nixie One', sans-serif;
   --font-text: 'Roboto', sans-serif;
 
+  --fontsize-huge: 4rem;
   --fontsize-big: 2rem;
   --fontsize-medium: 1.3rem;
   --fontsize-small: 1rem;
@@ -62,7 +63,7 @@
   --height-btn-tiny: 20px;
   --height-btn-small: 35px;
   --height-btn-medium: 50px;
-  --height-btn-big: 100px;
+  --height-btn-big: 10vmax;
 
   --box-shadow-light: 0 4px 6px -1px rgba(0, 0, 0, .6), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --box-shadow-dark: 0 4px 6px -1px rgba(150, 150, 150, .6), 0 2px 4px -1px rgba(0, 0, 0, 0.06);

@@ -81,6 +81,10 @@
 }
 
 .Game__btn{
-  height: var(--height-btn-medium);
-  width: var(--width-btn-big);
+  height: var(--height-btn-big);
+  // width: var(--width-btn-big);
+}
+
+.navBtn{
+  display: flex;
 }

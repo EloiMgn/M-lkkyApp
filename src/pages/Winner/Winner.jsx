@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import { useEffect, useState } from 'react';
-import { getLocalStorage, removeLocalStorage, setLocalStorage } from '../../utils/localStorage';
-
+import { getLocalStorage, removeLocalStorage } from '../../utils/localStorage';
+import Fireworks from '../../components/Fireworks/Fireworks';
 
 const Winner = () => {
   const {id} = useParams();
@@ -34,7 +34,7 @@ const Winner = () => {
       if (localStorageAvailable && localStorage && localStorage.state.teams.length === state.teams.length) {
         dispatch({ type: "setStateWinner"})
       }
-    }, [dispatch])
+    }, [dispatch, localStorageAvailable, state.teams.length])
 
     const handleRestartGame = () => {
       for (let i = 0; i < state.teams.length; i++) {
@@ -65,14 +65,26 @@ return (
       if(i === parseInt(id)) {
         return (
         <main className='Winner__content' key={i}>
-              <h1>{team.name}</h1>
-              <h2>a gagné !!</h2>
-              <p>vous pouvez :</p>
-              <Button elt={"Dashboard"} className='Dashboard__btn' text={"Recommencer la partie"} link={`/dashboard`} size={"small"} action={handleRestartGame}/>
-              <Button elt={"Dashboard"} className='Dashboard__btn' text={"Démarrer une nouvelle partie"} link={`/dashboard`} size={"small"} action={handleStartNewGame}/>
+          <div className='winner'>
+            <h1 className='winner__team'>L'équipe {team.name}</h1>
+            <h2 className='winner__teaxt'>avec</h2>
+            <div className='winner__players'>
+              {team.players.map((player, idx) => {
+                return <h2 className='winner__player' key={idx}>{player}</h2>
+              })}
+            </div>
+            <h2 className='winner__player'>a gagné !!</h2>
+          </div>
+          <div className='options'>
+          <p className='options__text'>Vous pouvez :</p>
+          <Button elt={"Dashboard"} className='Dashboard__btn' text={"Recommencer la partie"} link={`/dashboard`} size={"small"} action={handleRestartGame}/>
+          <Button elt={"Dashboard"} className='Dashboard__btn' text={"Démarrer une nouvelle partie"} link={`/dashboard`} size={"small"} action={handleStartNewGame}/>
+          </div>
+          <Fireworks />
         </main>
-      )}
-    })}
+      )} return null
+    }  
+    )}
     <Footer />
   </div>
 )

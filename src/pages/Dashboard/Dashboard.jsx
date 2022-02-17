@@ -4,13 +4,16 @@ import Footer from '../../components/Footer/Footer'
 import Button from '../../components/Button/Button'
 import Teams from '../../components/Teams/Teams';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { getLocalStorage, setLocalStorage } from '../../utils/localStorage'
+// import { useParams } from 'react-router-dom';
 
 const Dashboard = () => {
 const [enoughPlayers, setEnoughPlayers] = useState(false)
 const [localStorageAvailable, setIsLocalStorageAvailable] = useState(true)
 const dispatch = useDispatch()
+const state = useSelector((state) => state)
+// const {id} = useParams();
 
   /**
    * Check availability to use localStorage
@@ -26,20 +29,19 @@ const dispatch = useDispatch()
     }
   }
 
-  useEffect(() => {
-    isLocalStorageAvailable()
+useCallback(
+    () => { isLocalStorageAvailable()
     const localStorage = JSON.parse(getLocalStorage())
     if (localStorageAvailable && localStorage && localStorage.state.teams.length === state.teams.length) {
       dispatch({ type: "setState"})
     }
-  }, [dispatch])
-
+    }, [dispatch, localStorageAvailable, state.teams.length],
+  )
   
   const handleStartGame = () => {
       dispatch({ type: "startGame"})
       setNewLocalStorage()
   }
-  const state = useSelector((state) => state)
 
   const setNewLocalStorage = () => {
     setLocalStorage({ date: new Date(), state })
@@ -64,7 +66,7 @@ useEffect(() => {
           {state.teams.length > 1? 
             <div className='Dashboard__startGame'>
               {enoughPlayers && !state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={"Commencer à jouer"} link={`/game/${state.teams[0].name}/1/${state.teams[0].players[0]}`} size={"small"} action={handleStartGame} />}
-              {state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={'Continuer la partie'} link={`/game/${state.teams[state.turn - 1].name}/${state.turn}/${state.teams[state.turn - 1].players[state.teams[state.turn - 1].playerTurn]}`} size={"small"} action={handleStartGame}/>}
+              {state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={'Continuer la partie'} link={`/game/${state.teams[state.turn].name}/${state.turn+1}/${state.teams[state.turn].players[state.teams[state.turn].playerTurn]}`} size={"small"} action={handleStartGame}/>}
             </div>
             : null
           }

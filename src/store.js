@@ -5,7 +5,7 @@ import { getLocalStorage } from './utils/localStorage'
 const initialState = {
   theme: 'light',
   playing: false,
-  turn: 1,
+  turn: 0,
   teams: [],
   winner: null,
   skittles: [
@@ -80,18 +80,26 @@ function reducer(state = initialState, action) {
   if (action.type === "nextTeam") {
     return {
       ...state,
-      turn: action.currentTeam+2
+      turn: action.currentTeam+1
+    };
+  }
+  if (action.type === "previousTeam") {
+    return {
+      ...state,
+      turn: action.currentTeam-1
     };
   }
 
   if (action.type === "nextPlayer") {
     return produce(state, draft => {
+      // si le playerTurn est égal au nombre de player (dernier joueur) le playerTurn revient à 0 (premier joueur)
       if (draft.teams[(action.team)-1].playerTurn === (draft.teams[(action.team)-1].players.length)-1) {
         draft.teams[(action.team)-1].playerTurn = 0;
+        // si le playerturn est différent du total de joueur on ajoute un tour et on passe au joueur suivant
       } else if (draft.teams[(action.team)-1].playerTurn !== (draft.teams[(action.team)-1].players.length)-1) {
         draft.teams[(action.team)-1].playerTurn++
-        }
-      })
+      }
+    })
   }
 
   if (action.type === "firstPlayer") {
@@ -100,10 +108,29 @@ function reducer(state = initialState, action) {
       })
   }
 
+  if (action.type === "previousPlayer") {
+    return produce(state, draft => {
+    // si le playerTurn est égal a 0 (premier joueur) le player turn revient au nombrede player (dernier joueur)
+      if (draft.teams[(action.team)-1].playerTurn === 0) {
+        draft.teams[(action.team)-1].playerTurn = (draft.teams[(action.team)-1].players.length)-1;
+    // si le playerTurn est différent de 0 (pas le premier joueur) on enlève un a à playerTurn (joueur précédent)
+      } else if (draft.teams[(action.team)-1].playerTurn !== 0) {
+        draft.teams[(action.team)-1].playerTurn--
+        }
+      })
+  }
+
+
   if (action.type === "firstTeam") {
     return {
       ...state,
-      turn: 1
+      turn: 0
+    };
+  }
+  if (action.type === "lastTeam") {
+    return {
+      ...state,
+      turn: state.teams.length
     };
   }
   if (action.type === "fail") {
