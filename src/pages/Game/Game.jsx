@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
-import {useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router'
-import { navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import './Game.scss'
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux';
 // import { calculateScore } from '../../utils/tools';
 import { setLocalStorage } from '../../utils/localStorage';
 import { checkIfEqual, checkWinner, setLevel } from '../../utils/tools';
+import Skittles from '../../components/Skittles/Skittles';
 
 const Game = () => {
   const {id, playerId} = useParams();
@@ -29,120 +30,40 @@ const Game = () => {
     }
   }, [dispatch, id, state])
 
-
-
-  const [select12, setSelect12] = useState(false)
-  const [select11, setSelect11] = useState(false)
-  const [select10, setSelect10] = useState(false)
-  const [select9, setSelect9] = useState(false)
-  const [select8, setSelect8] = useState(false)
-  const [select7, setSelect7] = useState(false)
-  const [select6, setSelect6] = useState(false)
-  const [select5, setSelect5] = useState(false)
-  const [select4, setSelect4] = useState(false)
-  const [select3, setSelect3] = useState(false)
-  const [select2, setSelect2] = useState(false)
-  const [select1, setSelect1] = useState(false)
-
-  const selectedSkittles = [
-    {value: select1, id: 1},
-    {value: select2, id: 2},
-    {value: select3, id: 3},
-    {value: select4, id: 4},
-    {value: select5, id: 5},
-    {value: select6, id: 6},
-    {value: select7, id: 7},
-    {value: select8, id: 8},
-    {value: select9, id: 9},
-    {value: select10, id: 10},
-    {value: select11, id: 11},
-    {value: select12, id: 12}
-  ] 
-
-// Handle selection of valid skittles :
-  const handleclick1 = () => {
-    setSelect1(!select1);
-  }
-  const handleclick2 = () => {
-    setSelect2(!select2);
-  }
-  const handleclick3 = () => {
-    setSelect3(!select3);
-  }
-  const handleclick4 = () => {
-    setSelect4(!select4);
-  }
-  const handleclick5 = () => {
-    setSelect5(!select5);
-  }
-  const handleclick6 = () => {
-    setSelect6(!select6);
-  }
-  const handleclick7 = () => {
-    setSelect7(!select7);
-  }
-  const handleclick8 = () => {
-    setSelect8(!select8);
-  }
-  const handleclick9 = () => {
-    setSelect9(!select9);
-  }
-  const handleclick10 = () => {
-    setSelect10(!select10);
-  }
-  const handleclick11 = () => {
-    setSelect11(!select11);
-  }
-  const handleclick12 = () => {
-    setSelect12(!select12);
-  }
-  
   const handleResetSkittles = () => {
-    setSelect1(false)
-    setSelect2(false)
-    setSelect3(false)
-    setSelect4(false)
-    setSelect5(false)
-    setSelect6(false)
-    setSelect7(false)
-    setSelect8(false)
-    setSelect9(false)
-    setSelect10(false)
-    setSelect11(false)
-    setSelect12(false)
+    dispatch({type: "resetSkittles"})
   }
-
 
   const handleNextTeam = (i)  => {
     dispatch({ type: "nextTeam", currentTeam: i })
     dispatch({type: "nextPlayer", team: parseInt(id)})
-    calculateScore(selectedSkittles, id)
+    calculateScore(playerId, id)
     handleResetSkittles()
   }
 
   const handleNextFirstTeam = (i)  => {
     dispatch({ type: "firstTeam", currentTeam: i })
     dispatch({type: "nextPlayer", team: parseInt(id)})
-    calculateScore(selectedSkittles, id)
+    calculateScore(playerId, id)
     handleResetSkittles()
   }
 
-  const calculateScore = (data, id) => {
+  const calculateScore = (player, id) => {
     const falledSkittle = []
-    data.forEach(skittle => {
+    state.skittles.forEach(skittle => {
       if (skittle.value === true) {
         falledSkittle.push(skittle)
       }
     })
     if (falledSkittle.length === 0) {
-      dispatch({type: "fail", team: id})
+      dispatch({type: "fail", team: id, player: player})
     }
     if (falledSkittle.length === 1) {
-      dispatch({type: "scored", score: falledSkittle[0].id, team: id})
+      dispatch({type: "scored", score: falledSkittle[0].id, team: id, player: player})
       dispatch({type: "unFail", team: id})
     }
     if (falledSkittle.length > 1) {
-      dispatch({type: "scored", score: falledSkittle.length, team: id})
+      dispatch({type: "scored", score: falledSkittle.length, team: id, player: player})
       dispatch({type: "unFail", team: id})
     }
   }
@@ -248,7 +169,7 @@ const Game = () => {
     }
   }, [])
 
-
+  console.log(state);
   return (
     <div id="Game" className="Game">
       <Header/>
@@ -258,28 +179,7 @@ const Game = () => {
             return (
             <div className={`team${i+1} Game__content__body`} key={i}>
               <h2>{team.name}</h2>
-                <div className='select'>
-                  <div className='select__top'>
-                    <div className={select7? 'select__skittle selected' : 'select__skittle'} onClick={e =>handleclick7()}>7</div>
-                    <div className={select9? 'select__skittle selected' : 'select__skittle'} onClick={e =>handleclick9()}>9</div>
-                    <div className={select8? 'select__skittle selected' : 'select__skittle'} onClick={e =>handleclick8()}>8</div>
-                  </div>
-                  <div className='select__middleTop'>
-                    <div className={select5? 'select__skittle selected' : 'select__skittle'} onClick={e =>handleclick5()}>5</div>
-                    <div className={select11? 'select__skittle selected' : 'select__skittle'} onClick={e =>handleclick11()}>11</div>
-                    <div className={select12? 'select__skittle selected' : 'select__skittle'} onClick={e =>handleclick12()}>12</div>
-                    <div className={select6? 'select__skittle selected' : 'select__skittle'} onClick={e =>handleclick6()}>6</div>
-                  </div>
-                  <div className='select__middleBottom'>
-                    <div className={select3? 'select__skittle selected' : 'select__skittle'} onClick={e =>handleclick3()}>3</div>
-                    <div className={select10? 'select__skittle selected' : 'select__skittle'} onClick={e =>handleclick10()}>10</div>
-                    <div className={select4? 'select__skittle selected' : 'select__skittle'} onClick={e =>handleclick4()}>4</div>
-                  </div>
-                  <div className='select__bottom'>
-                    <div className={select1? 'select__skittle selected' : 'select__skittle'} onClick={e =>handleclick1()}>1</div>
-                    <div className={select2? 'select__skittle selected' : 'select__skittle'} onClick={e =>handleclick2()}>2</div>
-                  </div>
-                </div>
+                <Skittles/>
                 <div className='playingDatas'>
                   <div className='playingDatas__data'>
                     <div className='playingDatas__data-score'>
@@ -301,8 +201,8 @@ const Game = () => {
                         {team.players.map((player) => { 
                           if (player === playerId) {
                           return  <span key={player.toString()}>{player}</span>
-                            }
-                            return null
+                          }
+                          return null
                           } 
                         )}
                       </div>

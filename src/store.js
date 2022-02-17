@@ -1,57 +1,28 @@
 import { createStore } from "redux";
 import produce from "immer";
-// import { useEffect, useState } from "react";
 import { getLocalStorage } from './utils/localStorage'
-// import { useNavigate } from "react-router-dom";
-// import { isToday, localStorageDateToNewDate } from './utils/tools'
-
-
-// // const createLocalStorage = (state) => {
-// //   setLocalStorage({ date: new Date(), state })
-// // }
-
-// // // Vérifie qu'une partie est créee et qu'elle est en cours
-// // const checkGamePlaying = (state) => {
-// //   // check localStorage
-// //   const rawLocalStorage = getLocalStorage()
-// //   if (rawLocalStorage !== null) {
-// //     const localStorage = JSON.parse(rawLocalStorage)
-// //     // Vérifie si l'utilisateur est déjà venu aujourd'hui
-// //       if (isToday(localStorageDateToNewDate(localStorage.date))) {
-// //         // si des teams ont déjà été créées le state est mis à jour 
-// //         if(localStorage.state.teams.length > 1) {
-// //           createLocalStorage(localStorage.state)
-// //         }
-// //       }
-// //   }
-// // }
-
-
-//   // // Vérifie qu'une partie est créee et qu'elle est en cours
-//   // export const checkGamePlaying = () => {
-//   //   // check localStorage
-//   //   const rawLocalStorage = getLocalStorage()
-//   //   if (rawLocalStorage !== null) {
-//   //     const localStorage = JSON.parse(rawLocalStorage)
-//   //     // Vérifie si l'utilisateur est déjà venu aujourd'hui
-//   //       if (isToday(localStorageDateToNewDate(localStorage.date))) {
-//   //         if(localStorage.state.teams.length > 1 && localStorage.state.playing) {
-//   //           return true
-//   //         }return false
-//   //       } return false
-//   //   } return false
-//   // }
-
 
 const initialState = {
   theme: 'light',
   playing: false,
   turn: 1,
   teams: [],
-  winner: null
+  winner: null,
+  skittles: [
+    {value: false, id: 1},
+    {value: false, id: 2},
+    {value: false, id: 3},
+    {value: false, id: 4},
+    {value: false, id: 5},
+    {value: false, id: 6},
+    {value: false, id: 7},
+    {value: false, id: 8},
+    {value: false, id: 9},
+    {value: false, id: 10},
+    {value: false, id: 11},
+    {value: false, id: 12}
+  ]
 };
-
-// actions creators
 
 
 function reducer(state = initialState, action) {
@@ -96,10 +67,14 @@ function reducer(state = initialState, action) {
   }
 
   if (action.type === "startGame") {
-    return {
-      ...state,
-      playing: true,
-    };
+    return produce(state, draft => {
+      draft.playing = true
+      draft.teams.forEach(team =>{
+        team.players.forEach(player => {
+        team.stats = [{"player": player, "score": 0, "fails": 0}]
+        })
+      })
+    })
   }
 
   if (action.type === "nextTeam") {
@@ -134,6 +109,7 @@ function reducer(state = initialState, action) {
   if (action.type === "fail") {
     return produce(state, draft => {
       draft.teams[(action.team)-1].fails+=1;
+      draft.teams[(action.team)-1].stats.push({"player": action.player, "fails": action.score})
       })
   }
   if (action.type === "unFail") {
@@ -141,10 +117,29 @@ function reducer(state = initialState, action) {
       draft.teams[(action.team)-1].fails=0;
       })
   }
+  
+  if(action.type === "select") {
+    return  produce(state, draft => {
+      draft.skittles[(action.id)-1].value = true;
+      })
+  }
+  if(action.type === "unSelect") {
+    return  produce(state, draft => {
+      draft.skittles[(action.id)-1].value = false;
+      })
+  }
+  if(action.type === "resetSkittles") {
+    return  produce(state, draft => {
+      draft.skittles.forEach(skittle => {
+        skittle.value = false
+        })
+      })
+  }
 
   if (action.type === "scored") {
     return produce(state, draft => {
       draft.teams[(action.team)-1].score += action.score;
+      draft.teams[(action.team)-1].stats.push({"player": action.player, "score": action.score})
       })
   }
 
