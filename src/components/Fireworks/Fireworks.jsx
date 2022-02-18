@@ -1,5 +1,9 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import ReactCanvasConfetti from "react-canvas-confetti";
+
+function randomInRange(min, max) {
+  return Math.random() * (max - min) + min;
+}
 
 const canvasStyles = {
   position: "fixed",
@@ -10,73 +14,46 @@ const canvasStyles = {
   left: 0
 };
 
+function getAnimationSettings(originXA, originXB) {
+  return {
+    startVelocity: 20,
+    spread: 360,
+    ticks: 60,
+    zIndex: 0,
+    particleCount: 50,
+    origin: {
+      x: randomInRange(originXA, originXB),
+      y: Math.random() - 0.2
+    }
+  };
+}
+
 const Fireworks = () => {
+  const refAnimationInstance = useRef(null);
+  const [intervalId, setIntervalId] = useState();
+
   const getInstance = useCallback((instance) => {
     refAnimationInstance.current = instance;
   }, []);
 
-  const refAnimationInstance = useRef(null)
-
-  const makeShot = useCallback((particleRatio, opts) => {
-    refAnimationInstance.current &&
-      refAnimationInstance.current({
-        ...opts,
-        origin: { y: 0.7 },
-        particleCount: Math.floor(200 * particleRatio)
-      });
+  const nextTickAnimation = useCallback(() => {
+    if (refAnimationInstance.current) {
+      refAnimationInstance.current(getAnimationSettings(0.1, 0.3));
+      refAnimationInstance.current(getAnimationSettings(0.7, 0.9));
+    }
   }, []);
 
-  const fire = useCallback(() => {
-    makeShot(0.25, {
-      spread: 26,
-      startVelocity: 55
-    });
-    makeShot(0.25, {
-      spread: 10,
-      startVelocity: 55, 
-      origin: { x: .5, y: 0.8 },
-      ticks: 300,
-      angle: 60
-    });
-    makeShot(0.25, {
-      spread: 250,
-      startVelocity: 55, 
-      origin: { x: .5, y: 0.8 },
-      ticks: 300,
-      angle: 120
-    });
-    makeShot(0.25, {
-      spread: 50,
-      startVelocity: 50, 
-      gravity: 0.5,
-      origin: { x: .5, y: 0.8 }
-    });
-    makeShot(0.2, {
-      spread: 60
-    });
-
-    makeShot(0.35, {
-      spread: 100,
-      decay: 0.91,
-      scalar: 0.8
-    });
-
-    makeShot(0.1, {
-      spread: 120,
-      startVelocity: 25,
-      decay: 0.92,
-      scalar: 1.2
-    });
-
-    makeShot(0.1, {
-      spread: 120,
-      startVelocity: 45
-    });
-  }, [makeShot]);
+  useEffect(() => {
+    if (!intervalId) {
+      setIntervalId(setInterval(nextTickAnimation, 400));
+    }
+  }, [intervalId, nextTickAnimation]);
 
   useEffect(() => {
-    fire()
-  }, [fire]);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [intervalId]);
 
   return (
     <>

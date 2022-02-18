@@ -210,7 +210,7 @@ useEffect(() => {
           return null
         })}
       </main>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   )
 }

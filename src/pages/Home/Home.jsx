@@ -36,6 +36,10 @@ const Home = () => {
         <div id="Home" className="Home">
           <Header/>
           <main className='Home__content'>
+            <div className='Home__content__text'>
+              <h1>Bienvenue sur <strong>MölkKing</strong> !!</h1>
+              <h2>Soyez le King 🤴 (ou la Queen 👸, pas de jaloux-ses) du Mölkky</h2>
+            </div>
             <Button elt={"Home"} text='Démarrer une nouvelle partie' size={"medium"} link={"/dashboard"} action={handleStartNewGame}/>
             <Button elt={"Home"} text='Continuer la partie en cours' size={"medium"} link={"/dashboard"}/>
           </main>
@@ -46,6 +50,10 @@ const Home = () => {
       <div id="Home" className="Home">
         <Header/>
         <main className='Home__content'>
+        <div className='Home__content__text'>
+          <h1>Bienvenue sur <strong>MölkKing</strong> !!</h1>
+          <h2>Soyez le King 🤴 (ou la Queen 👸, pas de jaloux-ses) du Mölkky</h2>
+        </div>
           <Button elt={"Home"} text='Nouvelle partie' size={"medium"} link={"/dashboard"} action={handleStartNewGame}/>
         </main>
         <Footer/>

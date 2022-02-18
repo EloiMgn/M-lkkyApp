@@ -2,49 +2,40 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { useDispatch } from 'react-redux';
-import Button from '../Button/Button';
 import './TeamForm.scss'
 
 const TeamForm = () => {
   const [playerList, setplayerList] = useState([{player: "", hide: false}])
-  const [teamName, setTeamName] = useState([{team: "", validate: false}])
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const [teamName, setTeamName] = useState("")
+  const [teamNameValid, setTeamNameValid] = useState(false)
   const playersNames = []
-  const [Team, setTeam] = useState({name: teamName[0].name, players: playersNames, score: 0, fails: 0, playerTurn: 0, level: false})
+  const [Team, setTeam] = useState({name: teamName, players: playersNames, score: 0, fails: 0, playerTurn: 0, level: false})
   const [validate, setValidate] = useState(false)
   const navigate= useNavigate()
   const dispatch = useDispatch();
 
 
   // handle input change
-  const handleNameChange = (e, index) => {
-    const { name, value } = e.target;
-    const team = [...teamName];
-    team[index][name] = value;
-    setTeamName(team);
-    // handleInputChange(e, index)
+  const handleNameChange = (e) => {
+    setTeamName(e.target.value);
   }
 
   // handle validate team Name
-  const handleNameClick = (e, i) => {
-    const list = [...teamName];
-    list[i].validate = true
+  const handleNameClick = () => {
     const players = [...playerList];
     players.splice(-1, 1);
-    handleNameChange(e, i)
-    setTeam({name: list.team, players: players, score: 0, fails: 0, playerTurn: 0, level: false})
+    setTeam({name: teamName, players: players, score: 0, fails: 0, playerTurn: 0, level: false})
+    setTeamNameValid(true)
   }
 
   // handle click event of the Remove button
   const handleRemoveNameClick = (e, index) => {
-    setTeamName([{team: "", validate: false}]);
+    setTeamName('');
+    setTeamNameValid(false)
     const players = [...playerList];
     players.splice(-1, 1);
-    setTeam({name: "", players: playersNames, score: 0, fails: 0, playerTurn: 0, level: false})
-    handleInputChange(e, index)
+    setTeam({name: "", players: players, score: 0, fails: 0, playerTurn: 0, level: false})
   };
-
-
 
   // handle input change
   const handleInputChange = (e, index) => {
@@ -61,7 +52,7 @@ const TeamForm = () => {
     setplayerList(list);
     const players = [...playerList];
     players.splice(-1, 1);
-    setTeam({name: `${teamName[0].team}`, players: playersNames, score: 0, fails: 0, playerTurn: 0, level: false})
+    setTeam({name: teamName, players: playersNames, score: 0, fails: 0, playerTurn: 0, level: false})
   };
 
   // handle hide previous input on click on add player
@@ -77,69 +68,60 @@ const TeamForm = () => {
 
   const handleValidate = (e) => {
     Team.players.pop()
-    setTeam(Team)
-    dispatch({ type: "createNewTeam", team: Team })
-    navigate('/dashboard', { replace: true })
+    if (Team.players.length === 0){
+      Team.players.push(Team.name)
+      setTeam(Team)
+      dispatch({ type: "createNewTeam", team: Team })
+      navigate('/dashboard', { replace: true })
+    } else if (Team.players.length > 0) {
+      setTeam(Team)
+      dispatch({ type: "createNewTeam", team: Team })
+      navigate('/dashboard', { replace: true })
+    }
   }
 
   useEffect(() => {
     playerList.forEach(player => {
       playersNames.push(player.player)
-      setTeam({name: teamName[0].team, players: playersNames, score: 0, fails: 0, playerTurn: 0, level: false})
+      setTeam({name: teamName, players: playersNames, score: 0, fails: 0, playerTurn: 0, level: false})
     })
-// eslint-disable-next-line react-hooks/exhaustive-deps
 }, [playerList])
 
   useEffect(() => {
-      if(Team.name && Team.name !== '' && Team.players.length >= 1 && Team.players[0] && Team.players[0] !== '') {
+      if(teamNameValid) {
         setValidate(true)
-      } else if(!Team.name || Team.players.length < 1 || Team.name === '' || Team.players[0] === '') {
+      } else if(!teamNameValid) {
         setValidate(false)
       }
-  }, [Team])
+  }, [teamNameValid])
+
+  console.log(Team);
 
 return (
   <div className="TeamForm">
       <div className="TeamForm__teamName">
-          {teamName.map((x, i) => {
-            if (x.validate === true) {
-              return (
-                <div className='TeamForm__teamName__validated'  key={i}>
-                  <div className="teamName" style={{ marginBottom: 10 }} >{x.team}</div>
-                  <Button elt={"teamForm"} 
-                  className='teamForm__btn' 
-                  text={"Modifier"} 
-                  size={"small"}
-                  action={(e) => handleRemoveNameClick(e, i)}/>
-                </div>
-              ) 
-            } return null
-          })}
-          {teamName.map((x, i) => {
-            if(!x.validate) {
-              return (
-                <div className="TeamForm__teamName__unvalidated" key={i}>
+          {teamNameValid &&
+          <div className='TeamForm__teamName__validated'>
+            <h2 className="teamName" style={{ marginBottom: 10 }} >{teamName}</h2>
+            <button className='teamForm__btn playerBtn' onClick={(e) => handleRemoveNameClick(e)}>Modifier</button>
+          </div>}
+          {!teamNameValid &&                 
+          <div className="TeamForm__teamName__unvalidated">
                   <label htmlFor="player">Entrez le nom de votre équipe</label>
-                  <input
-                  id="team"
-                    name="team"
-                    placeholder="Entrez le nom de votre équipe"
-                    value={x.team}
-                    onChange={e => handleNameChange(e, i)}
-                    autoFocus={true}
-                  />
-                  <div className="btn-box">
-                  {teamName.length - 1 === i && x.team !== "" &&                   
-                  <Button elt={"teamForm"} 
-                  className='teamForm__btn' 
-                  text={"Valider"} 
-                  size={"small"}
-                  action={e => handleNameClick(e, i)}/>}
+                  <div className='TeamForm__teamName__unvalidated__row'>
+                    <input
+                    id="team"
+                      name="team"
+                      placeholder="Entrez le nom de votre équipe"
+                      onChange={e => handleNameChange(e)}
+                      autoFocus={true}
+                      value={teamName}
+                      className={teamName.length > 0? 'inputSmall' : 'inputBig'}
+                    />
+                    {teamName.length > 0 && <button className='teamForm__btn teamBtn' onClick={e => handleNameClick(e)}>Valider</button>}
                   </div>
                 </div>
-              );
-            } return null
-          })}
+          }
       </div>
       <div className="TeamForm__players">
         {playerList.map((x, i) => {
@@ -147,11 +129,7 @@ return (
             return (
               <div className={`TeamForm__player player${i+1}`}  key={i}>
                 <div className="playerName">Joueur {i+1} : <strong>{x.player}</strong></div>
-                <Button elt={"teamForm"} 
-                  className='teamForm__btn' 
-                  text={"Supprimer"} 
-                  size={"small"}
-                  action={(e) => handleRemoveClick(e, i)}/>
+                <button className='teamForm__btn playerBtn' onClick={(e) => handleRemoveClick(e, i)}>Supprimer</button>
               </div>
             ) 
           } return null
@@ -161,36 +139,27 @@ return (
             return (
               <div className="addPlayer__form" key={i}>
                 <h3>Ajouter un joueur</h3>
-                <div className="addPlayer__input">
-                  <label htmlFor="player">Joueur {i+1}</label>
-                  <input
-                  id="player"
-                    name="player"
-                    placeholder=""
-                    value={x.player}
-                    onChange={e => handleInputChange(e, i)}
-                  />
-                </div>
-                <div className="btn-box">
-                  {playerList.length - 1 === i && x.player !== "" && 
-                    <Button elt={"teamForm"} 
-                    className='teamForm__btn' 
-                    text={"Ajouter un joueur"} 
-                    size={"small"}
-                    action={e => handleAddClick(i)}/>}
+                <div className='addPlayer'>
+                  <div className="addPlayer__input">
+                    <label htmlFor="player">Joueur {i+1}</label>
+                    <input
+                    id="player"
+                      name="player"
+                      placeholder=""
+                      value={x.player}
+                      onChange={e => handleInputChange(e, i)}
+                    />
+                  </div>
+                  <div className="btn-box">
+                    {playerList.length - 1 === i && x.player !== "" && <button className='teamForm__btn'  onClick={e => handleAddClick(i)}>OK</button>}
+                  </div>
                 </div>
             </div>
           )}
           return null
         })}
       </div>
-          <div className={validate === false ? 'hidden' : "btn-box"}>
-          <Button elt={"teamForm"} 
-            className='teamForm__btn' 
-            text={"Valider l'équipe"} 
-            size={"small"}
-            action={e => handleValidate(e)}/>
-          </div>
+        {validate && <button className='teamForm__btn' onClick={e => handleValidate(e)}>Valider l'équipe</button>}
   </div>
 );
 }

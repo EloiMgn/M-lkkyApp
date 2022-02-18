@@ -14,7 +14,10 @@
   font-weight: var(--fontweight-light);
   background: var(--color-background);
   transition: var(--transition-long);
-  background-image: var(--background-app);
+  // background-image: var(--background-app);
+  background-color: #83a06e;
+background-image: url("https://www.transparenttextures.com/patterns/football-no-lines.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
 a {
@@ -25,3 +28,4 @@ a {
 .hidden{
   display: none;
 }
+

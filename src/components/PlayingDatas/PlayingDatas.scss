@@ -1,0 +1,29 @@
+.playingDatas{
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  justify-content: space-between;
+  width: 80vw;
+  background-color: #D2B48C;
+  margin: auto var(--margin-medium);
+  padding-left: var(--margin-large);
+  padding-right: var(--margin-large);
+  padding: var(--margin-medium) var(--margin-medium);
+  border-radius: var(--border-radius-medium);
+  &__data{
+    display: flex;
+    flex-direction: column;
+    
+    &-score, &-fails, &__player{
+      display: flex;
+      justify-content: space-between;
+      margin: var(--margin-small) var(--margin-medium);
+      font-size: var(--fontsize-medium);
+      font-weight: var(--fontweight-medium);
+      text-transform: capitalize; 
+      strong{
+        font-weight: var(--fontweight-medium);
+      }
+    }
+  }
+}

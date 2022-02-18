@@ -5,6 +5,11 @@
   h3{
     font-weight: var(--fontweight-medium);
   }
+  h2{
+    font-size: var(--fontsize-big);
+    font-weight: var(--fontweight-medium);
+    text-transform: capitalize; 
+  }
   &__teamName__validated{
     display: flex;
     justify-content: space-between;
@@ -15,9 +20,12 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
+    &__row{
+      display: flex;
+      align-items: center;
+    }
     input{
       height: var(--height-btn-small);
-      width: var(--width-btn-big);
       font-size: var(--fontsize-medium);
       font-family: var(--font-text);
       font-weight: var(--fontweight-medium);
@@ -39,6 +47,7 @@
 }
 
 .addPlayer{
+  display: flex;
   &__form{
     margin-top: var(--margin-medium);
     background-color: var(--light-gray);
@@ -59,11 +68,11 @@
     input{
       margin-right: var(--margin-medium);
       height: var(--height-btn-tiny);
-      width: var(--width-btn-medium);
       font-size: var(--fontsize-small);
       font-family: var(--font-text);
       font-weight: var(--fontweight-light);
       border-radius: var(--border-radius-tiny);
+      width: var(--width-btn-small);
     }
   }
 }
@@ -71,9 +80,66 @@
   strong{
     font-size: var(--fontsize-small);
     font-weight: var(--fontweight-medium);
+    text-transform: capitalize; 
   }
+}
+.inputBig{
+  width: var(--width-btn-big);
+}
+.inputSmall{
+  width: var(--width-btn-medium);
 }
 
 .teamForm__btn{
-  margin: var(--margin-small);
+  display:inline-block;
+  padding:0.7em 1.4em;
+  margin:0 0.3em 0.3em 0;
+
+  box-sizing: border-box;
+  text-decoration:none;
+
+
+  box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+  text-align:center;
+  position:relative;
+  &:active{
+    top:0.1em;
+  }
+  @media all and (max-width:30em){
+    display:block;
+    margin:0.4em auto;
+  }
+}
+.teamForm__btn{
+  display:inline-block;
+  padding:0.7em 1.7em;
+  margin:0 0.3em 0.3em 0;
+  border-radius:var(--border-radius-tiny);
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:var(--font-text);
+  font-weight:var(--fontweight-medium);
+  color: var(--white);
+  background-color: var(--primary);
+  box-shadow:inset 0 -0.6em 1em -0.35em rgba(0,0,0,0.17),inset 0 0.6em 2em -0.3em rgba(255,255,255,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
+  text-align:center;
+  position:relative;
+    &:active{
+    box-shadow:inset 0 0.6em 2em -0.3em rgba(0,0,0,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
+    }
+    @media all and (max-width:30em){
+    display:block;
+    margin:0.4em auto;
+    }
+  }
+
+
+.playerBtn{
+  margin: var(--margin-small) 0;
+}
+.teamBtn{
+  height: var(--height-btn-medium);
+  // width: var(--width-btn-medium);
+  padding: 0 .7em;
+  font-size: var(--fontsize-medium) ;
 }

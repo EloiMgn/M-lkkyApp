@@ -2,12 +2,37 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  color: var(--white);
   &__content{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 80vh;
+    margin-top: 10vh;
+    &__text{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      h1{
+        font-size: var(--fontsize-big);
+        font-weight: var(--fontweight-bold);
+        margin: var(--margin-medium);
+        text-align: center;
+        strong{
+          font-family: var(--font-title);
+          font-weight: var(--fontweight-bold);
+        }
+      }
+      h2{
+        text-align: center;
+        margin: var(--margin-medium);
+        line-height: var(--line-height-large);
+        font-size: var(--fontsize-small);
+        font-weight: var(--fontweight-medium);
+      }
+    }
   }
   &__btn{
     flex-direction: column;

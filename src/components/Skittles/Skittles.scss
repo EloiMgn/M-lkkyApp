@@ -1,0 +1,26 @@
+.select{
+  width: 100vmin;
+  height: 40vh;
+  margin-top: 5vh;
+  .selected{
+    background-color: #635746;
+  }
+  &__skittle{
+    background-color: #D2B48C;
+    border-radius: var(--border-radius-big);
+    border: solid 3px var(--primary);
+    width: 65px;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--fontsize-big);
+    font-weight: var(--fontweight-bold);
+    font-family: var(--font-title);
+  }
+  &__top, &__middleTop, &__bottom, &__middleBottom{
+    display: flex;
+    justify-content: center;
+    margin-top: -12px;
+  }
+}

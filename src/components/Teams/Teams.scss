@@ -16,6 +16,7 @@
   h2{
     font-size: larger;
     font-weight: var(--fontweight-bold);
+    text-transform: capitalize; 
   }
   &__name{
     width: 50%;
