@@ -15,9 +15,13 @@
   background: var(--color-background);
   transition: var(--transition-long);
   // background-image: var(--background-app);
-  background-color: #83a06e;
-background-image: url("https://www.transparenttextures.com/patterns/football-no-lines.png");
-/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+  // background-color: #83a06e;
+  // background-image: url("../../utils/img/football-no-lines.png");
+  background-color: #947f60;
+  background-color: #635746;
+  background-image: url("https://www.transparenttextures.com/patterns/white-sand.png");
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+  color: var(--font-color);
 }
 
 a {

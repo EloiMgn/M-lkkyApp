@@ -27,8 +27,8 @@
   --black: #121212;
   --white: #F6F6F7;
   --primary: #0a3d62; 
-  --secondary: #3c6382;
-  --tertiary: #60a3bc;
+  --secondary: #D2B48C;
+  --tertiary: #947f60;
 
   --dark-gray: #202020;
   --light-gray: #cccccc;
@@ -87,8 +87,10 @@
 
 
 .theme-light {
-  --color-background: var(--white);
-  --color-background-rev: var(--black);
+  --color-background: var(--tertiary);
+  --color-background-rev: var(--secondary);
+
+  --color-background-elt: var(--secondary);
   // --background-app: url("../Assets/img/topography-light.svg");
   
   --font-color: var(--black);
@@ -109,9 +111,10 @@
 
 }
 .theme-dark {
-  --color-background: var(--black);
-  --color-background-rev: var(--white);
-  // --background-app: url("../Assets/img/topography-dark.svg");
+  --color-background: var(--tertiary);
+  --color-background-rev: var(--secondary);
+
+  --color-background-elt: var(--secondary);
 
   --font-color: var(--white);
   --font-color-rev: var(--black);

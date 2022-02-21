@@ -1,6 +1,6 @@
 import './NewTeam.scss'
 import Header from '../../components/Header/Header'
-import Footer from '../../components/Footer/Footer'
+// import Footer from '../../components/Footer/Footer'
 import TeamForm from '../../components/TeamForm/TeamForm';
 
 const NewTeam = () => {
@@ -12,7 +12,7 @@ const NewTeam = () => {
         <h1>Votre équipe</h1>
           <TeamForm/>
       </main>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   )
 }

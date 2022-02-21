@@ -10,7 +10,7 @@ const App = () => {
   // const { theme } = useContext(Store)
   
   return (
-    <div id="App" className={`theme-light`}>
+    <div id="App" className={`theme-dark`}>
         <div className='App__content-body'>
           <Routing />
         </div>

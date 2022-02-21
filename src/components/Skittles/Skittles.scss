@@ -6,7 +6,7 @@
     background-color: #635746;
   }
   &__skittle{
-    background-color: #D2B48C;
+    background-color: var(--color-background-elt);
     border-radius: var(--border-radius-big);
     border: solid 3px var(--primary);
     width: 65px;
@@ -17,6 +17,7 @@
     font-size: var(--fontsize-big);
     font-weight: var(--fontweight-bold);
     font-family: var(--font-title);
+    color: var(--font-color-rev);
   }
   &__top, &__middleTop, &__bottom, &__middleBottom{
     display: flex;

@@ -56,7 +56,7 @@ const Home = () => {
         </div>
           <Button elt={"Home"} text='Nouvelle partie' size={"medium"} link={"/dashboard"} action={handleStartNewGame}/>
         </main>
-        <Footer/>
+        {/* <Footer/> */}
       </div>
     )
 }

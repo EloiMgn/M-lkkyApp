@@ -51,15 +51,18 @@ const Header = () => {
             <li className='navbar__item'>
               <Link to="/rules" className='navbar__link'>Règles</Link>
             </li>
-            <li className={state.playing && state.winner === null? 'navbar__item' : 'hidden'}>
+            {state.playing && state.winner === null && 
+            <li className='navbar__item'>
               <Link to="/dashboard" className='navbar__link'>Scores</Link>
-            </li>
-            <li className={state.playing? 'navbar__item' : 'hidden'}>
-              <Link to="/dashboard" className='navbar__link' onClick={handleRestartGame}>Recommencer la partie</Link>
-            </li>
-            <li className={state.playing? 'navbar__item' : 'hidden'}>
+            </li>}
+            {state.playing &&
+            <li className='navbar__item'>
+            <Link to="/dashboard" className='navbar__link' onClick={handleRestartGame}>Recommencer la partie</Link>
+            </li>}
+            {state.playing && 
+            <li className='navbar__item'>
               <Link to="/" className='navbar__link' onClick={handleStartNewGame}>Nouvelle partie</Link>
-            </li>
+            </li>}
           </ul>
           <button className='navbar__burger'>
             <span className="burger-bar" onClick={handleShowLinks}></span>
