@@ -3,10 +3,9 @@ import { getLocalStorage, removeLocalStorage } from '../../utils/localStorage'
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
 import Button from '../../components/Button/Button'
-// import { useEffect, useState } from 'react';
+import mainLogo from '../../utils/img/logo.png'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-// import { checkGamePlaying } from '../../store';
 
 
 
@@ -37,7 +36,7 @@ const Home = () => {
           <Header/>
           <main className='Home__content'>
             <div className='Home__content__text'>
-              <h1>Bienvenue sur <strong>MölkKing</strong> !!</h1>
+              <h1>Bienvenue sur <img src={mainLogo} alt="logo" className='logo'/> !!</h1>
               <h2>Soyez le King 🤴 (ou la Queen 👸, pas de jaloux-ses) du Mölkky</h2>
             </div>
             <Button elt={"Home"} text='Démarrer une nouvelle partie' size={"medium"} link={"/dashboard"} action={handleStartNewGame}/>
@@ -51,7 +50,7 @@ const Home = () => {
         <Header/>
         <main className='Home__content'>
         <div className='Home__content__text'>
-          <h1>Bienvenue sur <strong>MölkKing</strong> !!</h1>
+          <h1>Bienvenue sur <img src={mainLogo} alt="logo" className='logo'/> !!</h1>
           <h2>Soyez le King 🤴 (ou la Queen 👸, pas de jaloux-ses) du Mölkky</h2>
         </div>
           <Button elt={"Home"} text='Nouvelle partie' size={"medium"} link={"/dashboard"} action={handleStartNewGame}/>

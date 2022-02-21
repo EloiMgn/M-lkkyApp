@@ -4,12 +4,21 @@
   font-family: var(--font-title);
   font-size: var(--fontsize-big);
   margin-left: var(--margin-medium);
+  max-width: 50vw;
   height: 40px;
   background: transparent;
   border: none;
   color: inherit;
   z-index: 1;
+  text-align: baseline;
   &__link{
+    display: block;
     color: var(--white);
+    max-width: 50vw;
+    height: 40px;
+    img{
+      max-width: 50vw;
+      // height: 40px;
+    }
   }
 }
