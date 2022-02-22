@@ -6,14 +6,12 @@ import Teams from '../../components/Teams/Teams';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState, useCallback } from 'react';
 import { getLocalStorage, setLocalStorage } from '../../utils/localStorage'
-// import { useParams } from 'react-router-dom';
 
 const Dashboard = () => {
 const [enoughPlayers, setEnoughPlayers] = useState(false)
 const [localStorageAvailable, setIsLocalStorageAvailable] = useState(true)
 const dispatch = useDispatch()
 const state = useSelector((state) => state)
-// const {id} = useParams();
 
   /**
    * Check availability to use localStorage

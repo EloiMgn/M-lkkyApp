@@ -12,7 +12,6 @@ const NewTeam = () => {
         <h1>Votre équipe</h1>
           <TeamForm/>
       </main>
-      {/* <Footer/> */}
     </div>
   )
 }

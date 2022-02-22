@@ -193,10 +193,6 @@ useEffect(() => {
                 <p>⬆⬆ Sélectionnez les quilles tombées ⬆⬆</p>
                 <PlayingDatas team={team}/>  
                 <div className='navBtns'>
-                  {/* <div> */}
-                  {/* Si l'index+1 est différent de 0 (pas la première team) on passe à la team précédente*/}
-                  {/* {state.turn !==0 && <Button elt={"Game"} text='Equipe précédente' size={"medium"} link={`/game/${state.teams[i-1].name}/${i}/${state.teams[i-1].players[state.teams[i-1].playerTurn]}`} action={() => handlePreviousTeam(i)} />} */}
-                  {/* </div> */}
                   <div>
                   {/* Si l'index+1 est égal au nombre de teams (dernière team) on retourne à la première team*/}
                   {i+1 === state.teams.length && <Button elt={"Game"} text='Equipe suivante' size={"medium"} link={`/game/${state.teams[0].name}/1/${state.teams[0].players[state.teams[0].playerTurn]}`} action={() => handleNextFirstTeam(i)} />}
@@ -210,7 +206,6 @@ useEffect(() => {
           return null
         })}
       </main>
-      {/* <Footer/> */}
     </div>
   )
 }

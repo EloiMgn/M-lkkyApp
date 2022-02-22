@@ -18,7 +18,9 @@
     height: 40px;
     img{
       max-width: 50vw;
-      // height: 40px;
+      @media screen and (min-width:767px) {
+        height: 5vh;
+      }
     }
   }
 }
