@@ -9,7 +9,7 @@ const TeamForm = () => {
   const [teamName, setTeamName] = useState("")
   const [teamNameValid, setTeamNameValid] = useState(false)
   const playersNames = []
-  const [Team, setTeam] = useState({name: teamName, players: playersNames, score: 0, fails: 0, playerTurn: 0, level: false})
+  const [Team, setTeam] = useState({name: teamName, players: playersNames, score: 0, fails: 0, playerTurn: 0, level: false, stats:[]})
   const [validate, setValidate] = useState(false)
   const navigate= useNavigate()
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const TeamForm = () => {
   const handleNameClick = () => {
     const players = [...playerList];
     players.splice(-1, 1);
-    setTeam({name: teamName, players: players, score: 0, fails: 0, playerTurn: 0, level: false})
+    setTeam({name: teamName, players: players, score: 0, fails: 0, playerTurn: 0, level: false, stats:[]})
     setTeamNameValid(true)
   }
 
@@ -34,7 +34,7 @@ const TeamForm = () => {
     setTeamNameValid(false)
     const players = [...playerList];
     players.splice(-1, 1);
-    setTeam({name: "", players: players, score: 0, fails: 0, playerTurn: 0, level: false})
+    setTeam({name: "", players: players, score: 0, fails: 0, playerTurn: 0, level: false, stats:[]})
   };
 
   // handle input change
@@ -52,7 +52,7 @@ const TeamForm = () => {
     setplayerList(list);
     const players = [...playerList];
     players.splice(-1, 1);
-    setTeam({name: teamName, players: playersNames, score: 0, fails: 0, playerTurn: 0, level: false})
+    setTeam({name: teamName, players: playersNames, score: 0, fails: 0, playerTurn: 0, level: false, stats:[]})
   };
 
   // handle hide previous input on click on add player
@@ -83,7 +83,7 @@ const TeamForm = () => {
   useEffect(() => {
     playerList.forEach(player => {
       playersNames.push(player.player)
-      setTeam({name: teamName, players: playersNames, score: 0, fails: 0, playerTurn: 0, level: false})
+      setTeam({name: teamName, players: playersNames, score: 0, fails: 0, playerTurn: 0, level: false, stats:[]})
     })
 }, [playerList])
 
@@ -94,8 +94,6 @@ const TeamForm = () => {
         setValidate(false)
       }
   }, [teamNameValid])
-
-  console.log(Team);
 
 return (
   <div className="TeamForm">

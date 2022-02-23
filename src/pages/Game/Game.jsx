@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router'
 import { useParams } from 'react-router-dom';
 import './Game.scss'
 import Header from '../../components/Header/Header'
-import Footer from '../../components/Footer/Footer'
 import Button from '../../components/Button/Button'
 
 import { useDispatch } from 'react-redux';
@@ -45,12 +44,12 @@ const Game = () => {
     handleResetSkittles()
   }
 
-  const handlePreviousTeam = (i)  => {
-    dispatch({ type: "previousTeam", currentTeam: i })
-    dispatch({type: "previousPlayer", team: parseInt(id)})
-    // calculateScore(playerId, id)
-    handleResetSkittles()
-  }
+  // const handlePreviousTeam = (i)  => {
+  //   dispatch({ type: "previousTeam", currentTeam: i })
+  //   dispatch({type: "previousPlayer", team: parseInt(id)})
+  //   // calculateScore(playerId, id)
+  //   handleResetSkittles()
+  // }
 
   // const handlePreviousLastTeam = (i)  => {
   //   dispatch({ type: "lastTeam", currentTeam: i })

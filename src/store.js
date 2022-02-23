@@ -35,6 +35,7 @@ function reducer(state = initialState, action) {
       draft.teams[action.idx].fails = 0
       draft.teams[action.idx].playerTurn = 0
       draft.teams[action.idx].level = false
+      draft.teams[action.idx].stats = []
       draft.turn = 0
       draft.playing = false
       draft.winner = null
@@ -71,7 +72,7 @@ function reducer(state = initialState, action) {
       draft.playing = true
       draft.teams.forEach(team =>{
         team.players.forEach(player => {
-        team.stats = [{"player": player, "score": 0, "fails": 0}]
+        team.stats.push ({"player": player, "score": 0, "fails": 0})
         })
       })
     })
@@ -134,9 +135,14 @@ function reducer(state = initialState, action) {
     };
   }
   if (action.type === "fail") {
+    console.log(action.player);
     return produce(state, draft => {
       draft.teams[(action.team)-1].fails+=1;
-      draft.teams[(action.team)-1].stats.push({"player": action.player, "fails": action.score})
+      draft.teams[(action.team)-1].stats.forEach(player => {
+        if (action.player === player.player) {
+          player.fails+=1
+        }
+      })
       })
   }
   if (action.type === "unFail") {
@@ -166,7 +172,11 @@ function reducer(state = initialState, action) {
   if (action.type === "scored") {
     return produce(state, draft => {
       draft.teams[(action.team)-1].score += action.score;
-      draft.teams[(action.team)-1].stats.push({"player": action.player, "score": action.score})
+      draft.teams[(action.team)-1].stats.forEach(player => {
+        if (action.player === player.player) {
+          player.score += action.score
+        }
+      })
       })
   }
 

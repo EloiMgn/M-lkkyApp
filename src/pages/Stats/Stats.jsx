@@ -1,5 +1,6 @@
-import './Winner.scss'
+import './Stats.scss'
 import Header from '../../components/Header/Header'
+import Footer from '../../components/Footer/Footer'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
@@ -7,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { getLocalStorage, removeLocalStorage } from '../../utils/localStorage';
 import Fireworks from '../../components/Fireworks/Fireworks';
 
-const Winner = () => {
+const Stats = () => {
   const {id} = useParams();
   const state = useSelector((state) => state)
   const [localStorageAvailable, setIsLocalStorageAvailable] = useState(true)
@@ -58,36 +59,38 @@ const Winner = () => {
       }
 
 return (
-  <div id="Winner" className="Winner">
+  <div id="Stats" className="Stats">
     <Header/>
+    <main className='Stats__content'>
     {state.teams.map((team, i) => {
-      if(i === parseInt(id)) {
         return (
-        <main className='Winner__content' key={i}>
-          <div className='winner'>
-            <h1 className='winner__team'>L'équipe {team.name}</h1>
-            <h2 className='winner__teaxt'>avec</h2>
-            <div className='winner__players'>
-              {team.players.map((player, idx) => {
-                return <h2 className='winner__player' key={idx}>{player}</h2>
-              })}
-            </div>
-            <h2 className='winner__player'>a gagné !!</h2>
+          <div className='Stats__content__team' key={i}>
+            <h1>{team.name}</h1>
+              {team.stats.map((player, i) => {
+                  return (
+                    <div className='playerStats' key={i}>
+                      <div className='playerStats__name'>{player.player}:</div>
+                      <div className='playerStats__data'>
+                        <div className='playerStats__data__score'>
+                          <h3>Score</h3>
+                          <div >{player.score}</div>
+                        </div>
+                        <div className='playerStats__data__fails'>
+                          <h3>Lancés ratés</h3>
+                          <div>{player.fails}</div>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })
+              }
           </div>
-          <div className='options'>
-          <p className='options__text'>Vous pouvez :</p>
-          <Button elt={"Dashboard"} className='Dashboard__btn' text={"Recommencer la partie"} link={`/dashboard`} size={"small"} action={handleRestartGame}/>
-          <Button elt={"Dashboard"} className='Dashboard__btn' text={"Démarrer une nouvelle partie"} link={`/dashboard`} size={"small"} action={handleStartNewGame}/>
-          <Button elt={"Dashboard"} className='Dashboard__btn' text={"Voir les Stats de la partie"} link={`/stats`} size={"small"}/>
-          </div>
-          <Fireworks />
-        </main>
-      )} return null
-    }  
-    )}
-    {/* <Footer /> */}
+        )}
+      )}
+      </main> 
+    <Footer />
   </div>
 )
 }
 
-export default Winner
+export default Stats
