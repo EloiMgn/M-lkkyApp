@@ -1,6 +1,5 @@
 import './Skittles.scss'
 import Header from '../../components/Header/Header'
-import Footer from '../../components/Footer/Footer'
 import StartSkittles from '../../utils/img/1024px-Molkky,_game_start.svg.png'
 
 const Skittles = () => {
@@ -15,7 +14,6 @@ const Skittles = () => {
           </div>
         </div>
       </main>
-      <Footer/>
     </div>
   )
 }

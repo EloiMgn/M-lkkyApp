@@ -189,15 +189,12 @@ useEffect(() => {
             <div className={`team${i+1} Game__content__body`} key={i}>
               <h2>{team.name}</h2>
                 <Skittles/>
-                <p>⬆⬆ Sélectionnez les quilles tombées ⬆⬆</p>
                 <PlayingDatas team={team}/>  
                 <div className='navBtns'>
-                  <div>
                   {/* Si l'index+1 est égal au nombre de teams (dernière team) on retourne à la première team*/}
                   {i+1 === state.teams.length && <Button elt={"Game"} text='Equipe suivante' size={"medium"} link={`/game/${state.teams[0].name}/1/${state.teams[0].players[state.teams[0].playerTurn]}`} action={() => handleNextFirstTeam(i)} />}
                   {/* Si l'index+1 est strictement inférieur au nombre de teams (pas la dernière team) on passe à la team suivante*/}
                   {i+1 < state.teams.length && <Button elt={"Game"} text='Equipe suivante' size={"medium"} link={`/game/${state.teams[i+1].name}/${i + 2}/${state.teams[i+1].players[state.teams[i+1].playerTurn]}`} action={() => handleNextTeam(i)} />}
-                  </div>
                 </div>
               </div>
             )

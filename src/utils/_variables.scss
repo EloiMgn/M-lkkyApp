@@ -1,15 +1,15 @@
 
 
 @font-face {
-  font-family: 'Roboto';
-  src: url('./fonts/Roboto-Light.ttf') format('truetype');
+  font-family: 'Nunito Sans';
+  src: url('./fonts/NunitoSans-Regular.ttf') format('truetype');
   font-weight: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Roboto';
-  src: url('./fonts/Roboto-Bold.ttf') format('truetype');
+  font-family: 'Nunito Sans';
+  src: url('./fonts/NunitoSans-Bold.ttf') format('truetype');
   font-weight: bold;
   font-display: swap;
 }
@@ -26,12 +26,17 @@
   /* COLOR */
   --black: #121212;
   --white: #F6F6F7;
-  --primary: #0a3d62; 
-  --secondary: #D2B48C;
-  --tertiary: #947f60;
 
-  --dark-gray: #202020;
-  --light-gray: #cccccc;
+  --red: rgba(199, 26, 26, 1);
+  --light-red: rgba(203, 74, 74, 0.14);
+
+  --primary: #AF8C5E; 
+  --secondary: #219653;
+  --tertiary: rgba(246, 165, 42, 0.15);
+
+  --light-blue: rgba(25, 81, 121, 0.07);
+  --dark-gray: #cccccc;
+  --light-gray: #F2F2F2;
 
   --dark-overlay: rgba(0, 0, 0, 0.8);
   --light-overlay: rgba(140, 140, 140, 0.8);
@@ -40,91 +45,53 @@
   
   /* FONT */
   --font-title: 'Nixie One', sans-serif;
-  --font-text: 'Roboto', sans-serif;
+  --font-text: 'Nunito Sans', sans-serif;
 
   --fontsize-huge: 4rem;
-  --fontsize-big: 2rem;
-  --fontsize-medium: 1.3rem;
-  --fontsize-small: 1rem;
+  --fontsize-h1: 2rem;
+  --fontsize-h2: 1.2rem;
+  --fontsize-h3: 1.1rem;
+  --fontsize-p: 1rem;
 
-  --fontweight-light: 500;
-  --fontweight-medium: 700;
-  --fontweight-bold: 900;
+  --fontweight-light: 400;
+  --fontweight-bold: 700;
 
   --line-height-small: .5em;
   --line-height-large: 35px;
 
   /* Buttons */
 
-  --width-btn-small: 125px;
+  --width-btn-small: 100px;
   --width-btn-medium: 200px;
   --width-btn-big: 300px;
 
-  --height-btn-tiny: 20px;
-  --height-btn-small: 35px;
-  --height-btn-medium: 50px;
-  --height-btn-big: 10vmax;
+  --height-btn-regular: 45px;
+  --height-btn-big: 90px;
 
   --box-shadow-light: 0 4px 6px -1px rgba(0, 0, 0, .6), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --box-shadow-dark: 0 4px 6px -1px rgba(150, 150, 150, .6), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
   /* OTHER */
-  --border-radius-tiny: .3rem;
-  --border-radius-small: .5rem;
-  --border-radius-medium: 1rem;
-  --border-radius-big: 3rem;
-
-  --transition-short: 0.3s;
-  --transition-long: 0.5s;
+  --border-radius: 6px;
 
   --margin-small: 5px;
   --margin-medium: 15px;
   --margin-large: 50px;
 
-  --box-shadow: #f2f2f2
-
 }
 
-
-.theme-light {
-  --color-background: var(--tertiary);
-  --color-background-rev: var(--secondary);
-
-  --color-background-elt: var(--secondary);
-  // --background-app: url("../Assets/img/topography-light.svg");
-  
+.theme-dark {
+  --color-background: var(--white);
+  --color-background-rev: var(--light-gray);
   --font-color: var(--black);
   --font-color-rev: var(--white);
-  --hover-color: var(--secondary);
-
-  --color-card-background: var(--light-gray);
-  --color-country-row: var(--white);
-  --color-card-overlay: var(--light-overlay);
-
-  --color-cursor: var(--font-color);
-
-  --skelton-background: #fff;
-  --skeleton-font: var(--color-card-background);
-  --skeleton-lightning: rgb(255, 255, 255, 0.5);
-
-  --box-shadow: var(--box-shadow-light);
-
-}
-.theme-dark {
-  --color-background: var(--tertiary);
-  --color-background-rev: var(--secondary);
-
-  --color-background-elt: var(--secondary);
-
-  --font-color: var(--white);
-  --font-color-rev: var(--black);
   --hover-color: var(--tertiary);
   
   --color-card-background: var(--black);
   --color-country-row: var(--dark-gray);
   --color-card-overlay: var(--dark-overlay);
 
-  --color-btn: var(--white);
+  --color-btn: var(--primary);
 
   --color-cursor: var(--font-color);
 

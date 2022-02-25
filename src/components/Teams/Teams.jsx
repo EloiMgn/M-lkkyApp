@@ -2,6 +2,7 @@ import './Teams.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getLocalStorage } from '../../utils/localStorage';
+import Cross from '../../utils/img/Vector.svg';
 
 
 const Teams = () => {
@@ -30,7 +31,8 @@ const Teams = () => {
   return (
     <div id="teams" className="teams">
       {state.teams.map((team, idx) => {
-        return (<div className={`team team__${idx}`} key={idx}>
+        return (
+        <div className={state.playing? `team__playing team__${idx} playing` : `team team__${idx}`} key={idx}>
           <div className='team__name'>
           <h2>{team.name}</h2>
           </div>
@@ -41,7 +43,7 @@ const Teams = () => {
             </div>
             <div className='team__datas-fails'>
               {range.map((rangeElem) =>
-                team.fails >= rangeElem ? <span key={rangeElem.toString()}>❌</span> : null
+                team.fails >= rangeElem ? <img key={rangeElem.toString()} src={Cross} alt="" />: null
               )}
             </div>
             <div className={state.playing? 'hidden' : 'team__delete'} onClick={e => handleDelete(idx)}>

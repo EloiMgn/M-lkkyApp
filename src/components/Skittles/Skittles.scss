@@ -1,23 +1,24 @@
 .select{
   width: 100vmin;
-  height: 40vh;
+  height: 50vh;
   margin-top: 5vh;
+  text-align: center;
   .selected{
-    background-color: #635746;
+    background-color: var(--light-overlay);
   }
   &__skittle{
     background-color: var(--color-background-elt);
-    border-radius: var(--border-radius-big);
-    border: solid 3px var(--primary);
-    width: 65px;
-    height: 65px;
+    border-radius: 10rem;
+    border: solid 5px var(--tertiary);
+    width: 75px;
+    height: 75px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: var(--fontsize-big);
+    font-size: var(--fontsize-h1);
     font-weight: var(--fontweight-bold);
-    font-family: var(--font-title);
-    color: var(--font-color-rev);
+    font-family: var(--font-text);
+    color: var(--font-color);
   }
   &__top, &__middleTop, &__bottom, &__middleBottom{
     display: flex;

@@ -10,6 +10,7 @@
     flex-direction: column;
     align-items: center;
     min-height: 80vh;
+    width: 90vw;
     margin-top: 10vh;
     margin-bottom: 11vh;
   }
@@ -40,6 +41,7 @@
     font-weight: var(--fontweight-bold);
     margin: var(--margin-medium);
   }
+
 }
 
 .options{
@@ -47,4 +49,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+
+  a{
+    margin: 0;
+    margin-top: var(--margin-medium);
+    width: 100%;
+  }
 }

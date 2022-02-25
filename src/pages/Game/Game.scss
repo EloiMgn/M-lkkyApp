@@ -8,15 +8,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 80vh;
-    margin-top: 10vh;
-    margin-bottom: 11vh;
+    min-height: 70vh;
+    width: 90vw;
+    margin: 10vh auto;
     &__body{
       z-index: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 80vh;
+      width: 90vw;
     }
     h2{
       font-size: var(--fontsize-big);
@@ -27,11 +28,10 @@
   }
 }
 
-.Game__btn{
-  height: var(--height-btn-big);
-  text-align: center;
-}
-
 .navBtns{
   display: flex;
+  width: 100%;
+  a{
+    margin: var(--margin-medium) auto;
+  }
 }

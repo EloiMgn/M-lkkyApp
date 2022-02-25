@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { useDispatch } from 'react-redux';
+import Cross from '../../utils/img/Vector.svg';
 import './TeamForm.scss'
 
 const TeamForm = () => {
@@ -101,7 +102,7 @@ return (
           {teamNameValid &&
           <div className='TeamForm__teamName__validated'>
             <h2 className="teamName" style={{ marginBottom: 10 }} >{teamName}</h2>
-            <button className='teamForm__btn playerBtn' onClick={(e) => handleRemoveNameClick(e)}>Modifier</button>
+            <button className='teamForm__btn deleteBtn' onClick={(e) => handleRemoveNameClick(e)}><img src={Cross} alt="" /><p>Modifier</p></button>
           </div>}
           {!teamNameValid &&                 
           <div className="TeamForm__teamName__unvalidated">
@@ -127,7 +128,7 @@ return (
             return (
               <div className={`TeamForm__player player${i+1}`}  key={i}>
                 <div className="playerName">Joueur {i+1} : <strong>{x.player}</strong></div>
-                <button className='teamForm__btn playerBtn' onClick={(e) => handleRemoveClick(e, i)}>Supprimer</button>
+                <button className='teamForm__btn deleteBtn' onClick={(e) => handleRemoveClick(e, i)}><img src={Cross} alt="" /><p>Supprimer</p></button>
               </div>
             ) 
           } return null
@@ -146,6 +147,7 @@ return (
                       placeholder=""
                       value={x.player}
                       onChange={e => handleInputChange(e, i)}
+                      className={x.player.length > 0? 'playerSmall' : 'inputBig'}
                     />
                   </div>
                   <div className="btn-box">
@@ -157,7 +159,7 @@ return (
           return null
         })}
       </div>
-        {validate && <button className='teamForm__btn' onClick={e => handleValidate(e)}>Valider l'équipe</button>}
+        {validate && <button className='teamForm__btn validateBtn' onClick={e => handleValidate(e)}>Valider l'équipe</button>}
   </div>
 );
 }

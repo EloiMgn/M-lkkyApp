@@ -1,6 +1,5 @@
 import './Stats.scss'
 import Header from '../../components/Header/Header'
-import Footer from '../../components/Footer/Footer'
 import { useSelector } from 'react-redux';
 
 
@@ -37,7 +36,6 @@ return (
         )}
       )}
       </main> 
-    <Footer />
   </div>
 )
 }

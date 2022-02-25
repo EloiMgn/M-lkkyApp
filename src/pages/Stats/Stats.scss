@@ -31,10 +31,10 @@
   align-items: center;
   justify-content: space-between;
   width: 80vw;
-  background-color: var(--color-background-rev);
+  background-color: var(--dark-gray);
   margin: var(--margin-small);
-  border-radius: var(--border-radius-medium);
-  color: var(--font-color-rev);
+  border-radius: var(--border-radius);
+  color: var(--font-color);
   &__name{
     font-size: var(--fontsize-medium);
     font-weight: var(--fontweight-bold);

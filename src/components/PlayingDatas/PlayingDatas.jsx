@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import Cross from '../../utils/img/Vector.svg';
 import './PlayingDatas.scss'
 
 
@@ -17,7 +18,7 @@ const PlayingDatas = ({team}) => {
         <p>Lancés ratés:</p>
         <div className='team__datas-failsPlaying'>
           {range.map((rangeElem) =>
-            team.fails >= rangeElem ? <span key={rangeElem.toString()}>❌</span> : null
+            team.fails >= rangeElem ? <img key={rangeElem.toString()} src={Cross} alt="" /> : null
           )}
         </div>
       </div>
@@ -27,7 +28,7 @@ const PlayingDatas = ({team}) => {
       <div className='team__datas-playerName'>
           {team.players.map((player) => { 
             if (player === playerId) {
-            return  <span key={player.toString()}>{player}</span>
+            return  <p key={player.toString()}><strong>{player}</strong></p>
             }
             return null
             } 

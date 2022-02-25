@@ -2,30 +2,33 @@
   display: flex;
   flex-direction: column;
   margin-top: var(--margin-medium);
+  width: 100%;
 }
 
-.team{
+.team__playing, .team{
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 5vh;
-  margin: var(--margin-small) var(--margin-medium);
+  width: 100%;
+  margin: var(--margin-small) auto;
   padding: var(--margin-small);
-  background-color: var(--light-overlay);
-  border-radius: var(--border-radius-small);
+  background-color: var(--light-blue);
+  border-radius: var(--border-radius);
   h2{
-    font-size: larger;
+    font-size: var(--fontsize-h2);
+    color: var(--secondary);
     font-weight: var(--fontweight-bold);
     text-transform: capitalize; 
   }
   &__name{
     width: 50%;
     height: 100%;
-    border-right: solid 1px black;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin-left: var(--margin-medium);
+    margin: var(--margin-small);
+
   }
   &__datas{
     width: 50%;
@@ -39,7 +42,8 @@
     &-score{
       width: 50%;
       margin-left: var(--margin-medium);
-
+      font-size: var(--fontsize-h3);
+      color: var(--secondary);
       display: flex;
       justify-content: flex-end;
     } 
@@ -48,6 +52,22 @@
       display: flex;
       justify-content: flex-end;
       margin-right: var(--margin-small);
+      img{
+        margin-left: 3px;
+      }
     }
+  }
+}
+
+.team{
+  height: 8vh;
+  &__delete{
+    height: 4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--light-red);
+    border-radius: var(--border-radius);
+    color: var(--red);
   }
 }

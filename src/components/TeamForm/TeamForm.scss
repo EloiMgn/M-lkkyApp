@@ -25,13 +25,18 @@
       align-items: center;
     }
     input{
-      height: var(--height-btn-small);
-      font-size: var(--fontsize-medium);
+      height: var(--height-btn-regular);
+      font-size: var(--fontsize-h2);
       font-family: var(--font-text);
       font-weight: var(--fontweight-medium);
       margin: var(--margin-medium);
       margin-left: 0;
-      border-radius: var(--border-radius-tiny);
+      border-radius: var(--border-radius);
+      border: 0.5px solid #BDBDBD;
+      box-sizing: border-box;
+      &:focus{
+        outline: 1px solid var(--black);
+      }
     }
   }
   &__player{
@@ -67,12 +72,17 @@
 
     input{
       margin-right: var(--margin-medium);
-      height: var(--height-btn-tiny);
+      height: var(--height-btn-regular);
       font-size: var(--fontsize-small);
       font-family: var(--font-text);
       font-weight: var(--fontweight-light);
-      border-radius: var(--border-radius-tiny);
-      width: var(--width-btn-small);
+      width: var(--width-btn-medium);
+      border-radius: var(--border-radius);
+      border: 0.5px solid #BDBDBD;
+      box-sizing: border-box;
+      &:focus{
+        outline: 1px solid var(--black);
+      }
     }
   }
 }
@@ -89,57 +99,37 @@
 .inputSmall{
   width: var(--width-btn-medium);
 }
+.playerSmall{
+  width: var(--width-btn-small) !important; 
+}
 
 .teamForm__btn{
-  display:inline-block;
-  padding:0.7em 1.4em;
-  margin:0 0.3em 0.3em 0;
-
-  box-sizing: border-box;
-  text-decoration:none;
-
-
-  box-shadow:inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
-  text-align:center;
-  position:relative;
-  &:active{
-    top:0.1em;
-  }
-  @media all and (max-width:30em){
-    display:block;
-    margin:0.4em auto;
-  }
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--color-btn);
+  color: var(--font-color-rev);
+  line-height: 24px;
+  padding: 0 10px;
+  border-radius: var(--border-radius);
+  user-select: none;
+  margin: var(--margin-medium);
+  height: var(--height-btn-regular);
+  width: var(--width-btn-small);
 }
-.teamForm__btn{
-  display:inline-block;
-  padding:0.7em 1.7em;
-  margin:0 0.3em 0.3em 0;
-  border-radius:var(--border-radius-tiny);
-  box-sizing: border-box;
-  text-decoration:none;
-  font-family:var(--font-text);
-  font-weight:var(--fontweight-medium);
-  color: var(--white);
-  background-color: var(--primary);
-  box-shadow:inset 0 -0.6em 1em -0.35em rgba(0,0,0,0.17),inset 0 0.6em 2em -0.3em rgba(255,255,255,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
-  text-align:center;
-  position:relative;
-    &:active{
-    box-shadow:inset 0 0.6em 2em -0.3em rgba(0,0,0,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
-    }
-    @media all and (max-width:30em){
-    display:block;
-    margin:0.4em auto;
-    }
-  }
 
-
-.playerBtn{
-  margin: var(--margin-small) 0;
+.deleteBtn{
+  background-color: var(--light-red);
+  color: var(--red);
+  display: flex;
+  justify-content: space-between;
 }
-.teamBtn{
-  height: var(--height-btn-medium);
-  // width: var(--width-btn-medium);
-  padding: 0 .7em;
-  font-size: var(--fontsize-medium) ;
+
+.validateBtn{
+  background-color: #5bc881;
+  color: #00672a;
+  width: 100%;
+  margin: 0;
 }

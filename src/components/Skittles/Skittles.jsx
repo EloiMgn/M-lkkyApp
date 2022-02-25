@@ -1,10 +1,7 @@
-// import { useState } from 'react';
 import Skittle from './Skittle/Skittle';
 import './Skittles.scss'
 
-
 const Skittles = () => {
-
   return (
     <div className='select'>
       <div className='select__top'>
@@ -27,6 +24,7 @@ const Skittles = () => {
         <Skittle frontValue={1}/>
         <Skittle frontValue={2}/>
       </div>
+      <p>Sélectionnez les quilles tombées ci-dessus</p>
     </div>
   )
 }

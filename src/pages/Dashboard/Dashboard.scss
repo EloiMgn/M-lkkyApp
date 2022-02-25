@@ -7,36 +7,32 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    min-height: 80vh;
-    margin-top: 10vh;
-    margin-bottom: 10vh;
+    min-height: 70vh;
+    width: 90vw;
+    margin: 15vh auto;
   }
   &__title{
     font-size: var(--fontsize-big);
     font-weight: var(--fontweight-bold);
     margin-left: var(--margin-medium);
     margin-top: var(--margin-medium);
-    // text-decoration: underline;
     color: var(--font-color);
-  }
-  &__btn{
-    justify-content: space-between;
-    align-items: center;
-    margin-left: var(--margin-medium);
-    // width: 100%;
-    height: 8vh;
-    @media screen and(min-width: 765px) {
-      width: 20vw;
-      height: 5vh;
-    }
   }
   &__teams{
     width: 100%;
+    a{
+      margin: 0;
+      margin-top: var(--margin-medium);
+    }
   }
   &__startGame{
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    a{
+      margin: 0;
+      width: 100%;
+    }
   }
 }

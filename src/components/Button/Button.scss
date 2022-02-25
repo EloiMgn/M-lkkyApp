@@ -3,25 +3,19 @@
 .btn {
   display: flex;
   align-items: center;
-  background: var(--color-background-rev);
-  border: 0 solid #E2E8F0;
-  box-shadow: var(--box-shadow);
-  box-sizing: border-box;
-  color: var(--font-color-rev);
-  font-size: var(--fontsize-medium);
-  font-weight: var(--fontweight-medium);
   justify-content: center;
+  text-align: center;
+  background: var(--color-btn);
+  color: var(--font-color-rev);
   line-height: 24px;
   padding: 0 10px;
-  border-radius: var(--border-radius-small);
-  cursor: pointer;
+  border-radius: var(--border-radius);
   user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
   margin: var(--margin-medium);
+  height: var(--height-btn-regular);
   &__link{
     color: inherit;
-    font-size: var(--fontsize-medium);
+    font-size: var(--fontsize-p);
   }
   &__icon{
     font-size: var(--fontsize-big);
@@ -30,13 +24,13 @@
 }
 
 .small {
-  font-size: var(--fontsize-small);
+  font-size: var(--fontsize-p);
 }
 
 .medium {
-  font-size: var(--fontsize-medium);
+  font-size: var(--fontsize-h3);
 }
 
 .big {
-  font-size: var(--fontsize-big);
+  font-size: var(--fontsize-h2);
 }
