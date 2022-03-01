@@ -36,7 +36,7 @@
   <div id="root"></div>
 </body>
 
-<script>
+<!-- <script>
   window.axeptioSettings = {
     clientId: "6218e778fdeedc52c780002b",
     cookiesVersion: "molkking-fr"
@@ -58,6 +58,18 @@
   waitForElm("#axeptio_main_button").then((e => {
     e.classList.add("overwrite")
   }))
-</script>
+</script> -->
+
+<script>
+  window.axeptioSettings = {
+    clientId: "6218e778fdeedc52c780002b",
+  };
+   
+  (function(d, s) {
+    var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
+    e.async = true; e.src = "//static.axept.io/sdk.js";
+    t.parentNode.insertBefore(e, t);
+  })(document, "script");
+  </script>
 
 </html>

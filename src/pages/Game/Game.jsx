@@ -97,7 +97,11 @@ useEffect(() => {
       dispatch({type: "setLevel", team: state.teams.length-1})
     }
     if(fails === 3 || score > 50) {
-      dispatch({type: "resetScore", team: state.teams.length-1})
+      if(state.options.elimination) {
+        dispatch({type: "eliminateTeam", team: state.teams.length-1})
+      } else if (!state.options.elimination) {
+        dispatch({type: "resetScore", team: state.teams.length-1})
+      }
     }
   } 
 
@@ -119,7 +123,11 @@ useEffect(() => {
       dispatch({type: "setLevel", team: parseInt(id)})
     }
     if(fails === 3 || score > 50) {
-      dispatch({type: "resetScore", team: parseInt(id)})
+      if(state.options.elimination) {
+        dispatch({type: "eliminateTeam", team: parseInt(id)})
+      } else if (!state.options.elimination) {
+        dispatch({type: "resetScore", team: parseInt(id)})
+      }
     }
   }
 
@@ -141,14 +149,19 @@ useEffect(() => {
         dispatch({type: "setLevel", team: parseInt(id)-2})
       }
       if(fails === 3 || score > 50) {
-
-        dispatch({type: "resetScore", team: parseInt(id)-2})
+        if(state.options.elimination) {
+          dispatch({type: "eliminateTeam", team: parseInt(id)-2})
+        } else if (!state.options.elimination) {
+          dispatch({type: "resetScore", team: parseInt(id)-2})
+        }
       }
+      
   } 
   // si équipe plus de 1 affichée et plus de 2 équipes total
   else if (parseInt(id) > 1 && state.teams.length > 2){
     const score = state.teams[parseInt(id)-2].score
     const fails = state.teams[parseInt(id)-2].fails
+
 
     //si le score précédent égalise le score d'une autre équipe
     for (let i = 0; i < state.teams.length; i++) {
@@ -167,7 +180,11 @@ useEffect(() => {
     }
     //vérifie si les 3 lancés raté sont atteints ou si 50 points sont dépassés et restaure le score au palier précédent le cas échéant
     if(fails === 3 || score > 50) {
-      dispatch({type: "resetScore", team: parseInt(id)-2})
+      if(state.options.elimination) {
+        dispatch({type: "eliminateTeam", team: parseInt(id)-2})
+      } else if (!state.options.elimination) {
+        dispatch({type: "resetScore", team: parseInt(id)-2})
+      }
     }
   }
 }, [dispatch, id, navigate, state.teams])
@@ -182,12 +199,12 @@ useEffect(() => {
   return (
     <div id="Game" className="Game">
       <Header/>
-      <main className='Game__content'>
+
         {state.teams.map((team, i) => {
           if ((i+1).toString() === id) {
             return (
-            <div className={`team${i+1} Game__content__body`} key={i}>
-              <h2>{team.name}</h2>
+              <main className={`team${i+1} Game__content`} key={i}>
+                <h2>{team.name}</h2>
                 <Skittles/>
                 <PlayingDatas team={team}/>  
                 <div className='navBtns'>
@@ -196,12 +213,12 @@ useEffect(() => {
                   {/* Si l'index+1 est strictement inférieur au nombre de teams (pas la dernière team) on passe à la team suivante*/}
                   {i+1 < state.teams.length && <Button elt={"Game"} text='Equipe suivante' size={"medium"} link={`/game/${state.teams[i+1].name}/${i + 2}/${state.teams[i+1].players[state.teams[i+1].playerTurn]}`} action={() => handleNextTeam(i)} />}
                 </div>
-              </div>
+            </main>
             )
           } 
           return null
         })}
-      </main>
+
     </div>
   )
 }

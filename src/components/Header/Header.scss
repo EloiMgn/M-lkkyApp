@@ -30,9 +30,9 @@
 
   &__link {
     padding: 0 0.3rem;
-    color: inherit;
-
+    color: var(--font-color);
     @media screen and (max-width:767px) {
+      color: inherit;
       display: block;
       padding: 1.5rem;
       font-size: var(--fontsize-medium);

@@ -10,7 +10,7 @@ const TeamForm = () => {
   const [teamName, setTeamName] = useState("")
   const [teamNameValid, setTeamNameValid] = useState(false)
   const playersNames = []
-  const [Team, setTeam] = useState({name: teamName, players: playersNames, score: 0, fails: 0, playerTurn: 0, level: false, stats:[]})
+  const [Team, setTeam] = useState({name: teamName, players: playersNames, score: 0, fails: 0, playerTurn: 0, level: false, stats:[], eliminated: false})
   const [validate, setValidate] = useState(false)
   const navigate= useNavigate()
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const TeamForm = () => {
   const handleNameClick = () => {
     const players = [...playerList];
     players.splice(-1, 1);
-    setTeam({name: teamName, players: players, score: 0, fails: 0, playerTurn: 0, level: false, stats:[]})
+    setTeam({name: teamName, players: players, score: 0, fails: 0, playerTurn: 0, level: false, stats:[], eliminated: false})
     setTeamNameValid(true)
   }
 
@@ -35,7 +35,7 @@ const TeamForm = () => {
     setTeamNameValid(false)
     const players = [...playerList];
     players.splice(-1, 1);
-    setTeam({name: "", players: players, score: 0, fails: 0, playerTurn: 0, level: false, stats:[]})
+    setTeam({name: "", players: players, score: 0, fails: 0, playerTurn: 0, level: false, stats:[], eliminated: false})
   };
 
   // handle input change
@@ -53,7 +53,7 @@ const TeamForm = () => {
     setplayerList(list);
     const players = [...playerList];
     players.splice(-1, 1);
-    setTeam({name: teamName, players: playersNames, score: 0, fails: 0, playerTurn: 0, level: false, stats:[]})
+    setTeam({name: teamName, players: playersNames, score: 0, fails: 0, playerTurn: 0, level: false, stats:[], eliminated: false})
   };
 
   // handle hide previous input on click on add player
@@ -84,8 +84,9 @@ const TeamForm = () => {
   useEffect(() => {
     playerList.forEach(player => {
       playersNames.push(player.player)
-      setTeam({name: teamName, players: playersNames, score: 0, fails: 0, playerTurn: 0, level: false, stats:[]})
+      setTeam({name: teamName, players: playersNames, score: 0, fails: 0, playerTurn: 0, level: false, stats:[], eliminated: false})
     })
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, [playerList])
 
   useEffect(() => {

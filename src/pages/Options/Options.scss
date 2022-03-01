@@ -1,4 +1,4 @@
-.Game{
+.options{
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -11,20 +11,12 @@
     min-height: 70vh;
     width: 90vw;
     margin: 10vh auto;
-    h2{
-      font-size: var(--fontsize-h1);
+    h3{
+      font-size: var(--fontsize-h2);
       margin-top: var(--margin-small);
-      text-transform: capitalize; 
-      font-weight: var(--fontweight-bold);
+      font-weight: var(--fontweight-light);
       color: var(--font-color);
+      text-align: center;
     }
-  }
-}
-
-.navBtns{
-  display: flex;
-  width: 100%;
-  a{
-    margin: var(--margin-medium) auto;
   }
 }

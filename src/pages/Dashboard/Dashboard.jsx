@@ -56,6 +56,7 @@ useEffect(() => {
             {(state.playing || state.teams.length > 1) && <h1 className='Dashboard__title'>Equipes:</h1>}
             <Teams/>
             {!state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={"Ajouter une nouvelle équipe"} link={"/new-team"} size={"small"} ico={"fas fa-plus-circle"}/>}
+            {!state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={"Modifier les options de jeu"} link={"/options"} size={"small"}/>}
             {/* {!state.playing && <a elt={"Dashboard"} className='Dashboard__btn' text={""} href="/new-team" size={"small"} ico={"fas fa-plus-circle"}>Ajouter une nouvelle équipe</a>} */}
           </div>
           {state.teams.length > 1? 

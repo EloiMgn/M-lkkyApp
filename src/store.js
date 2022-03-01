@@ -3,6 +3,9 @@ import produce from "immer";
 import { getLocalStorage } from './utils/localStorage'
 
 const initialState = {
+  options: {
+    elimination: false
+  },
   theme: 'light',
   playing: false,
   turn: 0,
@@ -31,6 +34,7 @@ function reducer(state = initialState, action) {
   }
   if (action.type === "restart") {
     return produce(state, draft => {
+      draft.options.elimination = false
       draft.teams[action.idx].score = 0
       draft.teams[action.idx].fails = 0
       draft.teams[action.idx].playerTurn = 0
@@ -65,6 +69,13 @@ function reducer(state = initialState, action) {
     return produce(state, draft => {
       draft.teams.splice(action.idx, 1);
       })
+  }
+  if (action.type === "changeOption") {
+    if(action.option === "élimination") {
+      return produce(state, draft => {
+        draft.options.elimination = action.optionValue;
+        })
+    }
   }
 
   if (action.type === "startGame") {
@@ -135,7 +146,6 @@ function reducer(state = initialState, action) {
     };
   }
   if (action.type === "fail") {
-    console.log(action.player);
     return produce(state, draft => {
       draft.teams[(action.team)-1].fails+=1;
       draft.teams[(action.team)-1].stats.forEach(player => {
@@ -198,6 +208,13 @@ function reducer(state = initialState, action) {
         draft.teams[action.team].fails=0;
         })
     } 
+  }
+
+  if (action.type === "eliminateTeam") {
+    return produce(state, draft => {
+      draft.teams[action.team].eliminated = true;
+      draft.teams[action.team].fails=0;
+    })
   }
 
   if (action.type === "setWinner") {
