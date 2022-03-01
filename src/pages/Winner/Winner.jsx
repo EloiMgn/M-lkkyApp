@@ -74,8 +74,8 @@ return (
             </div>
             <h2 className='winner__player'>a gagné !!</h2>
           </div>
-          <div className='options'>
-          <p className='options__text'>Vous pouvez :</p>
+          <div className='winner__options'>
+          <p className='winner__options__text'>Vous pouvez :</p>
           <Button elt={"Dashboard"} className='Dashboard__btn' text={"Recommencer la partie"} link={`/dashboard`} size={"small"} action={handleRestartGame}/>
           <Button elt={"Dashboard"} className='Dashboard__btn' text={"Démarrer une nouvelle partie"} link={`/dashboard`} size={"small"} action={handleStartNewGame}/>
           <Button elt={"Dashboard"} className='Dashboard__btn' text={"Voir les Stats de la partie"} link={`/stats`} size={"small"}/>

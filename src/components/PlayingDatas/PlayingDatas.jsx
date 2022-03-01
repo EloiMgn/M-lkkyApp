@@ -29,8 +29,7 @@ const PlayingDatas = ({team}) => {
           {team.players.map((player) => { 
             if (player === playerId) {
             return  <p key={player.toString()}><strong>{player}</strong></p>
-            }
-            return null
+            } return null
             } 
           )}
         </div>

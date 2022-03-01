@@ -24,7 +24,5 @@
 .navBtns{
   display: flex;
   width: 100%;
-  a{
-    margin: var(--margin-medium) auto;
-  }
+  justify-content: center;
 }

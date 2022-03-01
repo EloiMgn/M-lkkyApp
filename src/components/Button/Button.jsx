@@ -11,10 +11,10 @@ if(link){
   )
 }   
 return (
-  <button className={`btn ${elt}__btn ${size}`} onClick={action}>
+  <div className={`btn ${elt}__btn ${size}`} onClick={action}>
     <p className='btn__link'>{text}</p>
     <i className={ico ? `btn__icon ${ico}` : 'hidden'}></i>
-  </button>
+  </div>
   )
 };
 

@@ -10,6 +10,7 @@ const initialState = {
   playing: false,
   turn: 0,
   teams: [],
+  eliminatedTeams: [],
   winner: null,
   skittles: [
     {value: false, id: 1},
@@ -40,9 +41,11 @@ function reducer(state = initialState, action) {
       draft.teams[action.idx].playerTurn = 0
       draft.teams[action.idx].level = false
       draft.teams[action.idx].stats = []
+      draft.teams[action.idx].eliminated = false
       draft.turn = 0
       draft.playing = false
       draft.winner = null
+      draft.eliminatedTeams = []
       })
     }
 
@@ -70,6 +73,7 @@ function reducer(state = initialState, action) {
       draft.teams.splice(action.idx, 1);
       })
   }
+
   if (action.type === "changeOption") {
     if(action.option === "élimination") {
       return produce(state, draft => {
@@ -148,6 +152,9 @@ function reducer(state = initialState, action) {
   if (action.type === "fail") {
     return produce(state, draft => {
       draft.teams[(action.team)-1].fails+=1;
+      if (draft.teams[(action.team)].fails === 3 && draft.options.elimination) {
+        draft.teams[(action.team)].eliminated = true
+      }
       draft.teams[(action.team)-1].stats.forEach(player => {
         if (action.player === player.player) {
           player.fails+=1
@@ -212,8 +219,9 @@ function reducer(state = initialState, action) {
 
   if (action.type === "eliminateTeam") {
     return produce(state, draft => {
-      draft.teams[action.team].eliminated = true;
-      draft.teams[action.team].fails=0;
+      draft.eliminatedTeams.push (action.team);
+      draft.teams[action.teamId].eliminated = true;
+      draft.teams[action.teamId].fails=0;
     })
   }
 

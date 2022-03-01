@@ -26,8 +26,8 @@ export const is_touch_device = () => {
   }
 }
 
-export const checkWinner = (teamScore) => {
-  if (teamScore === 50) {
+export const checkWinner = (teamScore, teams, eliminatedTeams) => {
+  if (teamScore === 50 || (teams.length - eliminatedTeams.length) === 1) {
     return true
   } else return false
 }
@@ -51,4 +51,5 @@ export const checkIfEqual = (teams, teamScore, i) => {
     } else return null
   }
 }
+
 

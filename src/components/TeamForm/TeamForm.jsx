@@ -22,11 +22,13 @@ const TeamForm = () => {
   }
 
   // handle validate team Name
-  const handleNameClick = () => {
-    const players = [...playerList];
-    players.splice(-1, 1);
-    setTeam({name: teamName, players: players, score: 0, fails: 0, playerTurn: 0, level: false, stats:[], eliminated: false})
-    setTeamNameValid(true)
+  const handleNameClick = (e) => {
+    if (e.target.value.length > 0) {
+      const players = [...playerList];
+      players.splice(-1, 1);
+      setTeam({name: teamName, players: players, score: 0, fails: 0, playerTurn: 0, level: false, stats:[], eliminated: false})
+      setTeamNameValid(true)
+    }
   }
 
   // handle click event of the Remove button
@@ -62,10 +64,12 @@ const TeamForm = () => {
   }
 
   // handle click event of the Add button
-  const handleAddClick = (i) => {
-    handleAddPlayer(i)
-    setplayerList([...playerList, { player: "", hide: false}]);
-  };
+  const handleAddClick = (e, i) => {
+    if(e.target.value.length > 0) {
+      handleAddPlayer(i)
+      setplayerList([...playerList, { player: "", hide: false}]);
+      }
+    };
 
   const handleValidate = (e) => {
     Team.players.pop()
@@ -114,6 +118,7 @@ return (
                       name="team"
                       placeholder="Entrez le nom de votre équipe"
                       onChange={e => handleNameChange(e)}
+                      onBlur={e => handleNameClick(e)}
                       autoFocus={true}
                       value={teamName}
                       className={teamName.length > 0? 'inputSmall' : 'inputBig'}
@@ -148,6 +153,7 @@ return (
                       placeholder=""
                       value={x.player}
                       onChange={e => handleInputChange(e, i)}
+                      onBlur={e => handleAddClick(e, i)}
                       className={x.player.length > 0? 'playerSmall' : 'inputBig'}
                     />
                   </div>

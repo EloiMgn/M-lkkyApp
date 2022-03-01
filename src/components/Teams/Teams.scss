@@ -9,7 +9,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 5vh;
+  height: 8vh;
   width: 100%;
   margin: var(--margin-small) auto;
   padding: var(--margin-small);
@@ -29,6 +29,22 @@
     align-items: center;
     margin: var(--margin-small);
 
+  }
+  &__eliminated{
+    text-transform: capitalize;
+    color: var(--red);
+    font-weight: var(--fontweight-bold);
+    width: 50%;
+    text-align: center;
+  }
+  &__delete{
+    height: 4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--light-red);
+    border-radius: var(--border-radius);
+    color: var(--red);
   }
   &__datas{
     width: 50%;
@@ -59,15 +75,6 @@
   }
 }
 
-.team{
-  height: 8vh;
-  &__delete{
-    height: 4vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--light-red);
-    border-radius: var(--border-radius);
-    color: var(--red);
-  }
+.eliminated{
+  background-color: var(--light-red);
 }
