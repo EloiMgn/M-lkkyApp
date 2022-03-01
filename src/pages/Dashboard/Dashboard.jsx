@@ -56,9 +56,11 @@ useEffect(() => {
             {(state.playing || state.teams.length > 1) && <h1 className='Dashboard__title'>Equipes:</h1>}
             <Teams/>
             {!state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={"Ajouter une nouvelle équipe"} link={"/new-team"} size={"small"} ico={"fas fa-plus-circle"}/>}
+            {/* {!state.playing && <a elt={"Dashboard"} className='Dashboard__btn' text={""} href="/new-team" size={"small"} ico={"fas fa-plus-circle"}>Ajouter une nouvelle équipe</a>} */}
           </div>
           {state.teams.length > 1? 
             <div className='Dashboard__startGame'>
+              {/* {enoughPlayers && !state.playing && <a elt={"Dashboard"} className='Dashboard__btn' text={"Commencer à jouer"} href={`/game/${state.teams[0].name}/1/${state.teams[0].players[0]}`} size={"small"} action={handleStartGame} />a} */}
               {enoughPlayers && !state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={"Commencer à jouer"} link={`/game/${state.teams[0].name}/1/${state.teams[0].players[0]}`} size={"small"} action={handleStartGame} />}
               {state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={'Continuer la partie'} link={`/game/${state.teams[state.turn].name}/${state.turn+1}/${state.teams[state.turn].players[state.teams[state.turn].playerTurn]}`} size={"small"} action={handleStartGame}/>}
             </div>
