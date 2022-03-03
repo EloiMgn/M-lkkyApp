@@ -106,8 +106,11 @@ return (
       <div className="TeamForm__teamName">
           {teamNameValid &&
           <div className='TeamForm__teamName__validated'>
-            <h2 className="teamName" style={{ marginBottom: 10 }} >{teamName}</h2>
-            <button className='teamForm__btn deleteBtn' onClick={(e) => handleRemoveNameClick(e)}><img src={Cross} alt="" /><p>Modifier</p></button>
+            <div style={{display: 'flex'}}>
+              <h2>Nom:</h2>
+              <h2 className="teamName">{teamName}</h2>
+            </div>
+            <i className="fas fa-edit deleteBtn" onClick={(e) => handleRemoveNameClick(e)}></i>
           </div>}
           {!teamNameValid &&                 
           <div className="TeamForm__teamName__unvalidated">

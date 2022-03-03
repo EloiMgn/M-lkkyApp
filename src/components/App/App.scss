@@ -5,9 +5,11 @@
 }
 
 #App {
+  min-height: 100vh;
   font-family: var(--font-text);
   font-weight: var(--fontweight-light);
-  background-color: var(--color-background);
+  background: var(--color-background);
+  background-image: var(--background-app);
   color: var(--font-color);
 }
 
@@ -18,3 +20,8 @@ a {
   display: none;
 }
 
+/* COOKIES */
+.overwrite {
+  pointer-events: none;
+  opacity: 0
+}

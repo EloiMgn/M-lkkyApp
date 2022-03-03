@@ -85,6 +85,32 @@
 .theme-dark {
   --color-background: var(--white);
   --color-background-rev: var(--light-gray);
+  --background-app: url("../utils/img/escheresque-dark.png");
+
+  --font-color: var(--black);
+  --font-color-rev: var(--white);
+  --hover-color: var(--tertiary);
+  
+  --color-card-background: var(--black);
+  --color-country-row: var(--dark-gray);
+  --color-card-overlay: var(--dark-overlay);
+
+  --color-btn: var(--primary);
+
+  --color-cursor: var(--font-color);
+
+  --skelton-background: var(--dark-gray);
+  --skeleton-font: var(--color-card-background);
+  --skeleton-lightning: rgba(102, 102, 102, 0.5);
+
+  --box-shadow: var(--box-shadow-dark);
+}
+
+.theme-light {
+  --color-background: var(--white);
+  --color-background-rev: var(--light-gray);
+  --background-app: url("../utils/img/escheresque.png");
+
   --font-color: var(--black);
   --font-color-rev: var(--white);
   --hover-color: var(--tertiary);

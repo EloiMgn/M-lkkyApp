@@ -121,10 +121,12 @@
 }
 
 .deleteBtn{
-  background-color: var(--light-red);
-  color: var(--red);
+  background-color: var(--light-gray);
+  color: var(--black);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--fontsize-h2);
 }
 
 .validateBtn{

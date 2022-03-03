@@ -1,6 +1,7 @@
 import './Stats.scss'
 import Header from '../../components/Header/Header'
 import { useSelector } from 'react-redux';
+import Footer from '../../components/Footer/Footer';
 
 
 const Stats = () => {
@@ -63,6 +64,7 @@ return (
         )}
       )}
       </main> 
+      <Footer/>
   </div>
 )
 }

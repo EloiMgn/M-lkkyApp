@@ -5,6 +5,7 @@ import Teams from '../../components/Teams/Teams';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState, useCallback } from 'react';
 import { getLocalStorage, setLocalStorage } from '../../utils/localStorage'
+import Footer from '../../components/Footer/Footer';
 
 const Dashboard = () => {
 const [enoughPlayers, setEnoughPlayers] = useState(false)
@@ -68,6 +69,7 @@ useEffect(() => {
             : null
           }
         </main>
+        <Footer/>
       </div>
     )
 }

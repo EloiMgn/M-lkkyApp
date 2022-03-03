@@ -6,6 +6,7 @@ import Button from '../../components/Button/Button';
 import { useEffect, useState } from 'react';
 import { getLocalStorage, removeLocalStorage } from '../../utils/localStorage';
 import Fireworks from '../../components/Fireworks/Fireworks';
+import Footer from '../../components/Footer/Footer';
 
 const Winner = () => {
   const {id} = useParams();
@@ -85,7 +86,7 @@ return (
       )} return null
     }  
     )}
-    {/* <Footer /> */}
+    <Footer/>
   </div>
 )
 }

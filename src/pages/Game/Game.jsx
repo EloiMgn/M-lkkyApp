@@ -11,6 +11,7 @@ import { setLocalStorage } from '../../utils/localStorage';
 import { checkIfEqual, checkWinner, setLevel } from '../../utils/tools';
 import Skittles from '../../components/Skittles/Skittles';
 import PlayingDatas from '../../components/PlayingDatas/PlayingDatas';
+import Footer from '../../components/Footer/Footer';
 
 const Game = () => {
   const {id, playerId} = useParams();
@@ -242,7 +243,7 @@ useEffect(() => {
           } 
           return null
         })}
-
+        <Footer/>
     </div>
   )
 }

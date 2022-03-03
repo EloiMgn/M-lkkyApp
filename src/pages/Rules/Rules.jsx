@@ -1,6 +1,7 @@
 import './Rules.scss'
 import Header from '../../components/Header/Header'
 import molkkyImg from '../../utils/img/molkky.jpg'
+import Footer from '../../components/Footer/Footer';
 
 const Rules = () => {
 return (
@@ -134,6 +135,7 @@ return (
       </div>
     </div>
   </main>
+  <Footer/>
 </div>
 )
 }

@@ -1,6 +1,7 @@
 import './NewTeam.scss'
 import Header from '../../components/Header/Header'
 import TeamForm from '../../components/TeamForm/TeamForm';
+import Footer from '../../components/Footer/Footer';
 
 const NewTeam = () => {
   
@@ -11,6 +12,7 @@ const NewTeam = () => {
         <h1>Votre équipe</h1>
           <TeamForm/>
       </main>
+      <Footer/>
     </div>
   )
 }

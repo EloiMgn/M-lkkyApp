@@ -3,14 +3,23 @@
 
 <head>
   <meta charset="utf-8" />
+  <meta httpequiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.molkking.com">
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MölkKing 🎳</title>
+  <meta name="description" 
+  content="Grâce à Molkking, vous deviendrez les rois et reine du Mölkky! Suivez le déroulement de vos parties de Möllky, ne vous battez plus à propos des règles et découvrez le placement initial officel des quilles." />
+
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Une app pour vous aider à suivre vos parties de Mölkky" />
+  
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo512.png" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
     integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <script src="https://kit.fontawesome.com/db5103584f.js" crossorigin="anonymous"></script>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-YDRT7W5TXZ"></script>
@@ -27,8 +36,6 @@
       anonymize_ip: !0
     });
   </script>
-
-  <title>MölkKing</title>
 </head>
 
 <body>
@@ -36,40 +43,44 @@
   <div id="root"></div>
 </body>
 
-<!-- <script>
-  window.axeptioSettings = {
-    clientId: "6218e778fdeedc52c780002b",
-    cookiesVersion: "molkking-fr"
-  }, ((e, t) => {
-    const o = e.getElementsByTagName(t)[0],
-      n = e.createElement(t);
-    n.async = !0, n.src = "//static.axept.io/sdk.js", o.parentNode.insertBefore(n, o)
-  })(document, "script");
-  const waitForElm = e => new Promise((t => {
-    if (document.querySelector(e)) return t(document.querySelector(e));
-    const o = new MutationObserver((n => {
-      document.querySelector(e) && (t(document.querySelector(e)), o.disconnect())
-    }));
-    o.observe(document.body, {
-      childList: !0,
-      subtree: !0
-    })
-  }));
-  waitForElm("#axeptio_main_button").then((e => {
-    e.classList.add("overwrite")
-  }))
-</script> -->
-
+<!-- COOKIE -->
 <script>
   window.axeptioSettings = {
     clientId: "6218e778fdeedc52c780002b",
   };
    
-  (function(d, s) {
-    var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
-    e.async = true; e.src = "//static.axept.io/sdk.js";
+  ((d, s) => {
+    const t = d.getElementsByTagName(s)[0],
+      e = d.createElement(s);
+    e.async = true;
+    e.src = "//static.axept.io/sdk.js";
     t.parentNode.insertBefore(e, t);
   })(document, "script");
+
+  const waitForElm = (selector) => {
+    return new Promise(resolve => {
+      if (document.querySelector(selector)) {
+        return resolve(document.querySelector(selector));
+      }
+
+      const observer = new MutationObserver(mutations => {
+        if (document.querySelector(selector)) {
+          resolve(document.querySelector(selector));
+          observer.disconnect();
+        }
+      });
+
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    });
+  }
+
+  waitForElm('#axeptio_main_button').then((cookieBtn) => {
+    cookieBtn.classList.add('overwrite')
+  });
+
   </script>
 
 </html>

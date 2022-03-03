@@ -1,10 +1,12 @@
 import './Home.scss'
+import { Link } from 'react-router-dom'
 import { getLocalStorage, removeLocalStorage } from '../../utils/localStorage'
 import Header from '../../components/Header/Header'
 import Button from '../../components/Button/Button'
 import mainLogo from '../../utils/img/logo.png'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import Footer from '../../components/Footer/Footer';
 
 
 
@@ -40,6 +42,11 @@ const Home = () => {
             </div>
             <Button elt={"Home"} text='Démarrer une nouvelle partie' size={"medium"} link={"/dashboard"} action={handleStartNewGame}/>
             <Button elt={"Home"} text='Continuer la partie en cours' size={"medium"} link={"/dashboard"}/>
+            <div className='Home__content__links'>
+            <h3>Liens utiles:</h3>
+            <Link to="/skittles" className='navbar__link'>Connaitre le placement initial des quilles</Link>
+            <Link to="/rules" className='navbar__link'>Les règles officielles du Mölkky</Link>
+          </div>
           </main>
         </div>
       )
@@ -52,7 +59,13 @@ const Home = () => {
           <h2>Soyez le King 🤴 (ou la Queen 👸, pas de jaloux-ses) du Mölkky</h2>
         </div>
           <Button elt={"Home"} text='Nouvelle partie' size={"medium"} link={"/dashboard"} action={handleStartNewGame}/>
+          <div className='Home__content__links'>
+            <h3>Liens utiles:</h3>
+            <Link to="/skittles" className='navbar__link'>Connaitre le placement initial des quilles</Link>
+            <Link to="/rules" className='navbar__link'>Les règles officielles du Mölkky</Link>
+          </div>
         </main>
+        <Footer/>
       </div>
     )
 }
