@@ -10,10 +10,10 @@
     min-height: 80vh;
     margin: 10vh 5vw;
     h1{
-      font-size: var(--fontsize-big);
+      font-size: var(--fontsize-h1);
       font-weight: var(--fontweight-bold);
       margin: var(--margin-medium) 0;
-      text-decoration: underline;
+      // text-decoration: underline;
       color: var(--font-color);
     }
   }

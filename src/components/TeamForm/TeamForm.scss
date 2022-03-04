@@ -10,40 +10,6 @@
     font-weight: var(--fontweight-medium);
     text-transform: capitalize; 
   }
-  &__teamName__validated{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  &__teamName__unvalidated{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: stretch;
-    &__row{
-      display: flex;
-      align-items: center;
-    }
-    input{
-      height: var(--height-btn-regular);
-      font-size: var(--fontsize-h2);
-      font-family: var(--font-text);
-      font-weight: var(--fontweight-medium);
-      margin: var(--margin-medium);
-      margin-left: 0;
-      border-radius: var(--border-radius);
-      border: 0.5px solid #BDBDBD;
-      box-sizing: border-box;
-      &:focus{
-        outline: 1px solid var(--black);
-      }
-    }
-  }
-  &__player{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
 }
 .btn-box{
   display: flex;
@@ -51,87 +17,21 @@
   align-items: center;
 }
 
-.addPlayer{
-  display: flex;
-  &__form{
-    margin-top: var(--margin-medium);
-    background-color: var(--color-background-rev);
-    padding: var(--margin-medium);
-    border-radius: var(--border-radius-small);
-    h3{
-      font-weight: var(--fontweight-medium);
-    }
-  }
-  &__input{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: var(--margin-medium);
-    margin-left: 0;
-
-    input{
-      margin-right: var(--margin-medium);
-      height: var(--height-btn-regular);
-      font-size: var(--fontsize-small);
-      font-family: var(--font-text);
-      font-weight: var(--fontweight-light);
-      width: var(--width-btn-medium);
-      border-radius: var(--border-radius);
-      border: 0.5px solid #BDBDBD;
-      box-sizing: border-box;
-      &:focus{
-        outline: 1px solid var(--black);
-      }
-    }
-  }
-}
-.playerName{
-  strong{
-    font-size: var(--fontsize-small);
-    font-weight: var(--fontweight-medium);
-    text-transform: capitalize; 
-  }
-}
 .inputBig{
   width: var(--width-btn-big);
 }
 .inputSmall{
-  width: var(--width-btn-medium);
-}
-.playerSmall{
-  width: var(--width-btn-small) !important; 
-}
-
-.teamForm__btn{
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: var(--color-btn);
-  color: var(--font-color-rev);
-  line-height: 24px;
-  padding: 0 10px;
-  border-radius: var(--border-radius);
-  user-select: none;
-  margin: var(--margin-medium);
-  height: var(--height-btn-regular);
-  width: var(--width-btn-small);
-}
-
-.deleteBtn{
-  background-color: var(--light-gray);
-  color: var(--black);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: var(--fontsize-h2);
+  width: var(--width-btn-big);
 }
 
 .validateBtn{
-  background-color: #5bc881;
-  color: #00672a;
+  border: none;
+  line-height: 24px;
+  height: var(--height-btn-regular);
+  border-radius: var(--border-radius);
+  background-color: var(--secondary);
+  color: var(--font-color-rev);
   width: 100%;
-  margin: 0;
+  margin: var(--margin-medium) 0;
+  font-size: var(--fontsize-h3);
 }

@@ -1,0 +1,74 @@
+.playerSmall{
+  width: var(--width-btn-medium) !important; 
+}
+
+.playerName{
+  strong{
+    font-size: var(--fontsize-small);
+    font-weight: var(--fontweight-medium);
+    text-transform: capitalize; 
+  }
+}
+
+.addPlayer{
+  display: flex;
+  &__form{
+    margin-top: var(--margin-medium);
+    background-color: var(--color-background-rev);
+    padding: var(--margin-medium);
+    border-radius: var(--border-radius);
+    h3{
+      font-weight: var(--fontweight-medium);
+    }
+  }
+  &__input{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: var(--margin-medium) 0;
+    // margin-left: 0;
+
+    input{
+      margin-right: var(--margin-medium);
+      height: var(--height-btn-regular);
+      font-size: var(--fontsize-small);
+      font-family: var(--font-text);
+      font-weight: var(--fontweight-light);
+      width: var(--width-btn-medium);
+      border-radius: var(--border-radius);
+      border: 0.5px solid #BDBDBD;
+      box-sizing: border-box;
+      &:focus{
+        outline: 1px solid var(--black);
+      }
+    }
+  }
+}
+
+.playerForm{
+  &__player{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: var(--margin-small) 0;
+  }
+  &__btn-add, &__btn-delete{
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--color-btn);
+    color: var(--font-color-rev);
+    line-height: 24px;
+    padding: 0 10px;
+    border-radius: var(--border-radius);
+    user-select: none;
+    height: var(--height-btn-regular);
+    min-width: 4rem;
+  }
+  &__btn-delete{
+    max-width: var(--width-btn-medium);
+  }
+}

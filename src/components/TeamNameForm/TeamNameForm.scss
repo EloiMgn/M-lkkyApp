@@ -1,0 +1,64 @@
+.teamName{
+  &__validated{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+    align-items: center;
+    height: var(--height-btn-regular);
+    font-size: var(--fontsize-h2);
+    h2{
+      margin: 0 var(--margin-small);
+      strong{
+        font-weight: var(--fontweight-bold);
+      }
+    }
+  }
+  &__unvalidated{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    &__row{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    input{
+      height: var(--height-btn-regular);
+      font-size: var(--fontsize-h2);
+      font-family: var(--font-text);
+      font-weight: var(--fontweight-medium);
+      margin: var(--margin-medium);
+      margin-left: 0;
+      border-radius: var(--border-radius);
+      border: 0.5px solid #BDBDBD;
+      box-sizing: border-box;
+      &:focus{
+        outline: 1px solid var(--black);
+      }
+    }
+  }
+  &__btn{
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--color-btn);
+    color: var(--font-color-rev);
+    line-height: 24px;
+    padding: 0 10px;
+    border-radius: var(--border-radius);
+    user-select: none;
+    height: var(--height-btn-regular);
+    width: 4rem;
+  }
+  &__deleteBtn{
+    color: var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--fontsize-h1);
+    margin: 0 var(--margin-medium);
+  }
+}
