@@ -18,7 +18,7 @@ const Skittle = ({frontValue}) => {
   }
 
   return (
-    <div className={selected? 'select__skittle selected' : 'select__skittle'} onClick={e =>handleClick()}>{frontValue}</div>
+    <div className={selected? 'skittle selected' : 'skittle'} onClick={e =>handleClick()}>{frontValue}</div>
   )
 }
 

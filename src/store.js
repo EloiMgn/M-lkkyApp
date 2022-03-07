@@ -51,13 +51,13 @@ function reducer(state = initialState, action) {
 
   if (action.type === "setState") {
     const localStorage = JSON.parse(getLocalStorage())
-    return {
-      ...state,
-      theme: localStorage.state.theme,
-      playing: true,
-      turn: localStorage.state.turn,
-      teams: localStorage.state.teams
-    };
+    return produce(state, draft => {
+      draft.theme = localStorage.state.theme
+      draft.playing = true
+      draft.turn = localStorage.state.turn
+      draft.teams = localStorage.state.teams
+      draft.options.elimination = localStorage.state.options.elimination
+      })
   }
 
   if (action.type === "createNewTeam") {
@@ -138,10 +138,10 @@ function reducer(state = initialState, action) {
 
 
   if (action.type === "firstTeam") {
-    return {
+     return {
       ...state,
-      turn: 0
-    };
+      turn: action.currentTeam
+     }
   }
   if (action.type === "lastTeam") {
     return {
@@ -152,9 +152,9 @@ function reducer(state = initialState, action) {
   if (action.type === "fail") {
     return produce(state, draft => {
       draft.teams[(action.team)-1].fails+=1;
-      if (draft.teams[(action.team)].fails === 3 && draft.options.elimination) {
-        draft.teams[(action.team)].eliminated = true
-      }
+      // if (draft.teams[(action.team)].fails === 3 && draft.options.elimination) {
+      //   draft.teams[(action.team)].eliminated = true
+      // }
       draft.teams[(action.team)-1].stats.forEach(player => {
         if (action.player === player.player) {
           player.fails+=1

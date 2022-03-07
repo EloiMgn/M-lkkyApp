@@ -6,13 +6,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState, useCallback } from 'react';
 import { getLocalStorage, setLocalStorage } from '../../utils/localStorage'
 import Footer from '../../components/Footer/Footer';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
 const [enoughPlayers, setEnoughPlayers] = useState(false)
 const [localStorageAvailable, setIsLocalStorageAvailable] = useState(true)
 const dispatch = useDispatch()
 const state = useSelector((state) => state)
-
+const navigate= useNavigate()
   /**
    * Check availability to use localStorage
    */
@@ -37,8 +38,14 @@ useCallback(
   )
   
   const handleStartGame = () => {
-      dispatch({ type: "startGame"})
-      setNewLocalStorage()
+    dispatch({ type: "startGame"})
+    setNewLocalStorage()
+    navigate(`/game/${state.teams[0].name}/1/${state.teams[0].players[0]}`, { replace: true })
+    
+  }
+
+  const handleContinueGame = () => {
+    navigate(`/game/${state.teams[state.turn].name}/${state.turn+1}/${state.teams[state.turn].players[state.teams[state.turn].playerTurn]}`, { replace: true })
   }
 
   const setNewLocalStorage = () => {
@@ -58,13 +65,11 @@ useEffect(() => {
             <Teams/>
             {!state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={"Ajouter une nouvelle équipe"} link={"/new-team"} size={"small"} ico={"fas fa-users"}/>}
             {!state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={"Modifier les options de jeu"} link={"/options"} size={"small"} ico={"fas fa-sliders-h"}/>}
-            {/* {!state.playing && <a elt={"Dashboard"} className='Dashboard__btn' text={""} href="/new-team" size={"small"} ico={"fas fa-plus-circle"}>Ajouter une nouvelle équipe</a>} */}
           </div>
           {state.teams.length > 1? 
             <div className='Dashboard__startGame'>
-              {/* {enoughPlayers && !state.playing && <a elt={"Dashboard"} className='Dashboard__btn' text={"Commencer à jouer"} href={`/game/${state.teams[0].name}/1/${state.teams[0].players[0]}`} size={"small"} action={handleStartGame} />a} */}
-              {enoughPlayers && !state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={"Commencer à jouer"} link={`/game/${state.teams[0].name}/1/${state.teams[0].players[0]}`} size={"small"} action={handleStartGame} />}
-              {state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={'Continuer la partie'} link={`/game/${state.teams[state.turn].name}/${state.turn+1}/${state.teams[state.turn].players[state.teams[state.turn].playerTurn]}`} size={"small"} action={handleStartGame}/>}
+              {enoughPlayers && !state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={"Commencer à jouer"} size={"small"} action={handleStartGame} />}
+              {state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={'Continuer la partie'}  size={"small"} action={handleContinueGame}/>}
             </div>
             : null
           }

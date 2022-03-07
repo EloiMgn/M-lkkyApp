@@ -1,0 +1,18 @@
+.skittle{
+  background-color: var(--color-background-elt);
+  border-radius: 10rem;
+  border: solid 4px var(--tertiary);
+  width: 75px;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--fontsize-h1);
+  font-weight: var(--fontweight-bold);
+  font-family: var(--font-text);
+  color: var(--font-color);
+}
+.selected{
+  background-color: var(--light-overlay);
+  border: solid 4px var(--secondary);
+}

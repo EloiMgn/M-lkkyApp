@@ -36,7 +36,7 @@ const CookieConscent = () => {
     }
 
     return (
-        <p className="rgpd" onClick={onClickRGPD}>Gestion des cookies</p>
+        <p className="rgpd" onClick={onClickRGPD}>Gestion des cookies <i className="fas fa-cookie"></i></p>
     );
 };
 

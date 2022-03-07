@@ -2,11 +2,10 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import './ToggleOption.scss'
 
-const ToggleOption = ({action, details}) => {
-  const [option, setOption] = useState(false)
+const ToggleOption = ({action, details, stateValue}) => {
+  const [option, setOption] = useState(stateValue)
   const [text, setText] = useState('OFF')
   const dispatch = useDispatch()
-
   const handleToggle = (action) => {
     setOption(!option)
   }

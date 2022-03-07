@@ -3,7 +3,6 @@
   "name": "MölkKing App",
   "description": "Grâce à Molkking, vous deviendrez les rois et reine du Mölkky! Suivez le déroulement de vos parties de Möllky, ne vous battez plus à propos des règles et découvrez le placement initial officel des quilles.",
   "lang": "fr",
-  "start_url": "https://molkking.com",
   "orientation": "portrait",
   "icons": [
     {

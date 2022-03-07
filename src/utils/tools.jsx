@@ -27,8 +27,19 @@ export const is_touch_device = () => {
 }
 
 export const checkWinner = (teamScore, teams, eliminatedTeams) => {
-  if (teamScore === 50 || (teams.length - eliminatedTeams.length) === 1) {
-    return true
+  const playingTeams = []
+  teams.forEach((team, i) => {
+    if(!team.eliminated){
+      playingTeams.push({id:i, score: team.score})
+    } else if (team.eliminated){
+      playingTeams.splice(i, 1)
+    }
+  })
+  const result = {
+    playingTeams
+  }
+  if (teamScore === 50 || playingTeams.length === 1) {
+    return result
   } else return false
 }
 

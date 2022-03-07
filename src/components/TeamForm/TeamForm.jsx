@@ -18,7 +18,6 @@ const TeamForm = () => {
 
   const handleValidate = (e) => {
     if(playerList.length > 1) {
-  
     const playerNames = []
     playerList.forEach(player => {
       playerNames.push(player.player)
@@ -33,7 +32,7 @@ const TeamForm = () => {
     } 
     else {
     const newTeam = [...Team]
-    newTeam[0].players = Team[0].name
+    newTeam[0].players = [Team[0].name]
 
     dispatch({ type: "createNewTeam", team: Team[0] })
     navigate('/dashboard', { replace: true })

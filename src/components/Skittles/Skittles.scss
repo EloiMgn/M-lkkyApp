@@ -1,28 +1,17 @@
 .select{
-  width: 100vmin;
   height: 50vh;
-  margin-top: 5vh;
+  margin: var(--margin-medium) 0;
+  padding: var(--margin-small);
   text-align: center;
-  .selected{
-    background-color: var(--light-overlay);
-  }
-  &__skittle{
-    background-color: var(--color-background-elt);
-    border-radius: 10rem;
-    border: solid 5px var(--tertiary);
-    width: 75px;
-    height: 75px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: var(--fontsize-h1);
-    font-weight: var(--fontweight-bold);
-    font-family: var(--font-text);
-    color: var(--font-color);
-  }
-  &__top, &__middleTop, &__bottom, &__middleBottom{
+  background: var(--primary);
+  border-radius: var(--border-radius);
+ &__middleTop, &__bottom, &__middleBottom{
     display: flex;
     justify-content: center;
     margin-top: -12px;
+  }
+  &__top{
+    display: flex;
+    justify-content: center;
   }
 }
