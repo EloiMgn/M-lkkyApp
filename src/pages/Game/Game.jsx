@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router'
 import { useParams } from 'react-router-dom';
 import './Game.scss'
@@ -7,7 +7,7 @@ import Header from '../../components/Header/Header'
 import Button from '../../components/Button/Button'
 
 import { useDispatch } from 'react-redux';
-import { setLocalStorage } from '../../utils/localStorage';
+import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
 import { checkIfEqual, checkWinner, setLevel } from '../../utils/tools';
 import Skittles from '../../components/Skittles/Skittles';
 import PlayingDatas from '../../components/PlayingDatas/PlayingDatas';
@@ -18,13 +18,6 @@ const Game = () => {
   const state = useSelector((state) => state)
   const navigate= useNavigate()
   const dispatch = useDispatch()
-  // const [winner, setWinner] = useState('')
-
-  // useEffect(() => {
-  //   if(state.teams.length === 1) {
-  //     setWinner(0)
-  //   }
-  // }, [id])
 
   useEffect(() => {
     if (state.teams.length > 1) {
@@ -38,44 +31,66 @@ const Game = () => {
     dispatch({type: "resetSkittles"})
   }
 
-  const handleNextTeam = (i)  => {
+  const goNext = (i) => {
     dispatch({ type: "nextTeam", currentTeam: i })
     dispatch({type: "nextPlayer", team: parseInt(id)})
     calculateScore(playerId, id)
     handleResetSkittles()
-    // console.log(state.teams[i]);
-    // if (state.teams[i].fails === 3 && state.options.elimination) {
-    //   console.log(state.teams[i]);
-    //   dispatch({type: "eliminateTeam", teamId: i, team: state.teams[i]})
-    // }
-    // si team+1 éliminée on passe à team+2
-    if(state.teams[i+1].eliminated && i+2 < state.teams.length){
-      navigate(`/game/${state.teams[i+2].name}/${i + 3}/${state.teams[i+2].players[state.teams[i+2].playerTurn]}`, { replace: true })
-    } 
-    // si team+1 pas éliminée on passe à team+1
-    else if(!state.teams[i+1].eliminated) {
-      navigate(`/game/${state.teams[i+1].name}/${i + 2}/${state.teams[i+1].players[state.teams[i+1].playerTurn]}`, { replace: true })
+    navigate(`/game/${state.teams[i+1].name}/${i + 2}/${state.teams[i+1].players[state.teams[i+1].playerTurn]}`, { replace: true })
+  }
+
+  const handleNextTeam = (i)  => {
+    if(!state.options.elimination) {
+      goNext(i)
+    } else if (state.options.elimination) {
+      for (let j = 0; j < state.teams.length; j++) {
+        if(!state.teams[i+1].eliminated) {
+          goNext(i)
+          break
+        } else if(state.teams[i+1].eliminated && !state.teams[j+1].eliminated){
+          goNext(j+1)
+          break
+        } 
+        // console.log(state.teams[j]);
+        // if(!state.teams[i+1].eliminated) {
+        //   goNext(i)
+        // } else if (state.teams[i+1].eliminated) {
+        //   if(i+2 < state.teams.length) {
+        //   goNext(i+1)
+        //   }
+        // }
+      }
+
     }
   }
 
   const handleNextFirstTeam = (i)  => {
-    dispatch({ type: "firstTeam", currentTeam: i })
-    dispatch({type: "nextPlayer", team: parseInt(id)})
-    calculateScore(playerId, id)
-    handleResetSkittles()
-    console.log(state.teams[i]);
-    // if (state.teams[i].fails === 3  && state.options.elimination ) {
-    //   console.log(state.teams[i]);
-    //   dispatch({type: "eliminateTeam", teamId: i, team: state.teams[i]})
-    // }
-    // si team1 éliminée on passe à team2
-    if(state.teams[0].eliminated){
-      navigate(`/game/${state.teams[1].name}/1/${state.teams[1].players[state.teams[1].playerTurn]}`, { replace: true })
-    } 
-    // si team1 pas éliminée on passe à team1
-    else if (!state.teams[0].eliminated) {
+    if(state.options.elimination) {
+      for (let i = 0; i < state.teams.length; i++) {
+        if(!state.teams[i].eliminated) {
+            navigate(`/game/${state.teams[i].name}/${i+1}/${state.teams[i].players[state.teams[i].playerTurn]}`, { replace: true })
+            dispatch({ type: "firstTeam", currentTeam: i })
+            dispatch({type: "nextPlayer", team: parseInt(id)})
+            handleResetSkittles()
+            calculateScore(playerId, id)
+            break
+        }
+      }
+    } else {
+      dispatch({ type: "firstTeam", currentTeam: i })
+      dispatch({type: "nextPlayer", team: parseInt(id)})
+      calculateScore(playerId, id)
+      handleResetSkittles()
       navigate(`/game/${state.teams[0].name}/1/${state.teams[0].players[state.teams[0].playerTurn]}`, { replace: true })
     }
+
+    // // si team1 éliminée on passe à team2
+    // if(state.teams[0].eliminated){
+    //   navigate(`/game/${state.teams[1].name}/1/${state.teams[1].players[state.teams[1].playerTurn]}`, { replace: true })
+    // } 
+    // // si team1 pas éliminée on passe à team1
+    // else if (!state.teams[0].eliminated) {
+    // }
   }
 
   // const handlePreviousTeam = (i)  => {
@@ -123,15 +138,19 @@ useEffect(() => {
         dispatch({type: "resetScore", team: i})
       }
     }
-    if (checkWinner(score, state.teams, state.eliminatedTeams)) {
-      dispatch({type: "setWinner", team: state.teams.length-1})
-      navigate(`/winner/${state.teams.length-1}`, { replace: true })
+    if (checkWinner(score, state.teams)) {
+      console.log('mince');
+      dispatch({type: "setWinner", team: checkWinner(score, state.teams).playingTeams[0]})
+      navigate(`/winner/${checkWinner(score, state.teams).playingTeams[0]}`, { replace: true })
     }
     if(setLevel(score)) {
       dispatch({type: "setLevel", team: state.teams.length-1})
     }
     if(fails === 3 || score > 50) {
       dispatch({type: "resetScore", team: state.teams.length-1})
+    }
+    if(fails === 3 && state.options.elimination) {
+      dispatch({type: "eliminateTeam", team: state.teams[state.teams.length-1], teamId: state.teams.length-1})
     }
   } 
   // si équipe plus de 1 affichée et plus de 2 équipes total
@@ -146,17 +165,21 @@ useEffect(() => {
       }
     }
     // vérifie si la partie a un gagnant 
-    if (checkWinner(score, state.teams, state.eliminatedTeams)) {
-      dispatch({type: "setWinner", team: parseInt(id)-2})
-      navigate(`/winner/${parseInt(id)-2}`, { replace: true })
+    if (checkWinner(score, state.teams)) {
+      console.log('zut');
+      dispatch({type: "setWinner", team: checkWinner(score, state.teams).playingTeams[0]})
+      navigate(`/winner/${checkWinner(score, state.teams).playingTeams[0]}`, { replace: true })
     }
-    // vérifie si le palier de 25 points est atteint
+    // vérifie si le pallier de 25 points est atteint
     if(setLevel(score)) {
       dispatch({type: "setLevel", team: parseInt(id)-2})
     }
     //vérifie si les 3 lancés raté sont atteints ou si 50 points sont dépassés et restaure le score au palier précédent le cas échéant
     if(fails === 3 || score > 50) {
       dispatch({type: "resetScore", team: parseInt(id)-2})
+    }
+    if(fails === 3 && state.options.elimination) {
+      dispatch({type: "eliminateTeam", team: state.teams[parseInt(id)-2], teamId: parseInt(id)-2})
     }
   }
 
@@ -170,15 +193,22 @@ useEffect(() => {
         dispatch({type: "resetScore", team: i})
       }
     }
-    if (checkWinner(score, state.teams, state.eliminatedTeams)) {
-      dispatch({type: "setWinner", team: parseInt(id)})
-      navigate(`/winner/${parseInt(id)}`, { replace: true })
+    if (checkWinner(score, state.teams)) {  
+      for (let i = 0; i < checkWinner(score, state.teams).playingTeams.length; i++) {
+        if(checkWinner(score, state.teams).playingTeams[i].score === 50){
+          dispatch({type: "setWinner", team: i})
+          navigate(`/winner/${i}`, { replace: true })
+        } 
+      }
     }
     if(setLevel(score)) {
       dispatch({type: "setLevel", team: parseInt(id)})
     }
     if(fails === 3 || score > 50) {
       dispatch({type: "resetScore", team: parseInt(id)})
+    }
+    if(fails === 3 && state.options.elimination) {
+      dispatch({type: "eliminateTeam", team: state.teams[parseInt(id)], teamId: parseInt(id)})
     }
   }
 
@@ -192,15 +222,19 @@ useEffect(() => {
           dispatch({type: "resetScore", team: i})
         }
       }
-      if (checkWinner(score, state.teams, state.eliminatedTeams)) {
-        dispatch({type: "setWinner", team: parseInt(id)-2})
-        navigate(`/winner/${parseInt(id)-2}`, { replace: true })
+      if (checkWinner(score, state.teams)) {
+        console.log('fuck');
+        dispatch({type: "setWinner", team: checkWinner(score, state.teams).playingTeams[0]})
+        navigate(`/winner/${checkWinner(score, state.teams).playingTeams[0]}`, { replace: true })
       }
       if(setLevel(score)) {
         dispatch({type: "setLevel", team: parseInt(id)-2})
       }
       if(fails === 3 || score > 50) {
         dispatch({type: "resetScore", team: parseInt(id)-2}) 
+      }
+      if(fails === 3 && state.options.elimination) {
+        dispatch({type: "eliminateTeam", team: state.teams[parseInt(id)-2], teamId: parseInt(id)-2})
       }
       
   } 
@@ -212,15 +246,6 @@ useEffect(() => {
       navigate(`/winner/${state.winner}`, { replace: true })
     }
   }, [dispatch, id, navigate, state.winner])
-
-  // useEffect(() => {
-  //   for (let i = 0; i < state.teams.length; i++) {
-  //     if (state.teams[i].eliminated) {
-  //       dispatch({type: "deleteTeam", idx: i})
-  //     }
-  //   }
-  // }, [id])
-
 
   return (
     <div id="Game" className="Game">
