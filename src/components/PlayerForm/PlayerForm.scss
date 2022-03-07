@@ -2,14 +2,6 @@
   width: var(--width-btn-medium) !important; 
 }
 
-.playerName{
-  strong{
-    font-size: var(--fontsize-small);
-    font-weight: var(--fontweight-medium);
-    text-transform: capitalize; 
-  }
-}
-
 .addPlayer{
   display: flex;
   &__form{
@@ -24,18 +16,18 @@
   &__input{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     margin: var(--margin-medium) 0;
     // margin-left: 0;
 
     input{
-      margin-right: var(--margin-medium);
+      margin: 0 var(--margin-small);
       height: var(--height-btn-regular);
       font-size: var(--fontsize-small);
       font-family: var(--font-text);
       font-weight: var(--fontweight-light);
-      width: var(--width-btn-medium);
+      width: var(--width-btn-big);
       border-radius: var(--border-radius);
       border: 0.5px solid #BDBDBD;
       box-sizing: border-box;
@@ -47,12 +39,6 @@
 }
 
 .playerForm{
-  &__player{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: var(--margin-small) 0;
-  }
   &__btn-add, &__btn-delete{
     border: none;
     display: flex;

@@ -1,0 +1,13 @@
+.player{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: var(--margin-small) 0;
+  &__Name{
+    strong{
+      font-size: var(--fontsize-small);
+      font-weight: var(--fontweight-bold);
+      text-transform: capitalize; 
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import './PlayerForm.scss'
 import { useState } from 'react';
 
-const PlayerForm = ({list, setList}) => {
+const PlayerForm = ({list, setList, setToogle}) => {
   const [player, setPlayer] = useState('')
 
   // handle input change
@@ -23,43 +23,43 @@ const PlayerForm = ({list, setList}) => {
     handleAddPlayer(i)
     setList([...newPlayerList, { player: "", hide: false}]);
     setPlayer('')
+    setToogle(false)
     }
   }
 
-  // handle click event of the Remove button
-  const handleRemoveClick = (e, index) => {
-    const playerList = [...list];
-    playerList.splice(index, 1);
-    setList(playerList);
-  }
+  
+    // handle validate team Name
+    const handleAddEnter = (e, i) => {
+      if(player !== "" && e.key === "Enter") {
+        const newPlayerList = [...list]
+        newPlayerList[i].player = player
+        handleAddPlayer(i)
+        setList([...newPlayerList, { player: "", hide: false}]);
+        setPlayer('')
+        setToogle(false)
+        }
+    }
+
+
   
 return (
 <div className="playerForm">
-  {list.map((x, i) => {
-      if (list.length > 1 && x.player !== "" && list[i+1]) {
-        return (
-          <div className={`playerForm__player player${i+1}`}  key={i}>
-            <div className="playerName">Joueur {i+1} : <strong>{x.player}</strong></div>
-            <button className='playerForm__btn-delete' onClick={(e) => handleRemoveClick(e, i)}><p>Supprimer</p></button>
-          </div>
-        ) 
-      } return null
-    })}
         {list.map((x, i) => {
           if(!x.hide) {
             return (
               <div className="addPlayer__form" key={i}>
-                <h3>Ajouter un joueur</h3>
+                {/* <h3>Ajouter un joueur</h3> */}
                 <div className='addPlayer'>
                   <div className="addPlayer__input">
                     <label htmlFor="player">Joueur {i+1}</label>
                     <input
                     id="player"
                       name="player"
-                      placeholder=""
                       onChange={e => handleInputChange(e, i)}
                       onBlur={e => handleAddClick(i)}
+                      onKeyPress={e => handleAddEnter(e, i)}
                       className={player.length > 0? 'playerSmall' : 'inputBig'}
+                      autoFocus={true}
                     />
                   </div>
                   <div className="btn-box">

@@ -17,13 +17,6 @@
   align-items: center;
 }
 
-.inputBig{
-  width: var(--width-btn-big);
-}
-.inputSmall{
-  width: var(--width-btn-big);
-}
-
 .validateBtn{
   border: none;
   line-height: 24px;
@@ -34,4 +27,22 @@
   width: 100%;
   margin: var(--margin-medium) 0;
   font-size: var(--fontsize-h3);
+}
+
+.addPlayer__button{
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  background: var(--color-btn);
+  color: var(--font-color-rev);
+  line-height: 24px;
+  border-radius: var(--border-radius);
+  user-select: none;
+  height: var(--height-btn-regular);
+  width: 100%;
+  p, i{
+    margin: var(--margin-medium);
+  }
 }

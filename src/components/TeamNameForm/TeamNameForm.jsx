@@ -20,6 +20,16 @@ const TeamNameForm = ({name, setName, setValidate, team, setTeam}) => {
     }
   }
 
+    // handle validate team Name
+    const handleNameEnter = (e) => {
+      if (e.target.value.length > 0 && e.key === "Enter") {
+      const newTeam = [...team]
+      newTeam[0].name = name
+      setTeam(newTeam)
+      setTeamNameValid(true)
+      }
+    }
+
   // handle click event of the Remove button
   const handleRemoveNameClick = (e, index) => {
     setName('');
@@ -49,17 +59,17 @@ return (
           </div>}
           {!teamNameValid &&                 
           <div className="teamName__unvalidated">
-            <label htmlFor="player">Entrez le nom de votre équipe</label>
+            {/* <label htmlFor="team">Entrez le nom de votre équipe</label> */}
             <div className='teamName__unvalidated__row'>
               <input
-              id="team"
+                id="team"
                 name="team"
                 placeholder="Entrez le nom de votre équipe"
                 onChange={e => handleNameChange(e)}
                 onBlur={e => handleNameClick(e)}
+                onKeyPress={e => handleNameEnter(e)}
                 autoFocus={true}
                 value={name}
-                className={name.length > 0? 'inputSmall' : 'inputBig'}
               />
               {name.length > 0 && <button className='teamName__btn teamBtn' onClick={e => handleNameClick(e)}>Valider</button>}
             </div>
