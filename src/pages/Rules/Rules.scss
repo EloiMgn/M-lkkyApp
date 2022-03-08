@@ -38,27 +38,26 @@
     }
 
     h1 {
-      font-size: var(--fontsize-big);
+      font-size: var(--fontsize-h1);
       font-weight: var(--fontweight-bold);
-      margin-top: var(--margin-medium);
-      margin-bottom: var(--margin-medium);
+      margin: var(--margin-medium) 0;
     }
 
     h2 {
-      font-size: var(--fontsize-medium);
+      font-size: var(--fontsize-h2);
       font-weight: var(--fontweight-bold);
       margin-top: var(--margin-medium);
     }
 
     h3 {
-      font-size: var(--fontsize-medium);
+      font-size: var(--fontsize-h3);
       margin-top: var(--margin-medium);
     }
 
     p,
     ul {
       margin-left: var(--margin-medium);
-      font-size: var(--fontsize-small);
+      font-size: var(--fontsize-p);
       margin-top: var(--margin-medium);
       list-style-type: circle;
       line-height: var(--line-height-large);

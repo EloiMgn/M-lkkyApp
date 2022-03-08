@@ -106,7 +106,7 @@ return (
             il est ramené à 25 points. </p>
         </div>
         <div className='rules__2__rule'>
-          <h3>Variante avec élimination</h3>
+          <h3>Variante avec élimination (règle officielle)</h3>
           <p>
             Un joueur qui n'abat aucune quille, 3 fois d'affilée,
             est éliminé de la partie. Dans le cas où tous les joueurs sont éliminés

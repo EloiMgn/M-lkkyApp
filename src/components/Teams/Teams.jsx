@@ -55,7 +55,8 @@ const Teams = () => {
                 team.fails >= rangeElem ? <img key={rangeElem.toString()} src={Cross} alt="" />: null
               )}
             </div>
-            {!state.playing && <div className='team__delete' onClick={e => handleDelete(idx)}>Supprimer</div>}
+            {!state.playing && 
+            <i className="fas fa-edit team__delete" onClick={e => handleDelete(idx)}></i>}
           </div>
         </div>
         )
