@@ -48,6 +48,7 @@ const Home = () => {
             <Link to="/rules" className='navbar__link'>Les règles officielles du Mölkky</Link>
           </div>
           </main>
+          <Footer/>
         </div>
       )
     } return (

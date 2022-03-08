@@ -3,14 +3,14 @@ import produce from "immer";
 import { getLocalStorage } from './utils/localStorage'
 
 const initialState = {
-  options: {
-    elimination: false
-  },
+  // options: {
+  //   elimination: false
+  // },
   theme: 'light',
   playing: false,
   turn: 0,
   teams: [],
-  eliminatedTeams: [],
+  // eliminatedTeams: [],
   winner: null,
   skittles: [
     {value: false, id: 1},
@@ -35,17 +35,17 @@ function reducer(state = initialState, action) {
   }
   if (action.type === "restart") {
     return produce(state, draft => {
-      draft.options.elimination = false
+      // draft.options.elimination = false
       draft.teams[action.idx].score = 0
       draft.teams[action.idx].fails = 0
       draft.teams[action.idx].playerTurn = 0
       draft.teams[action.idx].level = false
       draft.teams[action.idx].stats = []
-      draft.teams[action.idx].eliminated = false
+      // draft.teams[action.idx].eliminated = false
       draft.turn = 0
       draft.playing = false
       draft.winner = null
-      draft.eliminatedTeams = []
+      // draft.eliminatedTeams = []
       })
     }
 
@@ -56,7 +56,7 @@ function reducer(state = initialState, action) {
       draft.playing = true
       draft.turn = localStorage.state.turn
       draft.teams = localStorage.state.teams
-      draft.options.elimination = localStorage.state.options.elimination
+      // draft.options.elimination = localStorage.state.options.elimination
       })
   }
 
@@ -74,13 +74,13 @@ function reducer(state = initialState, action) {
       })
   }
 
-  if (action.type === "changeOption") {
-    if(action.option === "élimination") {
-      return produce(state, draft => {
-        draft.options.elimination = action.optionValue;
-        })
-    }
-  }
+  // if (action.type === "changeOption") {
+  //   if(action.option === "élimination") {
+  //     return produce(state, draft => {
+  //       draft.options.elimination = action.optionValue;
+  //       })
+  //   }
+  // }
 
   if (action.type === "startGame") {
     return produce(state, draft => {
@@ -124,17 +124,17 @@ function reducer(state = initialState, action) {
       })
   }
 
-  if (action.type === "previousPlayer") {
-    return produce(state, draft => {
-    // si le playerTurn est égal a 0 (premier joueur) le player turn revient au nombrede player (dernier joueur)
-      if (draft.teams[(action.team)-1].playerTurn === 0) {
-        draft.teams[(action.team)-1].playerTurn = (draft.teams[(action.team)-1].players.length)-1;
-    // si le playerTurn est différent de 0 (pas le premier joueur) on enlève un a à playerTurn (joueur précédent)
-      } else if (draft.teams[(action.team)-1].playerTurn !== 0) {
-        draft.teams[(action.team)-1].playerTurn--
-        }
-      })
-  }
+  // if (action.type === "previousPlayer") {
+  //   return produce(state, draft => {
+  //   // si le playerTurn est égal a 0 (premier joueur) le player turn revient au nombrede player (dernier joueur)
+  //     if (draft.teams[(action.team)-1].playerTurn === 0) {
+  //       draft.teams[(action.team)-1].playerTurn = (draft.teams[(action.team)-1].players.length)-1;
+  //   // si le playerTurn est différent de 0 (pas le premier joueur) on enlève un a à playerTurn (joueur précédent)
+  //     } else if (draft.teams[(action.team)-1].playerTurn !== 0) {
+  //       draft.teams[(action.team)-1].playerTurn--
+  //       }
+  //     })
+  // }
 
 
   if (action.type === "firstTeam") {
@@ -152,9 +152,6 @@ function reducer(state = initialState, action) {
   if (action.type === "fail") {
     return produce(state, draft => {
       draft.teams[(action.team)-1].fails+=1;
-      // if (draft.teams[(action.team)].fails === 3 && draft.options.elimination) {
-      //   draft.teams[(action.team)].eliminated = true
-      // }
       draft.teams[(action.team)-1].stats.forEach(player => {
         if (action.player === player.player) {
           player.fails+=1
@@ -217,13 +214,13 @@ function reducer(state = initialState, action) {
     } 
   }
 
-  if (action.type === "eliminateTeam") {
-    return produce(state, draft => {
-      draft.eliminatedTeams.push (action.team);
-      draft.teams[action.teamId].eliminated = true;
-      draft.teams[action.teamId].fails=0;
-    })
-  }
+  // if (action.type === "eliminateTeam") {
+  //   return produce(state, draft => {
+  //     draft.eliminatedTeams.push (action.team);
+  //     draft.teams[action.teamId].eliminated = true;
+  //     draft.teams[action.teamId].fails=0;
+  //   })
+  // }
 
   if (action.type === "setWinner") {
     if(state.winner === null) {

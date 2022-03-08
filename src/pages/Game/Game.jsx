@@ -18,13 +18,7 @@ const Game = () => {
   const state = useSelector((state) => state)
   const navigate= useNavigate()
   const dispatch = useDispatch()
-  // const [winner, setWinner] = useState('')
 
-  // useEffect(() => {
-  //   if(state.teams.length === 1) {
-  //     setWinner(0)
-  //   }
-  // }, [id])
 
   useEffect(() => {
     if (state.teams.length > 1) {
@@ -43,19 +37,7 @@ const Game = () => {
     dispatch({type: "nextPlayer", team: parseInt(id)})
     calculateScore(playerId, id)
     handleResetSkittles()
-    // console.log(state.teams[i]);
-    // if (state.teams[i].fails === 3 && state.options.elimination) {
-    //   console.log(state.teams[i]);
-    //   dispatch({type: "eliminateTeam", teamId: i, team: state.teams[i]})
-    // }
-    // si team+1 éliminée on passe à team+2
-    if(state.teams[i+1].eliminated && i+2 < state.teams.length){
-      navigate(`/game/${state.teams[i+2].name}/${i + 3}/${state.teams[i+2].players[state.teams[i+2].playerTurn]}`, { replace: true })
-    } 
-    // si team+1 pas éliminée on passe à team+1
-    else if(!state.teams[i+1].eliminated) {
-      navigate(`/game/${state.teams[i+1].name}/${i + 2}/${state.teams[i+1].players[state.teams[i+1].playerTurn]}`, { replace: true })
-    }
+    navigate(`/game/${state.teams[i+1].name}/${i + 2}/${state.teams[i+1].players[state.teams[i+1].playerTurn]}`, { replace: true })
   }
 
   const handleNextFirstTeam = (i)  => {
@@ -63,34 +45,8 @@ const Game = () => {
     dispatch({type: "nextPlayer", team: parseInt(id)})
     calculateScore(playerId, id)
     handleResetSkittles()
-    console.log(state.teams[i]);
-    // if (state.teams[i].fails === 3  && state.options.elimination ) {
-    //   console.log(state.teams[i]);
-    //   dispatch({type: "eliminateTeam", teamId: i, team: state.teams[i]})
-    // }
-    // si team1 éliminée on passe à team2
-    if(state.teams[0].eliminated){
-      navigate(`/game/${state.teams[1].name}/1/${state.teams[1].players[state.teams[1].playerTurn]}`, { replace: true })
-    } 
-    // si team1 pas éliminée on passe à team1
-    else if (!state.teams[0].eliminated) {
-      navigate(`/game/${state.teams[0].name}/1/${state.teams[0].players[state.teams[0].playerTurn]}`, { replace: true })
-    }
+    navigate(`/game/${state.teams[0].name}/1/${state.teams[0].players[state.teams[0].playerTurn]}`, { replace: true })
   }
-
-  // const handlePreviousTeam = (i)  => {
-  //   dispatch({ type: "previousTeam", currentTeam: i })
-  //   dispatch({type: "previousPlayer", team: parseInt(id)})
-  //   // calculateScore(playerId, id)
-  //   handleResetSkittles()
-  // }
-
-  // const handlePreviousLastTeam = (i)  => {
-  //   dispatch({ type: "lastTeam", currentTeam: i })
-  //   dispatch({type: "previousPlayer", team: parseInt(id)})
-  //   // calculateScore(playerId, id)
-  //   handleResetSkittles()
-  // }
 
   const calculateScore = (player, id) => {
     const falledSkittle = []
@@ -212,15 +168,6 @@ useEffect(() => {
       navigate(`/winner/${state.winner}`, { replace: true })
     }
   }, [dispatch, id, navigate, state.winner])
-
-  // useEffect(() => {
-  //   for (let i = 0; i < state.teams.length; i++) {
-  //     if (state.teams[i].eliminated) {
-  //       dispatch({type: "deleteTeam", idx: i})
-  //     }
-  //   }
-  // }, [id])
-
 
   return (
     <div id="Game" className="Game">
