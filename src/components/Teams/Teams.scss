@@ -38,13 +38,8 @@
     text-align: center;
   }
   &__delete{
-    height: 4vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--light-red);
-    border-radius: var(--border-radius);
-    color: var(--red);
+    font-size: var(--fontsize-h2);
+    margin: var(--margin-medium);
   }
   &__datas{
     width: 50%;

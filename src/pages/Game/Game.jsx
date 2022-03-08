@@ -31,7 +31,7 @@ const Game = () => {
     dispatch({type: "resetSkittles"})
   }
 
-  const goNext = (i) => {
+  const handleNextTeam = (i) => {
     dispatch({ type: "nextTeam", currentTeam: i })
     dispatch({type: "nextPlayer", team: parseInt(id)})
     calculateScore(playerId, id)
@@ -39,73 +39,13 @@ const Game = () => {
     navigate(`/game/${state.teams[i+1].name}/${i + 2}/${state.teams[i+1].players[state.teams[i+1].playerTurn]}`, { replace: true })
   }
 
-  const handleNextTeam = (i)  => {
-    if(!state.options.elimination) {
-      goNext(i)
-    } else if (state.options.elimination) {
-      for (let j = 0; j < state.teams.length; j++) {
-        if(!state.teams[i+1].eliminated) {
-          goNext(i)
-          break
-        } else if(state.teams[i+1].eliminated && !state.teams[j+1].eliminated){
-          goNext(j+1)
-          break
-        } 
-        // console.log(state.teams[j]);
-        // if(!state.teams[i+1].eliminated) {
-        //   goNext(i)
-        // } else if (state.teams[i+1].eliminated) {
-        //   if(i+2 < state.teams.length) {
-        //   goNext(i+1)
-        //   }
-        // }
-      }
-
-    }
-  }
-
   const handleNextFirstTeam = (i)  => {
-    if(state.options.elimination) {
-      for (let i = 0; i < state.teams.length; i++) {
-        if(!state.teams[i].eliminated) {
-            navigate(`/game/${state.teams[i].name}/${i+1}/${state.teams[i].players[state.teams[i].playerTurn]}`, { replace: true })
-            dispatch({ type: "firstTeam", currentTeam: i })
-            dispatch({type: "nextPlayer", team: parseInt(id)})
-            handleResetSkittles()
-            calculateScore(playerId, id)
-            break
-        }
-      }
-    } else {
-      dispatch({ type: "firstTeam", currentTeam: i })
-      dispatch({type: "nextPlayer", team: parseInt(id)})
-      calculateScore(playerId, id)
-      handleResetSkittles()
-      navigate(`/game/${state.teams[0].name}/1/${state.teams[0].players[state.teams[0].playerTurn]}`, { replace: true })
-    }
-
-    // // si team1 éliminée on passe à team2
-    // if(state.teams[0].eliminated){
-    //   navigate(`/game/${state.teams[1].name}/1/${state.teams[1].players[state.teams[1].playerTurn]}`, { replace: true })
-    // } 
-    // // si team1 pas éliminée on passe à team1
-    // else if (!state.teams[0].eliminated) {
-    // }
+    dispatch({ type: "firstTeam", currentTeam: i })
+    dispatch({type: "nextPlayer", team: parseInt(id)})
+    calculateScore(playerId, id)
+    handleResetSkittles()
+    navigate(`/game/${state.teams[0].name}/1/${state.teams[0].players[state.teams[0].playerTurn]}`, { replace: true })
   }
-
-  // const handlePreviousTeam = (i)  => {
-  //   dispatch({ type: "previousTeam", currentTeam: i })
-  //   dispatch({type: "previousPlayer", team: parseInt(id)})
-  //   // calculateScore(playerId, id)
-  //   handleResetSkittles()
-  // }
-
-  // const handlePreviousLastTeam = (i)  => {
-  //   dispatch({ type: "lastTeam", currentTeam: i })
-  //   dispatch({type: "previousPlayer", team: parseInt(id)})
-  //   // calculateScore(playerId, id)
-  //   handleResetSkittles()
-  // }
 
   const calculateScore = (player, id) => {
     const falledSkittle = []

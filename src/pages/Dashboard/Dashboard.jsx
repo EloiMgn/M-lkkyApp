@@ -52,6 +52,7 @@ useCallback(
     setLocalStorage({ date: new Date(), state })
   }
 
+
 useEffect(() => {
   state.teams.length >= 2 ? setEnoughPlayers(true) : setEnoughPlayers(false)
 }, [state])
@@ -63,8 +64,8 @@ useEffect(() => {
           <div className='Dashboard__teams'>
             {(state.playing || state.teams.length > 1) && <h1 className='Dashboard__title'>Equipes:</h1>}
             <Teams/>
-            {!state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={"Ajouter une nouvelle équipe"} link={"/new-team"} size={"small"} ico={"fas fa-users"}/>}
-            {!state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={"Modifier les options de jeu"} link={"/options"} size={"small"} ico={"fas fa-sliders-h"}/>}
+            {!state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={"Ajouter une nouvelle équipe"} link={"/new-team"} size={"small"} ico={"fas fa-users"}/> }
+            {/* {!state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={"Modifier les options de jeu"} link={"/options"} size={"small"} ico={"fas fa-sliders-h"}/>} */}
           </div>
           {state.teams.length > 1? 
             <div className='Dashboard__startGame'>

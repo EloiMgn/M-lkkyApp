@@ -2,6 +2,7 @@ import './Skittles.scss'
 import Header from '../../components/Header/Header'
 import StartSkittles from '../../utils/img/1024px-Molkky,_game_start.svg.png'
 import Footer from '../../components/Footer/Footer';
+import { Link } from 'react-router-dom'
 
 const Skittles = () => {
   return (
@@ -14,6 +15,7 @@ const Skittles = () => {
             <img className='Skittles__body__content__imgContainer-img'src={StartSkittles} alt="" />
           </div>
         </div>
+        <Link to='/' className='Skittles__back'>Retour à l'accueil</Link>
       </main>
       <Footer/>
     </div>

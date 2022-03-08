@@ -29,7 +29,26 @@
         margin: var(--margin-medium);
         line-height: var(--line-height-large);
         font-size: var(--fontsize-h2);
-        font-weight: var(--fontweight-medium);
+        font-weight: var(--fontweight-bold);
+      }
+    }
+    &__links{
+      background-color: var(--tertiary);
+      padding: var(--margin-small);
+      border-radius: var(--border-radius);
+      line-height: 3rem;
+      &-list{
+        // list-style: square inside;
+        // text-align: center;
+        li a{
+          color: var(--font-color);
+          margin-left: var(--margin-small);
+        }
+      }
+      h3{
+        font-size: var(--fontsize-h3);
+        font-weight: var(--fontweight-bold);
+        text-decoration: underline;
       }
     }
   }
