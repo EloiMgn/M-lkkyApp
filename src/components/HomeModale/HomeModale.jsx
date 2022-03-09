@@ -23,7 +23,7 @@ const HomeModale = () => {
           <p>Bienvenue sur Molkking !!</p>
           <img src={Construction} alt="icone construction" className='image'/>
           <p>Ce site est toujours en cours de développement et n'est pas 100% fonctionnel</p>
-          <p>N'hésitez pas à me rapporter les bugs auxquels vous feriez face à eloi.magnien@gmail.com</p>
+          <p>N'hésitez pas à me rapporter les bugs auxquels vous feriez face à <a href="mailto:molkking@eloimagnien.com">molkking@eloimagnien.com</a></p>
         </div>
       </div>
     )

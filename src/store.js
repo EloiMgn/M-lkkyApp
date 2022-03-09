@@ -5,7 +5,7 @@ import { getLocalStorage } from './utils/localStorage'
 const initialState = {
   options: {
     elimination: false,
-    egalisation: true, 
+    egalisation: false, 
     // maxPoints: 50,
   },
   theme: 'light',
@@ -56,7 +56,7 @@ function reducer(state = initialState, action) {
   if (action.type === "restart") {
     return produce(state, draft => {
       draft.options.elimination = false
-      draft.options.egalisation = true
+      draft.options.egalisation = false
       draft.teams[action.idx].score = 0
       draft.teams[action.idx].fails = 0
       draft.teams[action.idx].playerTurn = 0
