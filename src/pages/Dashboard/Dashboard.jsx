@@ -7,6 +7,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { getLocalStorage, setLocalStorage } from '../../utils/localStorage'
 import Footer from '../../components/Footer/Footer';
 import { useNavigate } from 'react-router-dom';
+import ToggleOption from '../../components/ToggleOption/ToggleOption';
 
 const Dashboard = () => {
 const [enoughPlayers, setEnoughPlayers] = useState(false)
@@ -40,12 +41,12 @@ useCallback(
   const handleStartGame = () => {
     dispatch({ type: "startGame"})
     setNewLocalStorage()
-    navigate(`/game/${state.teams[0].name}/1/${state.teams[0].players[0]}`, { replace: true })
+    navigate(`/game/${state.teams[0].name}/0/${state.teams[0].players[0]}`, { replace: true })
     
   }
 
   const handleContinueGame = () => {
-    navigate(`/game/${state.teams[state.turn].name}/${state.turn+1}/${state.teams[state.turn].players[state.teams[state.turn].playerTurn]}`, { replace: true })
+    navigate(`/game/${state.teams[state.turn].name}/${state.turn}/${state.teams[state.turn].players[state.teams[state.turn].playerTurn]}`, { replace: true })
   }
 
   const setNewLocalStorage = () => {
@@ -66,6 +67,7 @@ useEffect(() => {
             <Teams/>
             {!state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={"Ajouter une nouvelle équipe"} link={"/new-team"} size={"small"} ico={"fas fa-users"}/> }
             {/* {!state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={"Modifier les options de jeu"} link={"/options"} size={"small"} ico={"fas fa-sliders-h"}/>} */}
+            <ToggleOption action="élimination" details="au bout de 3 lancés ratés" stateValue={state.options.elimination}/>
           </div>
           {state.teams.length > 1? 
             <div className='Dashboard__startGame'>

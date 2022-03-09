@@ -3,16 +3,16 @@ import produce from "immer";
 import { getLocalStorage } from './utils/localStorage'
 
 const initialState = {
-  // options: {
-  //   elimination: false
-  // },
+  options: {
+    elimination: false
+  },
   theme: 'light',
   playing: false,
   turn: 0,
   teams: [],
   // eliminatedTeams: [],
   winner: null,
-  skittles: [
+  pins: [
     {value: false, id: 1},
     {value: false, id: 2},
     {value: false, id: 3},
@@ -30,25 +30,8 @@ const initialState = {
 
 
 function reducer(state = initialState, action) {
-  if (action.type === "startNewGame") {
-    return initialState;
-  }
-  if (action.type === "restart") {
-    return produce(state, draft => {
-      // draft.options.elimination = false
-      draft.teams[action.idx].score = 0
-      draft.teams[action.idx].fails = 0
-      draft.teams[action.idx].playerTurn = 0
-      draft.teams[action.idx].level = false
-      draft.teams[action.idx].stats = []
-      // draft.teams[action.idx].eliminated = false
-      draft.turn = 0
-      draft.playing = false
-      draft.winner = null
-      // draft.eliminatedTeams = []
-      })
-    }
 
+  // ===== Reset State width stored state in case of refreshment ===
   if (action.type === "setState") {
     const localStorage = JSON.parse(getLocalStorage())
     return produce(state, draft => {
@@ -56,31 +39,35 @@ function reducer(state = initialState, action) {
       draft.playing = true
       draft.turn = localStorage.state.turn
       draft.teams = localStorage.state.teams
-      // draft.options.elimination = localStorage.state.options.elimination
+      draft.options.elimination = localStorage.state.options.elimination
       })
   }
 
-  if (action.type === "createNewTeam") {
+  // ===== HANDLE GAMES STATES MANAGMENT ========
+
+  // == init new game ==
+  if (action.type === "startNewGame") {
+    return initialState;
+  }
+
+  // == resart Game with same players ==
+  if (action.type === "restart") {
     return produce(state, draft => {
-      draft.teams.push(
-        action.team
-        )
+      draft.options.elimination = false
+      draft.teams[action.idx].score = 0
+      draft.teams[action.idx].fails = 0
+      draft.teams[action.idx].playerTurn = 0
+      draft.teams[action.idx].level = false
+      draft.teams[action.idx].stats = []
+      draft.teams[action.idx].eliminated = false
+      draft.turn = 0
+      draft.playing = false
+      draft.winner = null
+      // draft.eliminatedTeams = []
       })
-  }
+    }
 
-  if (action.type === "deleteTeam") {
-    return produce(state, draft => {
-      draft.teams.splice(action.idx, 1);
-      })
-  }
-
-  // if (action.type === "changeOption") {
-  //   if(action.option === "élimination") {
-  //     return produce(state, draft => {
-  //       draft.options.elimination = action.optionValue;
-  //       })
-  //   }
-  // }
+  // == Start playing & init Stats ==
 
   if (action.type === "startGame") {
     return produce(state, draft => {
@@ -93,100 +80,98 @@ function reducer(state = initialState, action) {
     })
   }
 
+  // ===== HANDLE TEAM MANAGMENT ======
+
+  // == Add New team to teams Array ==
+  if (action.type === "createNewTeam") {
+    return produce(state, draft => {
+      draft.teams.push(
+        action.team
+        )
+      })
+  }
+ // == Delete Selected team from Teams Array ==
+  if (action.type === "deleteTeam") {
+    return produce(state, draft => {
+      draft.teams.splice(action.idx, 1);
+      })
+  }
+
+// ===== HANDLE GAME NAVIGATION WHEN PLAYING =====
+
+// == Set turn to turn +1 ==
   if (action.type === "nextTeam") {
     return {
       ...state,
       turn: action.currentTeam+1
     };
   }
-  if (action.type === "previousTeam") {
+// == Set turn to first ==
+  if (action.type === "firstTeam") {
     return {
-      ...state,
-      turn: action.currentTeam-1
-    };
-  }
+     ...state,
+     turn: 0
+    }
+ }
 
+// == Set playerTurn to playerTurn +1 ==
   if (action.type === "nextPlayer") {
     return produce(state, draft => {
       // si le playerTurn est égal au nombre de player (dernier joueur) le playerTurn revient à 0 (premier joueur)
-      if (draft.teams[(action.team)-1].playerTurn === (draft.teams[(action.team)-1].players.length)-1) {
-        draft.teams[(action.team)-1].playerTurn = 0;
+      if (draft.teams[(action.team)].playerTurn === (draft.teams[(action.team)].players.length)-1) {
+        draft.teams[(action.team)].playerTurn = 0;
         // si le playerturn est différent du total de joueur on ajoute un tour et on passe au joueur suivant
-      } else if (draft.teams[(action.team)-1].playerTurn !== (draft.teams[(action.team)-1].players.length)-1) {
-        draft.teams[(action.team)-1].playerTurn++
+      } else if (draft.teams[(action.team)].playerTurn !== (draft.teams[(action.team)].players.length)-1) {
+        draft.teams[(action.team)].playerTurn++
       }
     })
   }
 
-  if (action.type === "firstPlayer") {
-    return produce(state, draft => {
-      draft.teams[(action.team)-1].playerTurn = 0;
+// ====== HANDLE SKITTLES MANAGMENT ======
+  if(action.type === "select") {
+    return  produce(state, draft => {
+      draft.pins[(action.id)-1].value = true;
+      })
+  }
+  if(action.type === "unSelect") {
+    return  produce(state, draft => {
+      draft.pins[(action.id)-1].value = false;
+      })
+  }
+  if(action.type === "resetSkittles") {
+    return  produce(state, draft => {
+      draft.pins.forEach(skittle => {
+        skittle.value = false
+        })
       })
   }
 
-  // if (action.type === "previousPlayer") {
-  //   return produce(state, draft => {
-  //   // si le playerTurn est égal a 0 (premier joueur) le player turn revient au nombrede player (dernier joueur)
-  //     if (draft.teams[(action.team)-1].playerTurn === 0) {
-  //       draft.teams[(action.team)-1].playerTurn = (draft.teams[(action.team)-1].players.length)-1;
-  //   // si le playerTurn est différent de 0 (pas le premier joueur) on enlève un a à playerTurn (joueur précédent)
-  //     } else if (draft.teams[(action.team)-1].playerTurn !== 0) {
-  //       draft.teams[(action.team)-1].playerTurn--
-  //       }
-  //     })
-  // }
+// ===== HANDLE SCORE CALCULATION =====
 
-
-  if (action.type === "firstTeam") {
-     return {
-      ...state,
-      turn: action.currentTeam
-     }
-  }
-  if (action.type === "lastTeam") {
-    return {
-      ...state,
-      turn: state.teams.length
-    };
-  }
+// == If no skittles selected => set fail to fail +1 & set stats fail to +1==
   if (action.type === "fail") {
     return produce(state, draft => {
-      draft.teams[(action.team)-1].fails+=1;
-      draft.teams[(action.team)-1].stats.forEach(player => {
+      draft.teams[action.team].fails+=1;
+      draft.teams[action.team].stats.forEach(player => {
         if (action.player === player.player) {
           player.fails+=1
         }
       })
       })
   }
+
+// == Set fails to 0 if any skittle falled == 
   if (action.type === "unFail") {
     return produce(state, draft => {
-      draft.teams[(action.team)-1].fails=0;
+      draft.teams[action.team].fails=0;
       })
   }
   
-  if(action.type === "select") {
-    return  produce(state, draft => {
-      draft.skittles[(action.id)-1].value = true;
-      })
-  }
-  if(action.type === "unSelect") {
-    return  produce(state, draft => {
-      draft.skittles[(action.id)-1].value = false;
-      })
-  }
-  if(action.type === "resetSkittles") {
-    return  produce(state, draft => {
-      draft.skittles.forEach(skittle => {
-        skittle.value = false
-        })
-      })
-  }
-
+// == Add the score to team score && add the score to the player score stats==
   if (action.type === "scored") {
     return produce(state, draft => {
-      draft.teams[(action.team)-1].score += action.score;
-      draft.teams[(action.team)-1].stats.forEach(player => {
+      draft.teams[action.team].score += action.score;
+      draft.teams[action.team].stats.forEach(player => {
         if (action.player === player.player) {
           player.score += action.score
         }
@@ -194,12 +179,14 @@ function reducer(state = initialState, action) {
       })
   }
 
+  // == If score > 25 => setLevel to True
   if (action.type === "setLevel") {
     return produce(state, draft => {
       draft.teams[action.team].level = true;
       })
   }
 
+  // == If reset score => set score to 0 if level is false or to 25 if level is true ==
   if (action.type === "resetScore") {
     if(state.teams[action.team].level) {
       return produce(state, draft => {
@@ -214,14 +201,7 @@ function reducer(state = initialState, action) {
     } 
   }
 
-  // if (action.type === "eliminateTeam") {
-  //   return produce(state, draft => {
-  //     draft.eliminatedTeams.push (action.team);
-  //     draft.teams[action.teamId].eliminated = true;
-  //     draft.teams[action.teamId].fails=0;
-  //   })
-  // }
-
+  // == If winner => set winner to the winner team ==
   if (action.type === "setWinner") {
     if(state.winner === null) {
       return {
@@ -230,6 +210,50 @@ function reducer(state = initialState, action) {
       };
     }
   }
+
+  // === Handle team elimination if 3 fails ===
+  if (action.type === "eliminateTeam") {
+    return produce(state, draft => {
+      // draft.eliminatedTeams.push (action.team);
+      draft.teams[action.teamId].eliminated = true;
+      draft.teams[action.teamId].fails=0;
+    })
+  }
+
+  // ===== HANDLE OPTIONS MODIFICATIONS ======
+  if (action.type === "changeOption") {
+    if(action.option === "élimination") {
+      return produce(state, draft => {
+        draft.options.elimination = action.optionValue;
+      })
+    }
+  }
+
+  // === OTHER SCRIPTS NOT USED ===
+
+
+
+
+  // if (action.type === "previousTeam") {
+  //   return {
+  //     ...state,
+  //     turn: action.currentTeam-1
+  //   };
+  // }
+
+
+  // if (action.type === "previousPlayer") {
+  //   return produce(state, draft => {
+  //   // si le playerTurn est égal a 0 (premier joueur) le player turn revient au nombrede player (dernier joueur)
+  //     if (draft.teams[(action.team)-1].playerTurn === 0) {
+  //       draft.teams[(action.team)-1].playerTurn = (draft.teams[(action.team)-1].players.length)-1;
+  //   // si le playerTurn est différent de 0 (pas le premier joueur) on enlève un a à playerTurn (joueur précédent)
+  //     } else if (draft.teams[(action.team)-1].playerTurn !== 0) {
+  //       draft.teams[(action.team)-1].playerTurn--
+  //       }
+  //     })
+  // }
+
   return state;
 }
 

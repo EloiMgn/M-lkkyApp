@@ -53,8 +53,11 @@
   &__back{
     text-decoration: none;
     color: var(--font-color);
+    font-weight: var(--fontweight-bold);
     background-color: var(--tertiary);
     padding: var(--margin-small);
     border-radius: var(--border-radius);
+    margin: var(--margin-medium) 0;
+    text-align: center;
   }
 }

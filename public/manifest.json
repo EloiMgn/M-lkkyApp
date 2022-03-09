@@ -1,14 +1,23 @@
 {
   "short_name": "MölkKing",
-  "name": "MölkKing App",
+  "name": "MölkKing",
   "description": "Grâce à Molkking, vous deviendrez les rois et reine du Mölkky! Suivez le déroulement de vos parties de Möllky, ne vous battez plus à propos des règles et découvrez le placement initial officel des quilles.",
   "lang": "fr",
   "orientation": "portrait",
+  "star_url": ".",
+  "theme_color": "#F6F6F7",
+  "background_color": "#ffffff",
+  "display": "standalone",
   "icons": [
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
     },
     {
       "src": "logo192.png",

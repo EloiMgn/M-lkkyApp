@@ -2,6 +2,7 @@ import './Rules.scss'
 import Header from '../../components/Header/Header'
 import molkkyImg from '../../utils/img/molkky.jpg'
 import Footer from '../../components/Footer/Footer';
+import { Link } from 'react-router-dom';
 
 const Rules = () => {
 return (
@@ -14,6 +15,7 @@ return (
         <img className='Rules__img-img' src={molkkyImg} alt="" />
       </div>
     </div>
+    <Link to='/' className='Skittles__back'>Retour à l'accueil</Link>
     <h2>En bref</h2>
     <div className='intro'>
       <div className='intro__1'>
@@ -134,6 +136,7 @@ return (
         </div>
       </div>
     </div>
+    <Link to='/' className='Skittles__back'>Retour à l'accueil</Link>
   </main>
   <Footer/>
 </div>
