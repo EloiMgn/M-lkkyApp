@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import Footer from '../../components/Footer/Footer';
 import molkkyImg from '../../utils/img/molkky.jpg'
+import HomeModale from '../../components/HomeModale/HomeModale';
 
 
 
@@ -34,6 +35,7 @@ const Home = () => {
     if(state.teams.length > 1) {
       return (
         <div id="Home" className="Home">
+          <HomeModale/>
           <Header/>
           <main className='Home__content'>
             <div className='Home__content__text'>
@@ -56,6 +58,7 @@ const Home = () => {
       )
     } return (
       <div id="Home" className="Home">
+        <HomeModale/>
         <Header/>
         <main className='Home__content'>
           <div className='Home__content__text'>

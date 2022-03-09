@@ -42,7 +42,7 @@ const Header = () => {
           <Logo className='navbar__logo'/>
           <ul className='navbar__links'>
 
-            <li className={state.playing? 'hidden' : 'navbar__item'}>
+            <li className='navbar__item'>
               <Link to="/" className='navbar__link'>Accueil</Link>
             </li>
             <li className='navbar__item'>

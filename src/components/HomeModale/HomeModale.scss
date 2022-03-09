@@ -1,0 +1,40 @@
+.modale{
+  position: sticky;
+  top: 25vh;
+  left: 5vw;
+  min-height: 50vh;
+  width: 90vw;
+  background-color: var(--primary);
+  z-index: 5846874681;
+  border-radius: var(--border-radius);
+  border: solid 2px var(--black);
+  &__hidden{
+    display: none;
+  }
+  &__close{
+    display: flex;
+    justify-content: flex-end;
+   &__icon{
+     font-size: var(--fontsize-h1);
+    margin: var(--margin-small);
+   }
+  }
+  &__text{
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    margin: var(--margin-small);
+    p{
+      font-size: var(--fontsize-h2);
+      font-weight: var(--fontweight-bold);
+    }
+  }
+}
+
+.image{
+  max-height: 25vh;
+  max-width: 25vh;
+}
