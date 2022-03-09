@@ -7,7 +7,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { getLocalStorage, setLocalStorage } from '../../utils/localStorage'
 import Footer from '../../components/Footer/Footer';
 import { useNavigate } from 'react-router-dom';
-import ToggleOption from '../../components/ToggleOption/ToggleOption';
+import Options from '../../components/Options/Options';
 
 const Dashboard = () => {
 const [enoughPlayers, setEnoughPlayers] = useState(false)
@@ -66,8 +66,7 @@ useEffect(() => {
             {(state.playing || state.teams.length > 1) && <h1 className='Dashboard__title'>Equipes:</h1>}
             <Teams/>
             {!state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={"Ajouter une nouvelle équipe"} link={"/new-team"} size={"small"} ico={"fas fa-users"}/> }
-            {/* {!state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={"Modifier les options de jeu"} link={"/options"} size={"small"} ico={"fas fa-sliders-h"}/>} */}
-            <ToggleOption action="élimination" details="au bout de 3 lancés ratés" stateValue={state.options.elimination}/>
+            <Options/>
           </div>
           {state.teams.length > 1? 
             <div className='Dashboard__startGame'>

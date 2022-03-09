@@ -22,8 +22,14 @@ const Game = () => {
   const [currentTeam, setCurrentTeam] = useState('')
   const [previousTeam, setPreviousTeam] = useState('')
   const [previousTeamId, setPreviousTeamId] = useState('')
-  const eliminatedTeams = []
-  const [winner, setWinner] = useState('')
+
+  // const [eliminatedTeams, setEliminatedTeams] = useState([])
+  // const [playingTeams, setPlayingTeams] = useState([])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // const eliminatedTeams = []
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // const playingTeams = []
+  // const [winner, setWinner] = useState('')
 
 // == Handle recovering datas from localstorage if page refreshment ==
   useEffect(() => {
@@ -164,7 +170,7 @@ const Game = () => {
 // }, [state.teams, previousTeam])
 
 useEffect(() => {
-  setCurrentTeam(state.teams[id])
+  if (state.teams.length>0){
     if(id === "0"){
       setPreviousTeam(state.teams[state.teams.length-1])
       setPreviousTeamId(state.teams.length-1)
@@ -172,55 +178,67 @@ useEffect(() => {
       setPreviousTeam(state.teams[id-1])
       setPreviousTeamId(id-1)
     }
+    setCurrentTeam(state.teams[id])
+  }
 }, [id, state.teams])
 
-
 // == If 1 team not eliminated, last team left is winner == 
-useEffect(() => {
-state.teams.forEach(team =>{
-  if(team.eliminated){
-    eliminatedTeams.push(team)
-  }
-})
-  if (state.teams.length-eliminatedTeams.length === 1){
-    state.teams.forEach((team, i) => {
-      if (!team.eliminated){
-      dispatch({type: "setWinner", team: team})
-      navigate(`/winner/${i}`, { replace: true })
-      }
-    })
-  }
-}, [currentTeam, dispatch, eliminatedTeams, eliminatedTeams.length, navigate, state.teams, state.teams.length])
 
+  useEffect(() => {
+    const setWinnerTeam = () => {
+      if (state.teams.length === 1){
+       state.teams.forEach((team, i) => {
+          if (!team.eliminated){
+          dispatch({type: "setWinner", team: team})
+          navigate(`/winner/${i}`, { replace: true })
+          }
+        })
+      }
+    }
+      setWinnerTeam()
+    }, [dispatch, navigate, state.teams])
 
 
 useEffect(() => {
   const handleStateManagment = () => {
+  // == Si la Team précédente n'a marqué aucun point trois fois de suite ==
+    if(previousTeam.fails === 3){
+      if (state.options.elimination){
+        // dispatch({type: "eliminateTeam", teamId: previousTeamId, team: previousTeam})
+        // dispatch({type: "deleteTeam", idx: previousTeamId})
+        dispatch({type: "resetScore", team: previousTeamId}) 
+      } else dispatch({type: "resetScore", team: previousTeamId}) 
+    }
 
-    // == Si la Team précédente n'a marqué aucun point trois fois de suite ==
-      if(previousTeam.fails === 3){
-        if (state.options.elimination){
-          dispatch({type: "eliminateTeam", teamId: previousTeamId, team: previousTeam})
-          // eliminatedTeams.push(previousTeam)
-          // console.log(eliminatedTeams);
-        } else dispatch({type: "resetScore", team: previousTeamId}) 
+  // == Si la Team précédente a dépassé le score maximum ==
+    if (previousTeam.score > 50) {
+      dispatch({type: "resetScore", team: previousTeamId})
+    }
+
+  // == Si la Team précédente a atteint le score maximum pile ==
+    if (previousTeam.score === 50){
+      dispatch({type: "setWinner", team: previousTeamId})
+    }
+
+  // == Si la Team précédente a atteint le score palier (moitié du score max) ==
+    if (previousTeam.score >= 25){
+      dispatch({type: "setLevel", team: previousTeamId})
+    }
+  
+  //== Si la team précédente atteint un score identique à l'une des autres équipes, l'autre équipe retombe au score palier ==
+    for (let y = 0; y < state.teams.length; y++) {
+      if(previousTeam.score !== 0 && previousTeam !== state.teams[y]){
+        if(previousTeam.score === state.teams[y].score) {
+          dispatch({type: "resetScore", team: y})
+        }
       }
-    // == Si la Team précédente a dépassé le score maximum ==
-      if (previousTeam.score > 50) {
-        dispatch({type: "resetScore", team: previousTeamId})
-      }
-    // == Si la Team précédente a atteint le score maximum pile ==
-      if (previousTeam.score === 50){
-        dispatch({type: "setWinner", team: previousTeamId})
-      }
-    // == Si la Team précédente a atteint le score palier (moitié du score max) ==
-      if (previousTeam.score === 25){
-        dispatch({type: "setLevel", team: previousTeamId})
-      }
-    //
+      // break
+    } 
   }
-  handleStateManagment()
-}, [currentTeam, dispatch, eliminatedTeams, previousTeam, previousTeam.fails, previousTeam.score, previousTeamId, state.options.elimination, state.teams.length])
+  if(previousTeam !== ""){
+    handleStateManagment()
+  }
+}, [previousTeam])
 
 
 const handleResetSkittles = () => {
@@ -228,18 +246,19 @@ const handleResetSkittles = () => {
 }
 
 const handleNextTeam = (i) => {
+
   // ==== si dernière team => Retour à la première Team et passage au joueur suivant ====
   if(i+1 === state.teams.length){
     navigate(`/game/${state.teams[0].name}/0/${state.teams[0].players[state.teams[0].playerTurn]}`, { replace: true })
     dispatch({ type: "firstTeam", currentTeam: i })
-    dispatch({type: "nextPlayer", team: parseInt(id)})
   } 
   // ==== si pas dernière team => passage à la prochaine team et passage au joueur suivant ====
   else if (i+1 < state.teams.length) {
     navigate(`/game/${state.teams[i+1].name}/${i + 1}/${state.teams[i+1].players[state.teams[i+1].playerTurn]}`, { replace: true })
     dispatch({ type: "nextTeam", currentTeam: i })
-    dispatch({type: "nextPlayer", team: parseInt(id)})
   }
+
+  dispatch({type: "nextPlayer", team: parseInt(id)})
   calculateScore()
   handleResetSkittles()
 }

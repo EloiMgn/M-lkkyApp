@@ -7,7 +7,7 @@ import NewTeam from '../pages/NewTeam/NewTeam';
 import Game from '../pages/Game/Game';
 import Winner from '../pages/Winner/Winner';
 import Stats from '../pages/Stats/Stats';
-import Options from '../pages/Options/Options';
+// import Options from '../pages/Options/Options';
 
 const Routing = () => (
   <Router className="index">
@@ -20,7 +20,7 @@ const Routing = () => (
       <Route path="/game/:name/:id/:playerId" element={<Game/>} />
       <Route path="/winner/:id" element={<Winner/>} />
       <Route path="/stats" element={<Stats/>} />
-      <Route path="/options" element={<Options/>} />
+      {/* <Route path="/options" element={<Options/>} /> */}
     </Routes>
 </Router>
 )

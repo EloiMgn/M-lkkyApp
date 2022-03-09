@@ -42,10 +42,15 @@
 .option{
   display: flex;
   align-items: center;
-  margin: var(--margin-medium) auto;
+  margin: var(--margin-small) auto;
   justify-content: space-between;
   width: 100%;
-  &__title{
-    text-transform: capitalize;
-  }
+  // &__title{
+  //   // text-transform: capitalize;
+  // }
+  // &__text{
+  //   display: flex;
+  //   width: 100%;
+  //   justify-content: space-between;
+  // }
 }

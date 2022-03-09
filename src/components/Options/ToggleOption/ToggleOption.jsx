@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './ToggleOption.scss'
 
 const ToggleOption = ({action, details, stateValue}) => {
+  const state = useSelector((state) => state)
   const [option, setOption] = useState(stateValue)
   const [text, setText] = useState('OFF')
   const dispatch = useDispatch()
-  const handleToggle = (action) => {
+
+  const handleToggle = () => {
     setOption(!option)
   }
 
@@ -21,14 +23,19 @@ const ToggleOption = ({action, details, stateValue}) => {
 
 
   return (
+    !state.playing? 
     <div className='option'>
-      <h4 className='option__title'>{action}</h4>
-      <p>{details}</p>
+      <h4 className='option__title'>{details.charAt(0).toUpperCase() + details.slice(1)}</h4>
       <div onClick={e => handleToggle(action)} className={`switchContainer mode-${option}`}>
         <div className="point"></div>
         <div className='action'>{text}</div>
       </div>
     </div>
+    :
+    <div className='option'>
+    <h4 className='option__title'>{details.charAt(0).toUpperCase() + details.slice(1)}</h4>
+    <span>{text}</span>
+  </div>
   )
 }
 
