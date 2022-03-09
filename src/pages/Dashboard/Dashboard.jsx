@@ -31,7 +31,7 @@ const navigate= useNavigate()
 
 useCallback(
     () => { isLocalStorageAvailable()
-    const localStorage = JSON.parse(getLocalStorage())
+    const localStorage = JSON.parse(getLocalStorage('molkking_param'))
     if (localStorageAvailable && localStorage && localStorage.state.teams.length === state.teams.length) {
       dispatch({ type: "setState"})
     }

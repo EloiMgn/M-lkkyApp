@@ -1,5 +1,5 @@
-export const getLocalStorage = () => {
-  const value = localStorage.getItem('molkking_param')
+export const getLocalStorage = (param) => {
+  const value = localStorage.getItem(`${param}`)
   return value
 }
 

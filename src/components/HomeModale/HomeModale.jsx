@@ -1,19 +1,35 @@
 import Construction from '../../utils/img/construction.png'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './HomeModale.scss'
-import { getLocalStorage } from '../../utils/localStorage';
+import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
+import { isToday } from '../../utils/tools';
 
 
 
 const HomeModale = () => {
-  const localStorage = getLocalStorage()
+  const rawLocalStorage =JSON.parse(getLocalStorage('modal'))
+  const[today, setToday] = useState(false)
+
+  const checkIfToday = () =>{
+    if(rawLocalStorage){
+      if(isToday(rawLocalStorage.date)){
+        setToday(true)
+      }
+    }
+  }
+
+  useEffect(() => {
+    checkIfToday()
+  }, [])
 
   const[open, setOpen] = useState(true)
 
   const handleClose = () =>{
+    localStorage.setItem('modal', JSON.stringify({ date: new Date().toDateString()}))
     setOpen(false)
   }
-  if(!localStorage){
+
+  if(!today){
     return (
       <div className={open? 'modale': 'modale__hidden'}>
         <div className="modale__close">
