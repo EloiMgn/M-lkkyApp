@@ -68,13 +68,13 @@ useEffect(() => {
           <div className='Dashboard__teams'>
             {(state.playing || state.teams.length > 1) && <h1 className='Dashboard__title'>Equipes:</h1>}
             <Teams/>
-            {!state.playing && <Button text={"Ajouter une nouvelle équipe"} ico={"fas fa-users"} action={addNewTeam} colorFront={'#f0003c'} colorBack={'#A30036'}/> }
+            {!state.playing && <Button text={"Ajouter une nouvelle équipe"} ico={"fas fa-users"} action={addNewTeam} colorFront={'#af8c5e'} colorBack1={'#7e5f33'} colorBack2={'#6D522C'}/> }
             {/* <Options/> */}
           </div>
           {state.teams.length > 1? 
             <div className='Dashboard__startGame'>
-              {enoughPlayers && !state.playing && <Button text={"Commencer à jouer"} action={handleStartGame} colorFront={'#af8c5e'} colorBack={'#7e5f33'}/>}
-              {state.playing && <Button text={'Continuer la partie'} action={handleContinueGame} colorFront={'#f0003c'} colorBack={'#A30036'}/>}
+              {enoughPlayers && !state.playing && <Button text={"Commencer à jouer"} action={handleStartGame} colorFront={'#219653'} colorBack1={'#00672a'} colorBack2={'#003314'}/>}
+              {state.playing && <Button text={'Continuer la partie'} action={handleContinueGame} />}
             </div>
             : null
           }

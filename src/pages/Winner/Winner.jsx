@@ -82,9 +82,9 @@ return (
             <h2 className='winner__player'>a gagné !!</h2>
           </div>
           <div className='winner__options'>
-          <Button text={"Recommencer la partie"} action={handleRestartGame} colorFront={'#f0003c'} colorBack={'#A30036'}/>
-          <Button text={"Démarrer une nouvelle partie"} action={handleStartNewGame} colorFront={'#f0003c'} colorBack={'#A30036'}/>
-          <Button text={"Voir les Stats de la partie"} action={handleSeeStats} colorFront={'#f0003c'} colorBack={'#A30036'}/>
+          <Button text={"Recommencer la partie"} action={handleRestartGame}/>
+          <Button text={"Démarrer une nouvelle partie"} action={handleStartNewGame}/>
+          <Button text={"Voir les Stats de la partie"} action={handleSeeStats}/>
           </div>
           <Fireworks />
         </main>

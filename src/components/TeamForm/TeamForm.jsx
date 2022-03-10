@@ -61,9 +61,9 @@ return (
         ) 
       } return null
     })}
-    {!toogle && <Button text={"Ajouter un joueur"} action={tooglePlayer} ico={"fas fa-user-plus"} colorFront={'#af8c5e'} colorBack={'#7e5f33'}/> }
+    {!toogle && <Button text={"Ajouter un joueur"} action={tooglePlayer} ico={"fas fa-user-plus"} colorFront={'#af8c5e'} colorBack1={'#7e5f33'} colorBack2={'#6D522C'}/> }
     {toogle && <PlayerForm list={playerList} setList={setplayerList} setToogle={setToogle}/>}
-    {validate && <Button text={"Valider l'équipe"} action={handleValidate} ico={"fas fa-users"} colorFront={'#219653'} colorBack={'#00672a'}/>}
+    {validate && <Button text={"Valider l'équipe"} action={handleValidate} ico={"fas fa-users"} colorFront={'#219653'} colorBack1={'#00672a'} colorBack2={'#003314'}/>}
   </div>
   );
 }

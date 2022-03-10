@@ -2,11 +2,16 @@
 
 .pushable {
   position: relative;
-  background: transparent;
   border: none;
+  background: transparent;
   padding: 0;
   cursor: pointer;
+  outline-offset: 4px;
+  transition: filter 250ms;
   margin: var(--margin-medium);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+
 }
 .shadow {
   position: absolute;
@@ -16,7 +21,13 @@
   height: 100%;
   border-radius: 12px;
   background: hsl(0deg 0% 0% / 0.25);
-  transform: translate(2px, 3px);
+  will-change: transform;
+  transform: translateY(2px);
+  transition:
+    transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
+    filter: blur(5px);
 }
 .edge {
   position: absolute;
@@ -25,7 +36,6 @@
   width: 100%;
   height: 100%;
   border-radius: 12px;
-  // background: hsl(340deg 100% 32%);
 }
 .front {
   display: flex;
@@ -36,26 +46,42 @@
   border-radius: 12px;
   font-size: 1.25rem;
   color: white;
+  will-change: transform;
   transform: translateY(-4px);
-  p, i{
-    text-align: center;
-    margin: 5px;
+  transition:
+    transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
+    p, i{
+      text-align: center;
+      margin: 5px;
   }
 }
-
+.pushable:hover {
+  filter: brightness(110%);
+}
 .pushable:hover .front {
   transform: translateY(-6px);
-}
-.pushable:hover .shadow {
-  transform: translateY(4px);
+  transition:
+    transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
 }
 .pushable:active .front {
   transform: translateY(-2px);
+  transition: transform 34ms;
+}
+.pushable:hover .shadow {
+  transform: translateY(4px);
+  transition:
+    transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
 }
 .pushable:active .shadow {
   transform: translateY(1px);
+  transition: transform 34ms;
 }
-
 .pushable:focus:not(:focus-visible) {
   outline: none;
 }

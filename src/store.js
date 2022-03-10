@@ -113,12 +113,12 @@ function reducer(state = initialState, action) {
 // ===== HANDLE GAME NAVIGATION WHEN PLAYING =====
 
 // == Set turn to turn +1 ==
-  if (action.type === "nextTeam") {
-    return {
-      ...state,
-      turn: action.currentTeam+1
-    };
-  }
+if (action.type === "nextTeam") {
+  return {
+    ...state,
+    turn: action.currentTeam+1
+  };
+}
 // == Set turn to first ==
   if (action.type === "firstTeam") {
     return {
@@ -227,7 +227,7 @@ function reducer(state = initialState, action) {
   // === Handle team elimination if 3 fails ===
   if (action.type === "eliminateTeam") {
     return produce(state, draft => {
-      draft.eliminatedTeams.push(action.team);
+      // draft.eliminatedTeams.push(action.team);
       draft.teams[action.teamId].eliminated = true;
       draft.teams[action.teamId].fails=0;
     })

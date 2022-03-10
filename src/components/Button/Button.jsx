@@ -1,13 +1,13 @@
 import './Button.scss'
 
-const Button = ({text, action, ico, colorFront, colorBack}) => {
+const Button = ({text, action, ico, colorFront, colorBack1, colorBack2}) => {
 
   const frontStyle = {
     "background": `${colorFront}`
   }
 
   const edgeStyle = {
-    "background": `${colorBack}`
+    "background": `linear-gradient(to left, ${colorBack1} 0%, ${colorBack2} 8%, ${colorBack2} 92%, ${colorBack1} 100%) `
   }
  
 return (
@@ -19,4 +19,10 @@ return (
   )
 };
 
+Button.defaultProps = {
+  colorFront: "hsl(345deg 100% 47%)",
+  colorBack1: "hsl(340deg 100% 16%)", 
+  colorBack2: "hsl(340deg 100% 32%)"
+
+}
 export default Button
