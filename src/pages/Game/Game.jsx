@@ -291,10 +291,10 @@ const handleNextTeam = (i) => {
               <main className={`team${i+1} Game__content`} key={i}>
                 <h2>{team.name}</h2>
                 <Skittles />
-                <PlayingDatas team={team}/>  
                 <div className='navBtns'>
-                <Button text='Equipe suivante'action={e => handleNextTeam(i)} colorFront={'#f0003c'} colorBack={'#A30036'}/>
+                  <Button text='Equipe suivante'action={e => handleNextTeam(i)} colorFront={'#f0003c'} colorBack={'#A30036'}/>
                 </div>
+                <PlayingDatas team={team}/>  
             </main>
             )
           } 
