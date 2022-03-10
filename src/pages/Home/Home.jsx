@@ -1,5 +1,5 @@
 import './Home.scss'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { getLocalStorage, removeLocalStorage } from '../../utils/localStorage'
 import Header from '../../components/Header/Header'
 import Button from '../../components/Button/Button'
@@ -14,19 +14,25 @@ import HomeModale from '../../components/HomeModale/HomeModale';
 const Home = () => {
   const dispatch = useDispatch()
   const state = useSelector((state) => state)
+  const navigate = useNavigate()
 
   const handleStartNewGame = () => {
     dispatch({type: "startNewGame"})
+    setTimeout(navigate('/dashboard', {replace: true}), 5000)
     // check localStorage
-    const rawLocalStorage = getLocalStorage()
+    const rawLocalStorage = getLocalStorage('molkking_param')
     // si il y a quelqueChose dans le localStorage
     if (rawLocalStorage !== null) {
         removeLocalStorage()
       }
     }
 
+    const handleContinueGame = () => {
+      navigate(`/game/${state.teams[state.turn].name}/${state.turn}/${state.teams[state.turn].players[state.teams[state.turn].playerTurn]}`, { replace: true })
+      }
+
     useEffect(() => {
-      const rawLocalStorage = getLocalStorage()
+      const rawLocalStorage = getLocalStorage('molkking_param')
       if (state.teams.length <= 1 && rawLocalStorage) {
         dispatch({ type: "setState"})
       }
@@ -43,8 +49,8 @@ const Home = () => {
               <img className='Rules__img-img' src={molkkyImg} alt="" />
               <h2>Devenez le King 🤴 (ou la Queen 👸, pas de jaloux-ses) du Mölkky</h2>
             </div>
-            <Button elt={"Home"} text='Continuer la partie en cours' size={"medium"} link={"/dashboard"}/>
-            <Button elt={"Home"} text='Démarrer une nouvelle partie' size={"medium"} link={"/dashboard"} action={handleStartNewGame}/>
+            <Button text='Continuer la partie en cours' action={handleContinueGame}  colorFront={'#f0003c'} colorBack={'#A30036'}/>
+            <Button text='Démarrer une nouvelle partie' action={handleStartNewGame}  ico={"fas fa-play"} colorFront={'#f0003c'} colorBack={'#A30036'}/>
             <div className='Home__content__links'>
               <h3>Liens utiles:</h3>
               <ul className='Home__content__links-list'>
@@ -66,7 +72,7 @@ const Home = () => {
             <img className='Rules__img-img' src={molkkyImg} alt="" />
             <h2>Soyez le King 🤴 (ou la Queen 👸, pas de jaloux-ses) du Mölkky!</h2>
           </div>
-          <Button elt={"Home"} text='Nouvelle partie' size={"medium"} link={"/dashboard"} action={handleStartNewGame}/>
+          <Button text='Nouvelle partie' size={"medium"} action={handleStartNewGame} ico={"fas fa-play"} colorFront={'#f0003c'} colorBack={'#A30036'}/>
           <div className='Home__content__links'>
             <h3>Liens utiles:</h3>
             <ul className='Home__content__links-list'>

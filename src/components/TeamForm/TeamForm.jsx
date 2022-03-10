@@ -6,6 +6,7 @@ import './TeamForm.scss'
 import PlayerForm from '../PlayerForm/PlayerForm';
 import TeamNameForm from '../TeamNameForm/TeamNameForm';
 import Player from '../Player/Player';
+import Button from '../Button/Button';
 
 const TeamForm = () => {
   const [validate, setValidate] = useState(false)
@@ -16,7 +17,7 @@ const TeamForm = () => {
   const navigate= useNavigate()
   const dispatch = useDispatch();
 
-  const handleValidate = (e) => {
+  const handleValidate = () => {
     if(playerList.length > 1) {
     const playerNames = []
     playerList.forEach(player => {
@@ -60,11 +61,9 @@ return (
         ) 
       } return null
     })}
-    {!toogle && <div className='addPlayer__button' onClick={e => tooglePlayer()}>
-      <p>Ajouter un joueur</p><i className="fas fa-user-plus"></i>
-      </div> }
+    {!toogle && <Button text={"Ajouter un joueur"} action={tooglePlayer} ico={"fas fa-user-plus"} colorFront={'#af8c5e'} colorBack={'#7e5f33'}/> }
     {toogle && <PlayerForm list={playerList} setList={setplayerList} setToogle={setToogle}/>}
-    {validate && <button className='teamForm__btn validateBtn' onClick={e => handleValidate(e)}>Valider l'équipe</button>}
+    {validate && <Button text={"Valider l'équipe"} action={handleValidate} ico={"fas fa-users"} colorFront={'#219653'} colorBack={'#00672a'}/>}
   </div>
   );
 }

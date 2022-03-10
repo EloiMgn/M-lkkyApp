@@ -35,7 +35,7 @@ function reducer(state = initialState, action) {
 
   // ===== Reset State width stored state in case of refreshment ===
   if (action.type === "setState") {
-    const localStorage = JSON.parse(getLocalStorage())
+    const localStorage = JSON.parse(getLocalStorage('molkking_param'))
     return produce(state, draft => {
       draft.theme = localStorage.state.theme
       draft.playing = true

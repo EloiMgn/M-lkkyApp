@@ -37,7 +37,7 @@ return (
           </div>
         )}
       )}
-       <h2>équipes éliminées</h2>
+       {/* <h2>équipes éliminées</h2>
     {state.eliminatedTeams.map((team, i) => {
         return (
           <div className='Stats__content__team' key={i}>
@@ -62,7 +62,7 @@ return (
               }
           </div>
         )}
-      )}
+      )} */}
       </main> 
       <Footer/>
   </div>

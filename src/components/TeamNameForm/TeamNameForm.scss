@@ -28,8 +28,7 @@
       font-size: var(--fontsize-h2);
       font-family: var(--font-text);
       font-weight: var(--fontweight-medium);
-      margin: var(--margin-medium);
-      margin-left: 0;
+      margin: var(--margin-medium) 0;
       border-radius: var(--border-radius);
       border: 0.5px solid #BDBDBD;
       box-sizing: border-box;
@@ -52,7 +51,8 @@
     border-radius: var(--border-radius);
     user-select: none;
     height: var(--height-btn-regular);
-    width: 4rem;
+    width: 6rem;
+    margin-left: var(--margin-small);
   }
   &__deleteBtn{
     color: var(--black);

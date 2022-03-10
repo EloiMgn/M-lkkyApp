@@ -1,20 +1,21 @@
 import './Button.scss'
-import { Link } from 'react-router-dom'
 
-const Button = ({elt, text, size, action, link, ico}) => {
-if(link){
-  return (
-    <Link to={link} className={`btn ${elt}__btn ${size}`} onClick={action}>
-      <div className='btn__link'>{text}</div>
-      <i className={ico ? `btn__icon ${ico}` : 'hidden'}></i>
-    </Link>
-  )
-}   
+const Button = ({text, action, ico, colorFront, colorBack}) => {
+
+  const frontStyle = {
+    "background": `${colorFront}`
+  }
+
+  const edgeStyle = {
+    "background": `${colorBack}`
+  }
+ 
 return (
-  <div className={`btn ${elt}__btn ${size}`} onClick={action}>
-    <p className='btn__link'>{text}</p>
-    <i className={ico ? `btn__icon ${ico}` : 'hidden'}></i>
-  </div>
+  <button className="pushable" onClick={action}>
+    <span className="shadow"></span>
+    <span className="edge" style={edgeStyle}></span>
+    <span className="front" style={frontStyle}><p>{text}</p> <i className={ico ? `${ico}` : 'hidden'}></i></span>
+  </button>
   )
 };
 

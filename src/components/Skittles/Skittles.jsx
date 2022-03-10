@@ -24,7 +24,7 @@ const Skittles = () => {
         <Skittle frontValue={1}/>
         <Skittle frontValue={2}/>
       </div>
-      <p className='select__text'>Sélectionnez les quilles tombées ci-dessus</p>
+      <p className='select__text'>Sélectionnez les quilles tombées ci-dessus et cliquez sur "Equipe suivante" pour valider</p>
     </div>
   )
 }

@@ -62,13 +62,21 @@
   --line-height-large: 35px;
 
   /* Buttons */
+  --primary-frontcolor: #f0003c;
+  --primary-backcolor: #A30036;
+
+  --secondary-frontcolor: #219653; 
+  --secondary-backcolor: #00672a;
+
+  --tertiary-frontcolor: #af8c5e;
+  --tertiary-backcolor: #7e5f33;
 
   --width-btn-small: 5rem;
   --width-btn-medium: 10rem;
   --width-btn-big: 14rem;
 
-  --height-btn-regular: 45px;
-  --height-btn-big: 90px;
+  --height-btn-regular: 3rem;
+  --height-btn-big: 6rem;
 
   --box-shadow-light: 0 4px 6px -1px rgba(0, 0, 0, .6), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --box-shadow-dark: 0 4px 6px -1px rgba(150, 150, 150, .6), 0 2px 4px -1px rgba(0, 0, 0, 0.06);

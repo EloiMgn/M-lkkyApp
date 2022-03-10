@@ -51,6 +51,7 @@ const Header = () => {
             <li className='navbar__item'>
               <Link to="/rules" className='navbar__link'>Règles</Link>
             </li>
+
             {state.playing && state.winner === null && 
             <li className='navbar__item'>
               <Link to="/dashboard" className='navbar__link'>Scores</Link>

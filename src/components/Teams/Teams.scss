@@ -12,9 +12,10 @@
   height: 8vh;
   width: 100%;
   margin: var(--margin-small) auto;
-  padding: var(--margin-small);
+  padding: var(--margin-small) 0;
   background-color: var(--light-blue);
   border-radius: var(--border-radius);
+  box-shadow: 2px 3px 5px #9b9b9b;
   h2{
     font-size: var(--fontsize-h2);
     color: var(--secondary);

@@ -1,7 +1,7 @@
 import './Winner.scss'
 import Header from '../../components/Header/Header'
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import { useEffect, useState } from 'react';
 import { getLocalStorage, removeLocalStorage } from '../../utils/localStorage';
@@ -13,6 +13,7 @@ const Winner = () => {
   const state = useSelector((state) => state)
   const [localStorageAvailable, setIsLocalStorageAvailable] = useState(true)
   const dispatch = useDispatch()
+  const navigate= useNavigate()
   
     /**
      * Check availability to use localStorage
@@ -27,12 +28,12 @@ const Winner = () => {
         setIsLocalStorageAvailable(false)
       }
     }
-  
+
     useEffect(() => {
       isLocalStorageAvailable()
-      const localStorage = JSON.parse(getLocalStorage())
-      if (localStorageAvailable && localStorage && localStorage.state.teams.length === state.teams.length) {
-        dispatch({ type: "setStateWinner"})
+      const localStorage = JSON.parse(getLocalStorage('molkking_param'))
+      if (localStorageAvailable && localStorage && localStorage.state.teams.length > state.teams.length) {
+        dispatch({ type: "setState"})
       }
     }, [dispatch, localStorageAvailable, state.teams.length])
 
@@ -40,6 +41,7 @@ const Winner = () => {
       for (let i = 0; i < state.teams.length; i++) {
         dispatch({type: "restart", idx: i})
       }
+      navigate('/dashboard', {replace: true})
       // check localStorage
       const rawLocalStorage = getLocalStorage()
       // si il y a quelqueChose dans le localStorage
@@ -50,6 +52,7 @@ const Winner = () => {
 
     const handleStartNewGame = () => {
       dispatch({type: "startNewGame"})
+      navigate('/dashboard', {replace: true})
       // check localStorage
       const rawLocalStorage = getLocalStorage()
       // si il y a quelqueChose dans le localStorage
@@ -57,7 +60,10 @@ const Winner = () => {
           removeLocalStorage()
         }
       }
-
+    const handleSeeStats = () => {
+      navigate('/stats', {replace: true})
+      }
+      
 return (
   <div id="Winner" className="Winner">
     <Header/>
@@ -76,10 +82,9 @@ return (
             <h2 className='winner__player'>a gagné !!</h2>
           </div>
           <div className='winner__options'>
-          <p className='winner__options__text'>Vous pouvez :</p>
-          <Button elt={"Dashboard"} className='Dashboard__btn' text={"Recommencer la partie"} link={`/dashboard`} size={"small"} action={handleRestartGame}/>
-          <Button elt={"Dashboard"} className='Dashboard__btn' text={"Démarrer une nouvelle partie"} link={`/dashboard`} size={"small"} action={handleStartNewGame}/>
-          <Button elt={"Dashboard"} className='Dashboard__btn' text={"Voir les Stats de la partie"} link={`/stats`} size={"small"}/>
+          <Button text={"Recommencer la partie"} action={handleRestartGame} colorFront={'#f0003c'} colorBack={'#A30036'}/>
+          <Button text={"Démarrer une nouvelle partie"} action={handleStartNewGame} colorFront={'#f0003c'} colorBack={'#A30036'}/>
+          <Button text={"Voir les Stats de la partie"} action={handleSeeStats} colorFront={'#f0003c'} colorBack={'#A30036'}/>
           </div>
           <Fireworks />
         </main>

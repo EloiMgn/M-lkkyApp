@@ -52,6 +52,9 @@ useCallback(
   const setNewLocalStorage = () => {
     setLocalStorage({ date: new Date(), state })
   }
+  const addNewTeam = () => {
+    navigate('/new-team', {replace: true})
+  }
 
 
 useEffect(() => {
@@ -65,13 +68,13 @@ useEffect(() => {
           <div className='Dashboard__teams'>
             {(state.playing || state.teams.length > 1) && <h1 className='Dashboard__title'>Equipes:</h1>}
             <Teams/>
-            {!state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={"Ajouter une nouvelle équipe"} link={"/new-team"} size={"small"} ico={"fas fa-users"}/> }
+            {!state.playing && <Button text={"Ajouter une nouvelle équipe"} ico={"fas fa-users"} action={addNewTeam} colorFront={'#f0003c'} colorBack={'#A30036'}/> }
             {/* <Options/> */}
           </div>
           {state.teams.length > 1? 
             <div className='Dashboard__startGame'>
-              {enoughPlayers && !state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={"Commencer à jouer"} size={"small"} action={handleStartGame} />}
-              {state.playing && <Button elt={"Dashboard"} className='Dashboard__btn' text={'Continuer la partie'}  size={"small"} action={handleContinueGame}/>}
+              {enoughPlayers && !state.playing && <Button text={"Commencer à jouer"} action={handleStartGame} colorFront={'#af8c5e'} colorBack={'#7e5f33'}/>}
+              {state.playing && <Button text={'Continuer la partie'} action={handleContinueGame} colorFront={'#f0003c'} colorBack={'#A30036'}/>}
             </div>
             : null
           }

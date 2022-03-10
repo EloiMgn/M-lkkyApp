@@ -48,7 +48,6 @@ return (
           if(!x.hide) {
             return (
               <div className="addPlayer__form" key={i}>
-                {/* <h3>Ajouter un joueur</h3> */}
                 <div className='addPlayer'>
                   <div className="addPlayer__input">
                     <label htmlFor="player">Joueur {i+1}</label>

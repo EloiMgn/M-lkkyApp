@@ -293,7 +293,7 @@ const handleNextTeam = (i) => {
                 <Skittles />
                 <PlayingDatas team={team}/>  
                 <div className='navBtns'>
-                <Button elt={"Game"} text='Equipe suivante' size={"medium"} action={e => handleNextTeam(i)} />
+                <Button text='Equipe suivante'action={e => handleNextTeam(i)} colorFront={'#f0003c'} colorBack={'#A30036'}/>
                 </div>
             </main>
             )

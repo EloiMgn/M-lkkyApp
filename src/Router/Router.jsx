@@ -8,6 +8,7 @@ import Game from '../pages/Game/Game';
 import Winner from '../pages/Winner/Winner';
 import Stats from '../pages/Stats/Stats';
 import Mentions from '../pages/Mentions/Mentions';
+import Bug from '../pages/Bug/Bug'
 
 const Routing = () => (
   <Router className="index">
@@ -21,6 +22,7 @@ const Routing = () => (
       <Route path="/winner/:id" element={<Winner/>} />
       <Route path="/stats" element={<Stats/>} />
       <Route path="/mentions" element={<Mentions/>} />
+      <Route path="/bug" element={<Bug/>} />
     </Routes>
 </Router>
 )

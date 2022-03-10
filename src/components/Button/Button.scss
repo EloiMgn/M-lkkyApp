@@ -1,36 +1,61 @@
 @import '../../utils/variables';
 
-.btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: var(--color-btn);
-  color: var(--font-color-rev);
-  line-height: 24px;
-  padding: 0 10px;
-  border-radius: var(--border-radius);
-  user-select: none;
+.pushable {
+  position: relative;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
   margin: var(--margin-medium);
-  height: var(--height-btn-regular);
-  &__link{
-    color: inherit;
-    font-size: var(--fontsize-p);
+}
+.shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: hsl(0deg 0% 0% / 0.25);
+  transform: translate(2px, 3px);
+}
+.edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  // background: hsl(340deg 100% 32%);
+}
+.front {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 12px 42px;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  color: white;
+  transform: translateY(-4px);
+  p, i{
+    text-align: center;
+    margin: 5px;
   }
-  &__icon{
-    font-size: var(--fontsize-big);
-    margin: var(--margin-medium);
-  }
 }
 
-.small {
-  font-size: var(--fontsize-p);
+.pushable:hover .front {
+  transform: translateY(-6px);
+}
+.pushable:hover .shadow {
+  transform: translateY(4px);
+}
+.pushable:active .front {
+  transform: translateY(-2px);
+}
+.pushable:active .shadow {
+  transform: translateY(1px);
 }
 
-.medium {
-  font-size: var(--fontsize-h3);
-}
-
-.big {
-  font-size: var(--fontsize-h2);
+.pushable:focus:not(:focus-visible) {
+  outline: none;
 }
