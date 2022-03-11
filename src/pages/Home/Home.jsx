@@ -49,8 +49,8 @@ const Home = () => {
               <img className='Rules__img-img' src={molkkyImg} alt="" />
               <h2>Devenez le King 🤴 (ou la Queen 👸, pas de jaloux-ses) du Mölkky</h2>
             </div>
-            <Button text='Continuer la partie en cours' action={handleContinueGame} />
-            <Button text='Démarrer une nouvelle partie' action={handleStartNewGame}  ico={"fas fa-play"}/>
+            <Button text='Continuer la partie en cours' action={handleContinueGame} colorFront={'#219653'} colorBack1={'#00672a'} colorBack2={'#003314'}/>
+            <Button text='Démarrer une nouvelle partie' action={handleStartNewGame}  ico={"fas fa-play"} colorFront={'#af8c5e'} colorBack1={'#7e5f33'} colorBack2={'#6D522C'}/>
             <div className='Home__content__links'>
               <h3>Liens utiles:</h3>
               <ul className='Home__content__links-list'>
@@ -72,7 +72,7 @@ const Home = () => {
             <img className='Rules__img-img' src={molkkyImg} alt="" />
             <h2>Soyez le King 🤴 (ou la Queen 👸, pas de jaloux-ses) du Mölkky!</h2>
           </div>
-          <Button text='Nouvelle partie' size={"medium"} action={handleStartNewGame} ico={"fas fa-play"}/>
+          <Button text='Nouvelle partie' size={"medium"} action={handleStartNewGame} ico={"fas fa-play"} colorFront={'#219653'} colorBack1={'#00672a'} colorBack2={'#003314'}/>
           <div className='Home__content__links'>
             <h3>Liens utiles:</h3>
             <ul className='Home__content__links-list'>

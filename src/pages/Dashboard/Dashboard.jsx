@@ -7,7 +7,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { getLocalStorage, setLocalStorage } from '../../utils/localStorage'
 import Footer from '../../components/Footer/Footer';
 import { useNavigate } from 'react-router-dom';
-import Options from '../../components/Options/Options';
+// import Options from '../../components/Options/Options';
 
 const Dashboard = () => {
 const [enoughPlayers, setEnoughPlayers] = useState(false)

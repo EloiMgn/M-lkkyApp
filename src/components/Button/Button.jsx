@@ -20,9 +20,9 @@ return (
 };
 
 Button.defaultProps = {
-  colorFront: "hsl(345deg 100% 47%)",
-  colorBack1: "hsl(340deg 100% 16%)", 
-  colorBack2: "hsl(340deg 100% 32%)"
+  colorFront: "#af8c5e",
+  colorBack1: "#7e5f33", 
+  colorBack2: "#6D522C"
 
 }
 export default Button
