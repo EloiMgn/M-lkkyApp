@@ -11,8 +11,10 @@
   font-weight: var(--fontweight-bold);
   font-family: var(--font-text);
   color: var(--font-color);
+  box-shadow: 3px 3px 5px #7e5f33;
 }
 .selected{
   background-color: var(--light-overlay);
   border: solid 4px var(--secondary);
+  box-shadow: 2px 2px 2px #7e5f33;
 }

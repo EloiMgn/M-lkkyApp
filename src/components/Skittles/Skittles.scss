@@ -5,6 +5,7 @@
   text-align: center;
   background: var(--primary);
   border-radius: var(--border-radius);
+  box-shadow: 2px 3px 5px #9b9b9b;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,6 +19,6 @@
     justify-content: center;
   }
   &__text{
-    justify-self: space-between;
+    margin-top: var(--margin-small);
   }
 }

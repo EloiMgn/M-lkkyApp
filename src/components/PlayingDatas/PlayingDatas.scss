@@ -8,6 +8,7 @@
   border-radius: var(--border-radius);
   color: var(--font-color);
   padding: var(--margin-small);
+  box-shadow: 2px 3px 5px #9b9b9b;
   &__data{
     display: flex;
     flex-direction: column;

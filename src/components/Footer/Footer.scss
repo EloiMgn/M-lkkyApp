@@ -1,9 +1,12 @@
 
 .footer {
+  display: flex;
   text-align: center;
+  align-items: center;
   padding: 0 0 20px;
-  font-size: 12px;
-  margin-top: 35px;
+  font-size: var(--fontsize-p);
+  // border-top: .5px solid var(--black);
+  margin-top: var(--margin-medium);
 }
 
 .footer p, .footer a {
@@ -12,4 +15,5 @@
   display: inline;
   padding: 5px 10px;   
   cursor: pointer;
+  font-size: var(--fontsize-p);
 }

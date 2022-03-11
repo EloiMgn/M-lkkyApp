@@ -51,6 +51,15 @@ const TeamForm = () => {
     setToogle(!toogle)
   }
 
+  const buttonStyleGreen = {
+    backStyle: {
+      "background": `linear-gradient(to left, #00672a 0%, #003314 8%, #003314 92%, #00672a 100%) `
+    },
+    "frontStyle": {
+      "background": "#219653"
+    }
+  }
+
 return (
   <div className="TeamForm">
     <TeamNameForm name={teamName} setName={setTeamName} setValidate={setValidate} team={Team} setTeam={setTeam}/>
@@ -61,9 +70,9 @@ return (
         ) 
       } return null
     })}
-    {!toogle && <Button text={"Ajouter un joueur"} action={tooglePlayer} ico={"fas fa-user-plus"} colorFront={'#af8c5e'} colorBack1={'#7e5f33'} colorBack2={'#6D522C'}/> }
+    {!toogle && <Button text={"Ajouter un joueur"} action={tooglePlayer} ico={"fas fa-user-plus"} /> }
     {toogle && <PlayerForm list={playerList} setList={setplayerList} setToogle={setToogle}/>}
-    {validate && <Button text={"Valider l'équipe"} action={handleValidate} ico={"fas fa-users"} colorFront={'#219653'} colorBack1={'#00672a'} colorBack2={'#003314'}/>}
+    {validate && <Button text={"Valider l'équipe"} action={handleValidate} ico={"fas fa-users"} frontStyle={buttonStyleGreen.frontStyle} backStyle={buttonStyleGreen.backStyle}/>}
   </div>
   );
 }

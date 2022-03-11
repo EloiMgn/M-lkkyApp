@@ -33,6 +33,7 @@
       border: 0.5px solid #BDBDBD;
       box-sizing: border-box;
       width: 100%;
+      box-shadow: 1px 1px 3px #9b9b9b;
       &:focus{
         outline: 1px solid var(--black);
       }
@@ -53,6 +54,7 @@
     height: var(--height-btn-regular);
     width: 6rem;
     margin-left: var(--margin-small);
+    box-shadow: 2px 2px 5px #9b9b9b;
   }
   &__deleteBtn{
     color: var(--black);
