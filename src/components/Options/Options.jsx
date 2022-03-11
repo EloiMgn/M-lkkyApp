@@ -9,7 +9,7 @@ const Options = () => {
      <div id="options" className="options">
       <ToggleOption action="élimination" details="élimination au bout de 3 lancés ratés" stateValue={state.options.elimination}/>
       <ToggleOption action="égalisation" details="retour au palier si égalisation" stateValue={state.options.egalisation}/>
-      <ToggleOption action="maxPoints" details="retour au palier si égalisation" stateValue={state.options.maxPoints}/>
+      {/* <ToggleOption action="maxPoints" details="retour au palier si égalisation" stateValue={state.options.maxPoints}/> */}
     </div>
 
   )

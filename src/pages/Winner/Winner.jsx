@@ -54,7 +54,7 @@ const Winner = () => {
       dispatch({type: "startNewGame"})
       navigate('/dashboard', {replace: true})
       // check localStorage
-      const rawLocalStorage = getLocalStorage()
+      const rawLocalStorage = getLocalStorage('molkking_param')
       // si il y a quelqueChose dans le localStorage
       if (rawLocalStorage !== null) {
           removeLocalStorage()

@@ -7,7 +7,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { getLocalStorage, setLocalStorage } from '../../utils/localStorage'
 import Footer from '../../components/Footer/Footer';
 import { useNavigate } from 'react-router-dom';
-// import Options from '../../components/Options/Options';
+import Options from '../../components/Options/Options';
 
 const Dashboard = () => {
 const [enoughPlayers, setEnoughPlayers] = useState(false)
@@ -78,7 +78,7 @@ const buttonStyleGreen = {
             {(state.playing || state.teams.length > 1) && <h1 className='Dashboard__title'>Equipes:</h1>}
             <Teams/>
             {!state.playing && <Button text={"Ajouter une nouvelle équipe"} ico={"fas fa-users"} action={addNewTeam} /> }
-            {/* <Options/> */}
+            <Options/>
           </div>
           {state.teams.length > 1? 
             <div className='Dashboard__startGame'>

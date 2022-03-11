@@ -24,8 +24,8 @@ const Game = () => {
   const [nextTeam, setNextTeam] = useState('')
   const [nextTeamId, setNextTeamId] = useState('')
 
-  const [previousTeam, setPreviousTeam] = useState('')
-  const [previousTeamId, setPreviousTeamId] = useState('')
+  // const [previousTeam, setPreviousTeam] = useState('')
+  const [previousTeamId, setPreviousTeamId] = useState(null)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const eliminatedTeams = []
@@ -68,38 +68,24 @@ const Game = () => {
   }, [id, state.teams])
 
 
-useEffect(() => {
-  if (state.teams.length>0){
-    if(id === "0"){
-      setPreviousTeam(state.teams[state.teams.length-1])
-      setPreviousTeamId(state.teams.length-1)
-    } else {
-      setPreviousTeam(state.teams[id-1])
-      setPreviousTeamId(id-1)
-    }
-  }
+// useEffect(() => {
+//   if (state.teams.length>0){
+//     if(id === "0"){
+//       setPreviousTeam(state.teams[state.teams.length-1])
+//       setPreviousTeamId(state.teams.length-1)
+//     } else {
+//       setPreviousTeam(state.teams[id-1])
+//       setPreviousTeamId(id-1)
+//     }
+//   }
 
-}, [id, state.teams])
+// }, [id, state.teams])
 
 // == If 1 team not eliminated, last team left is winner == 
 
-  useEffect(() => {
-    if(winnerId){
-      dispatch({type: "setWinner", team: winnerId})
-      navigate(`/winner/${winnerId}`, { replace: true })
-    }
-    if(previousTeam.score === 50){
-      dispatch({type: "setWinner", team: previousTeamId})
-      navigate(`/winner/${previousTeamId}`, { replace: true })
-    }
-    }, [dispatch, navigate, previousTeam.score, previousTeamId, winnerId, eliminatedTeams])
-
-
-
 useEffect(() => {
-  const handleStateManagment = () => {
 
-  // == Si la Team précédente n'a marqué aucun point trois fois de suite ==
+  const handleStateManagment = (previousTeam) => {
     if(previousTeam.fails === 3){
       if (state.options.elimination){
         dispatch({type: "eliminateTeam", teamId: previousTeamId, team: previousTeam})
@@ -138,6 +124,16 @@ useEffect(() => {
       } 
 
     }
+
+    if(winnerId){
+      dispatch({type: "setWinner", team: winnerId})
+      navigate(`/winner/${winnerId}`, { replace: true })
+    }
+    if(previousTeam.score === 50){
+      dispatch({type: "setWinner", team: previousTeamId})
+      navigate(`/winner/${previousTeamId}`, { replace: true })
+    }
+
   //== Ajoute les team eliminées dans eliminatedTeams ==
     state.teams.forEach(team => {
       if(team.eliminated){
@@ -154,11 +150,10 @@ useEffect(() => {
     }
 
   }
-
-  if(previousTeam !== ""){
-    handleStateManagment()
+  if(previousTeamId !== null){
+    handleStateManagment(state.teams[previousTeamId])
   }
-}, [dispatch, previousTeam, previousTeamId, state.options.egalisation, state.options.elimination, state.teams, winnerId])
+}, [dispatch, eliminatedTeams, navigate, previousTeamId, state.options.egalisation, state.options.elimination, state.teams, winnerId])
 
 
 const handleResetSkittles = () => {
@@ -166,18 +161,21 @@ const handleResetSkittles = () => {
 }
 
 const handleNextTeam = (i) => {
+
   navigate(`/game/${nextTeam.name}/${nextTeamId}/${nextTeam.players[nextTeam.playerTurn]}`, { replace: true })
   dispatch({type: "nextPlayer", team: parseInt(id)})
+  dispatch({type: "setTurn", team: i})
   calculateScore()
   handleResetSkittles()
-  // ==== si dernière team => Retour à la première Team et passage au joueur suivant ====
-  if(i+1 === state.teams.length){
-    dispatch({ type: "firstTeam", currentTeam: i })
-  } 
-  // ==== si pas dernière team => passage à la prochaine team et passage au joueur suivant ====
-  else if (i+1 < state.teams.length) {
-    dispatch({ type: "nextTeam", currentTeam: i })
-  }
+  setPreviousTeamId(i)
+  // // ==== si dernière team => Retour à la première Team et passage au joueur suivant ====
+  // if(i+1 === state.teams.length){
+  //   dispatch({ type: "firstTeam", currentTeam: i })
+  // } 
+  // // ==== si pas dernière team => passage à la prochaine team et passage au joueur suivant ====
+  // else if (i+1 < state.teams.length) {
+  //   dispatch({ type: "nextTeam", currentTeam: i })
+  // }
 }
 
   const calculateScore = () => {

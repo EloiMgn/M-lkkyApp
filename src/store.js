@@ -112,20 +112,33 @@ function reducer(state = initialState, action) {
 
 // ===== HANDLE GAME NAVIGATION WHEN PLAYING =====
 
-// == Set turn to turn +1 ==
-if (action.type === "nextTeam") {
-  return {
-    ...state,
-    turn: action.currentTeam+1
-  };
-}
-// == Set turn to first ==
-  if (action.type === "firstTeam") {
+// // == Set turn to turn +1 ==
+// if (action.type === "nextTeam") {
+//   return {
+//     ...state,
+//     turn: action.currentTeam+1
+//   };
+// }
+// // == Set turn to first ==
+//   if (action.type === "firstTeam") {
+//     return {
+//      ...state,
+//      turn: 0
+//     }
+//  }
+ // == Set turn to first ==
+ if (action.type === "setTurn") {
+   if(action.team !== state.teams.length-1){
     return {
-     ...state,
-     turn: 0
-    }
- }
+      ...state,
+      turn: action.team+1
+     }
+   } else return {
+    ...state,
+    turn: 0
+   }
+
+}
 
 // == Set playerTurn to playerTurn +1 ==
   if (action.type === "nextPlayer") {
