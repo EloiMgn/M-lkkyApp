@@ -82,9 +82,9 @@ return (
             <h2 className='winner__player'>a gagné !!</h2>
           </div>
           <div className='winner__options'>
-          <Button text={"Recommencer la partie"} action={handleRestartGame}/>
-          <Button text={"Démarrer une nouvelle partie"} action={handleStartNewGame}/>
-          <Button text={"Voir les Stats de la partie"} action={handleSeeStats}/>
+          <Button text={"Recommencer la partie"} action={handleRestartGame} ico={'fas fa-undo'}/>
+          <Button text={"Démarrer une nouvelle partie"} action={handleStartNewGame} ico={"fas fa-play"}/>
+          <Button text={"Voir les Stats de la partie"} action={handleSeeStats} ico={"fas fa-signal"}/>
           </div>
           <Fireworks />
         </main>

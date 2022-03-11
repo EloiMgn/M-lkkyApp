@@ -210,7 +210,7 @@ const handleNextTeam = (i) => {
                 <h2>{team.name}</h2>
                 <Skittles />
                 <div className='navBtns'>
-                  <Button text='Equipe suivante'action={e => handleNextTeam(i)}/>
+                  <Button text='Equipe suivante'action={e => handleNextTeam(i)} ico={'fas fa-share'}/>
                 </div>
                 <PlayingDatas team={team}/>  
             </main>

@@ -82,8 +82,8 @@ const buttonStyleGreen = {
           </div>
           {state.teams.length > 1? 
             <div className='Dashboard__startGame'>
-              {enoughPlayers && !state.playing && <Button text={"Commencer à jouer"} action={handleStartGame} frontStyle={buttonStyleGreen.frontStyle} backStyle={buttonStyleGreen.backStyle}/>}
-              {state.playing && <Button text={'Continuer la partie'} action={handleContinueGame} />}
+              {enoughPlayers && !state.playing && <Button text={"Commencer à jouer"} ico={"fas fa-play"} action={handleStartGame} frontStyle={buttonStyleGreen.frontStyle} backStyle={buttonStyleGreen.backStyle}/>}
+              {state.playing && <Button text={'Continuer la partie'} action={handleContinueGame} ico={"fas fa-redo"}/>}
             </div>
             : null
           }

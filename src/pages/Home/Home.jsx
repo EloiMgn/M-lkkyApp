@@ -58,7 +58,7 @@ const Home = () => {
               <img className='Rules__img-img' src={molkkyImg} alt="" />
               <h2>Devenez le King 🤴 (ou la Queen 👸, pas de jaloux-ses) du Mölkky</h2>
             </div>
-            <Button text='Continuer la partie en cours' action={handleContinueGame} frontStyle={buttonStyleGreen.frontStyle} backStyle={buttonStyleGreen.backStyle}/>
+            <Button text='Continuer la partie en cours' action={handleContinueGame} frontStyle={buttonStyleGreen.frontStyle} backStyle={buttonStyleGreen.backStyle} ico={"fas fa-redo"}/>
             <Button text='Démarrer une nouvelle partie' action={handleStartNewGame}  ico={"fas fa-play"} />
             <div className='Home__content__links'>
               <h3>Liens utiles:</h3>
