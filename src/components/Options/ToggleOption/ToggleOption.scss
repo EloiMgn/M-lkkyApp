@@ -6,6 +6,7 @@
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .switchContainer .point {

@@ -11,6 +11,9 @@
   color: inherit;
   z-index: 0;
   text-align: baseline;
+  @media screen and (min-width:767px) {
+    margin: 2vh ;
+  }
   &__link{
     display: block;
     color: var(--white);
@@ -18,8 +21,9 @@
     height: 40px;
     img{
       max-width: 50vw;
+      max-height: 4rem;
       @media screen and (min-width:767px) {
-        height: 5vh;
+        height: 6rem;
       }
     }
   }

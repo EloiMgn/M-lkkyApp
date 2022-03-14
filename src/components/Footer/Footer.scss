@@ -7,6 +7,9 @@
   font-size: var(--fontsize-p);
   // border-top: .5px solid var(--black);
   margin-top: var(--margin-medium);
+  @media screen and (min-width:767px) {
+   justify-content: center;
+  }
 }
 
 .footer p, .footer a {

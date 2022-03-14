@@ -8,7 +8,7 @@ import TeamNameForm from '../TeamNameForm/TeamNameForm';
 import Player from '../Player/Player';
 import Button from '../Button/Button';
 
-const TeamForm = () => {
+const TeamForm = ({addTeam, setAddTeam}) => {
   const [validate, setValidate] = useState(false)
   const [teamName, setTeamName] = useState("")
   const [playerList, setplayerList] = useState([{player: "", hide: false}])
@@ -18,6 +18,7 @@ const TeamForm = () => {
   const dispatch = useDispatch();
 
   const handleValidate = () => {
+    // setAddTeam(!addTeam)
     if(playerList.length > 1) {
     const playerNames = []
     playerList.forEach(player => {
@@ -52,29 +53,36 @@ const TeamForm = () => {
   }
 
   const buttonStyleGreen = {
-    backStyle: {
-      "background": `linear-gradient(to left, #00672a 0%, #003314 8%, #003314 92%, #00672a 100%) `
+    frontStyle: {
+      "background": "#219653",
     },
-    "frontStyle": {
-      "background": "#219653"
+    frontHoverStyle: {
+      "background": "#219653",
+    },
+    backStyle: {
+      "background": `linear-gradient(to left, #00672a 0%, #003314 8%, #003314 92%, #00672a 100%)`
+    },
+    backHoverStyle: {
+      "background": `linear-gradient(to left, #00672a 0%, #003314 8%, #003314 92%, #00672a 100%)`
     }
   }
-
-return (
-  <div className="TeamForm">
-    <TeamNameForm name={teamName} setName={setTeamName} setValidate={setValidate} team={Team} setTeam={setTeam}/>
-    {playerList.map((x, i) => {
-      if (playerList.length > 1 && x.player !== "" && playerList[i+1]) {
-        return (
-          <Player action={e => handleRemoveClick(e, i)} i={i} player={x.player} key={i}/>
-        ) 
-      } return null
-    })}
-    {!toogle && <Button text={"Ajouter un joueur"} action={tooglePlayer} ico={"fas fa-user-plus"} /> }
-    {toogle && <PlayerForm list={playerList} setList={setplayerList} setToogle={setToogle}/>}
-    {validate && <Button text={"Valider l'équipe"} action={handleValidate} ico={"fas fa-users"} frontStyle={buttonStyleGreen.frontStyle} backStyle={buttonStyleGreen.backStyle}/>}
-  </div>
-  );
+if (addTeam || window.innerWidth< 767){
+  return (
+    <div className="TeamForm">
+      <TeamNameForm name={teamName} setName={setTeamName} setValidate={setValidate} team={Team} setTeam={setTeam}/>
+      {playerList.map((x, i) => {
+        if (playerList.length > 1 && x.player !== "" && playerList[i+1]) {
+          return (
+            <Player action={e => handleRemoveClick(e, i)} i={i} player={x.player} key={i}/>
+          ) 
+        } return null
+      })}
+      {!toogle && <Button text={"Ajouter un joueur"} action={tooglePlayer} ico={"fas fa-user-plus"} /> }
+      {toogle && <PlayerForm list={playerList} setList={setplayerList} setToogle={setToogle}/>}
+      {validate && <Button text={"Valider l'équipe"} action={handleValidate} ico={"fas fa-users"} style={buttonStyleGreen}/>}
+    </div>
+    );
+  } return null
 }
 
 export default TeamForm;

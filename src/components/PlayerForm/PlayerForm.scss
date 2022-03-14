@@ -54,6 +54,11 @@
     height: var(--height-btn-regular);
     min-width: 4rem;
     box-shadow: 2px 2px 5px #9b9b9b;
+    &:hover{
+      cursor: pointer;
+      box-shadow: 0;
+      background: var(--tertiary-backcolor);
+    }
   }
   &__btn-delete{
     max-width: var(--width-btn-medium);

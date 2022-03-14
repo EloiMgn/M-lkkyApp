@@ -8,6 +8,7 @@ import { getLocalStorage, setLocalStorage } from '../../utils/localStorage'
 import Footer from '../../components/Footer/Footer';
 import { useNavigate } from 'react-router-dom';
 import Options from '../../components/Options/Options';
+import TeamForm from '../../components/TeamForm/TeamForm';
 
 const Dashboard = () => {
 const [enoughPlayers, setEnoughPlayers] = useState(false)
@@ -15,6 +16,7 @@ const [localStorageAvailable, setIsLocalStorageAvailable] = useState(true)
 const dispatch = useDispatch()
 const state = useSelector((state) => state)
 const navigate= useNavigate()
+const [addTeam, setAddTeam] = useState(false)
   /**
    * Check availability to use localStorage
    */
@@ -53,7 +55,8 @@ useCallback(
     setLocalStorage({ date: new Date(), state })
   }
   const addNewTeam = () => {
-    navigate('/new-team', {replace: true})
+    window.innerWidth < 767? navigate('/new-team', {replace: true}) : 
+    setAddTeam(!addTeam)
   }
 
 
@@ -62,35 +65,51 @@ useEffect(() => {
 }, [state])
 
 const buttonStyleGreen = {
-  backStyle: {
-    "background": `linear-gradient(to left, #00672a 0%, #003314 8%, #003314 92%, #00672a 100%) `
+  frontStyle: {
+    "background": "#219653",
   },
-  "frontStyle": {
-    "background": "#219653"
+  frontHoverStyle: {
+    "background": "#219653",
+  },
+  backStyle: {
+    "background": `linear-gradient(to left, #00672a 0%, #003314 8%, #003314 92%, #00672a 100%)`
+  },
+  backHoverStyle: {
+    "background": `linear-gradient(to left, #00672a 0%, #003314 8%, #003314 92%, #00672a 100%)`
   }
 }
 
-    return (
-      <div id="Dashboard" className="Dashboard">
-        <Header/>
-        <main className='Dashboard__content'>
-          <div className='Dashboard__teams'>
-            {(state.playing || state.teams.length > 1) && <h1 className='Dashboard__title'>Equipes:</h1>}
-            <Teams/>
-            {!state.playing && <Button text={"Ajouter une nouvelle équipe"} ico={"fas fa-users"} action={addNewTeam} /> }
-            <Options/>
+  return (
+    <div id="Dashboard" className="Dashboard">
+      <Header/>
+      <main className='Dashboard__content'>
+      <section className='Dashboard__teams'>
+        <div className='Dashboard__teams'>
+          {(state.playing || state.teams.length < 1) && <h1 className='Dashboard__title'>Créez vos équipes</h1>}
+          {(state.playing || state.teams.length >= 1) && <h1 className='Dashboard__title'>Equipes:</h1>}
+          <Teams/>
+          {!state.playing && <Button text={"Ajouter une nouvelle équipe"} ico={"fas fa-users"} action={addNewTeam} /> }
+          <Options/>
+        </div>
+        {state.teams.length > 1? 
+          <div className='Dashboard__startGame'>
+            {enoughPlayers && !state.playing && <Button text={"Commencer à jouer"} ico={"fas fa-play"} action={handleStartGame} style={buttonStyleGreen}/>}
+            {state.playing && <Button text={'Continuer la partie'} action={handleContinueGame} ico={"fas fa-redo"}/>}
           </div>
-          {state.teams.length > 1? 
-            <div className='Dashboard__startGame'>
-              {enoughPlayers && !state.playing && <Button text={"Commencer à jouer"} ico={"fas fa-play"} action={handleStartGame} frontStyle={buttonStyleGreen.frontStyle} backStyle={buttonStyleGreen.backStyle}/>}
-              {state.playing && <Button text={'Continuer la partie'} action={handleContinueGame} ico={"fas fa-redo"}/>}
-            </div>
-            : null
-          }
-        </main>
-        <Footer/>
-      </div>
-    )
+          : null
+        }
+      </section>
+        {window.innerWidth>767 &&  addTeam && 
+          <section className='Dashboard__newTeam'>
+            <TeamForm addTeam={addTeam} setAddTeam={setAddTeam}/>
+          </section>
+        }
+      </main>
+      <Footer/>
+    </div>
+  ) 
+
+     
 }
 
 export default Dashboard

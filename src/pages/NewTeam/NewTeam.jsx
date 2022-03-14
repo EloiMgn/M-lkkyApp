@@ -10,7 +10,7 @@ const NewTeam = () => {
       <Header/>
       <main className='newTeam__content'>
         <h1>Votre équipe</h1>
-          <TeamForm/>
+          <TeamForm />
       </main>
       <Footer/>
     </div>

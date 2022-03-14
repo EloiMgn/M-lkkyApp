@@ -11,7 +11,6 @@
   margin: var(--margin-medium);
   -webkit-tap-highlight-color: transparent;
   user-select: none;
-
 }
 .shadow {
   position: absolute;
@@ -66,10 +65,12 @@
     transform
     250ms
     cubic-bezier(.3, .7, .4, 1.5);
+
 }
 .pushable:active .front {
   transform: translateY(-2px);
   transition: transform 34ms;
+
 }
 .pushable:hover .shadow {
   transform: translateY(4px);

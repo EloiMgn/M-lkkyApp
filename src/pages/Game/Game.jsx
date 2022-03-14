@@ -9,8 +9,9 @@ import Button from '../../components/Button/Button'
 import Skittles from '../../components/Skittles/Skittles';
 import PlayingDatas from '../../components/PlayingDatas/PlayingDatas';
 import Footer from '../../components/Footer/Footer';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { setLocalStorage } from '../../utils/localStorage';
+import Teams from '../../components/Teams/Teams';
 
 const Game = () => {
   const { id, playerId } = useParams();
@@ -18,8 +19,6 @@ const Game = () => {
 
   const navigate= useNavigate()
   const dispatch = useDispatch()
-
-  const [winnerId, setWinnerId] = useState(null)
 
   const [nextTeam, setNextTeam] = useState('')
   const [nextTeamId, setNextTeamId] = useState('')
@@ -38,34 +37,34 @@ const Game = () => {
 
 // === Set the next Team to show ====
   useEffect(() => {
-    if (parseInt(id) !== state.teams.length-1){
-      if(!state.teams[parseInt(id)+1].eliminated){
-        setNextTeam(state.teams[parseInt(id)+1])
-        setNextTeamId(parseInt(id)+1)
-      } else {
-        for (let j = 0; j < state.teams.length; j++) {
-          if(!state.teams[j].eliminated){
-            setNextTeam(state.teams[j])
-            setNextTeamId(j)
-            break
-          }
-        }
-      }
-    } else {
-      if(!state.teams[0].eliminated){
-        setNextTeam(state.teams[0])
-        setNextTeamId(0)
-      } else {
-        for (let j = 0; j < state.teams.length; j++) {
-          if(!state.teams[j].eliminated){
-            setNextTeam(state.teams[j])
-            setNextTeamId(j)
-            break
-          }
-        }
-      }
 
-    }
+    if (parseInt(id) !== state.teams.length-1 && state.teams[parseInt(id)+1]){
+          if(!state.teams[parseInt(id)+1].eliminated){
+            setNextTeam(state.teams[parseInt(id)+1])
+            setNextTeamId(parseInt(id)+1)
+          } else {
+            for (let j = 0; j < state.teams.length; j++) {
+              if(!state.teams[j].eliminated){
+                setNextTeam(state.teams[j])
+                setNextTeamId(j)
+                break
+              }
+            }
+          }
+      } else if(parseInt(id) === state.teams.length-1 &&state.teams[0]) {
+          if(!state.teams[0].eliminated){
+            setNextTeam(state.teams[0])
+            setNextTeamId(0)
+          } else {
+            for (let j = 0; j < state.teams.length; j++) {
+              if(!state.teams[j].eliminated){
+                setNextTeam(state.teams[j])
+                setNextTeamId(j)
+                break
+              }
+            }
+          }
+        }
   }, [id, state.teams])
 
 
@@ -86,12 +85,6 @@ const Game = () => {
     }
   }
 
-// == Si la Team précédente a atteint le score maximum pile ==
-  const checkIfReachScore = (previousTeam) => {
-    if (previousTeam.score === 50){
-      setWinnerId(previousTeamId)
-    }
-  }
 
 // == Si la Team précédente a atteint le score palier (moitié du score max) ==
   const checkIfLevel = (previousTeam) => {
@@ -144,7 +137,6 @@ useEffect(() => {
   const handleStateManagment = (previousTeam) => {
     checkFails(previousTeam)
     checkIfExceedsScore(previousTeam)
-    checkIfReachScore(previousTeam)
     checkIfLevel(previousTeam)
     checkIfScoreEqual(previousTeam)
     checkIfwinner(previousTeam)
@@ -192,16 +184,24 @@ const handleNextTeam = (i) => {
   return (
     <div id="Game" className="Game">
       <Header/>
+
         {state.teams.map((team, i) => {
           if (i.toString() === id) {
             return (
               <main className={`team${i+1} Game__content`} key={i}>
-                <h2>{team.name}</h2>
-                <Skittles />
-                <div className='navBtns'>
-                  <Button text='Equipe suivante'action={e => handleNextTeam(i)} ico={'fas fa-share'}/>
-                </div>
-                <PlayingDatas team={team}/>  
+                {window.innerWidth>767 && 
+                  <section className='Game__content__dashboard'>
+                    <Teams/>
+                  </section>
+                }
+                <section className='Game__content__playingArea'>
+                  <h2>{team.name}</h2>
+                  <Skittles />
+                  <div className='navBtns'>
+                    <Button text='Equipe suivante'action={e => handleNextTeam(i)} ico={'fas fa-share'}/>
+                  </div>
+                  <PlayingDatas team={team}/>  
+                </section>
             </main>
             )
           } 

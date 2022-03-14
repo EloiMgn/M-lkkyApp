@@ -55,6 +55,11 @@
     width: 6rem;
     margin-left: var(--margin-small);
     box-shadow: 2px 2px 5px #9b9b9b;
+    &:hover{
+      cursor: pointer;
+      box-shadow: 0;
+      background: var(--tertiary-backcolor);
+    }
   }
   &__deleteBtn{
     color: var(--black);

@@ -1,6 +1,6 @@
 import './Rules.scss'
 import Header from '../../components/Header/Header'
-import molkkyImg from '../../utils/img/molkky.jpg'
+import molkkyImg from '../../utils/img/iStock-1324002091.jpg'
 import Footer from '../../components/Footer/Footer';
 import { Link } from 'react-router-dom';
 

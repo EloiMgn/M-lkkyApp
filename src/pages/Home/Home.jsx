@@ -6,8 +6,8 @@ import Button from '../../components/Button/Button'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import Footer from '../../components/Footer/Footer';
-import molkkyImg from '../../utils/img/molkky.jpg'
-import HomeModale from '../../components/HomeModale/HomeModale';
+import molkkyImg from '../../utils/img/iStock-1324002091.jpg'
+// import HomeModale from '../../components/HomeModale/HomeModale';
 
 
 
@@ -39,33 +39,41 @@ const Home = () => {
     }, [dispatch, state])
 
     const buttonStyleGreen = {
-      backStyle: {
-        "background": `linear-gradient(to left, #00672a 0%, #003314 8%, #003314 92%, #00672a 100%) `
+      frontStyle: {
+        "background": "#219653",
       },
-      "frontStyle": {
-        "background": "#219653"
+      frontHoverStyle: {
+        "background": "#219653",
+      },
+      backStyle: {
+        "background": `linear-gradient(to left, #00672a 0%, #003314 8%, #003314 92%, #00672a 100%)`
+      },
+      backHoverStyle: {
+        "background": `linear-gradient(to left, #00672a 0%, #003314 8%, #003314 92%, #00672a 100%)`
       }
     }
 
     if(state.teams.length > 1) {
       return (
         <div id="Home" className="Home">
-          <HomeModale/>
+          {/* <HomeModale/> */}
           <Header/>
           <main className='Home__content'>
             <div className='Home__content__text'>
               <h1>Bienvenue sur <strong>MölkKing</strong></h1>
               <img className='Rules__img-img' src={molkkyImg} alt="" />
-              <h2>Devenez le King 🤴 (ou la Queen 👸, pas de jaloux-ses) du Mölkky</h2>
+              <h2>Devenez le King 🤴 ou la Queen 👸 du Mölkky</h2>
             </div>
-            <Button text='Continuer la partie en cours' action={handleContinueGame} frontStyle={buttonStyleGreen.frontStyle} backStyle={buttonStyleGreen.backStyle} ico={"fas fa-redo"}/>
-            <Button text='Démarrer une nouvelle partie' action={handleStartNewGame}  ico={"fas fa-play"} />
-            <div className='Home__content__links'>
-              <h3>Liens utiles:</h3>
-              <ul className='Home__content__links-list'>
-                <li><i className="fas fa-external-link"></i><Link to="/skittles">Connaitre le placement initial des quilles</Link></li>
-                <li><i className="fas fa-external-link"></i><Link to="/rules">Les règles officielles du Mölkky</Link></li>
-              </ul>
+            <div className='bottom__container'>
+              <Button text='Continuer la partie en cours' action={handleContinueGame} style={buttonStyleGreen} ico={"fas fa-redo"}/>
+              <Button text='Démarrer une nouvelle partie' action={handleStartNewGame}  ico={"fas fa-play"} />
+              <div className='Home__content__links'>
+                <h3>Liens utiles:</h3>
+                <ul className='Home__content__links-list'>
+                  <li><i className="fas fa-external-link"></i><Link to="/skittles">Connaitre le placement initial des quilles</Link></li>
+                  <li><i className="fas fa-external-link"></i><Link to="/rules">Les règles officielles du Mölkky</Link></li>
+                </ul>
+              </div>
             </div>
           </main>
           <Footer/>
@@ -73,21 +81,23 @@ const Home = () => {
       )
     } return (
       <div id="Home" className="Home">
-        <HomeModale/>
+        {/* <HomeModale/> */}
         <Header/>
         <main className='Home__content'>
           <div className='Home__content__text'>
             <h1>Bienvenue sur <strong>MölkKing</strong></h1>
             <img className='Rules__img-img' src={molkkyImg} alt="" />
-            <h2>Soyez le King 🤴 (ou la Queen 👸, pas de jaloux-ses) du Mölkky!</h2>
+            <h2>Soyez le King 🤴 ou la Queen 👸 du Mölkky!</h2>
           </div>
-          <Button text='Nouvelle partie' size={"medium"} action={handleStartNewGame} ico={"fas fa-play"} frontStyle={buttonStyleGreen.frontStyle} backStyle={buttonStyleGreen.backStyle}/>
-          <div className='Home__content__links'>
-            <h3>Liens utiles:</h3>
-            <ul className='Home__content__links-list'>
-              <li><i className="fas fa-external-link"></i><Link to="/skittles">Connaitre le placement initial des quilles</Link></li>
-              <li><i className="fas fa-external-link"></i><Link to="/rules">Les règles officielles du Mölkky</Link></li>
-            </ul>
+          <div className='bottom__container'>
+            <Button text='Nouvelle partie' size={"medium"} action={handleStartNewGame} ico={"fas fa-play"} style={buttonStyleGreen}/>
+            <div className='Home__content__links'>
+              <h3>Liens utiles:</h3>
+              <ul className='Home__content__links-list'>
+                <li><i className="fas fa-external-link"></i><Link to="/skittles">Connaitre le placement initial des quilles</Link></li>
+                <li><i className="fas fa-external-link"></i><Link to="/rules">Les règles officielles du Mölkky</Link></li>
+              </ul>
+            </div>
           </div>
         </main>
         <Footer/>

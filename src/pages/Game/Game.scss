@@ -11,12 +11,30 @@
     min-height: 70vh;
     width: 90vw;
     margin: 10vh auto 0 auto;
+    @media screen and(min-width: 765px) {
+      margin-left: 18vw;
+      flex-direction: row;
+      width: 70vw;
+      align-items: flex-start;
+    }
     h2{
       font-size: var(--fontsize-h1);
       margin-top: var(--margin-small);
       text-transform: capitalize; 
       font-weight: var(--fontweight-bold);
       color: var(--font-color);
+    }
+    &__dashboard{
+      @media screen and(min-width: 765px) {
+        width: 50%;
+        margin: 0 var(--margin-medium);
+      }
+    }
+    &__playingArea{
+      @media screen and(min-width: 765px) {
+        width: 50%;
+        margin: auto var(--margin-medium);
+      }
     }
   }
 }

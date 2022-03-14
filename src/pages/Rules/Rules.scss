@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   &__img{
     display: flex;
     flex-direction: column;
@@ -32,6 +33,9 @@
     color: var(--font-color);
     margin-top: 10vh;
     margin-bottom: 11vh;
+    @media screen and (min-width:767px) {
+      margin-left: 14vw;
+    }
     &__intro{
       display: flex;
       justify-content: center;

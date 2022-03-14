@@ -8,7 +8,7 @@ const Mentions = () => {
         <Header/>
         <main className='Home__content'>
           <div>
-            Flaticons : <a href="https://www.flaticon.com/fr/icones-gratuites/construction" title="construction icônes">Construction icônes créées par Vichanon Chaimsuk - Flaticon</a>
+            Flaticons : <a href="https://www.flaticon.com/fr/icones-gratuites/construction" target="_blank" title="construction icônes" rel="noreferrer">Construction icônes créées par Vichanon Chaimsuk - Flaticon</a>
           </div>
           <Link to='/' className='Skittles__back'>Retour à l'accueil</Link>
         </main>

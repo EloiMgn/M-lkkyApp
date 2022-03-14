@@ -20,7 +20,7 @@ const Header = () => {
       dispatch({type: "restart", idx: i})
     }
     // check localStorage
-    const rawLocalStorage = getLocalStorage()
+    const rawLocalStorage = getLocalStorage('molkking_param')
     // si il y a quelqueChose dans le localStorage
     if (rawLocalStorage !== null) {
         removeLocalStorage()
@@ -30,7 +30,7 @@ const Header = () => {
   const handleStartNewGame = () => {
     dispatch({type: "startNewGame"})
     // check localStorage
-    const rawLocalStorage = getLocalStorage()
+    const rawLocalStorage = getLocalStorage('molkking_param')
     // si il y a quelqueChose dans le localStorage
     if (rawLocalStorage !== null) {
         removeLocalStorage()
@@ -43,26 +43,26 @@ const Header = () => {
           <ul className='navbar__links'>
 
             <li className='navbar__item'>
-              <Link to="/" className='navbar__link'>Accueil</Link>
+              <Link to="/" className='navbar__link'><i className="fa-solid fa-house"></i> Accueil</Link>
             </li>
             <li className='navbar__item'>
-              <Link to="/skittles" className='navbar__link'>Placer les quilles</Link>
+              <Link to="/skittles" className='navbar__link'><i className="fas fa-shapes"></i> Placer les quilles</Link>
             </li>
             <li className='navbar__item'>
-              <Link to="/rules" className='navbar__link'>Règles</Link>
+              <Link to="/rules" className='navbar__link'><i className="fa-solid fa-file-lines"></i> Règles</Link>
             </li>
 
             {state.playing && state.winner === null && 
             <li className='navbar__item'>
-              <Link to="/dashboard" className='navbar__link'>Scores</Link>
+              <Link to="/dashboard" className='navbar__link'><i className="fa-solid fa-list-ol"></i> Scores</Link>
             </li>}
             {state.playing &&
             <li className='navbar__item'>
-            <Link to="/dashboard" className='navbar__link' onClick={handleRestartGame}>Recommencer la partie</Link>
+            <Link to="/dashboard" className='navbar__link' onClick={handleRestartGame}><i className="fas fa-redo"></i> Recommencer la partie</Link>
             </li>}
             {state.playing && 
             <li className='navbar__item'>
-              <Link to="/" className='navbar__link' onClick={handleStartNewGame}>Nouvelle partie</Link>
+              <Link to="/" className='navbar__link' onClick={handleStartNewGame}><i className="fas fa-undo"></i>Nouvelle partie</Link>
             </li>}
           </ul>
           <button className='navbar__burger'>
