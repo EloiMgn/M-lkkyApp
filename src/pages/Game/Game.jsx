@@ -18,18 +18,14 @@ const Game = () => {
 
   const navigate= useNavigate()
   const dispatch = useDispatch()
-  // const [currentTeam, setCurrentTeam] = useState('')
-  // const [winner, setWinner] = useState(null)
+
   const [winnerId, setWinnerId] = useState(null)
 
   const [nextTeam, setNextTeam] = useState('')
   const [nextTeamId, setNextTeamId] = useState('')
 
-  // const [previousTeam, setPreviousTeam] = useState('')
   const [previousTeamId, setPreviousTeamId] = useState(null)
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  // const eliminatedTeams = []
 
 // == Handle recovering datas from localstorage if page refreshment ==
   useEffect(() => {
@@ -124,10 +120,6 @@ const Game = () => {
 
 //== Vérifie si une team est gagnante ==
   const checkIfwinner = (previousTeam) => {
-    if(winnerId){
-      dispatch({type: "setWinner", team: winnerId})
-      navigate(`/winner/${winnerId}`, { replace: true })
-    }
     if(previousTeam.score === 50){
       dispatch({type: "setWinner", team: previousTeamId})
       navigate(`/winner/${previousTeamId}`, { replace: true })
@@ -136,10 +128,11 @@ const Game = () => {
 
   //== Vérifie si toutes les team moins 1 ont été eliminées et set la dernière team gagnante ==
   const checkIfAllTeamsEliminated = () => {
-      if(state.teams.length-state.eliminatedTeams.length === 1) {
-        state.teams.forEach((team, i) => {
-          if(!team.eliminated){
-            setWinnerId(i)
+    if(state.teams.length-state.eliminatedTeams.length === 1) {
+      state.teams.forEach((team, i) => {
+        if(!team.eliminated){
+          dispatch({type: "setWinner", team: i})
+          navigate(`/winner/${i}`, { replace: true })
           }
         })
       }
