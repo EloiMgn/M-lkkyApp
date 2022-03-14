@@ -1,7 +1,7 @@
 import Construction from '../../utils/img/construction.png'
 import { useEffect, useState } from 'react'
 import './HomeModale.scss'
-import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
+import { getLocalStorage } from '../../utils/localStorage';
 import { isToday } from '../../utils/tools';
 
 
@@ -20,7 +20,7 @@ const HomeModale = () => {
 
   useEffect(() => {
     checkIfToday()
-  }, [])
+  },)
 
   const[open, setOpen] = useState(true)
 
@@ -38,7 +38,7 @@ const HomeModale = () => {
         <div className='modale__text'>
           <p>Bienvenue sur Molkking !!</p>
           <img src={Construction} alt="icone construction" className='image'/>
-          <p>Ce site est toujours en cours de développement et n'est pas 100% fonctionnel</p>
+          <p>Ce site est toujours en cours de développement et n'est pas 100% fonctionnel (notamment le mode avec élimination)</p>
           <p>N'hésitez pas à me rapporter les bugs auxquels vous feriez face à <a href="mailto:molkking@eloimagnien.com">molkking@eloimagnien.com</a></p>
         </div>
       </div>

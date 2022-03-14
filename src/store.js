@@ -66,17 +66,17 @@ function reducer(state = initialState, action) {
       draft.turn = 0
       draft.playing = false
       draft.winner = null
-      draft.eliminatedTeams.forEach((team, i) => {
-        team.score = 0
-        team.fails = 0
-        team.playerTurn = 0
-        team.level = false
-        team.stats = []
-        team.eliminated = false
-        draft.teams.push(team)
-        draft.eliminatedTeams.splice(1, i)
-      })
-      // draft.eliminatedTeams = []
+      draft.eliminatedTeams = []
+      // draft.eliminatedTeams.forEach((team, i) => {
+      //   team.score = 0
+      //   team.fails = 0
+      //   team.playerTurn = 0
+      //   team.level = false
+      //   team.stats = []
+      //   team.eliminated = false
+      //   draft.teams.push(team)
+      //   draft.eliminatedTeams.splice(1, i)
+      // })
       })
     }
 
@@ -112,21 +112,7 @@ function reducer(state = initialState, action) {
 
 // ===== HANDLE GAME NAVIGATION WHEN PLAYING =====
 
-// // == Set turn to turn +1 ==
-// if (action.type === "nextTeam") {
-//   return {
-//     ...state,
-//     turn: action.currentTeam+1
-//   };
-// }
-// // == Set turn to first ==
-//   if (action.type === "firstTeam") {
-//     return {
-//      ...state,
-//      turn: 0
-//     }
-//  }
- // == Set turn to first ==
+ // == Set turn  ==
  if (action.type === "setTurn") {
    if(action.team !== state.teams.length-1){
     return {
@@ -240,19 +226,11 @@ function reducer(state = initialState, action) {
   // === Handle team elimination if 3 fails ===
   if (action.type === "eliminateTeam") {
     return produce(state, draft => {
-      // draft.eliminatedTeams.push(action.team);
+      draft.eliminatedTeams.push(action.team);
       draft.teams[action.teamId].eliminated = true;
       draft.teams[action.teamId].fails=0;
     })
   }
-
-    // === Handle team elimination if 3 fails ===
-    if (action.type === "setNewTeamList") {
-      return produce(state, draft => {
-        draft.teams.splice(0, draft.teams.length)
-        draft.teams.push(action.playingTeams);
-      })
-    }
 
   // ===== HANDLE OPTIONS MODIFICATIONS ======
   if (action.type === "changeOption") {
