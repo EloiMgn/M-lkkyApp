@@ -35,10 +35,22 @@
   margin: var(--margin-small);
   border-radius: var(--border-radius);
   color: var(--font-color);
+  &__eliminated{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 80vw;
+    background-color: var(--light-red);
+    margin: var(--margin-small);
+    border-radius: var(--border-radius);
+    color: var(--font-color);
+  }
   &__name{
     font-size: var(--fontsize-medium);
     font-weight: var(--fontweight-bold);
     margin: var(--margin-small);
+    text-transform: capitalize;
   }
   &__data{
     display: flex;

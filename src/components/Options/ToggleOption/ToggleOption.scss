@@ -9,6 +9,17 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+.option__container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  i{
+    color: #6e6e6e;
+    margin-left: var(--margin-small);
+  }
+}
+
 .switchContainer .point {
   width: 18px;
   height: 18px;
@@ -47,7 +58,7 @@
 .option{
   display: flex;
   align-items: center;
-  margin: var(--margin-small) auto;
+  margin: var(--margin-small) 0;
   justify-content: space-between;
-  width: 100%;
+  width: 80vw;
 }

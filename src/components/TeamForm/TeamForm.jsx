@@ -41,6 +41,10 @@ const TeamForm = ({addTeam, setAddTeam}) => {
     }
   }
 
+  const handleCancel = ()=> {
+    navigate('/dashboard', { replace: true })
+  }
+
   // handle click event of the Remove button
   const handleRemoveClick = (e, index) => {
     const list = [...playerList];
@@ -66,6 +70,22 @@ const TeamForm = ({addTeam, setAddTeam}) => {
       "background": `linear-gradient(to left, #00672a 0%, #003314 8%, #003314 92%, #00672a 100%)`
     }
   }
+
+  
+  const buttonStyleGray = {
+    frontStyle: {
+      "background": "#6e6e6e",
+    },
+    frontHoverStyle: {
+      "background": "#6e6e6e",
+    },
+    backStyle: {
+      "background": `#4e4e4e`
+    },
+    backHoverStyle: {
+      "background": `#6e6e6e`
+    }
+  }
 if (addTeam || window.innerWidth< 767){
   return (
     <div className="TeamForm">
@@ -80,6 +100,7 @@ if (addTeam || window.innerWidth< 767){
       {!toogle && <Button text={"Ajouter un joueur"} action={tooglePlayer} ico={"fas fa-user-plus"} /> }
       {toogle && <PlayerForm list={playerList} setList={setplayerList} setToogle={setToogle}/>}
       {validate && <Button text={"Valider l'équipe"} action={handleValidate} ico={"fas fa-users"} style={buttonStyleGreen}/>}
+      <Button text={"Annuler"} action={handleCancel} style={buttonStyleGray}/>
     </div>
     );
   } return null
