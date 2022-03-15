@@ -37,21 +37,25 @@ const Game = () => {
 
 // === Set the next Team to show ====
   useEffect(() => {
-
+// == Si pas dernière team affichée : ==
     if (parseInt(id) !== state.teams.length-1 && state.teams[parseInt(id)+1]){
+
           if(!state.teams[parseInt(id)+1].eliminated){
+
             setNextTeam(state.teams[parseInt(id)+1])
             setNextTeamId(parseInt(id)+1)
           } else {
             for (let j = 0; j < state.teams.length; j++) {
-              if(!state.teams[j].eliminated){
+              if(!state.teams[j].eliminated && j>parseInt(id)){
                 setNextTeam(state.teams[j])
                 setNextTeamId(j)
                 break
               }
             }
           }
+          //== Si dernière team affichée : ===
       } else if(parseInt(id) === state.teams.length-1 &&state.teams[0]) {
+
           if(!state.teams[0].eliminated){
             setNextTeam(state.teams[0])
             setNextTeamId(0)
@@ -74,7 +78,10 @@ const Game = () => {
     if(previousTeam.fails === 3){
       if (state.options.elimination){
         dispatch({type: "eliminateTeam", teamId: previousTeamId, team: previousTeam})
-      } else dispatch({type: "resetScore", team: previousTeamId}) 
+      } else {
+        dispatch({type: "resetScore", team: previousTeamId})
+        dispatch({type: "resetFails", team: previousTeamId})
+      } 
     }
   }
 
@@ -82,6 +89,7 @@ const Game = () => {
   const checkIfExceedsScore = (previousTeam) => {
     if (previousTeam.score > 50) {
       dispatch({type: "resetScore", team: previousTeamId})
+      dispatch({type: "resetFails", team: previousTeamId})
     }
   }
 
@@ -95,20 +103,11 @@ const Game = () => {
 
 //== Si la team précédente atteint un score identique à l'une des autres équipes, l'autre équipe retombe au score palier ==
   const checkIfScoreEqual = (previousTeam) => {
-      if(state.options.egalisation){
-        for (let y = 0; y < state.teams.length; y++) {
-          if(previousTeam.score === state.teams[y].score && previousTeam.score !== 0) {
-            for (let i = 0; i < 1; i++) {
-              if(state.teams[y] !== previousTeam) {
-  
-                dispatch({type: "resetScore", team: y})
-                // break
-              }
-            }
-            break
-          }
-        } 
+    for (let i = 0; i < state.teams.length; i++) {
+      if(previousTeam.score === state.teams[i].score && previousTeam !== state.teams[i]){
+        dispatch({type: "resetScore", team: i})
       }
+    } 
   }
 
 //== Vérifie si une team est gagnante ==
@@ -138,9 +137,11 @@ useEffect(() => {
     checkFails(previousTeam)
     checkIfExceedsScore(previousTeam)
     checkIfLevel(previousTeam)
-    checkIfScoreEqual(previousTeam)
     checkIfwinner(previousTeam)
     checkIfAllTeamsEliminated()
+    if(state.options.egalisation) {
+      checkIfScoreEqual(previousTeam)
+    }
   }
   if(previousTeamId !== null){
     handleStateManagment(state.teams[previousTeamId])

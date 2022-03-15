@@ -19,7 +19,7 @@ const ToggleOption = ({action, details, stateValue}) => {
     } else if (!option) {
       setText('NON')
     }
-  }, [action, dispatch, option])
+  }, [action, dispatch, option, stateValue])
 
 
   return (

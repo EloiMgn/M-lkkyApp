@@ -85,7 +85,7 @@ const buttonStyleGreen = {
       <main className='Dashboard__content'>
       <section className='Dashboard__teams'>
         <div className='Dashboard__teams'>
-          {(state.playing || state.teams.length < 1) && <h1 className='Dashboard__title'>Créez vos équipes</h1>}
+          {(!state.playing || state.teams.length < 1) && <h1 className='Dashboard__title'>Créez vos équipes</h1>}
           {(state.playing || state.teams.length >= 1) && <h1 className='Dashboard__title'>Equipes:</h1>}
           <Teams/>
           {!state.playing && <Button text={"Ajouter une nouvelle équipe"} ico={"fas fa-users"} action={addNewTeam} /> }

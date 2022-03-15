@@ -42,6 +42,7 @@ function reducer(state = initialState, action) {
       draft.turn = localStorage.state.turn
       draft.teams = localStorage.state.teams
       draft.options.elimination = localStorage.state.options.elimination
+      draft.options.egalisation = localStorage.state.options.egalisation
       })
   }
 
@@ -67,16 +68,6 @@ function reducer(state = initialState, action) {
       draft.playing = false
       draft.winner = null
       draft.eliminatedTeams = []
-      // draft.eliminatedTeams.forEach((team, i) => {
-      //   team.score = 0
-      //   team.fails = 0
-      //   team.playerTurn = 0
-      //   team.level = false
-      //   team.stats = []
-      //   team.eliminated = false
-      //   draft.teams.push(team)
-      //   draft.eliminatedTeams.splice(1, i)
-      // })
       })
     }
 
@@ -211,6 +202,13 @@ function reducer(state = initialState, action) {
         draft.teams[action.team].fails=0;
         })
     } 
+  }
+
+  // == If reset score => set score to 0 if level is false or to 25 if level is true ==
+  if (action.type === "resetFails") {
+  return produce(state, draft => {
+    draft.teams[action.team].fails=0;
+    })
   }
 
   // == If winner => set winner to the winner team ==
