@@ -1,15 +1,12 @@
 import './Rules.scss'
-import Header from '../../components/Header/Header'
 import molkkyImg from '../../utils/img/iStock-1324002091.jpg'
-import Footer from '../../components/Footer/Footer';
 import { Link } from 'react-router-dom';
+import Title from '../../components/Title/Title';
 
 const Rules = () => {
 return (
-<div id="Rules" className="Rules">
-  <Header />
   <main className='Rules__content'>
-    <h1>Règles du jeu</h1>
+    <Title text={'Règles du jeu'}/>
     <div className='Rules__content__intro'>
       <div className='Rules__img'>
         <img className='Rules__img-img' src={molkkyImg} alt="" />
@@ -138,8 +135,6 @@ return (
     </div>
     <Link to='/' className='Skittles__back'>Retour à l'accueil</Link>
   </main>
-  <Footer/>
-</div>
 )
 }
 

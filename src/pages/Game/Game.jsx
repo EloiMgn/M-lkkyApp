@@ -4,14 +4,13 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import './Game.scss'
-import Header from '../../components/Header/Header'
 import Button from '../../components/Button/Button'
 import Skittles from '../../components/Skittles/Skittles';
 import PlayingDatas from '../../components/PlayingDatas/PlayingDatas';
-import Footer from '../../components/Footer/Footer';
 import { useEffect, useState } from 'react';
 import { setLocalStorage } from '../../utils/localStorage';
 import Teams from '../../components/Teams/Teams';
+import Title from '../../components/Title/Title';
 
 const Game = () => {
   const { id, playerId } = useParams();
@@ -183,23 +182,22 @@ const handleNextTeam = (i) => {
   }
 
   return (
-    <div id="Game" className="Game">
-      <Header/>
-
-        {state.teams.map((team, i) => {
+        state.teams.map((team, i) => {
           if (i.toString() === id) {
             return (
               <main className={`team${i+1} Game__content`} key={i}>
                 {window.innerWidth>767 && 
                   <section className='Game__content__dashboard'>
+                    <Title text={'Scores'}/>
                     <Teams/>
                   </section>
                 }
                 <section className='Game__content__playingArea'>
+                <Title text={'Partie en cours'}/>
                   <h2>{team.name}</h2>
                   <Skittles />
                   <div className='navBtns'>
-                    <Button text='Equipe suivante'action={e => handleNextTeam(i)} ico={'fas fa-share'}/>
+                    <Button text='Equipe suivante'action={e => handleNextTeam(i)} ico={'fas fa-share'} animation/>
                   </div>
                   <PlayingDatas team={team}/>  
                 </section>
@@ -207,9 +205,7 @@ const handleNextTeam = (i) => {
             )
           } 
           return null
-        })}
-        <Footer/>
-    </div>
+        })
   )
 }
 

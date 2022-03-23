@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: space-between;
 
+
   &__img{
     display: flex;
     flex-direction: column;
@@ -11,16 +12,16 @@
     align-items: center;
     width: 100vw;
     min-width: 200px;
-    height: 85vmin;
+    height: 60vmin;
     margin-top: var(--margin-medium);
     @media screen and (min-width:767px) {
       width: 80vw;
-      height: 45vmin;
+      height: 35vmin;
     }
     &-img {
       display: block;
-      min-width: 100%;
-      max-width: 100%;
+      min-width: 60vw;
+      max-width: 80vw;
       min-height: 100%;
       object-fit: cover;
       object-position: center;
@@ -34,24 +35,24 @@
     margin-top: 10vh;
     margin-bottom: 11vh;
     @media screen and (min-width:767px) {
-      margin-left: 14vw;
+      margin-left: 18vw;
     }
     &__intro{
       display: flex;
       justify-content: center;
     }
 
-    h1 {
-      font-size: var(--fontsize-h1);
-      font-weight: var(--fontweight-bold);
-      margin: var(--margin-medium) 0;
-    }
+    // h1 {
+    //   font-size: var(--fontsize-h1);
+    //   font-weight: var(--fontweight-bold);
+    //   margin: var(--margin-medium) 0;
+    // }
 
-    h2 {
-      font-size: var(--fontsize-h2);
-      font-weight: var(--fontweight-bold);
-      margin-top: var(--margin-medium);
-    }
+    // h2 {
+    //   font-size: var(--fontsize-h2);
+    //   font-weight: var(--fontweight-bold);
+    //   margin-top: var(--margin-medium);
+    // }
 
     h3 {
       font-size: var(--fontsize-h3);

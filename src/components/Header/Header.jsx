@@ -38,35 +38,35 @@ const Header = () => {
     }
 
   return (
-        <header className={`navbar ${showLinks ? "show-nav" : "" }`}>
+        <header className={`navbar ${showLinks? "show-nav" : "" }`}>
           <Logo className='navbar__logo'/>
           <ul className='navbar__links'>
 
-            <li className='navbar__item'>
+            <li className='navbar__item' onClick={handleShowLinks}>
               <Link to="/" className='navbar__link'><i className="fa-solid fa-house"></i> Accueil</Link>
             </li>
-            <li className='navbar__item'>
+            <li className='navbar__item' onClick={handleShowLinks}>
               <Link to="/skittles" className='navbar__link'><i className="fas fa-shapes"></i> Placer les quilles</Link>
             </li>
-            <li className='navbar__item'>
+            <li className='navbar__item' onClick={handleShowLinks}>
               <Link to="/rules" className='navbar__link'><i className="fa-solid fa-file-lines"></i> Règles</Link>
             </li>
 
             {state.playing && state.winner === null && 
-            <li className='navbar__item'>
+            <li className='navbar__item' onClick={handleShowLinks}>
               <Link to="/dashboard" className='navbar__link'><i className="fa-solid fa-list-ol"></i> Scores</Link>
             </li>}
             {state.playing &&
-            <li className='navbar__item'>
+            <li className='navbar__item' onClick={handleShowLinks}>
             <Link to="/dashboard" className='navbar__link' onClick={handleRestartGame}><i className="fas fa-redo"></i> Recommencer la partie</Link>
             </li>}
             {state.playing && 
-            <li className='navbar__item'>
+            <li className='navbar__item' onClick={handleShowLinks}>
               <Link to="/" className='navbar__link' onClick={handleStartNewGame}><i className="fas fa-undo"></i>Nouvelle partie</Link>
             </li>}
           </ul>
-          <button className='navbar__burger'>
-            <span className="burger-bar" onClick={handleShowLinks}></span>
+          <button className='navbar__burger' onClick={handleShowLinks}>
+            <span className="burger-bar"></span>
           </button>
         </header>
   )

@@ -15,7 +15,7 @@
     bottom: 0;
     right: 0;
     background-color: var(--dark-overlay);
-    z-index: 0;
+    z-index: 2;
   }
   &__hidden{
     display: none;

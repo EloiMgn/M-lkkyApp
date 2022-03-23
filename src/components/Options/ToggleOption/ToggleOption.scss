@@ -61,4 +61,7 @@
   margin: var(--margin-small) 0;
   justify-content: space-between;
   width: 80vw;
+  &__title{
+    max-width: 57vw;
+  }
 }

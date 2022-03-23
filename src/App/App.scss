@@ -1,4 +1,4 @@
-@import '../../utils/variables';
+@import '../utils/variables';
 
 .App {
   text-align: center;
@@ -11,7 +11,8 @@
   background: var(--color-background);
   background-image: var(--background-app);
   color: var(--font-color);
-
+  display: flex;
+  flex-direction: column;
 }
 
 a {

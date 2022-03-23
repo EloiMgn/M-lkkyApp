@@ -58,6 +58,10 @@
 }
 .pushable:hover {
   filter: brightness(110%);
+
+}
+.pushable.animated:hover i {
+  animation: iconTurn 400ms ease-in;
 }
 .pushable:hover .front {
   transform: translateY(-6px);
@@ -85,4 +89,19 @@
 }
 .pushable:focus:not(:focus-visible) {
   outline: none;
+}
+
+@keyframes iconTurn {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(15px) rotate(180deg);
+  }
+  75% {
+    transform: translateX(-5px) rotate(360deg);
+  }
+  100% {
+    transform: translateX(0) rotate(360deg);
+  }
 }

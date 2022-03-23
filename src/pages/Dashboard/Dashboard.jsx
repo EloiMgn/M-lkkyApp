@@ -1,14 +1,13 @@
 import './Dashboard.scss'
-import Header from '../../components/Header/Header'
 import Button from '../../components/Button/Button'
 import Teams from '../../components/Teams/Teams';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState, useCallback } from 'react';
 import { getLocalStorage, setLocalStorage } from '../../utils/localStorage'
-import Footer from '../../components/Footer/Footer';
 import { useNavigate } from 'react-router-dom';
 import Options from '../../components/Options/Options';
 import TeamForm from '../../components/TeamForm/TeamForm';
+import Title from '../../components/Title/Title';
 
 const Dashboard = () => {
 const [enoughPlayers, setEnoughPlayers] = useState(false)
@@ -67,46 +66,55 @@ useEffect(() => {
 const buttonStyleGreen = {
   frontStyle: {
     "background": "#219653",
+    "transition": "200ms"
   },
   frontHoverStyle: {
     "background": "#219653",
+    "transition": "200ms"
   },
   backStyle: {
-    "background": `linear-gradient(to left, #00672a 0%, #003314 8%, #003314 92%, #00672a 100%)`
+    "background": `linear-gradient(to left, #00672a 0%, #003314 8%, #003314 92%, #00672a 100%)`,
+    "transition": "200ms"
   },
   backHoverStyle: {
-    "background": `linear-gradient(to left, #00672a 0%, #003314 8%, #003314 92%, #00672a 100%)`
+    "background": `linear-gradient(to left, #00672a 0%, #003314 8%, #003314 92%, #00672a 100%)`,
+    "transition": "200ms"
   }
 }
 
   return (
-    <div id="Dashboard" className="Dashboard">
-      <Header/>
-      <main className='Dashboard__content'>
-      <section className='Dashboard__teams'>
-        <div className='Dashboard__teams'>
-          {(!state.playing || state.teams.length < 1) && <h1 className='Dashboard__title'>Créez vos équipes</h1>}
-          {(state.playing || state.teams.length >= 1) && <h1 className='Dashboard__title'>Equipes:</h1>}
-          <Teams/>
-          {!state.playing && <Button text={"Ajouter une nouvelle équipe"} ico={"fas fa-users"} action={addNewTeam} /> }
-          <Options/>
+  <div className='Dashboard'>
+    <Title text={'Tableau de Bord'}/>
+    <main className='Dashboard__content'>
+    <section className='Dashboard__teams'>
+      <div className='Dashboard__teams'>
+        {(!state.playing || state.teams.length < 1) && <h1 className='Dashboard__title'>Créez vos équipes</h1>}
+        {(state.playing || state.teams.length >= 1) && <h1 className='Dashboard__title'>Equipes:</h1>}
+        <Teams/>
+        {!state.playing && <Button text={"Ajouter une nouvelle équipe"} ico={"fas fa-users"} action={addNewTeam} /> }
+        <Options/>
+      </div>
+      {state.teams.length > 1? 
+        <div className='Dashboard__startGame'>
+          {enoughPlayers && !state.playing && <Button text={"Commencer à jouer"} ico={"fas fa-play"} action={handleStartGame} style={buttonStyleGreen}/>}
+          {state.playing && <Button text={'Continuer la partie'} action={handleContinueGame} ico={"fas fa-redo"} animation/>}
         </div>
-        {state.teams.length > 1? 
-          <div className='Dashboard__startGame'>
-            {enoughPlayers && !state.playing && <Button text={"Commencer à jouer"} ico={"fas fa-play"} action={handleStartGame} style={buttonStyleGreen}/>}
-            {state.playing && <Button text={'Continuer la partie'} action={handleContinueGame} ico={"fas fa-redo"}/>}
-          </div>
-          : null
-        }
-      </section>
-        {window.innerWidth>767 &&  addTeam && 
-          <section className='Dashboard__newTeam'>
-            <TeamForm addTeam={addTeam} setAddTeam={setAddTeam}/>
-          </section>
-        }
-      </main>
-      <Footer/>
-    </div>
+        : null
+      }
+    </section>
+      {window.innerWidth>767 &&  addTeam && 
+        <section className='Dashboard__newTeam open'>
+          <TeamForm addTeam={addTeam} setAddTeam={setAddTeam}/>
+        </section>
+      }
+      {window.innerWidth>767 &&  !addTeam && 
+        <section className='Dashboard__newTeam close'>
+          {/* <TeamForm addTeam={addTeam} setAddTeam={setAddTeam}/> */}
+        </section>
+      }
+    </main>
+
+  </div>
   ) 
 
      

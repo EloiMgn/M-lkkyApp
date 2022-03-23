@@ -10,9 +10,9 @@
   border: none;
   color: inherit;
   z-index: 0;
-  text-align: baseline;
   @media screen and (min-width:767px) {
     margin: 2vh ;
+    margin-right: 36vw;
   }
   &__link{
     display: block;

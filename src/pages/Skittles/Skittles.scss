@@ -1,9 +1,4 @@
 .Skittles{
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  &__body{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,14 +6,17 @@
     min-height: 80vh;
     margin-top: 10vh;
     margin-bottom: 11vh;
-    h1{
-      text-align: center;
-      font-size: var(--fontsize-h2);
-      font-weight: var(--fontweight-bold);
-      margin: var(--margin-medium);
-      // margin-top: var(--margin-medium);
-      color: var(--font-color);
+    @media screen and (min-width:767px) {
+      margin-left: 14vw;
     }
+    // h1{
+    //   text-align: center;
+    //   font-size: var(--fontsize-h2);
+    //   font-weight: var(--fontweight-bold);
+    //   margin: var(--margin-medium);
+    //   // margin-top: var(--margin-medium);
+    //   color: var(--font-color);
+    // }
     &__content{
       display: flex;
       flex-direction: column;
@@ -49,7 +47,6 @@
   
       }
     }
-  }
   &__back{
     text-decoration: none;
     color: var(--font-color);

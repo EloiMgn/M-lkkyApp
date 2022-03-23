@@ -18,7 +18,10 @@ const TeamForm = ({addTeam, setAddTeam}) => {
   const dispatch = useDispatch();
 
   const handleValidate = () => {
-    // setAddTeam(!addTeam)
+    const windowWidth = window.innerWidth
+   if (windowWidth > 765){
+     setAddTeam(!addTeam)
+   }
     if(playerList.length > 1) {
     const playerNames = []
     playerList.forEach(player => {
@@ -74,16 +77,20 @@ const TeamForm = ({addTeam, setAddTeam}) => {
   
   const buttonStyleGray = {
     frontStyle: {
-      "background": "#6e6e6e",
+      "background": "#6c6c6c",
+      "transition": "200ms"
     },
     frontHoverStyle: {
-      "background": "#6e6e6e",
+      "background": "#6c6c6c",
+      "transition": "200ms"
     },
     backStyle: {
-      "background": `#4e4e4e`
+      "background": `#4e4e4e`,
+      "transition": "200ms"
     },
     backHoverStyle: {
-      "background": `#6e6e6e`
+      "background": `#4c4c4c`,
+      "transition": "200ms"
     }
   }
 if (addTeam || window.innerWidth< 767){
