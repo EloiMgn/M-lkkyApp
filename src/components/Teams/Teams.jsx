@@ -41,7 +41,7 @@ const Teams = () => {
           </div>
           )
         } else return (
-          <div className={state.playing? `team__playing team__${idx} playing` : `team team__${idx}`} key={idx}>
+          <div className={state.playing? `team__playing team__${idx} playing` : `team team__${idx}`} key={idx} style={{backgroundColor: `${team.color}`}}>
           <div className='team__name'>
           <h2>{team.name}</h2>
           </div>

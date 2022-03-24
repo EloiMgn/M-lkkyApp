@@ -48,14 +48,15 @@ return (
           if(!x.hide) {
             return (
               <div className="addPlayer__form" key={i}>
+                    <label className="addPlayer__label" htmlFor="player">Joueur {i+1}</label>
                 <div className='addPlayer'>
                   <div className="addPlayer__input">
-                    <label htmlFor="player">Joueur {i+1}</label>
                     <input
-                    id="player"
+                    placeholder={`Entrez le prénom du joueur ${i+1}`}
+                      id="player"
                       name="player"
                       onChange={e => handleInputChange(e, i)}
-                      onBlur={e => handleAddClick(i)}
+                      // onBlur={e => handleAddClick(i)}
                       onKeyPress={e => handleAddEnter(e, i)}
                       className={player.length > 0? 'playerSmall' : 'inputBig'}
                       autoFocus={true}

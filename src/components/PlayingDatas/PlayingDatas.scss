@@ -16,7 +16,7 @@
     &-score, &-fails, &__player{
       display: flex;
       justify-content: space-between;
-      margin: var(--margin-small) var(--margin-medium);
+      margin: .7rem 0;
       font-size: var(--fontsize-h3);
       font-weight: var(--fontweight-light);
       text-transform: capitalize; 

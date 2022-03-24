@@ -1,6 +1,11 @@
 .select{
+  @media screen and (min-width:767px) {
+    height: 40vh;
+    width: auto;
+    }
   height: 50vh;
-  margin: var(--margin-medium) 0;
+  width: 85vw;
+  margin: var(--margin-small) 0;
   padding: var(--margin-small);
   text-align: center;
   background: var(--primary);
@@ -9,6 +14,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
  &__middleTop, &__bottom, &__middleBottom{
     display: flex;
     justify-content: center;
@@ -17,8 +23,5 @@
   &__top{
     display: flex;
     justify-content: center;
-  }
-  &__text{
-    margin-top: var(--margin-small);
   }
 }

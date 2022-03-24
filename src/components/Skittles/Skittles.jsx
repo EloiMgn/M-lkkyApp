@@ -1,9 +1,10 @@
 import Skittle from './Skittle/Skittle';
 import './Skittles.scss'
 
-const Skittles = () => {
+const Skittles = ({color}) => {
+  console.log(color);
   return (
-    <div className='select'>
+    <div className='select' style={{backgroundColor: `${color}`}}>
       <div className='select__top'>
         <Skittle frontValue={7}/>
         <Skittle frontValue={9}/>
@@ -24,7 +25,6 @@ const Skittles = () => {
         <Skittle frontValue={1}/>
         <Skittle frontValue={2}/>
       </div>
-      <p className='select__text'>Sélectionnez les quilles tombées ci-dessus et cliquez sur "Equipe suivante" pour valider</p>
     </div>
   )
 }

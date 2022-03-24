@@ -44,3 +44,12 @@
   width: 100%;
   justify-content: center;
 }
+
+.select__text{
+  border-radius: var(--border-radius);
+  padding: var(--margin-small);
+  p{
+    text-align: center;
+    // font-weight: var(--fontweight-bold);
+  }
+}

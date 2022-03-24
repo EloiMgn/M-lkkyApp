@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { useDispatch } from 'react-redux';
 import './TeamForm.scss'
@@ -7,13 +7,18 @@ import PlayerForm from '../PlayerForm/PlayerForm';
 import TeamNameForm from '../TeamNameForm/TeamNameForm';
 import Player from '../Player/Player';
 import Button from '../Button/Button';
+import ColorForm from '../ColorForm/ColorForm';
 
 const TeamForm = ({addTeam, setAddTeam}) => {
   const [validate, setValidate] = useState(false)
   const [teamName, setTeamName] = useState("")
+  const[teamColor, setTeamColor] = useState(null)
   const [playerList, setplayerList] = useState([{player: "", hide: false}])
-  const [Team, setTeam] = useState([{name: teamName, players: '', score: 0, fails: 0, playerTurn: 0, level: false, stats:[], eliminated: false}])
+  const [Team, setTeam] = useState([{name: teamName, players: '', score: 0, fails: 0, playerTurn: 0, level: false, stats:[], eliminated: false, color:''}])
   const [toogle, setToogle] = useState(false)
+  const [teamNameValid, setTeamNameValid] = useState(false)
+  const [teamColorValid, setTeamColorValid] = useState(false)
+
   const navigate= useNavigate()
   const dispatch = useDispatch();
 
@@ -62,6 +67,14 @@ const TeamForm = ({addTeam, setAddTeam}) => {
     setToogle(!toogle)
   }
 
+  useEffect(() => {
+    if(teamNameValid && teamColorValid) {
+      setValidate(true)
+    } else if(!teamNameValid || !teamColorValid) {
+      setValidate(false)
+    }
+}, [setValidate, teamColorValid, teamNameValid])
+
   const buttonStyleGreen = {
     frontStyle: {
       "background": "#219653",
@@ -96,10 +109,28 @@ const TeamForm = ({addTeam, setAddTeam}) => {
       "transition": "200ms"
     }
   }
+
+
 if (window.innerWidth< 767){
   return (
     <div className="TeamForm">
-      <TeamNameForm name={teamName} setName={setTeamName} setValidate={setValidate} team={Team} setTeam={setTeam}/>
+        <TeamNameForm name={teamName} 
+        setName={setTeamName} 
+        setValidate={setValidate} 
+        team={Team} 
+        setTeam={setTeam} 
+        setTeamNameValid={setTeamNameValid} 
+        teamNameValid={teamNameValid}/>
+        {teamNameValid &&       
+        <ColorForm 
+        teamColor={teamColor} 
+        setTeamColor={setTeamColor} 
+        setValidate={setValidate} 
+        team={Team} 
+        setTeam={setTeam} 
+        setTeamColorValid={setTeamColorValid} 
+        teamColorValid={teamColorValid}/>}
+
       {playerList.map((x, i) => {
         if (playerList.length > 1 && x.player !== "" && playerList[i+1]) {
           return (
@@ -107,23 +138,30 @@ if (window.innerWidth< 767){
           ) 
         } return null
       })}
-      {/* {if(window.innerWidth> 767){
-        return       <div>
-        {!toogle && <Button text={"Ajouter un joueur"} action={tooglePlayer} ico={"fas fa-user-plus"} /> }
         {validate && <Button text={"Valider l'équipe"} action={handleValidate} ico={"fas fa-users"} style={buttonStyleGreen}/>}
-      </div>
-      }} */}
-        {!toogle && <Button text={"Ajouter un joueur"} action={tooglePlayer} ico={"fas fa-user-plus"} /> }
+        {!toogle && teamNameValid && teamColorValid && <Button text={"Ajouter un joueur"} action={tooglePlayer} ico={"fas fa-user-plus"} /> }
         {toogle && <PlayerForm list={playerList} setList={setplayerList} setToogle={setToogle}/>}
-        {validate && <Button text={"Valider l'équipe"} action={handleValidate} ico={"fas fa-users"} style={buttonStyleGreen}/>}
-
       <Button text={"Annuler"} action={handleCancel} style={buttonStyleGray}/>
     </div>
     );
   } else if(addTeam || window.innerWidth>767){
     return (
       <div className="TeamForm">
-        <TeamNameForm name={teamName} setName={setTeamName} setValidate={setValidate} team={Team} setTeam={setTeam}/>
+        <TeamNameForm name={teamName} 
+        setName={setTeamName} 
+        setValidate={setValidate} 
+        team={Team} 
+        setTeam={setTeam} 
+        setTeamNameValid={setTeamNameValid} 
+        teamNameValid={teamNameValid}/>
+        { teamNameValid && <ColorForm 
+        teamColor={teamColor} 
+        setTeamColor={setTeamColor} 
+        setValidate={setValidate} 
+        team={Team} 
+        setTeam={setTeam} 
+        setTeamColorValid={setTeamColorValid} 
+        teamColorValid={teamColorValid}/>}
         {playerList.map((x, i) => {
           if (playerList.length > 1 && x.player !== "" && playerList[i+1]) {
             return (
@@ -133,7 +171,7 @@ if (window.innerWidth< 767){
         })}
           {toogle && <PlayerForm list={playerList} setList={setplayerList} setToogle={setToogle}/>}
         <div className='buttons__desktop'>
-          {!toogle && <Button text={"Ajouter un joueur"} action={tooglePlayer} ico={"fas fa-user-plus"} /> }
+          {!toogle && teamNameValid && teamColorValid && <Button text={"Ajouter un joueur"} action={tooglePlayer} ico={"fas fa-user-plus"} /> }
           {validate && <Button text={"Valider l'équipe"} action={handleValidate} ico={"fas fa-users"} style={buttonStyleGreen}/>}
         </div>
         <Button text={"Annuler"} action={handleCancel} style={buttonStyleGray}/>

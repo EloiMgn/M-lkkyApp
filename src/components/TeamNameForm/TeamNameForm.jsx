@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
 import './TeamNameForm.scss'
 
-const TeamNameForm = ({name, setName, setValidate, team, setTeam}) => {
-  const [teamNameValid, setTeamNameValid] = useState(false)
+const TeamNameForm = ({name, setName,  team, setTeam, setTeamNameValid, teamNameValid}) => {
+
  
 
   // handle input change
@@ -38,14 +37,6 @@ const TeamNameForm = ({name, setName, setValidate, team, setTeam}) => {
     newTeam[0].name = ''
     setTeam(newTeam)
   };
-
-  useEffect(() => {
-    if(teamNameValid) {
-      setValidate(true)
-    } else if(!teamNameValid) {
-      setValidate(false)
-    }
-}, [setValidate, teamNameValid])
 
 return (
 <div className="teamName">

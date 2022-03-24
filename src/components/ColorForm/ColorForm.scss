@@ -1,0 +1,45 @@
+.teamColor{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  background-color: white;
+  border-radius: var(--border-radius);
+  &__input{
+    display: flex;
+    height: 10vh;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: var(--margin-small) 0;
+    @media screen and (max-width:767px) {
+      height: 15vh;
+    }
+    @media screen and (max-height:500px) {
+      min-height: 100px;
+    }
+    h2{
+      font-weight: var(--fontweight-bold);
+      text-transform: none; 
+    }
+    span{
+      -webkit-tap-highlight-color: transparent;
+    }
+  }
+  &__selected{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin: var(--margin-small) 0;
+    h2{
+      margin: 0 var(--margin-small);
+      text-transform: none; 
+    }
+    &-color{
+      width: 40px;
+      height: 40px;
+      border-radius: 10rem;
+      // margin-left: var(--margin-medium);
+    }
+  }
+}

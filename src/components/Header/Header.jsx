@@ -81,22 +81,18 @@ const Header = () => {
             <li className='navbar__item' onClick={handleShowLinks}>
               <Link to="/" className='navbar__link'><i className="fa-solid fa-house"></i> Accueil</Link>
             </li>
-            <li className='navbar__item' onClick={handleShowLinks}>
+            <li className='navbar__item skittles' onClick={handleShowLinks}>
               <Link to="/skittles" className='navbar__link'><i className="fas fa-shapes"></i> Placer les quilles</Link>
             </li>
-            <li className='navbar__item' onClick={handleShowLinks}>
+            <li className='navbar__item rules' onClick={handleShowLinks}>
               <Link to="/rules" className='navbar__link'><i className="fa-solid fa-file-lines"></i> Règles</Link>
             </li>
-            {state.playing && state.winner === null && 
-            <li className='navbar__item' onClick={handleShowLinks}>
-              <Link to="/dashboard" className='navbar__link'><i className="fa-solid fa-list-ol"></i> Scores</Link>
-            </li>}
             {state.playing &&
-            <li className='navbar__item' onClick={handleShowLinks}>
+            <li className='navbar__item restart' onClick={handleShowLinks}>
             <Link to="/dashboard" className='navbar__link' onClick={handleRestartGame}><i className="fas fa-redo"></i> Recommencer la partie</Link>
             </li>}
             {state.playing && 
-            <li className='navbar__item' onClick={handleShowLinks}>
+            <li className='navbar__item newGame' onClick={handleShowLinks}>
               <Link to="/" className='navbar__link' onClick={handleStartNewGame}><i className="fas fa-undo"></i>Nouvelle partie</Link>
             </li>}
           </ul>

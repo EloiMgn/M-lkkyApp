@@ -198,8 +198,11 @@ const handleNextTeam = (i) => {
               }
               <section className='Game__content__playingArea'>
               <Title text={'Partie en cours'}/>
-              <Subtitle text={team.name}/>
-                <Skittles />
+              <Subtitle text={`Equipe : ${team.name}`}/>
+                <Skittles color={state.teams[i].color}/>
+                <div>
+                  <p className='select__text'>Sélectionnez les quilles tombées ci-dessus et cliquez sur "Equipe suivante" pour valider</p>
+                </div>
                 <div className='navBtns'>
                   <Button text='Equipe suivante'action={e => handleNextTeam(i)} ico={'fas fa-share'} animation/>
                 </div>
@@ -225,8 +228,11 @@ const handleNextTeam = (i) => {
               }
               <section className='Game__content__playingArea'>
               <Title text={'Partie en cours'}/>
-              <Subtitle text={team.name}/>
-                <Skittles />
+              <Subtitle text={`Equipe : ${team.name}`}/>
+                <Skittles color={state.teams[i].color}/>
+                <div className='select__text' style={{backgroundColor: `${state.teams[i].color}`}}>
+                  <p>Sélectionnez ci-dessus les quilles tombées et cliquez sur "Equipe suivante" pour valider</p>
+                </div>
                 <div className='navBtns'>
                   <Button text='Equipe suivante'action={e => handleNextTeam(i)} ico={'fas fa-share'} animation/>
                 </div>
