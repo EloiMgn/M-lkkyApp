@@ -1,0 +1,19 @@
+.Mentions__content{
+    @media screen and (min-width:767px) {
+      margin: 0;
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 90vh;
+    width: 90vw;
+    margin: 10vh var(--margin-small);
+    // width: 100%;
+    &__text{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
