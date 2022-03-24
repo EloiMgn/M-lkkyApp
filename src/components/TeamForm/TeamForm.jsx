@@ -18,8 +18,7 @@ const TeamForm = ({addTeam, setAddTeam}) => {
   const dispatch = useDispatch();
 
   const handleValidate = () => {
-    const windowWidth = window.innerWidth
-   if (windowWidth > 765){
+   if (window.innerWidth > 765){
      setAddTeam(!addTeam)
    }
     if(playerList.length > 1) {
@@ -45,7 +44,11 @@ const TeamForm = ({addTeam, setAddTeam}) => {
   }
 
   const handleCancel = ()=> {
-    navigate('/dashboard', { replace: true })
+    if (window.innerWidth > 765){
+      setAddTeam(!addTeam)
+    } else if(window.innerWidth<765){
+      navigate('/dashboard', { replace: true })
+    }
   }
 
   // handle click event of the Remove button
@@ -93,7 +96,7 @@ const TeamForm = ({addTeam, setAddTeam}) => {
       "transition": "200ms"
     }
   }
-if (addTeam || window.innerWidth< 767){
+if (window.innerWidth< 767){
   return (
     <div className="TeamForm">
       <TeamNameForm name={teamName} setName={setTeamName} setValidate={setValidate} team={Team} setTeam={setTeam}/>
@@ -104,13 +107,39 @@ if (addTeam || window.innerWidth< 767){
           ) 
         } return null
       })}
-      {!toogle && <Button text={"Ajouter un joueur"} action={tooglePlayer} ico={"fas fa-user-plus"} /> }
-      {toogle && <PlayerForm list={playerList} setList={setplayerList} setToogle={setToogle}/>}
-      {validate && <Button text={"Valider l'équipe"} action={handleValidate} ico={"fas fa-users"} style={buttonStyleGreen}/>}
+      {/* {if(window.innerWidth> 767){
+        return       <div>
+        {!toogle && <Button text={"Ajouter un joueur"} action={tooglePlayer} ico={"fas fa-user-plus"} /> }
+        {validate && <Button text={"Valider l'équipe"} action={handleValidate} ico={"fas fa-users"} style={buttonStyleGreen}/>}
+      </div>
+      }} */}
+        {!toogle && <Button text={"Ajouter un joueur"} action={tooglePlayer} ico={"fas fa-user-plus"} /> }
+        {toogle && <PlayerForm list={playerList} setList={setplayerList} setToogle={setToogle}/>}
+        {validate && <Button text={"Valider l'équipe"} action={handleValidate} ico={"fas fa-users"} style={buttonStyleGreen}/>}
+
       <Button text={"Annuler"} action={handleCancel} style={buttonStyleGray}/>
     </div>
     );
-  } return null
+  } else if(addTeam || window.innerWidth>767){
+    return (
+      <div className="TeamForm">
+        <TeamNameForm name={teamName} setName={setTeamName} setValidate={setValidate} team={Team} setTeam={setTeam}/>
+        {playerList.map((x, i) => {
+          if (playerList.length > 1 && x.player !== "" && playerList[i+1]) {
+            return (
+              <Player action={e => handleRemoveClick(e, i)} i={i} player={x.player} key={i}/>
+            ) 
+          } return null
+        })}
+          {toogle && <PlayerForm list={playerList} setList={setplayerList} setToogle={setToogle}/>}
+        <div className='buttons__desktop'>
+          {!toogle && <Button text={"Ajouter un joueur"} action={tooglePlayer} ico={"fas fa-user-plus"} /> }
+          {validate && <Button text={"Valider l'équipe"} action={handleValidate} ico={"fas fa-users"} style={buttonStyleGreen}/>}
+        </div>
+        <Button text={"Annuler"} action={handleCancel} style={buttonStyleGray}/>
+      </div>
+      );
+  }
 }
 
 export default TeamForm;

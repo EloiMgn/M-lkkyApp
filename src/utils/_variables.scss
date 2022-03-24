@@ -84,37 +84,37 @@
   /* OTHER */
   --border-radius: 6px;
 
-  --margin-small: 8px;
-  --margin-medium: 15px;
-  --margin-large: 50px;
+  --margin-small: 1rem;
+  --margin-medium: 2rem;
+  --margin-large: 3rem;
 
   --transition-long: 0.5s;
 
 }
 
-.theme-dark {
-  --color-background: var(--white);
-  --color-background-rev: var(--light-gray);
-  --background-app: url("../utils/img/escheresque-dark.png");
+// .theme-dark {
+//   --color-background: var(--white);
+//   --color-background-rev: var(--light-gray);
+//   --background-app: url("../utils/img/escheresque-dark.png");
 
-  --font-color: var(--black);
-  --font-color-rev: var(--white);
-  --hover-color: var(--tertiary);
+//   --font-color: var(--black);
+//   --font-color-rev: var(--white);
+//   --hover-color: var(--tertiary);
   
-  --color-card-background: var(--black);
-  --color-country-row: var(--dark-gray);
-  --color-card-overlay: var(--dark-overlay);
+//   --color-card-background: var(--black);
+//   --color-country-row: var(--dark-gray);
+//   --color-card-overlay: var(--dark-overlay);
 
-  --color-btn: var(--primary);
+//   --color-btn: var(--primary);
 
-  --color-cursor: var(--font-color);
+//   --color-cursor: var(--font-color);
 
-  --skelton-background: var(--dark-gray);
-  --skeleton-font: var(--color-card-background);
-  --skeleton-lightning: rgba(102, 102, 102, 0.5);
+//   --skelton-background: var(--dark-gray);
+//   --skeleton-font: var(--color-card-background);
+//   --skeleton-lightning: rgba(102, 102, 102, 0.5);
 
-  --box-shadow: var(--box-shadow-dark);
-}
+//   --box-shadow: var(--box-shadow-dark);
+// }
 
 .theme-light {
   --color-background: var(--light-gray);

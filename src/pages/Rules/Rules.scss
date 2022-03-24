@@ -3,8 +3,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-
+  &__text{
+    margin-left: 3rem;
+  }
   &__img{
     display: flex;
     flex-direction: column;
@@ -15,7 +16,7 @@
     height: 60vmin;
     margin-top: var(--margin-medium);
     @media screen and (min-width:767px) {
-      width: 80vw;
+      // width: 80vw;
       height: 35vmin;
     }
     &-img {
@@ -35,7 +36,9 @@
     margin-top: 10vh;
     margin-bottom: 11vh;
     @media screen and (min-width:767px) {
-      margin-left: 18vw;
+      margin: 0;
+      max-width: 80vw;
+      margin-left: 12vw;
     }
     &__intro{
       display: flex;
@@ -56,14 +59,13 @@
 
     h3 {
       font-size: var(--fontsize-h3);
-      margin-top: var(--margin-medium);
+      // margin-top: var(--margin-medium);
     }
 
     p,
     ul {
-      margin-left: var(--margin-medium);
+      margin: var(--margin-medium);
       font-size: var(--fontsize-p);
-      margin-top: var(--margin-medium);
       list-style-type: circle;
       line-height: var(--line-height-large);
     }
@@ -78,32 +80,32 @@
   font-weight: var(--fontweight-bold);
 }
 
-.intro {
-  display: flex;
-  flex-direction: column;
-  @media screen and (min-width:767px) {
-    flex-direction: row;
-    justify-content: center;
-    margin-bottom: var(--margin-large);
-  }
-
-  &__1,
-  &__2 {
-    @media screen and (min-width:767px) {
-      margin-left: var(--margin-large);
-    }
-  }
+.separator {
+  background-color: var(--primary);
+  border-radius: 2px;
+  height: 2px;
+  margin: var(--margin-medium) auto;
+  width: 100%;
 }
 
-.rules {
+
+
+.rules, .intro {
   display: flex;
   flex-direction: column;
-
   &__1,
   &__2 {
+    background-color: var(--light-gray);
+    border-radius: var(--border-radius);
     @media screen and (min-width:767px) {
       width: 50%;
-      margin-left: var(--margin-medium);
+      margin: var(--margin-medium);
+    }
+    &__rule, &__intro{
+      text-align: justify;
+      @media screen and (min-width:767px) {
+        margin: var(--margin-medium);
+      }
     }
   }
 

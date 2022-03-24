@@ -91,7 +91,8 @@ const buttonStyleGreen = {
         {(!state.playing || state.teams.length < 1) && <h1 className='Dashboard__title'>Créez vos équipes</h1>}
         {(state.playing || state.teams.length >= 1) && <h1 className='Dashboard__title'>Equipes:</h1>}
         <Teams/>
-        {!state.playing && <Button text={"Ajouter une nouvelle équipe"} ico={"fas fa-users"} action={addNewTeam} /> }
+        {!state.playing && window.innerWidth>767  && !addTeam &&  <Button text={"Ajouter une nouvelle équipe"} ico={"fas fa-users"} action={addNewTeam} /> }
+        {!state.playing && window.innerWidth<767  && <Button text={"Ajouter une nouvelle équipe"} ico={"fas fa-users"} action={addNewTeam} /> }
         <Options/>
       </div>
       {state.teams.length > 1? 

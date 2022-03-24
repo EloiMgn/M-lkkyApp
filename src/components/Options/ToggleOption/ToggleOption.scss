@@ -7,6 +7,7 @@
   overflow: hidden;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  box-shadow: var(--box-shadow-light);
 }
 
 .option__container{
@@ -14,9 +15,11 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  
   i{
     color: #6e6e6e;
     margin-left: var(--margin-small);
+    cursor: pointer;
   }
 }
 
@@ -30,6 +33,10 @@
   left: 4px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   transition: var(--transition-long);
+  &:hover{
+    box-shadow: var(--box-shadow-light);
+  }
+
 }
 
 .switchContainer .action {

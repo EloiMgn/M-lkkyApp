@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import molkkyImg from '../../utils/img/iStock-1324002091.jpg'
 import Title from '../../components/Title/Title';
+import Subtitle from '../../components/Subtitle/Subtitle';
 // import HomeModale from '../../components/HomeModale/HomeModale';
 
 
@@ -56,12 +57,12 @@ const Home = () => {
       return (
         <main className='Home'>
           <div className='Home__content'>
-            <div className='Rules__img'>
-              <img className='Rules__img-img' src={molkkyImg} alt="" />
+            <div className='Home__img'>
+              <img className='Home__img-img' src={molkkyImg} alt="" />
             </div>
             <div className='Home__text'>
             <Title text={'Bienvenue sur MölkKing'}/>
-              <h2>Devenez le King 🤴 ou la Queen 👸 du Mölkky</h2>
+            <Subtitle text="Devenez le King 🤴 ou la Queen 👸 du Mölkky"/>
             </div>
             <div className='bottom__container'>
               <Button text='Continuer la partie en cours' action={handleContinueGame} style={buttonStyleGreen} ico={"fas fa-redo"} animation/>
@@ -80,12 +81,12 @@ const Home = () => {
     } return (
       <main className='Home'>
           <div className='Home__content'>
-              <div className='Rules__img'>
-                  <img className='Rules__img-img' src={molkkyImg} alt="" />
+              <div className='Home__img'>
+                  <img className='Home__img-img' src={molkkyImg} alt="" />
               </div>
             <div className='Home__text'>
             <Title text={'Bienvenue sur MölkKing'}/>
-              <h2>Soyez le King 🤴 ou la Queen 👸 du Mölkky!</h2>
+            <Subtitle text="Devenez le King 🤴 ou la Queen 👸 du Mölkky"/>
             </div>
             <div className='bottom__container'>
               <Button text='Nouvelle partie' size={"medium"} action={handleStartNewGame} ico={"fas fa-play"} style={buttonStyleGreen}/>

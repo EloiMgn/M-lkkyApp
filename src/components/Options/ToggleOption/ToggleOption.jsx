@@ -36,7 +36,7 @@ const ToggleOption = ({action, details, stateValue, explication}) => {
           <div className='action'>{text}</div>
         </div>
       </div>
-      {explication && <i className="fas fa-question-circle" onClick={openModal}></i>}
+      {explication && <i className="fas fa-question-circle modalBtn" onClick={openModal}></i>}
       {/* {!explication && <i className="fas" onClick={openModal}></i>} */}
       {modal && <Modale title={action} text={explication} setModal={setModal}/>}
     </div>

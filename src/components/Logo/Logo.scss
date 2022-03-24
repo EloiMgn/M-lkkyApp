@@ -1,24 +1,26 @@
 @import '../../utils/variables';
 
 .logo {
-  font-family: var(--font-title);
-  font-size: var(--fontsize-big);
-  margin-left: var(--margin-medium);
-  max-width: 50vw;
-  height: 40px;
-  background: transparent;
-  border: none;
-  color: inherit;
-  z-index: 0;
   @media screen and (min-width:767px) {
-    margin: 2vh ;
-    margin-right: 36vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    // margin-left: 12vw;
+  }
+  @media screen and (max-width:767px) {
+    margin-left: var(--margin-medium);
+    max-width: 50vw;
+    background: transparent;
+    border: none;
+    // color: inherit;
+    z-index: 0;
   }
   &__link{
     display: block;
     color: var(--white);
     max-width: 50vw;
-    height: 40px;
+    height: fit-content;
     img{
       max-width: 50vw;
       max-height: 4rem;

@@ -8,6 +8,10 @@
   z-index: 3;
   border-radius: var(--border-radius);
   border: solid 2px var(--black);
+  @media screen and (min-width:767px) {
+    width: 20vw;
+    left: 65vw;
+  }
   &__background{
     position: absolute;
     top: 0;
@@ -51,3 +55,9 @@
   max-height: 25vh;
   max-width: 25vh;
 }
+
+// .modalBtn{
+//   @media screen and (min-width:767px) {
+//     position: relative;
+//   }
+// }

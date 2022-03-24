@@ -12,8 +12,8 @@
   height: 8vh;
   width: 100%;
   margin: var(--margin-small) auto;
-  padding: var(--margin-small) 0;
-  background-color: var(--light-blue);
+  // padding: var(--margin-small) 0;
+  background-color: var(--light-gray);
   border-radius: var(--border-radius);
   box-shadow: 2px 3px 5px #9b9b9b;
   h2{
@@ -41,6 +41,7 @@
   &__delete{
     font-size: var(--fontsize-h2);
     margin: var(--margin-medium);
+    cursor: pointer;
   }
   &__datas{
     width: 50%;
@@ -55,7 +56,7 @@
       width: 50%;
       margin-left: var(--margin-medium);
       font-size: var(--fontsize-h3);
-      color: var(--secondary);
+      color: var(--primary);
       display: flex;
       justify-content: flex-end;
     } 

@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import { setLocalStorage } from '../../utils/localStorage';
 import Teams from '../../components/Teams/Teams';
 import Title from '../../components/Title/Title';
+import Subtitle from '../../components/Subtitle/Subtitle';
 
 const Game = () => {
   const { id, playerId } = useParams();
@@ -181,32 +182,63 @@ const handleNextTeam = (i) => {
     }
   }
 
-  return (
-        state.teams.map((team, i) => {
-          if (i.toString() === id) {
-            return (
-              <main className={`team${i+1} Game__content`} key={i}>
-                {window.innerWidth>767 && 
-                  <section className='Game__content__dashboard'>
-                    <Title text={'Scores'}/>
-                    <Teams/>
-                  </section>
-                }
-                <section className='Game__content__playingArea'>
-                <Title text={'Partie en cours'}/>
-                  <h2>{team.name}</h2>
-                  <Skittles />
-                  <div className='navBtns'>
-                    <Button text='Equipe suivante'action={e => handleNextTeam(i)} ico={'fas fa-share'} animation/>
-                  </div>
+  if(window.innerWidth>767) {
+    return (
+      state.teams.map((team, i) => {
+        if (i.toString() === id) {
+          return (
+            <main className={`team${i+1} Game__content`} key={i}>
+              {window.innerWidth>767 && 
+                <section className='Game__content__dashboard'>
+                  <Title text={'Scores'}/>
+                  <Teams/>
+                  <div className='separator'></div>
                   <PlayingDatas team={team}/>  
                 </section>
-            </main>
-            )
-          } 
-          return null
-        })
-  )
+              }
+              <section className='Game__content__playingArea'>
+              <Title text={'Partie en cours'}/>
+              <Subtitle text={team.name}/>
+                <Skittles />
+                <div className='navBtns'>
+                  <Button text='Equipe suivante'action={e => handleNextTeam(i)} ico={'fas fa-share'} animation/>
+                </div>
+
+              </section>
+          </main>
+          )
+        } 
+        return null
+      })
+    )
+  } else if (window.innerWidth<765) {
+    return (
+      state.teams.map((team, i) => {
+        if (i.toString() === id) {
+          return (
+            <main className={`team${i+1} Game__content`} key={i}>
+              {window.innerWidth>767 && 
+                <section className='Game__content__dashboard'>
+                  <Title text={'Scores'}/>
+                  <Teams/>
+                </section>
+              }
+              <section className='Game__content__playingArea'>
+              <Title text={'Partie en cours'}/>
+              <Subtitle text={team.name}/>
+                <Skittles />
+                <div className='navBtns'>
+                  <Button text='Equipe suivante'action={e => handleNextTeam(i)} ico={'fas fa-share'} animation/>
+                </div>
+                <PlayingDatas team={team}/>  
+              </section>
+          </main>
+          )
+        } 
+        return null
+      })
+    )
+  }
 }
 
 export default Game
