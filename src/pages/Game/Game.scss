@@ -53,3 +53,13 @@
     // font-weight: var(--fontweight-bold);
   }
 }
+
+.subtitle__infos{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--light-gray);
+  padding: var(--margin-small);
+  box-shadow: var(--box-shadow-light);
+  border-radius: var(--border-radius);
+}

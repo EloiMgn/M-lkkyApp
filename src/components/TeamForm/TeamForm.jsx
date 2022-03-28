@@ -121,6 +121,7 @@ if (window.innerWidth< 767){
         setTeam={setTeam} 
         setTeamNameValid={setTeamNameValid} 
         teamNameValid={teamNameValid}/>
+
         {teamNameValid &&       
         <ColorForm 
         teamColor={teamColor} 
@@ -141,7 +142,7 @@ if (window.innerWidth< 767){
         {validate && <Button text={"Valider l'équipe"} action={handleValidate} ico={"fas fa-users"} style={buttonStyleGreen}/>}
         {!toogle && teamNameValid && teamColorValid && <Button text={"Ajouter un joueur"} action={tooglePlayer} ico={"fas fa-user-plus"} /> }
         {toogle && <PlayerForm list={playerList} setList={setplayerList} setToogle={setToogle}/>}
-      <Button text={"Annuler"} action={handleCancel} style={buttonStyleGray}/>
+      {/* <Button text={"Annuler"} action={handleCancel} style={buttonStyleGray}/> */}
     </div>
     );
   } else if(addTeam || window.innerWidth>767){

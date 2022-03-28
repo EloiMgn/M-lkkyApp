@@ -48,7 +48,11 @@ useCallback(
   }
 
   const handleContinueGame = () => {
-    navigate(`/game/${state.teams[state.turn].name}/${state.turn}/${state.teams[state.turn].players[state.teams[state.turn].playerTurn]}`, { replace: true })
+    if(state.turn){
+      navigate(`/game/${state.teams[state.turn].name}/${state.turn}/${state.teams[state.turn].players[state.teams[state.turn].playerTurn]}`, { replace: true })
+    } else {
+      navigate(`/game/${state.teams[0].name}/${0}/${state.teams[0].players[state.teams[0].playerTurn]}`, { replace: true })
+    }
   }
 
   const setNewLocalStorage = () => {

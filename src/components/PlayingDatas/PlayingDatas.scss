@@ -8,14 +8,16 @@
   border-radius: var(--border-radius);
   color: var(--font-color);
   padding: var(--margin-small);
-  box-shadow: 2px 3px 5px #9b9b9b;
+  margin: var(--margin-small) auto;
+  max-width: 80vw;
+  box-shadow: var(--box-shadow-light);
   &__data{
     display: flex;
     flex-direction: column;
     
     &-score, &-fails, &__player{
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       margin: .7rem 0;
       font-size: var(--fontsize-h3);
       font-weight: var(--fontweight-light);
@@ -23,9 +25,46 @@
       strong{
         font-weight: var(--fontweight-bold);
       }
+
     }
-    &-fails img{
-      margin-left: 3px;
+     &-score .scoreName, &-score .scoreNumber{
+      width: 40%;
     }
+    &-score .scoreNumber{
+      text-align: end;
+    }
+    &-score .scoreName{
+      display: flex;
+      justify-content: space-between;
+      strong, span{
+        max-width: 50%;
+        overflow: hidden;
+        margin-left: .5rem;
+      }
+    }
+    &-score .scoreFails{
+      width: 20%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      img{
+        margin-left: 3px;
+      }
+    } 
+  }
+}
+
+.playingDatas__team__datas{
+  width: 50%;
+  display: flex;
+  overflow: hidden;
+  &:nth-child(3){
+    margin-left: var(--margin-small);
+  }
+  &-playerName{
+    margin-left:var(--margin-small);
+  }
+  &-separator{
+    margin-left: var(--margin-small);
   }
 }

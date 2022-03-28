@@ -1,12 +1,10 @@
 import './Winner.scss'
-import Header from '../../components/Header/Header'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import { useEffect, useState } from 'react';
 import { getLocalStorage, removeLocalStorage } from '../../utils/localStorage';
 import Fireworks from '../../components/Fireworks/Fireworks';
-import Footer from '../../components/Footer/Footer';
 import Title from '../../components/Title/Title';
 
 const Winner = () => {
