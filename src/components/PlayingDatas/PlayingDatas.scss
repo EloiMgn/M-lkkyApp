@@ -3,55 +3,48 @@
   flex-direction: column;
   align-content: space-between;
   justify-content: space-between;
-  // width: 100%;
-  background-color: var(--dark-gray);
   border-radius: var(--border-radius);
   color: var(--font-color);
   padding: var(--margin-small);
   margin: var(--margin-small) auto;
   max-width: 80vw;
   box-shadow: var(--box-shadow-light);
-  &__data{
+  &-score, &__player{
     display: flex;
-    flex-direction: column;
-    
-    &-score, &-fails, &__player{
-      display: flex;
-      justify-content: flex-start;
-      margin: .7rem 0;
-      font-size: var(--fontsize-h3);
-      font-weight: var(--fontweight-light);
-      text-transform: capitalize; 
-      strong{
-        font-weight: var(--fontweight-bold);
-      }
+    justify-content: flex-end;
+    margin: .7rem 0;
+    font-size: var(--fontsize-h3);
+    font-weight: var(--fontweight-light);
+    text-transform: capitalize; 
+    strong{
+      font-weight: var(--fontweight-bold);
+    }
 
-    }
-     &-score .scoreName, &-score .scoreNumber{
-      width: 40%;
-    }
-    &-score .scoreNumber{
-      text-align: end;
-    }
-    &-score .scoreName{
-      display: flex;
-      justify-content: space-between;
-      strong, span{
-        max-width: 50%;
-        overflow: hidden;
-        margin-left: .5rem;
-      }
-    }
-    &-score .scoreFails{
-      width: 20%;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      img{
-        margin-left: 3px;
-      }
-    } 
   }
+    &-score .scoreName, &-score .scoreNumber{
+    width: 40%;
+  }
+  &-score .scoreNumber{
+    text-align: end;
+  }
+  &-score .scoreName{
+    display: flex;
+    justify-content: space-between;
+    strong, span{
+      max-width: 50%;
+      overflow: hidden;
+      margin-left: .5rem;
+    }
+  }
+  &-score .scoreFails{
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    img{
+      margin-left: 3px;
+    }
+  } 
 }
 
 .playingDatas__team__datas{

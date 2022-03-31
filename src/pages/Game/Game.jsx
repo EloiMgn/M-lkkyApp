@@ -7,11 +7,13 @@ import './Game.scss'
 import Button from '../../components/Button/Button'
 import Skittles from '../../components/Skittles/Skittles';
 import PlayingDatas from '../../components/PlayingDatas/PlayingDatas';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { setLocalStorage } from '../../utils/localStorage';
 import Teams from '../../components/Teams/Teams';
 import Title from '../../components/Title/Title';
 import Subtitle from '../../components/Subtitle/Subtitle';
+import QuantityPicker from '../../components/QuantityPicker/QuantityPicker';
+import Modale from '../../components/Modale/Modale';
 
 const Game = () => {
   const { id, playerId } = useParams();
@@ -24,7 +26,10 @@ const Game = () => {
   const [nextTeamId, setNextTeamId] = useState('')
 
   const [previousTeamId, setPreviousTeamId] = useState(null)
+  const [quantity, setQuantity] = useState(0)
 
+  const [infos, setInfos] = useState(false)
+  const explicationsInfos = "Pour calculer vos points vous pouvez sélectionner la ou les quilles tombées directement sur le schéma. Sinon, si vous avez fait tomber plus d'une quille, entrez le nombre total de quille tombée dans la zone prévue à cet effet puis cliquez sur 'equipe suivante' pour confirmer"
 
 // == Handle recovering datas from localstorage if page refreshment ==
   useEffect(() => {
@@ -151,6 +156,11 @@ useEffect(() => {
 
 const handleResetSkittles = () => {
   dispatch({type: "resetSkittles"})
+  setQuantity(0)
+}
+
+const openModal = ()=> {
+  setInfos(true)
 }
 
 const handleNextTeam = (i) => {
@@ -169,19 +179,23 @@ const handleNextTeam = (i) => {
         falledPins.push(skittle)
       }
     })
-    if (falledPins.length === 0) {
+    if (falledPins.length === 0 && quantity === 0) {
       dispatch({type: "fail", team: id, player: playerId})
     }
-    if (falledPins.length === 1) {
+    if (falledPins.length === 1 && quantity === 0) {
       dispatch({type: "scored", score: falledPins[0].id, team: id, player: playerId})
       dispatch({type: "unFail", team: id})
     }
-    if (falledPins.length > 1) {
+    if (falledPins.length > 1 && quantity === 0) {
       dispatch({type: "scored", score: falledPins.length, team: id, player: playerId})
       dispatch({type: "unFail", team: id})
     }
+    if (falledPins.length === 0 && quantity > 0) {
+      dispatch({type: "scored", score: quantity, team: id, player: playerId})
+      dispatch({type: "unFail", team: id})
+    }
   }
-
+// ============================ DESKTOP ===========================================================================================
   if(window.innerWidth>767) {
     return (
       state.teams.map((team, i) => {
@@ -193,16 +207,18 @@ const handleNextTeam = (i) => {
                   <Title text={'Scores'}/>
                   <Teams/>
                   <div className='separator'></div>
-                  <PlayingDatas team={team}/>  
+                  <PlayingDatas team={team}/>
+                  <PlayingDatas team={state.teams[previousTeamId]} previousTeam/>
                 </section>
               }
               <section className='Game__content__playingArea'>
               <Title text={'Partie en cours'}/>
               <Subtitle text={`Equipe : ${team.name}`}/>
-                <Skittles color={state.teams[i].color}/>
-                <div>
-                  <p className='select__text'>Sélectionnez les quilles tombées ci-dessus et cliquez sur "Equipe suivante" pour valider</p>
+              {quantity===0 && <Skittles color={state.teams[i].color} setQuantity={setQuantity}/>}
+                <div className='select__text' style={{backgroundColor: `${state.teams[i].color}`}}>
+                  <p>Sélectionnez sur le schéma les quilles tombées ou entrez le nombre de quilles tombées puis cliquez sur "Equipe suivante" pour valider</p>
                 </div>
+                <QuantityPicker quantity={quantity} setQuantity={setQuantity}/>
                 <div className='navBtns'>
                   <Button text='Equipe suivante'action={e => handleNextTeam(i)} ico={'fas fa-share'} animation/>
                 </div>
@@ -214,29 +230,30 @@ const handleNextTeam = (i) => {
         return null
       })
     )
-  } else if (window.innerWidth<765) {
+  } 
+
+  // ============================ MOBILE ===========================================================================================
+  else if (window.innerWidth < 765) {
     return (
       state.teams.map((team, i) => {
         if (i.toString() === id) {
           return (
             <main className={`team${i+1} Game__content`} key={i}>
-              {window.innerWidth>767 && 
-                <section className='Game__content__dashboard'>
-                  <Title text={'Scores'}/>
-                  <Teams/>
-                </section>
-              }
+
+              {/* <Modale title={'Comment jouer ?'} text={explicationsInfos} setModal={setInfos}/> */}
+              {infos && <Modale title={'Comment jouer ?'} text={explicationsInfos} setModal={setInfos}/>}
               <section className='Game__content__playingArea'>
-              <Title text={'Partie en cours'}/>
-              <Subtitle text={`Equipe : ${team.name}`}/>
-                <Skittles color={state.teams[i].color}/>
-                <div className='select__text' style={{backgroundColor: `${state.teams[i].color}`}}>
-                  <p>Sélectionnez ci-dessus les quilles tombées et cliquez sur "Equipe suivante" pour valider</p>
-                </div>
-                <div className='navBtns'>
-                  <Button text='Equipe suivante'action={e => handleNextTeam(i)} ico={'fas fa-share'} animation/>
-                </div>
-                <PlayingDatas team={team}/>  
+              <PlayingDatas team={team}/>
+              {quantity===0 && <Skittles color={state.teams[i].color} setQuantity={setQuantity}/>}
+              <QuantityPicker quantity={quantity} setQuantity={setQuantity}/>
+              <div className='navBtns'>
+                <Button text='Equipe suivante'action={e => handleNextTeam(i)} ico={'fas fa-share'} animation/>
+              </div>
+              <div className='subtitle__infos' onClick={openModal}>
+                  <h2>Comment jouer ?</h2> 
+                  <i className="fas fa-question-circle" ></i>
+              </div>
+              <PlayingDatas previousTeam team={state.teams[previousTeamId]}/>
               </section>
           </main>
           )
