@@ -12,6 +12,12 @@
     min-height: 80vh;
     width: 90vw;
     margin: 10vh auto;
+    @media screen and (min-width:767px) {
+      margin: 0;
+      flex-direction: row;
+      margin-left: 12vw;
+      align-items: flex-start;
+    }
   }
 }
 
@@ -26,6 +32,9 @@
   padding: var(--margin-small);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow-light);
+  @media screen and (min-width:767px) {
+    width: 50%;
+  }
   &__top{
     display: flex;
     flex-direction: column;
@@ -62,6 +71,10 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    @media screen and (min-width:767px) {
+      width: 50%;
+      align-items: flex-start;
+    }
   }
 
 }
