@@ -239,21 +239,20 @@ const handleNextTeam = (i) => {
         if (i.toString() === id) {
           return (
             <main className={`team${i+1} Game__content`} key={i}>
-
-              {/* <Modale title={'Comment jouer ?'} text={explicationsInfos} setModal={setInfos}/> */}
               {infos && <Modale title={'Comment jouer ?'} text={explicationsInfos} setModal={setInfos}/>}
               <section className='Game__content__playingArea'>
               <PlayingDatas team={team}/>
+  
               {quantity===0 && <Skittles color={state.teams[i].color} setQuantity={setQuantity}/>}
               <QuantityPicker quantity={quantity} setQuantity={setQuantity}/>
               <div className='navBtns'>
                 <Button text='Equipe suivante'action={e => handleNextTeam(i)} ico={'fas fa-share'} animation/>
               </div>
+              <PlayingDatas previousTeam team={state.teams[previousTeamId]}/>
               <div className='subtitle__infos' onClick={openModal}>
                   <h2>Comment jouer ?</h2> 
                   <i className="fas fa-question-circle" ></i>
               </div>
-              <PlayingDatas previousTeam team={state.teams[previousTeamId]}/>
               </section>
           </main>
           )

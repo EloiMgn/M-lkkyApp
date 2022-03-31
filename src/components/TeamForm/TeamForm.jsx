@@ -12,7 +12,7 @@ import ColorForm from '../ColorForm/ColorForm';
 const TeamForm = ({addTeam, setAddTeam}) => {
   const [validate, setValidate] = useState(false)
   const [teamName, setTeamName] = useState("")
-  const[teamColor, setTeamColor] = useState(null)
+  const [teamColor, setTeamColor] = useState(null)
   const [playerList, setplayerList] = useState([{player: "", hide: false}])
   const [Team, setTeam] = useState([{name: teamName, players: '', score: 0, fails: 0, playerTurn: 0, level: false, stats:[], eliminated: false, color:''}])
   const [toogle, setToogle] = useState(false)
@@ -138,9 +138,9 @@ if (window.innerWidth< 767){
           ) 
         } return null
       })}
-        {validate && <Button text={"Valider l'équipe"} action={handleValidate} ico={"fas fa-users"} style={buttonStyleGreen}/>}
         {!toogle && teamNameValid && teamColorValid && <Button text={"Ajouter un joueur"} action={tooglePlayer} ico={"fas fa-user-plus"} /> }
         {toogle && <PlayerForm list={playerList} setList={setplayerList} setToogle={setToogle}/>}
+        {validate && <Button text={"Valider l'équipe"} action={handleValidate} ico={"fas fa-users"} style={buttonStyleGreen}/>}
       {/* <Button text={"Annuler"} action={handleCancel} style={buttonStyleGray}/> */}
     </div>
     );

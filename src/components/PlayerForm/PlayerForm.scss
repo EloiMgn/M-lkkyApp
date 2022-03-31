@@ -5,12 +5,12 @@
   &__form{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    // justify-content: flex-start;
+
     background-color: var(--color-background-rev);
     padding: var(--margin-small);
     border-radius: var(--border-radius);
     box-shadow: 2px 3px 5px #9b9b9b;
+    margin-top: var(--margin-small);
     @media screen and (max-width:767px) {
       padding: 0;
     }
@@ -54,7 +54,7 @@
 }
 
 .playerForm{
-  &__btn-add, &__btn-delete{
+  &__btn-add{
     border: none;
     display: flex;
     align-items: center;
@@ -78,6 +78,7 @@
   }
   &__btn-delete{
     max-width: var(--width-btn-medium);
+    font-size: var(--fontsize-h2);
   }
 }
 

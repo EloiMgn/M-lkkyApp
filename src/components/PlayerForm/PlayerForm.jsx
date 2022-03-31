@@ -56,7 +56,7 @@ return (
                       id="player"
                       name="player"
                       onChange={e => handleInputChange(e, i)}
-                      // onBlur={e => handleAddClick(i)}
+                      onBlur={e => handleAddClick(i)}
                       onKeyPress={e => handleAddEnter(e, i)}
                       className={player.length > 0? 'playerSmall' : 'inputBig'}
                       autoFocus={true}

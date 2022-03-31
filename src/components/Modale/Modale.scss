@@ -20,6 +20,8 @@
     right: 0;
     background-color: var(--dark-overlay);
     z-index: 2;
+    margin-top: 10vh;
+    min-height: 125%;
   }
   &__hidden{
     display: none;
