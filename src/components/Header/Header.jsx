@@ -71,7 +71,7 @@ const Header = () => {
               </button>
             </header>
       )
-    } else if (window.innerWidth > 767) {
+    } else if (window.innerWidth >= 767) {
       return (
         <header className={`navbar ${showLinks? "show-nav" : "" }`}>
           <div className='navbar__desktop-top'>

@@ -1,7 +1,7 @@
 .teams{
   display: flex;
   flex-direction: column;
-  margin-top: var(--margin-medium);
+  margin-top: var(--margin-small);
   width: 100%;
 }
 
@@ -9,7 +9,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 8vh;
+  height: 6vh;
   width: 100%;
   margin: var(--margin-small) auto;
   background-color: var(--light-gray);
@@ -27,7 +27,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin: var(--margin-small);
+    margin-left: var(--margin-small);
     overflow: hidden;
   }
   &__eliminated{
@@ -39,7 +39,7 @@
   }
   &__delete{
     font-size: var(--fontsize-h2);
-    margin: var(--margin-medium);
+    margin: var(--margin-small);
     cursor: pointer;
   }
   &__datas{

@@ -1,22 +1,3 @@
-// .options{
-//   min-height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-//   &__content{
-//     z-index: 0;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     min-height: 70vh;
-//     width: 90vw;
-//     margin: 10vh auto;
-//     h3{
-//       font-size: var(--fontsize-h2);
-//       margin-top: var(--margin-small);
-//       font-weight: var(--fontweight-light);
-//       color: var(--font-color);
-//       text-align: center;
-//     }
-//   }
-// }
+.options{
+  width: 100%;
+}

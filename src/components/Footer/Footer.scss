@@ -7,8 +7,10 @@
   font-size: var(--fontsize-p);
   margin-top: var(--margin-medium);
   @media screen and (min-width:767px) {
+    justify-content: flex-end;
+   }
+  @media screen and (min-width:1024px) {
    justify-content: center;
-
   }
 }
 
