@@ -70,7 +70,7 @@ const Home = () => {
               <div className='Home__links'>
                 <h3>Liens utiles:</h3>
                 <ul className='Home__links-list'>
-                  <li><i className="fab fa-twitter"></i><a href="https://twitter.com/MolkKingApp" target="_blank" rel="noreferrer">Suivez-moi sur twitter pour connaitre les dernières infos de l'app !</a></li>
+                  <li><i class="fab fa-twitter"></i><a href="https://twitter.com/MolkKingApp" target="_blank" rel="noreferrer">Suivez-moi sur twitter pour connaitre les dernières infos de l'app !</a></li>
                   <li><i className="fas fa-external-link"></i><Link to="/skittles">Connaitre le placement initial des quilles</Link></li>
                   <li><i className="fas fa-external-link"></i><Link to="/rules">Les règles officielles du Mölkky</Link></li>
                 </ul>

@@ -1,13 +1,9 @@
 import './Subtitle.scss'
 
-const Subtitle = ({text, marginTop}) => {
+const Subtitle = ({text}) => {
   return (
-    <h2 className='subtitle' style={{'marginTop':`${marginTop}`, 'marginBottom': `${marginTop}`}}>{text}</h2>
+    <h2 className='subtitle'>{text}</h2>
   )
-}
-
-Subtitle.defaultProps = {
-  'marginTop': '.5rem'
 }
 
 export default Subtitle

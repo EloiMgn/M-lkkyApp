@@ -10,7 +10,7 @@ const initialState = {
   },
   theme: 'light',
   playing: false,
-  turn: null,
+  turn: 0,
   teams: [],
   eliminatedTeams: [],
   winner: null,

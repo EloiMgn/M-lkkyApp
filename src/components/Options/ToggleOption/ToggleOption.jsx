@@ -42,9 +42,9 @@ const ToggleOption = ({action, details, stateValue, explication}) => {
     </div>
     :
     <div className='option'>
-      <h4 className='option__title'>{details.charAt(0).toUpperCase() + details.slice(1)}</h4>
-      <span>{text}</span>
-    </div>
+    <h4 className='option__title'>{details.charAt(0).toUpperCase() + details.slice(1)}</h4>
+    <span>{text}</span>
+  </div>
   )
 }
 

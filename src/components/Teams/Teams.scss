@@ -1,7 +1,7 @@
 .teams{
   display: flex;
   flex-direction: column;
-  margin-top: var(--margin-small);
+  margin-top: var(--margin-medium);
   width: 100%;
 }
 
@@ -10,11 +10,11 @@
   justify-content: space-between;
   align-items: center;
   height: 8vh;
+  width: 100%;
   margin: var(--margin-small) auto;
   background-color: var(--light-gray);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow-light);
-  width: 100%;
   h2{
     font-size: var(--fontsize-h2);
     color: var(--black);
@@ -28,7 +28,7 @@
     justify-content: flex-start;
     align-items: center;
     margin: var(--margin-small);
-    overflow: hidden;
+
   }
   &__eliminated{
     text-transform: capitalize;
@@ -39,7 +39,7 @@
   }
   &__delete{
     font-size: var(--fontsize-h2);
-    margin: 0 var(--margin-small);
+    margin: var(--margin-medium);
     cursor: pointer;
   }
   &__datas{

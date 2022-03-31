@@ -1,28 +1,29 @@
 import Skittle from './Skittle/Skittle';
 import './Skittles.scss'
 
-const Skittles = ({color, setQuantity}) => {
+const Skittles = ({color}) => {
+  console.log(color);
   return (
-    <div className='select' >
+    <div className='select' style={{backgroundColor: `${color}`}}>
       <div className='select__top'>
-        <Skittle frontValue={7} color={color} setQuantity={setQuantity}/>
-        <Skittle frontValue={9} color={color} setQuantity={setQuantity}/>
-        <Skittle frontValue={8} color={color} setQuantity={setQuantity}/>
+        <Skittle frontValue={7}/>
+        <Skittle frontValue={9}/>
+        <Skittle frontValue={8}/>
       </div>
       <div className='select__middleTop'>
-        <Skittle frontValue={5} color={color} setQuantity={setQuantity}/>
-        <Skittle frontValue={11} color={color} setQuantity={setQuantity}/>
-        <Skittle frontValue={12} color={color} setQuantity={setQuantity}/>
-        <Skittle frontValue={6} color={color} setQuantity={setQuantity}/>
+        <Skittle frontValue={5}/>
+        <Skittle frontValue={11}/>
+        <Skittle frontValue={12}/>
+        <Skittle frontValue={6}/>
       </div>
       <div className='select__middleBottom'>
-        <Skittle frontValue={3} color={color} setQuantity={setQuantity}/>
-        <Skittle frontValue={10} color={color} setQuantity={setQuantity}/>
-        <Skittle frontValue={4} color={color} setQuantity={setQuantity}/>
+        <Skittle frontValue={3}/>
+        <Skittle frontValue={10}/>
+        <Skittle frontValue={4}/>
       </div>
       <div className='select__bottom'>
-        <Skittle frontValue={1} color={color} setQuantity={setQuantity}/>
-        <Skittle frontValue={2} color={color} setQuantity={setQuantity}/>
+        <Skittle frontValue={1}/>
+        <Skittle frontValue={2}/>
       </div>
     </div>
   )
