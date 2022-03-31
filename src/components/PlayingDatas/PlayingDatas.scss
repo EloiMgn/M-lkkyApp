@@ -11,11 +11,13 @@
   box-shadow: var(--box-shadow-light);
   &-score, &__player{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
     margin: .7rem 0;
     font-size: var(--fontsize-h3);
     font-weight: var(--fontweight-light);
     text-transform: capitalize; 
+    width: 100%;
     strong{
       font-weight: var(--fontweight-bold);
     }
@@ -24,8 +26,10 @@
     &-score .scoreName, &-score .scoreNumber{
     width: 40%;
   }
-  &-score .scoreNumber{
+  .scoreNumber{
     text-align: end;
+    width: fit-content;
+    margin-right: 3px;
   }
   &-score .scoreName{
     display: flex;
@@ -48,7 +52,7 @@
 }
 
 .playingDatas__team__datas{
-  width: 50%;
+  // width: 50%;
   display: flex;
   overflow: hidden;
   &:nth-child(3){

@@ -3,6 +3,7 @@ import produce from "immer";
 import { getLocalStorage } from './utils/localStorage'
 
 const initialState = {
+  previousAction: [],
   options: {
     elimination: false,
     egalisation: false, 
@@ -160,7 +161,8 @@ function reducer(state = initialState, action) {
           player.fails+=1
         }
       })
-      })
+      draft.previousAction = `L'équipe ${draft.teams[action.team].name} n'a touché aucune quille`
+    })
   }
 
 // == Set fails to 0 if any skittle falled == 
@@ -179,13 +181,15 @@ function reducer(state = initialState, action) {
           player.score += action.score
         }
       })
-      })
+      draft.previousAction = `L'équipe ${draft.teams[action.team].name} a marqué ${action.score} points`
+    })
   }
 
   // == If score > 25 => setLevel to True
   if (action.type === "setLevel") {
     return produce(state, draft => {
       draft.teams[action.team].level = true;
+      // draft.previousAction.push(`L'équipe ${action.team} a dépassé le palier de 25 points`)
       })
   }
 
@@ -195,11 +199,13 @@ function reducer(state = initialState, action) {
       return produce(state, draft => {
         draft.teams[action.team].score = 25;
         draft.teams[action.team].fails=0;
+        draft.previousAction =`Le score de l'équipe ${draft.teams[action.team].name} a été ramené à 25`
         })
     } else if(!state.teams[action.team].level) {
       return produce(state, draft => {
         draft.teams[action.team].score = 0;
         draft.teams[action.team].fails=0;
+        draft.previousAction = `Le score de l'équipe ${draft.teams[action.team].name} a été ramené à 0`
         })
     } 
   }
@@ -227,6 +233,7 @@ function reducer(state = initialState, action) {
       draft.eliminatedTeams.push(action.team);
       draft.teams[action.teamId].eliminated = true;
       draft.teams[action.teamId].fails=0;
+      draft.previousAction = `L'équipe ${draft.teams[action.team].name} a été éliminée`
     })
   }
 

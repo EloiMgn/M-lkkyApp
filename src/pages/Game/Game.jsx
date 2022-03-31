@@ -7,7 +7,7 @@ import './Game.scss'
 import Button from '../../components/Button/Button'
 import Skittles from '../../components/Skittles/Skittles';
 import PlayingDatas from '../../components/PlayingDatas/PlayingDatas';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { setLocalStorage } from '../../utils/localStorage';
 import Teams from '../../components/Teams/Teams';
 import Title from '../../components/Title/Title';
