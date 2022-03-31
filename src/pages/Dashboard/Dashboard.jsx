@@ -88,14 +88,14 @@ const buttonStyleGreen = {
     <Title text={'Tableau de Bord'}/>
     <main className='Dashboard__content'>
     <section className='Dashboard__teams'>
-      <div className='Dashboard__teams'>
+      <>
         {(!state.playing || state.teams.length < 1) && <Subtitle text={'Créez vos équipes'}/>}
         {(state.playing || state.teams.length >= 1) && <Subtitle text={'Equipes'}/>}
         <Teams/>
         {!state.playing && window.innerWidth>767  && !addTeam &&  <Button text={"Ajouter une nouvelle équipe"} ico={"fas fa-users"} action={addNewTeam} /> }
         {!state.playing && window.innerWidth<767  && <Button text={"Ajouter une nouvelle équipe"} ico={"fas fa-users"} action={addNewTeam} /> }
         <Options/>
-      </div>
+      </>
       {state.teams.length > 1? 
         <div className='Dashboard__startGame'>
           {enoughPlayers && !state.playing && <Button text={"Commencer à jouer"} ico={"fas fa-play"} action={handleStartGame} style={buttonStyleGreen}/>}
