@@ -12,6 +12,7 @@ return (
     {state.teams.map((team, i) => {
         return (
           <div className='Stats__content__team' key={i}>
+            <h2>{team.name}</h2>
               {team.stats.map((player, i) => {
                   return (
                     <div className={team.eliminated ? 'playerStats__eliminated' : 'playerStats'} key={i}>

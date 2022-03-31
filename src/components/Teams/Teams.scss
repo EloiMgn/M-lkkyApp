@@ -28,7 +28,7 @@
     justify-content: flex-start;
     align-items: center;
     margin: var(--margin-small);
-
+    overflow: hidden;
   }
   &__eliminated{
     text-transform: capitalize;

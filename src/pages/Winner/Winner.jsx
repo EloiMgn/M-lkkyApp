@@ -1,12 +1,10 @@
 import './Winner.scss'
-import Header from '../../components/Header/Header'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import { useEffect, useState } from 'react';
 import { getLocalStorage, removeLocalStorage } from '../../utils/localStorage';
 import Fireworks from '../../components/Fireworks/Fireworks';
-import Footer from '../../components/Footer/Footer';
 import Title from '../../components/Title/Title';
 
 const Winner = () => {
@@ -64,26 +62,36 @@ const Winner = () => {
     const handleSeeStats = () => {
       navigate('/stats', {replace: true})
       }
+
+    
       
 return (
   state.teams.map((team, i) => {
       if(i === parseInt(id)) {
         return (
         <main className='Winner__content' key={i}>
-          <div className='winner'>
-          <Title text={`L'équipe ${team.name}`}/>
+        {team.players.length > 1 &&
+          <div className='winner' style={{'background': `${team.color}`}}>
+          <div className='winner__top'>
+            <Title text={`L'équipe ${team.name}`}/>
             <h2 className='winner__text'>avec</h2>
+          </div>
             <div className='winner__players'>
               {team.players.map((player, idx) => {
                 return <h2 className='winner__player' key={idx}>{player}</h2>
               })}
             </div>
-            <h2 className='winner__player'>a gagné !!</h2>
-          </div>
+            <h2 className='winner__text'>a gagné !!</h2>
+          </div>}
+          {team.players.length <= 1 && 
+            <div className='winner'>
+              <Title text={`${team.name}`}/>
+              <h2 className='winner__text'>a gagné !!</h2>
+            </div>}
           <div className='winner__options'>
+          <Button text={"Voir les Stats de la partie"} action={handleSeeStats} ico={"fas fa-signal"}/>
           <Button text={"Recommencer la partie"} action={handleRestartGame} ico={'fas fa-undo'} animation/>
           <Button text={"Démarrer une nouvelle partie"} action={handleStartNewGame} ico={"fas fa-play"}/>
-          <Button text={"Voir les Stats de la partie"} action={handleSeeStats} ico={"fas fa-signal"}/>
           </div>
           <Fireworks />
         </main>

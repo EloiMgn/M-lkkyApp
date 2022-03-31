@@ -10,17 +10,12 @@
     flex-direction: column;
     align-items: center;
     min-height: 80vh;
-    margin-top: 10vh;
-    margin-bottom: 11vh;
+    margin: 10vh auto;
     &__team{
-      margin-top: var(--margin-medium);
-      // h1{
-      //   font-weight: var(--fontweight-bold);
-      //   font-size: var(--fontsize-big);
-      //   font-family: var(--font-title);
-      //   text-align: center;
-      //   margin-bottom: var(--margin-medium);
-      // }
+      margin-top: var(--margin-small);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
   }
 }
@@ -49,7 +44,7 @@
   &__name{
     font-size: var(--fontsize-medium);
     font-weight: var(--fontweight-bold);
-    margin: var(--margin-small);
+    margin-top: var(--margin-small);
     text-transform: capitalize;
   }
   &__data{
@@ -65,8 +60,7 @@
       align-items: center;
       justify-content: space-between;
       height: var(--height-btn-small);
-      margin-top: var(--margin-medium);
-      margin-bottom: var(--margin-medium);
+      margin: var(--margin-small) auto;
     }
   }
 }
