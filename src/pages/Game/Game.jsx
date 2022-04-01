@@ -27,9 +27,10 @@ const Game = () => {
 
   const [previousTeamId, setPreviousTeamId] = useState(null)
   const [quantity, setQuantity] = useState(0)
+  const [selectedPin, setSelectedPin] = useState(false)
 
   const [infos, setInfos] = useState(false)
-  const explicationsInfos = "Pour calculer vos points vous pouvez sélectionner la ou les quilles tombées directement sur le schéma. Sinon, si vous avez fait tomber plus d'une quille, entrez le nombre total de quille tombée dans la zone prévue à cet effet puis cliquez sur 'equipe suivante' pour confirmer"
+  const explicationsInfos = "Pour calculer vos points vous pouvez sélectionner la ou les quilles tombées directement sur le schéma. Sinon, si vous avez fait tomber plus d'une quille, entrez le nombre total de quilles tombées dans la zone prévue à cet effet puis cliquez sur 'équipe suivante' pour confirmer"
 
 // == Handle recovering datas from localstorage if page refreshment ==
   useEffect(() => {
@@ -163,6 +164,22 @@ const openModal = ()=> {
   setInfos(true)
 }
 
+const handleSelectedPin = () => {
+  const selectedPins =[]
+  state.pins.forEach(pin => {
+    if(pin.value){
+      selectedPins.push(pin)
+    }
+  })
+  if(selectedPins.length === 0){
+    setSelectedPin(false)
+  } else setSelectedPin(true)
+}
+
+useEffect(() =>{
+  handleSelectedPin()
+})
+
 const handleNextTeam = (i) => {
   navigate(`/game/${nextTeam.name}/${nextTeamId}/${nextTeam.players[nextTeam.playerTurn]}`, { replace: true })
   dispatch({type: "nextPlayer", team: parseInt(id)})
@@ -195,6 +212,7 @@ const handleNextTeam = (i) => {
       dispatch({type: "unFail", team: id})
     }
   }
+
 // ============================ DESKTOP ===========================================================================================
   if(window.innerWidth>767) {
     return (
@@ -218,7 +236,7 @@ const handleNextTeam = (i) => {
                 <div className='select__text' style={{backgroundColor: `${state.teams[i].color}`}}>
                   <p>Sélectionnez sur le schéma les quilles tombées ou entrez le nombre de quilles tombées puis cliquez sur "Equipe suivante" pour valider</p>
                 </div>
-                <QuantityPicker quantity={quantity} setQuantity={setQuantity}/>
+                {!selectedPin && <QuantityPicker quantity={quantity} setQuantity={setQuantity}/>}
                 <div className='navBtns'>
                   <Button text='Equipe suivante'action={e => handleNextTeam(i)} ico={'fas fa-share'} animation/>
                 </div>
@@ -244,7 +262,7 @@ const handleNextTeam = (i) => {
               <PlayingDatas team={team}/>
   
               {quantity===0 && <Skittles color={state.teams[i].color} setQuantity={setQuantity}/>}
-              <QuantityPicker quantity={quantity} setQuantity={setQuantity}/>
+              {!selectedPin && <QuantityPicker quantity={quantity} setQuantity={setQuantity}/>}
               <div className='navBtns'>
                 <Button text='Equipe suivante'action={e => handleNextTeam(i)} ico={'fas fa-share'} animation/>
               </div>

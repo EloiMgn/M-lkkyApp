@@ -28,7 +28,7 @@ return (
         &mdash;
       </button>}
       
-      <input className="quantity-input__screen" type="text" value={quantity} readOnly/>
+      <input className="quantity-input__screen" type="text" value={`${quantity} quilles`} readOnly/>
       {quantity<12 &&
       <button className="quantity-input__modifier quantity-input__modifier--right" onClick={handleIncrement}>
         &#xff0b;

@@ -1,7 +1,7 @@
 import Skittle from './Skittle/Skittle';
 import './Skittles.scss'
 
-const Skittles = ({color, setQuantity}) => {
+const Skittles = ({color, setQuantity, setSelectedPin, selectedPin}) => {
   return (
     <div className='select' >
       <div className='select__top'>

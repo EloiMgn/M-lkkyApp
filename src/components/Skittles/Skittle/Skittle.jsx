@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useDispatch} from 'react-redux';
 import './Skittle.scss'
 
-
 const Skittle = ({frontValue, color, setQuantity}) => {
   const [selected, setSelected] = useState(false)
   const dispatch = useDispatch()

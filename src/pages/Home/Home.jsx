@@ -53,55 +53,36 @@ const Home = () => {
       }
     }
 
-    if(state.teams.length > 1) {
-      return (
-        <main className='Home'>
-          <div className='Home__content'>
-            <div className='Home__img'>
-              <img className='Home__img-img' src={molkkyImg} alt="" />
-            </div>
-            <div className='Home__text'>
-            <Title text={'Bienvenue sur MölkKing'}/>
-            <Subtitle text="Devenez le King 🤴 ou la Queen 👸 du Mölkky"/>
-            </div>
-            <div className='bottom__container'>
-              <Button text='Continuer la partie en cours' action={handleContinueGame} style={buttonStyleGreen} ico={"fas fa-redo"} animation/>
-              <Button text='Démarrer une nouvelle partie' action={handleStartNewGame}  ico={"fas fa-play"} />
-              <div className='Home__links'>
-                <h3>Liens utiles:</h3>
-                <ul className='Home__links-list'>
-                  <li><i class="fab fa-twitter"></i><a href="https://twitter.com/MolkKingApp" target="_blank" rel="noreferrer">Suivez-moi sur twitter pour connaitre les dernières infos de l'app !</a></li>
-                  <li><i className="fas fa-external-link"></i><Link to="/skittles">Connaitre le placement initial des quilles</Link></li>
-                  <li><i className="fas fa-external-link"></i><Link to="/rules">Les règles officielles du Mölkky</Link></li>
-                </ul>
-              </div>
-            </div>
+
+  return (
+    <main className='Home'>
+      <div className='Home__content'>
+        <div className='Home__img'>
+          <img className='Home__img-img' src={molkkyImg} alt="" />
+        </div>
+        <div className='Home__text'>
+        <Title text={'Bienvenue sur MölkKing'}/>
+        <Subtitle text="Devenez le King 🤴 ou la Queen 👸 du Mölkky"/>
+        </div>
+        <div className='bottom__container'>
+          {state.teams.length > 1 && <Button text='Continuer la partie en cours' action={handleContinueGame} style={buttonStyleGreen} ico={"fas fa-redo"} animation/>}
+          {state.teams.length > 1? 
+          <Button text='Démarrer une nouvelle partie' action={handleStartNewGame}  ico={"fas fa-play"} />
+          :
+          <Button text='Nouvelle partie' action={handleStartNewGame} ico={"fas fa-play"} style={buttonStyleGreen}/>}
+          <div className='Home__links'>
+            <h3>Liens utiles:</h3>
+            <ul className='Home__links-list'>
+              <li><i class="fab fa-facebook"></i><a href="https://www.facebook.com/molkkingApp/" target="_blank" rel="noreferrer">Suivez-moi sur facebook pour connaitre les dernières infos de l'app !</a></li>
+              <li><i class="fab fa-twitter"></i><a href="https://twitter.com/MolkKingApp" target="_blank" rel="noreferrer">Suivez-moi sur twitter pour connaitre les dernières infos de l'app !</a></li>
+              <li><i className="fas fa-external-link"></i><Link to="/skittles">Connaitre le placement initial des quilles</Link></li>
+              <li><i className="fas fa-external-link"></i><Link to="/rules">Les règles officielles du Mölkky</Link></li>
+            </ul>
           </div>
-        </main>
-      )
-    } return (
-      <main className='Home'>
-          <div className='Home__content'>
-              <div className='Home__img'>
-                  <img className='Home__img-img' src={molkkyImg} alt="" />
-              </div>
-            <div className='Home__text'>
-            <Title text={'Bienvenue sur MölkKing'}/>
-            <Subtitle text="Devenez le King 🤴 ou la Queen 👸 du Mölkky"/>
-            </div>
-            <div className='bottom__container'>
-              <Button text='Nouvelle partie' size={"medium"} action={handleStartNewGame} ico={"fas fa-play"} style={buttonStyleGreen}/>
-              <div className='Home__links'>
-                <h3>Liens utiles:</h3>
-                <ul className='Home__links-list'>
-                  <li><i className="fas fa-external-link"></i><Link to="/skittles">Connaitre le placement initial des quilles</Link></li>
-                  <li><i className="fas fa-external-link"></i><Link to="/rules">Les règles officielles du Mölkky</Link></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-      </main>
-    )
+        </div>
+      </div>
+    </main>
+  )
 }
 
 export default Home
