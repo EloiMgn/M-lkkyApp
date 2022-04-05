@@ -154,7 +154,8 @@ if (window.innerWidth< 767){
         setTeam={setTeam} 
         setTeamNameValid={setTeamNameValid} 
         teamNameValid={teamNameValid}/>
-        { teamNameValid && <ColorForm 
+
+        {teamNameValid && <ColorForm 
         teamColor={teamColor} 
         setTeamColor={setTeamColor} 
         setValidate={setValidate} 
@@ -162,6 +163,7 @@ if (window.innerWidth< 767){
         setTeam={setTeam} 
         setTeamColorValid={setTeamColorValid} 
         teamColorValid={teamColorValid}/>}
+
         {playerList.map((x, i) => {
           if (playerList.length > 1 && x.player !== "" && playerList[i+1]) {
             return (
@@ -169,7 +171,9 @@ if (window.innerWidth< 767){
             ) 
           } return null
         })}
-          {toogle && <PlayerForm list={playerList} setList={setplayerList} setToogle={setToogle}/>}
+
+        {toogle && <PlayerForm list={playerList} setList={setplayerList} setToogle={setToogle}/>}
+
         <div className='buttons__desktop'>
           {!toogle && teamNameValid && teamColorValid && <Button text={"Ajouter un joueur"} action={tooglePlayer} ico={"fas fa-user-plus"} /> }
           {validate && <Button text={"Valider l'équipe"} action={handleValidate} ico={"fas fa-users"} style={buttonStyleGreen}/>}

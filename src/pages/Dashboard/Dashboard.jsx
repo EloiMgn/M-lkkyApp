@@ -9,14 +9,18 @@ import Options from '../../components/Options/Options';
 import TeamForm from '../../components/TeamForm/TeamForm';
 import Title from '../../components/Title/Title';
 import Subtitle from '../../components/Subtitle/Subtitle';
+import RandomTeamsForm from '../../components/RandomTeamsFrom/RandomTeamsForm';
 
 const Dashboard = () => {
+
 const [enoughPlayers, setEnoughPlayers] = useState(false)
 const [localStorageAvailable, setIsLocalStorageAvailable] = useState(true)
-const dispatch = useDispatch()
-const state = useSelector((state) => state)
-const navigate= useNavigate()
 const [addTeam, setAddTeam] = useState(false)
+
+const state = useSelector((state) => state)
+
+const dispatch = useDispatch()
+const navigate= useNavigate()
   /**
    * Check availability to use localStorage
    */
@@ -54,11 +58,16 @@ useCallback(
   const setNewLocalStorage = () => {
     setLocalStorage({ date: new Date(), state })
   }
+
   const addNewTeam = () => {
-    window.innerWidth < 767? navigate('/new-team', {replace: true}) : 
-    setAddTeam(!addTeam)
+    window.innerWidth < 767? navigate('/new-team', {replace: true}) : setAddTeam(!addTeam);
+    dispatch({type: "randomTeams", value: false})
   }
 
+  const addRandomTeams = () => {
+    window.innerWidth < 767? navigate('/new-team', {replace: true}) : setAddTeam(!addTeam);
+    dispatch({type: "randomTeams", value: true})
+  }
 
 useEffect(() => {
   state.teams.length >= 2 ? setEnoughPlayers(true) : setEnoughPlayers(false)
@@ -92,8 +101,8 @@ const buttonStyleGreen = {
         {(!state.playing || state.teams.length < 1) && <Subtitle text={'Créez vos équipes'}/>}
         {(state.playing || state.teams.length >= 1) && <Subtitle text={'Equipes'}/>}
         <Teams/>
-        {!state.playing && window.innerWidth>767  && !addTeam &&  <Button text={"Ajouter une nouvelle équipe"} ico={"fas fa-users"} action={addNewTeam} /> }
-        {!state.playing && window.innerWidth<767  && <Button text={"Ajouter une nouvelle équipe"} ico={"fas fa-users"} action={addNewTeam} /> }
+        <Button text={"Ajouter une nouvelle équipe"} ico={"fas fa-users"} action={addNewTeam} /> 
+        <Button text={"Créer des équipes aléatoires"} ico={"fas fa-users"} action={addRandomTeams} /> 
         <Options/>
       </>
       {state.teams.length > 1? 
@@ -106,12 +115,12 @@ const buttonStyleGreen = {
     </section>
       {window.innerWidth>767 &&  addTeam && 
         <section className='Dashboard__newTeam open'>
-          <TeamForm addTeam={addTeam} setAddTeam={setAddTeam}/>
+          {!state.randomTeams && <TeamForm addTeam={addTeam} setAddTeam={setAddTeam}/>}
+          {state.randomTeams && <RandomTeamsForm addTeam={addTeam} setAddTeam={setAddTeam}/>}
         </section>
       }
       {window.innerWidth>767 &&  !addTeam && 
         <section className='Dashboard__newTeam close'>
-          {/* <TeamForm addTeam={addTeam} setAddTeam={setAddTeam}/> */}
         </section>
       }
     </main>

@@ -3,6 +3,7 @@ import produce from "immer";
 import { getLocalStorage } from './utils/localStorage'
 
 const initialState = {
+  randomTeams: false,
   previousAction: [],
   options: {
     elimination: false,
@@ -38,6 +39,7 @@ function reducer(state = initialState, action) {
   if (action.type === "setState") {
     const localStorage = JSON.parse(getLocalStorage('molkking_param'))
     return produce(state, draft => {
+      // draft.eliminatedTeams = localStorage.eliminatedTeams
       draft.theme = localStorage.state.theme
       draft.playing = true
       draft.turn = localStorage.state.turn
@@ -87,6 +89,14 @@ function reducer(state = initialState, action) {
 
   // ===== HANDLE TEAM MANAGMENT ======
 
+  // == Set random Teams state ==
+  if (action.type === "randomTeams") {
+    return {
+      ...state,
+      randomTeams: action.value
+    }
+  }
+
   // == Add New team to teams Array ==
   if (action.type === "createNewTeam") {
     return produce(state, draft => {
@@ -95,6 +105,7 @@ function reducer(state = initialState, action) {
         )
       })
   }
+
  // == Delete Selected team from Teams Array ==
   if (action.type === "deleteTeam") {
     return produce(state, draft => {
