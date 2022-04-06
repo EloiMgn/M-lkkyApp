@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import RandomTeamsForm from '../../components/RandomTeamsFrom/RandomTeamsForm';
+import RandomTeamsForm from '../../components/RandomTeamsForm/RandomTeamsForm';
 import TeamForm from '../../components/TeamForm/TeamForm';
 import Title from '../../components/Title/Title';
 import './NewTeam.scss';

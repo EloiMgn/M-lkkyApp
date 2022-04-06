@@ -51,16 +51,25 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;      
-      margin: .5rem 0;
-      background-color: var(--dark-gray);
+      margin: .2rem 0;
+      background-color: var(--light-gray);
       width: 100%;
       text-align: start;
-      height: var(--height-btn-regular);
+      height: 2rem;
       border-radius: var(--border-radius);
       p{
-        margin-left: var(--margin-small);
+        margin-left: .5rem;
         font-weight: var(--fontweight-light);
         font-size: var(--fontsize-h3);
+      }
+      &::before{
+        content: "";
+        display: block;
+        width: .3rem;
+        height: .3rem;
+        background: var(--black);
+        margin-left: var(--margin-small);
+        border-radius: 10rem;
       }
     }
   }
@@ -85,8 +94,9 @@
       text-transform: capitalize;
     }
     &-string{
-      font-size: var(--fontsize-h2);
-      font-weight: var(--fontweight-bold);
+      font-size: var(--fontsize-h3);
+      line-height: 1.5rem;
+      text-align: justify;
     }
   }
 }

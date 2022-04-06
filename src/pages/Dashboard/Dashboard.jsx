@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import Options from '../../components/Options/Options';
-import RandomTeamsForm from '../../components/RandomTeamsFrom/RandomTeamsForm';
+import RandomTeamsForm from '../../components/RandomTeamsForm/RandomTeamsForm';
 import Subtitle from '../../components/Subtitle/Subtitle';
 import TeamForm from '../../components/TeamForm/TeamForm';
 import Teams from '../../components/Teams/Teams';
