@@ -11,6 +11,7 @@ import Subtitle from '../../components/Subtitle/Subtitle';
 import Teams from '../../components/Teams/Teams';
 import Title from '../../components/Title/Title';
 import { setLocalStorage } from '../../utils/localStorage';
+import NumberPicker from "react-widgets/NumberPicker";
 import './Game.scss';
 
 
@@ -258,9 +259,9 @@ const Game = () => {
               {infos && <Modale title={'Comment jouer ?'} text={explicationsInfos} setModal={setInfos}/>}
               <section className='Game__content__playingArea'>
                 <PlayingDatas team={team}/>
-
-                {quantity===0 && <Skittles color={state.teams[i].color} setQuantity={setQuantity}/>}
-                {!selectedPin && <QuantityPicker quantity={quantity} setQuantity={setQuantity}/>}
+                {!selectedPin && <NumberPicker placeholder='Entrez un nombre de quilles' value={quantity} onChange={value => setQuantity(value)}  min={0} max={12}/>}
+                {/* {!selectedPin && <QuantityPicker quantity={quantity} setQuantity={setQuantity}/>} */}
+                {quantity===0 && <Skittles color={state.teams[i].color} setQuantity={setQuantity} containerClassName='Game__content__playingArea-numberPicker'/>}
                 <div className='navBtns'>
                   <Button text='Equipe suivante'action={() => handleNextTeam(i)} ico={'fas fa-share'} animation/>
                 </div>

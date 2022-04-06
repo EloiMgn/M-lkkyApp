@@ -21,7 +21,7 @@
     background-color: var(--dark-overlay);
     z-index: 2;
     margin-top: 10vh;
-    min-height: 125%;
+    min-height: 115vh;
   }
   &__hidden{
     display: none;
@@ -35,27 +35,56 @@
     margin: var(--margin-small);
    }
   }
-  &__playerList{
+
+  &__list{
     min-height: 30vh;
     min-width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    &__title{
+      font-size: var(--fontsize-h2);
+      margin: .5rem 0;
+    }
+    &-item{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;      
+      margin: .5rem 0;
+      background-color: var(--dark-gray);
+      width: 100%;
+      text-align: start;
+      height: var(--height-btn-regular);
+      border-radius: var(--border-radius);
+      p{
+        margin-left: var(--margin-small);
+        font-weight: var(--fontweight-light);
+        font-size: var(--fontsize-h3);
+      }
+    }
   }
   &__text{
     min-height: 50vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     text-align: center;
-    margin: var(--margin-small);
-    padding: var(--margin-small);
+    margin: 0 var(--margin-small);
+    padding: 0 var(--margin-small);
+    &-sub{
+      min-height: 30vh;
+      min-width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
     h2{
       text-transform: capitalize;
     }
-    p{
+    &-string{
       font-size: var(--fontsize-h2);
       font-weight: var(--fontweight-bold);
     }

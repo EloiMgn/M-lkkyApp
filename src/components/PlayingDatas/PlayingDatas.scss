@@ -18,6 +18,7 @@
     font-weight: var(--fontweight-light);
     text-transform: capitalize; 
     width: 100%;
+    overflow: hidden;
     strong{
       font-weight: var(--fontweight-bold);
     }
@@ -31,18 +32,16 @@
     width: fit-content;
     margin-right: 3px;
   }
-  &-score .scoreName{
+  .scoreName{
     display: flex;
     justify-content: space-between;
     width: fit-content;
     strong, span{
-      // max-width: 50%;
       overflow: hidden;
       margin-left: .5rem;
     }
   }
-  &-score .scoreFails{
-    width: 20%;
+  .scoreFails{
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -53,13 +52,19 @@
 }
 
 .playingDatas__team__datas{
-  // width: 50%;
+  min-width: 50%;
   display: flex;
   overflow: hidden;
+  align-items: center;
   &:nth-child(3){
-    margin-left: var(--margin-small);
+    // margin-left: var(--margin-small);
+    max-width: 50%;
   }
   &-playerName{
     margin-left:var(--margin-small);
+  }
+  &-separator{
+    margin: 0 .5rem;
+    font-weight: var(--fontweight-light);
   }
 }

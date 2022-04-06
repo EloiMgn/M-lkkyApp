@@ -82,3 +82,13 @@
   box-shadow: var(--box-shadow-light);
   border-radius: var(--border-radius);
 }
+
+.rw-number-picker{
+  width: var(--width-btn-medium);
+  margin: auto;
+}
+
+.rw-widget-picker{
+  height: var(--height-btn-regular);
+  background-color: var(--primary);
+}

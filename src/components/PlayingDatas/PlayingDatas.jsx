@@ -36,16 +36,18 @@ const PlayingDatas = ({team, previousTeam}) => {
                 </div>
               </>
             }
-            {previousTeam &&
-                    <div className='playingDatas__team__datas'>
-                      {!previousTeam && <h3 className='scoreName'>Score <strong>{team.name}</strong>:</h3>}
-                      <p className='scoreNumber'><strong>{team.score}</strong> points</p>
-                      <div className='scoreFails'>
-                        {range.map((rangeElem) =>
-                          team.fails >= rangeElem ? <img key={rangeElem.toString()} src={Cross} alt="" /> : null
-                        )}
-                      </div>
-                    </div>
+            {previousTeam && <>
+              <div className='playingDatas__team__datas-separator'><i class="fas fa-grip-lines-vertical"></i></div>
+              <div className='playingDatas__team__datas'>
+                {!previousTeam && <h3 className='scoreName'>Score <strong>{team.name}</strong>:</h3>}
+                <p className='scoreNumber'><strong>{team.score}</strong> points</p>
+                <div className='scoreFails'>
+                  {range.map((rangeElem) =>
+                    team.fails >= rangeElem ? <img key={rangeElem.toString()} src={Cross} alt="" /> : null
+                  )}
+                </div>
+              </div>
+            </>
             }
           </div>
           {!previousTeam &&

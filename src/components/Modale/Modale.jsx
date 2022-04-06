@@ -22,14 +22,14 @@ const Modale = ({title, text, setModal, listTitle}) => {
         </div>
         <div className='modale__text'>
           <Subtitle text={title}/>
-          {typeof(text) === 'string' && <p>{text}</p>}
+          {typeof(text) === 'string' && <p className='modale__text-string'>{text}</p>}
           {typeof(text) === 'object' && 
-          <div className='modale__playerList'>
-            <h2>{listTitle}</h2>
-            <ul>
+          <div className='modale__text-sub'>
+            <h2 className='modale__list__title'>{listTitle}</h2>
+            <ul className='modale__list'>
             {text.map((value, idx) => {
             return (
-              <li key={idx} className='modalePlayer'>{value}</li>
+              <li key={idx} className='modale__list-item'><p>{value}</p></li>
                 )
               })}
             </ul>

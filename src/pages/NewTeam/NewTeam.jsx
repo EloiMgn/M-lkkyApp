@@ -16,7 +16,9 @@ const NewTeam = () => {
   return (
     <main className='newTeam__content'>
       <div className='newTeam__content__title'>
-        <Title  text={'Votre équipe'}/>
+      {state.randomTeams && <Title  text={'Vos équipes'}/>}
+      {!state.randomTeams && <Title  text={'Votre équipe'}/>}
+        
         {window.innerWidth<767 && <i className="fas fa-times" onClick={handleCancel}></i>}
       </div>
       {!state.randomTeams && <TeamForm />}

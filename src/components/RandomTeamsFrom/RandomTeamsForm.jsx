@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import NumberPicker from "react-widgets/NumberPicker";
-import { getLocalStorage, removeLocalStorage, setLocalStorage } from '../../utils/localStorage';
+import { setLocalStorage } from '../../utils/localStorage';
 import { shuffleArray } from '../../utils/tools';
 import Button from '../Button/Button';
 import Player from '../Player/Player';
@@ -101,6 +101,8 @@ const RandomTeamsForm = ({addTeam, setAddTeam, startGame}) => {
       'background': 'linear-gradient(to left, #00672a 0%, #003314 8%, #003314 92%, #00672a 100%)'
     }
   };
+
+  console.log(window);
 
   return (
     <div className='randomTeams'>
