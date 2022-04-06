@@ -2,16 +2,15 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useParams } from 'react-router-dom';
+import NumberPicker from 'react-widgets/NumberPicker';
 import Button from '../../components/Button/Button';
 import Modale from '../../components/Modale/Modale';
 import PlayingDatas from '../../components/PlayingDatas/PlayingDatas';
-import QuantityPicker from '../../components/QuantityPicker/QuantityPicker';
 import Skittles from '../../components/Skittles/Skittles';
 import Subtitle from '../../components/Subtitle/Subtitle';
 import Teams from '../../components/Teams/Teams';
 import Title from '../../components/Title/Title';
 import { setLocalStorage } from '../../utils/localStorage';
-import NumberPicker from "react-widgets/NumberPicker";
 import './Game.scss';
 
 
@@ -235,7 +234,7 @@ const Game = () => {
                 <div className='select__text' style={{backgroundColor: `${state.teams[i].color}`}}>
                   <p>Sélectionnez sur le schéma les quilles tombées ou entrez le nombre de quilles tombées puis cliquez sur &quot;Equipe suivante&quot; pour valider</p>
                 </div>
-                {!selectedPin && <QuantityPicker quantity={quantity} setQuantity={setQuantity}/>}
+                {!selectedPin && <NumberPicker placeholder='Entrez un nombre de quilles' value={quantity} onChange={value => setQuantity(value)}  min={0} max={12}/>}
                 <div className='navBtns'>
                   <Button text='Equipe suivante'action={() => handleNextTeam(i)} ico={'fas fa-share'} animation/>
                 </div>
@@ -260,7 +259,6 @@ const Game = () => {
               <section className='Game__content__playingArea'>
                 <PlayingDatas team={team}/>
                 {!selectedPin && <NumberPicker placeholder='Entrez un nombre de quilles' value={quantity} onChange={value => setQuantity(value)}  min={0} max={12}/>}
-                {/* {!selectedPin && <QuantityPicker quantity={quantity} setQuantity={setQuantity}/>} */}
                 {quantity===0 && <Skittles color={state.teams[i].color} setQuantity={setQuantity} containerClassName='Game__content__playingArea-numberPicker'/>}
                 <div className='navBtns'>
                   <Button text='Equipe suivante'action={() => handleNextTeam(i)} ico={'fas fa-share'} animation/>

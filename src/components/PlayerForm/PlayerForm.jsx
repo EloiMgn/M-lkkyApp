@@ -23,7 +23,7 @@ const PlayerForm = ({list, setList, setToogle}) => {
       handleAddPlayer(i);
       setList([...newPlayerList, { player: '', hide: false}]);
       setPlayer('');
-      setToogle(false);
+      setToogle && setToogle(false);
     }
   };
 
@@ -36,7 +36,7 @@ const PlayerForm = ({list, setList, setToogle}) => {
       handleAddPlayer(i);
       setList([...newPlayerList, { player: '', hide: false}]);
       setPlayer('');
-      setToogle(false);
+      setToogle && setToogle(false);
     }
   };
 

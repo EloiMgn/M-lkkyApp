@@ -37,7 +37,7 @@ const PlayingDatas = ({team, previousTeam}) => {
               </>
             }
             {previousTeam && <>
-              <div className='playingDatas__team__datas-separator'><i class="fas fa-grip-lines-vertical"></i></div>
+              <div className='playingDatas__team__datas-separator'><i className="fas fa-grip-lines-vertical"></i></div>
               <div className='playingDatas__team__datas'>
                 {!previousTeam && <h3 className='scoreName'>Score <strong>{team.name}</strong>:</h3>}
                 <p className='scoreNumber'><strong>{team.score}</strong> points</p>

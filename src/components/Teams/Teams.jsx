@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import Cross from '../../utils/img/Vector.svg';
 import { getLocalStorage } from '../../utils/localStorage';
 import Modale from '../Modale/Modale';
@@ -31,14 +30,14 @@ const Teams = () => {
 
   const showTeamDetails = (idx) =>{
     setClickedTeam(idx);
-  }
-  
+  };
+
   useEffect(() => {
-    setModal(true)
+    setModal(true);
   }, [clickedTeam]);
 
   useEffect(() => {
-    setModal(false)
+    setModal(false);
   }, [window.location.pathname]);
 
   return (
