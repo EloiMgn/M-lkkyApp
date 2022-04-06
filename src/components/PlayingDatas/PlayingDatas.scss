@@ -8,6 +8,7 @@
   padding: var(--margin-small);
   margin: var(--margin-small) auto;
   max-width: 80vw;
+  min-width: 80vw;
   box-shadow: var(--box-shadow-light);
   &-score, &__player{
     display: flex;

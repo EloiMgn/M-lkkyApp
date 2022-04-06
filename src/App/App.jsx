@@ -4,10 +4,10 @@ import './App.scss';
 
 const App = () => {
   return (
-    <div id="App" className={`theme-light`}>
+    <div id="App" className={'theme-light'}>
       <Routing />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

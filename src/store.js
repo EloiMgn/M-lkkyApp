@@ -113,13 +113,13 @@ function reducer(state = initialState, action) {
     });
   }
 
-    // // == Delete all teams from Teams Array ==
-    // if (action.type === 'resetTeams') {
-    //   console.log('yeas');
-    //   return produce(state, draft => {
-    //     draft.teams = [];
-    //   });
-    // }
+  // // == Delete all teams from Teams Array ==
+  // if (action.type === 'resetTeams') {
+  //   console.log('yeas');
+  //   return produce(state, draft => {
+  //     draft.teams = [];
+  //   });
+  // }
 
   // ===== HANDLE GAME NAVIGATION WHEN PLAYING =====
 
