@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
-import './reset.css'
+import { Provider } from 'react-redux';
 import App from './App/App';
-import { Provider } from "react-redux";
-// on importe le store
-import { store } from "./store";
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import './index.scss';
 import reportWebVitals from './reportWebVitals';
+import './reset.css';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+// on importe le store
+import { store } from './store';
 
 ReactDOM.render(
   <Provider store={store}>

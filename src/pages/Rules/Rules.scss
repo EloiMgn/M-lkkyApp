@@ -33,7 +33,7 @@
   &__content {
     display: flex;
     flex-direction: column;
-    margin: var(--margin-medium);
+    margin: var(--margin-small);
     color: var(--font-color);
     margin-top: 10vh;
     margin-bottom: 11vh;
@@ -62,7 +62,7 @@
       margin: var(--margin-small) var(--margin-medium);
       font-size: var(--fontsize-p);
       list-style-type: circle;
-      line-height: var(--line-height-large);
+      line-height: var(--line-height-small);
     }
 
     strong {
@@ -99,6 +99,7 @@
     }
     &__rule, &__intro{
       text-align: justify;
+      margin: var(--margin-small);
       @media screen and (min-width:481px) {
         margin: var(--margin-small);
       }

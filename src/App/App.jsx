@@ -1,5 +1,6 @@
+import 'react-widgets/scss/styles.scss';
+import Routing from '../Router/Router';
 import './App.scss';
-import Routing from '../Router/Router'
 
 const App = () => {
   return (

@@ -1,0 +1,16 @@
+.randomTeams{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  &__addPlayerForm, &__playerList{
+    width: 100%;
+  }
+  &__teamNumberSelect{
+    margin: var(--margin-small);
+    .rw-number-picker{
+      margin-top: var(--margin-small);
+    }
+  }
+}

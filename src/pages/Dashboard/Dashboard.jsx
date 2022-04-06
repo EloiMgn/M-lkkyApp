@@ -48,7 +48,6 @@ const Dashboard = () => {
     dispatch({ type: 'startGame'});
     setNewLocalStorage();
     navigate(`/game/${state.teams[0].name}/0/${state.teams[0].players[0]}`, { replace: true });
-
   };
 
   const handleContinueGame = () => {
@@ -65,6 +64,7 @@ const Dashboard = () => {
   };
 
   const addRandomTeams = () => {
+    dispatch({type: 'startNewGame'});
     window.innerWidth < 767? navigate('/new-team', {replace: true}) : setAddTeam(!addTeam);
     dispatch({type: 'randomTeams', value: true});
   };
@@ -92,6 +92,7 @@ const Dashboard = () => {
     }
   };
 
+
   return (
     <div className='Dashboard'>
       <Title text={'Tableau de Bord'}/>
@@ -101,8 +102,10 @@ const Dashboard = () => {
             {(!state.playing || state.teams.length < 1) && <Subtitle text={'Créez vos équipes'}/>}
             {(state.playing || state.teams.length >= 1) && <Subtitle text={'Equipes'}/>}
             <Teams/>
+            {!state.playing && <>
             <Button text={'Ajouter une nouvelle équipe'} ico={'fas fa-users'} action={addNewTeam} />
             <Button text={'Créer des équipes aléatoires'} ico={'fas fa-users'} action={addRandomTeams} />
+            </>}
             <Options/>
           </>
           {state.teams.length > 1?
@@ -116,7 +119,7 @@ const Dashboard = () => {
         {window.innerWidth>767 &&  addTeam &&
         <section className='Dashboard__newTeam open'>
           {!state.randomTeams && <TeamForm addTeam={addTeam} setAddTeam={setAddTeam}/>}
-          {state.randomTeams && <RandomTeamsForm addTeam={addTeam} setAddTeam={setAddTeam}/>}
+          {state.randomTeams && <RandomTeamsForm addTeam={addTeam} setAddTeam={setAddTeam} startGame={handleStartGame}/>}
         </section>
         }
         {window.innerWidth>767 &&  !addTeam &&

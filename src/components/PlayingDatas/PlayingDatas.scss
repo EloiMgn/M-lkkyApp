@@ -34,8 +34,9 @@
   &-score .scoreName{
     display: flex;
     justify-content: space-between;
+    width: fit-content;
     strong, span{
-      max-width: 50%;
+      // max-width: 50%;
       overflow: hidden;
       margin-left: .5rem;
     }

@@ -35,6 +35,14 @@
     margin: var(--margin-small);
    }
   }
+  &__playerList{
+    min-height: 30vh;
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
   &__text{
     min-height: 50vh;
     display: flex;
@@ -43,6 +51,7 @@
     align-items: center;
     text-align: center;
     margin: var(--margin-small);
+    padding: var(--margin-small);
     h2{
       text-transform: capitalize;
     }
@@ -58,8 +67,6 @@
   max-width: 25vh;
 }
 
-// .modalBtn{
-//   @media screen and (min-width:767px) {
-//     position: relative;
-//   }
+// .modalePlayer{
+//   list-style: circle;
 // }
