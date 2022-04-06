@@ -1,15 +1,15 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import ReactCanvasConfetti from "react-canvas-confetti";
+import { useCallback, useEffect, useRef, useState } from 'react';
+import ReactCanvasConfetti from 'react-canvas-confetti';
 
 function randomInRange(min, max) {
   return Math.random() * (max - min) + min;
 }
 
 const canvasStyles = {
-  position: "fixed",
-  pointerEvents: "none",
-  width: "100%",
-  height: "100%",
+  position: 'fixed',
+  pointerEvents: 'none',
+  width: '100%',
+  height: '100%',
   top: 0,
   left: 0
 };
@@ -60,6 +60,6 @@ const Fireworks = () => {
       <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
     </>
   );
-}
+};
 
-export default Fireworks
+export default Fireworks;

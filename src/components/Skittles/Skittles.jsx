@@ -1,7 +1,7 @@
 import Skittle from './Skittle/Skittle';
-import './Skittles.scss'
+import './Skittles.scss';
 
-const Skittles = ({color, setQuantity, setSelectedPin, selectedPin}) => {
+const Skittles = ({color, setQuantity}) => {
   return (
     <div className='select' >
       <div className='select__top'>
@@ -25,7 +25,7 @@ const Skittles = ({color, setQuantity, setSelectedPin, selectedPin}) => {
         <Skittle frontValue={2} color={color} setQuantity={setQuantity}/>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Skittles
+export default Skittles;

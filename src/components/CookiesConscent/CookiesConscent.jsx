@@ -1,43 +1,43 @@
-import { useEffect, useState } from "react";
-import './CookiesConscent.scss'
+import { useEffect, useState } from 'react';
+import './CookiesConscent.scss';
 
 const CookieConscent = () => {
 
-    const [cookieBTN, setCookieBTN] = useState(null)
+  const [cookieBTN, setCookieBTN] = useState(null);
 
-    useEffect(() => {
-        waitForElm('#axeptio_main_button').then((cookieBtn) => {
-            setCookieBTN(cookieBtn)
-        })
-    }, [])
+  useEffect(() => {
+    waitForElm('#axeptio_main_button').then((cookieBtn) => {
+      setCookieBTN(cookieBtn);
+    });
+  }, []);
 
-    const waitForElm = (selector) => {
-        return new Promise(resolve => {
-            if (document.querySelector(selector)) {
-                return resolve(document.querySelector(selector));
-            }
+  const waitForElm = (selector) => {
+    return new Promise(resolve => {
+      if (document.querySelector(selector)) {
+        return resolve(document.querySelector(selector));
+      }
 
-            const observer = new MutationObserver(mutations => {
-                if (document.querySelector(selector)) {
-                resolve(document.querySelector(selector));
-                observer.disconnect();
-                }
-            });
+      const observer = new MutationObserver(() => {
+        if (document.querySelector(selector)) {
+          resolve(document.querySelector(selector));
+          observer.disconnect();
+        }
+      });
 
-            observer.observe(document.body, {
-                childList: true,
-                subtree: true
-            });
-        });
-    }
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    });
+  };
 
-    const onClickRGPD = () => {
-        cookieBTN?.click()
-    }
+  const onClickRGPD = () => {
+    cookieBTN?.click();
+  };
 
-    return (
-        <p className="rgpd" onClick={onClickRGPD}>Gestion des cookies</p>
-    );
+  return (
+    <button className="rgpd" onClick={onClickRGPD}>Gestion des cookies</button>
+  );
 };
 
 export default CookieConscent;

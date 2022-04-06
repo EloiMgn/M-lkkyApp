@@ -1,11 +1,11 @@
 import Title from '../../components/Title/Title';
-import './ErrorLocalStorage.scss'
+import './ErrorLocalStorage.scss';
 
 const ErrorLocalStorage = () => {
   return (
     <div className='Error'>
       <div className="ErrorLocalStorage">
-      <Title text={'Erreur localStorage'}/>
+        <Title text={'Erreur localStorage'}/>
         <p>
           This website needs access to the localStorage, please turn it on
           and do not touch it 😉
@@ -17,7 +17,7 @@ const ErrorLocalStorage = () => {
         </p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ErrorLocalStorage
+export default ErrorLocalStorage;

@@ -1,54 +1,53 @@
-import './TeamNameForm.scss'
+import './TeamNameForm.scss';
 
 const TeamNameForm = ({name, setName,  team, setTeam, setTeamNameValid, teamNameValid}) => {
 
- 
 
   // handle input change
   const handleNameChange = (e) => {
     setName(e.target.value);
-  }
+  };
 
   // handle validate team Name
   const handleNameClick = (e) => {
     if (e.target.value.length > 0) {
-    const newTeam = [...team]
-    newTeam[0].name = name
-    setTeam(newTeam)
-    setTeamNameValid(true)
+      const newTeam = [...team];
+      newTeam[0].name = name;
+      setTeam(newTeam);
+      setTeamNameValid(true);
     }
-  }
-
-    // handle validate team Name
-    const handleNameEnter = (e) => {
-      if (e.target.value.length > 0 && e.key === "Enter") {
-      const newTeam = [...team]
-      newTeam[0].name = name
-      setTeam(newTeam)
-      setTeamNameValid(true)
-      }
-    }
-
-  // handle click event of the Remove button
-  const handleRemoveNameClick = (e, index) => {
-    setName('');
-    setTeamNameValid(false)
-    const newTeam = [...team]
-    newTeam[0].name = ''
-    setTeam(newTeam)
   };
 
-return (
-<div className="teamName">
-          {teamNameValid &&
+  // handle validate team Name
+  const handleNameEnter = (e) => {
+    if (e.target.value.length > 0 && e.key === 'Enter') {
+      const newTeam = [...team];
+      newTeam[0].name = name;
+      setTeam(newTeam);
+      setTeamNameValid(true);
+    }
+  };
+
+  // handle click event of the Remove button
+  const handleRemoveNameClick = () => {
+    setName('');
+    setTeamNameValid(false);
+    const newTeam = [...team];
+    newTeam[0].name = '';
+    setTeam(newTeam);
+  };
+
+  return (
+    <div className="teamName">
+      {teamNameValid &&
           <div className='teamName__validated'>
-            <i className="fas fa-edit teamName__deleteBtn" onClick={(e) => handleRemoveNameClick(e)}></i>
+            <button onClick={handleRemoveNameClick} className='teamName__deleteBtn'><i className="fas fa-edit"></i></button>
             <div style={{display: 'flex'}}>
               <h2>Nom:</h2>
               <h2 className="teamName__name"><strong>{name}</strong></h2>
             </div>
           </div>}
-          {!teamNameValid &&                 
+      {!teamNameValid &&
           <div className="teamName__unvalidated">
             {/* <label htmlFor="team">Entrez le nom de votre équipe</label> */}
             <div className='teamName__unvalidated__row'>
@@ -65,10 +64,8 @@ return (
               {name.length > 0 && <button className='teamName__btn teamBtn' onClick={e => handleNameClick(e)}>Valider</button>}
             </div>
           </div>}
-      </div>
-  )
-}
+    </div>
+  );
+};
 
 export default TeamNameForm;
-
-

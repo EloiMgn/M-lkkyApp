@@ -1,0 +1,55 @@
+{	
+	"folders": [
+		{	
+			"name": "Root",
+			"path": "."
+		},
+		{	
+			"name": "Src",
+			"path": "./src"
+		},
+		{	
+			"name": "Components",
+			"path": "./src/components"
+		},
+		{	
+			"name": "Pages",
+			"path": "./src/pages"
+		},
+    {	
+			"name": "utils",
+			"path": "./src/utils"
+		},
+	],
+	"settings": {
+		"git.autofetch": true,
+
+		"files.eol": "\n",
+		"stylelint.enable": true,
+		"css.validate": false,
+		"scss.validate": true,
+		
+		"eslint.enable": true,
+		"eslint.format.enable": true,
+		"eslint.alwaysShowStatus": true,
+		"eslint.workingDirectories": [{ "mode": "auto" }],
+		"eslint.validate": [
+			"javascript",
+		  "typescript",
+		],
+		"editor.tabSize": 2,
+		"editor.codeActionsOnSave": {
+		  "source.fixAll.eslint": true,
+		  "source.fixAll.stylelint": true,
+		  "source.organizeImports": true
+		},
+		"editor.formatOnSave": false,
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint",
+	},
+	"extensions": {
+		"recommendations": [
+			"dbaeumer.vscode-eslint",
+			"stylelint.vscode-stylelint"
+		  ]
+	}
+}

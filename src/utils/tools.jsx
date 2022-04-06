@@ -1,72 +1,70 @@
 
 export const getDateFromFolderName = (folderName) => {
-  const regex = /[0-9]{8}/
-  const rawDate = folderName.match(regex)
-  const date = rawDate[0].slice(0, 4) + '/' + rawDate[0].slice(4, 6) + '/' + rawDate[0].slice(6)
-  return new Date(date)
-}
+  const regex = /[0-9]{8}/;
+  const rawDate = folderName.match(regex);
+  const date = rawDate[0].slice(0, 4) + '/' + rawDate[0].slice(4, 6) + '/' + rawDate[0].slice(6);
+  return new Date(date);
+};
 
 export const isToday = (someDate) => {
-  const today = new Date().toDateString()
-  return someDate === today
-}
+  const today = new Date().toDateString();
+  return someDate === today;
+};
 
 export const localStorageDateToNewDate = (someDate) => {
-  return new Date(someDate.toString().slice(0, 10))
-}
+  return new Date(someDate.toString().slice(0, 10));
+};
 
 export const is_touch_device = () => {
   try {
-    document.createEvent('TouchEvent')
-    return true
+    document.createEvent('TouchEvent');
+    return true;
   } catch (e) {
-    return false
+    return false;
   }
-}
+};
 
-export const checkWinner = (teamScore, teams, eliminatedTeams) => {
-  const playingTeams = []
+export const checkWinner = (teamScore, teams) => {
+  const playingTeams = [];
   teams.forEach((team, i) => {
     if(!team.eliminated){
-      playingTeams.push({id:i, score: team.score})
+      playingTeams.push({id:i, score: team.score});
     } else if (team.eliminated){
-      playingTeams.splice(i, 1)
+      playingTeams.splice(i, 1);
     }
-  })
+  });
   const result = {
     playingTeams
-  }
+  };
   if (teamScore === 50 || playingTeams.length === 1) {
-    return result
-  } else return false
-}
+    return result;
+  } else return false;
+};
 
 export const setLevel = (teamScore) => {
   if(teamScore >= 25) {
-    return true
-  } else return false
-}
+    return true;
+  } else return false;
+};
 
 export const checkIfEqual = (teams, teamScore, i) => {
-  const teamScores= []
+  const teamScores= [];
   teams.forEach(team => {
     if(teams[i] !== team) {
-      teamScores.push(team)
+      teamScores.push(team);
     }
-  })
+  });
   for (let j = 0; j < teamScores.length; j++) {
     if(teamScore === teamScores[j].score && teamScore !== 0) {
-      return teamScores[j]
-    } else return null
+      return teamScores[j];
+    } else return null;
   }
-}
+};
 
 export const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
-}
-
-
+};

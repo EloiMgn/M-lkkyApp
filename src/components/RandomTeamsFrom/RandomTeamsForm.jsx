@@ -1,12 +1,12 @@
-import './RandomTeamsForm.scss'
-import Select from 'react-select';
 import { useState } from 'react';
-import Player from '../Player/Player';
-import Button from '../Button/Button';
 import { useNavigate } from 'react-router-dom';
+import Select from 'react-select';
+import { shuffleArray } from '../../utils/tools';
+import Button from '../Button/Button';
+import Player from '../Player/Player';
 // import { useDispatch } from 'react-redux';
 import PlayerForm from '../PlayerForm/PlayerForm';
-import { shuffleArray } from '../../utils/tools';
+import './RandomTeamsForm.scss';
 
 const options = [
   { value: 1, label: '1' },
@@ -23,81 +23,81 @@ const options = [
 
 const RandomTeamsForm = ({addTeam, setAddTeam}) => {
 
-  const [playerList, setplayerList] = useState([{player: "", hide: false}])
-  const [toogle, setToogle] = useState(false)
-  const [teamsNumber, setTeamsnumber] = useState(null)
+  const [playerList, setplayerList] = useState([{player: '', hide: false}]);
+  const [toogle, setToogle] = useState(false);
+  const [teamsNumber, setTeamsnumber] = useState(null);
 
-  const navigate= useNavigate()
+  const navigate= useNavigate();
   // const dispatch = useDispatch();
 
   const tooglePlayer = () => {
-    setToogle(!toogle)
-  }
+    setToogle(!toogle);
+  };
 
   // handle click event of the Remove button
   const handleRemoveClick = (e, index) => {
     const list = [...playerList];
     list.splice(index, 1);
     setplayerList(list);
-  }
+  };
 
   const handleCancel = ()=> {
     if (window.innerWidth > 765){
-      setAddTeam(!addTeam)
+      setAddTeam(!addTeam);
     } else if(window.innerWidth<765){
-      navigate('/dashboard', { replace: true })
+      navigate('/dashboard', { replace: true });
     }
-  }
+  };
 
   const handleValidate = () => {
-    const playerNames = []
+    const playerNames = [];
     playerList.forEach(player => {
-      playerNames.push(player.player)
-    })
-    playerNames.pop()
-    shuffleArray(playerNames)
-    
-   }
+      playerNames.push(player.player);
+    });
+    playerNames.pop();
+    shuffleArray(playerNames);
 
-   const buttonStyleGreen = {
+  };
+
+  const buttonStyleGreen = {
     frontStyle: {
-      "background": "#219653",
+      'background': '#219653',
     },
     frontHoverStyle: {
-      "background": "#219653",
+      'background': '#219653',
     },
     backStyle: {
-      "background": `linear-gradient(to left, #00672a 0%, #003314 8%, #003314 92%, #00672a 100%)`
+      'background': 'linear-gradient(to left, #00672a 0%, #003314 8%, #003314 92%, #00672a 100%)'
     },
     backHoverStyle: {
-      "background": `linear-gradient(to left, #00672a 0%, #003314 8%, #003314 92%, #00672a 100%)`
+      'background': 'linear-gradient(to left, #00672a 0%, #003314 8%, #003314 92%, #00672a 100%)'
     }
-  }
+  };
 
-  
+
   const buttonStyleGray = {
     frontStyle: {
-      "background": "#6c6c6c",
-      "transition": "200ms"
+      'background': '#6c6c6c',
+      'transition': '200ms'
     },
     frontHoverStyle: {
-      "background": "#6c6c6c",
-      "transition": "200ms"
+      'background': '#6c6c6c',
+      'transition': '200ms'
     },
     backStyle: {
-      "background": `#4e4e4e`,
-      "transition": "200ms"
+      'background': '#4e4e4e',
+      'transition': '200ms'
     },
     backHoverStyle: {
-      "background": `#4c4c4c`,
-      "transition": "200ms"
+      'background': '#4c4c4c',
+      'transition': '200ms'
     }
-  }
+  };
 
   return (
     <div className='randomTeams'>
       <div className='randomTeams__teamNumberSelect'>
-        <h2>Nombre d'équipes :</h2>
+        <h2>Nombre d&apos;équipes :</h2>
         <Select
           defaultValue={teamsNumber}
           options={options}
@@ -105,23 +105,23 @@ const RandomTeamsForm = ({addTeam, setAddTeam}) => {
         />
       </div>
       {playerList.map((x, i) => {
-        if (playerList.length > 1 && x.player !== "" && playerList[i+1]) {
+        if (playerList.length > 1 && x.player !== '' && playerList[i+1]) {
           return (
             <Player action={e => handleRemoveClick(e, i)} i={i} player={x.player} key={i}/>
-          ) 
-        } return null
+          );
+        } return null;
       })}
       <div className='randomTeams__addPlayerForm'>
 
       </div>
       {/* <div className='buttons__desktop'> */}
-      {!toogle &&  <Button text={"Ajouter un joueur"} action={tooglePlayer} ico={"fas fa-user-plus"} /> }
+      {!toogle &&  <Button text={'Ajouter un joueur'} action={tooglePlayer} ico={'fas fa-user-plus'} /> }
       {toogle && <PlayerForm list={playerList} setList={setplayerList} setToogle={setToogle}/>}
-      {playerList.length>1 && <Button text={"Valider l'équipe"} action={handleValidate} ico={"fas fa-users"} style={buttonStyleGreen}/>}
-        {/* </div> */}
-        <Button text={"Annuler"} action={handleCancel} style={buttonStyleGray}/>
+      {playerList.length>1 && <Button text={'Valider l\'équipe'} action={handleValidate} ico={'fas fa-users'} style={buttonStyleGreen}/>}
+      {/* </div> */}
+      <Button text={'Annuler'} action={handleCancel} style={buttonStyleGray}/>
     </div>
-  )
-}
+  );
+};
 
-export default RandomTeamsForm
+export default RandomTeamsForm;

@@ -1,47 +1,47 @@
-import './Stats.scss'
 import { useSelector } from 'react-redux';
 import Title from '../../components/Title/Title';
+import './Stats.scss';
 
 
 const Stats = () => {
-const state = useSelector((state) => state)
+  const state = useSelector((state) => state);
 
-return (
+  return (
     <main className='Stats__content'>
-    <Title text={'Statistiques de la partie'}/>
-    {state.teams.map((team, i) => {
+      <Title text={'Statistiques de la partie'}/>
+      {state.teams.map((team, i) => {
         return (
           <div className='Stats__content__team' key={i}>
             <h2>{team.name}</h2>
-              {team.stats.map((player, i) => {
-                  return (
-                    <div className={team.eliminated ? 'playerStats__eliminated' : 'playerStats'} key={i}>
-                      <div className='playerStats__name'>{player.player}:</div>
-                      <div className='playerStats__data'>
-                        <div className='playerStats__data__score'>
-                          <h3>Score</h3>
-                          <div >{player.score}</div>
-                        </div>
-                        <div className='playerStats__data__fails'>
-                          <h3>Lancés ratés</h3>
-                          <div>{player.fails}</div>
-                        </div>
-                        {state.options.elimination &&
+            {team.stats.map((player, i) => {
+              return (
+                <div className={team.eliminated ? 'playerStats__eliminated' : 'playerStats'} key={i}>
+                  <div className='playerStats__name'>{player.player}:</div>
+                  <div className='playerStats__data'>
+                    <div className='playerStats__data__score'>
+                      <h3>Score</h3>
+                      <div >{player.score}</div>
+                    </div>
+                    <div className='playerStats__data__fails'>
+                      <h3>Lancés ratés</h3>
+                      <div>{player.fails}</div>
+                    </div>
+                    {state.options.elimination &&
                           <div className='playerStats__data__fails'>
                             <h3>Eliminé ?</h3>
                             {team.eliminated ? <div>Oui</div>: <div>Non</div>}
                           </div>
-                        }
-                      </div>
-                    </div>
-                  )
-                })
-              }
+                    }
+                  </div>
+                </div>
+              );
+            })
+            }
           </div>
-        )}
+        );}
       )}
-     </main> 
-)
-}
+    </main>
+  );
+};
 
-export default Stats
+export default Stats;
