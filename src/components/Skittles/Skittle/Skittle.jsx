@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import './Skittle.scss';
 
-const Skittle = ({frontValue, color, setQuantity}) => {
+const Skittle = ({frontValue, color, setQuantity, disabled}) => {
   const [selected, setSelected] = useState(false);
   const dispatch = useDispatch();
 
@@ -16,9 +16,12 @@ const Skittle = ({frontValue, color, setQuantity}) => {
       dispatch({type: 'unSelect', id: frontValue});
     }
   };
-
-  return (
-    <div className={selected? 'skittle selected' : 'skittle'} onClick={() =>handleClick()} style={selected? {backgroundColor: `${color}`}: null}>{frontValue}</div>
+  if(!disabled){
+    return (
+      <div className={selected? 'skittle selected' : 'skittle'} onClick={() =>handleClick()} style={selected? {backgroundColor: `${color}`, border: 'solid 4px var(--tertiary)'}: {border: `solid 4px ${color}`}}>{frontValue}</div>
+    );
+  }  return (
+    <div className='skittle disabledSkittle' onClick={() =>handleClick()} style={selected? {backgroundColor: `${color}`}: null}>{frontValue}</div>
   );
 };
 

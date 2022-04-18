@@ -212,7 +212,7 @@ const Game = () => {
   };
 
   // ============================ DESKTOP ===========================================================================================
-  if(window.innerWidth>767) {
+  if(window.innerWidth > 767) {
     return (
       state.teams.map((team, i) => {
         if (i.toString() === id) {
@@ -230,11 +230,11 @@ const Game = () => {
               <section className='Game__content__playingArea'>
                 <Title text={'Partie en cours'}/>
                 <Subtitle text={`Equipe : ${team.name}`}/>
-                {quantity===0 && <Skittles color={state.teams[i].color} setQuantity={setQuantity}/>}
+                <Skittles color={state.teams[i].color} setQuantity={setQuantity} disabled={quantity!== 0 ? true : false} />
                 <div className='select__text' style={{backgroundColor: `${state.teams[i].color}`}}>
                   <p>Sélectionnez sur le schéma les quilles tombées ou entrez le nombre de quilles tombées puis cliquez sur &quot;Equipe suivante&quot; pour valider</p>
                 </div>
-                {!selectedPin && <NumberPicker placeholder='Entrez un nombre de quilles' value={quantity} onChange={value => setQuantity(value)}  min={0} max={12}/>}
+                <NumberPicker value={quantity} onChange={value => setQuantity(value)}  min={0} max={12} disabled={selectedPin? true : false}/>
                 <div className='navBtns'>
                   <Button text='Equipe suivante'action={() => handleNextTeam(i)} ico={'fas fa-share'} animation/>
                 </div>
@@ -258,8 +258,8 @@ const Game = () => {
               {infos && <Modale title={'Comment jouer ?'} text={explicationsInfos} setModal={setInfos}/>}
               <section className='Game__content__playingArea'>
                 <PlayingDatas team={team}/>
-                {!selectedPin && <NumberPicker placeholder='Entrez un nombre de quilles' value={quantity} onChange={value => setQuantity(value)}  min={0} max={12}/>}
-                {quantity===0 && <Skittles color={state.teams[i].color} setQuantity={setQuantity} containerClassName='Game__content__playingArea-numberPicker'/>}
+                <NumberPicker value={quantity} onChange={value => setQuantity(value)}  min={0} max={12} disabled={selectedPin? true : false}/>
+                <Skittles color={state.teams[i].color} setQuantity={setQuantity} disabled={quantity!== 0 ? true : false} />
                 <div className='navBtns'>
                   <Button text='Equipe suivante'action={() => handleNextTeam(i)} ico={'fas fa-share'} animation/>
                 </div>
