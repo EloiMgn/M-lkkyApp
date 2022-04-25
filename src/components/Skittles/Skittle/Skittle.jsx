@@ -18,7 +18,7 @@ const Skittle = ({frontValue, color, setQuantity, disabled}) => {
   };
   if(!disabled){
     return (
-      <div className={selected? 'skittle selected' : 'skittle'} onClick={() =>handleClick()} style={selected? {backgroundColor: `${color}`, border: 'solid 4px var(--secondary)'}: {border: `solid 4px ${color}`}}>{frontValue}</div>
+      <div className={selected? 'skittle selected' : 'skittle'} onClick={() =>handleClick()} style={selected? {backgroundColor: `${color}`, border: 'solid 4px var(--black)'}: {border: `solid 4px ${color}`}}>{frontValue}</div>
     );
   }  return (
     <div className='skittle disabledSkittle' onClick={() =>handleClick()} style={selected? {backgroundColor: `${color}`}: null}>{frontValue}</div>

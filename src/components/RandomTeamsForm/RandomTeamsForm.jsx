@@ -61,18 +61,18 @@ const RandomTeamsForm = () => {
   };
 
   const pickableColors = [
-    '#fff8d8',
-    '#e2e2b9',
-    '#e3ded9',
-    '#bba686',
-    '#e8d3a3',
-    '#f3c58f',
-    '#747c24',
-    '#346830',
-    '#5d6f66',
-    '#416270',
-    '#8aa4ab',
-    '#6db9d5'
+    '#12CBC4', // light-blue
+    '#00A8C5', // blue
+    '#0652DD',
+    '#009432', //dark-green
+    '#C4E538', //light-green
+    '#FFC312', // yellow
+    '#F79F1F', // dark-yellow
+    '#EE5A24', //orange
+    '#EA2027', //red
+    '#E81D62', // pink
+    '#ED4C67',
+    '#FDA7DF', //light-pink
   ];
 
   const buttonStyleGreen = {

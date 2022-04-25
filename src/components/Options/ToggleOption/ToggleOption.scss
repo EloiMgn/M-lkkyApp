@@ -2,7 +2,7 @@
   width: 56px;
   height: 24px;
   border-radius: 35px;
-  background-color: var(--primary);
+  background-color: var(--secondary);
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -55,7 +55,7 @@
   left: 7px;
 }
 .switchContainer.mode-true {
-  background-color: var(--secondary);
+  background-color: var(--tertiary);
 }
 .switchContainer.mode-true .point {
   left: 35px;

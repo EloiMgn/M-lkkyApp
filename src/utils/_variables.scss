@@ -30,7 +30,7 @@
   --red: rgba(199, 26, 26, 1);
   --light-red: rgba(203, 74, 74, 0.14);
 
-  --primary: #dcdde1; 
+  --primary: #f1f1f1; 
   --secondary: #AF8C5E;
   --tertiary: #219653;
 
@@ -40,6 +40,8 @@
 
   --dark-overlay: rgba(0, 0, 0, 0.8);
   --light-overlay: rgba(140, 140, 140, 0.8);
+
+  --secondary-backcolor: #8a6f4c;
 
   --color-cursor: #6e6e6e;
   
@@ -95,7 +97,7 @@
   --color-country-row: var(--dark-gray);
   --color-card-overlay: var(--dark-overlay);
 
-  --color-btn: var(--primary);
+  --color-btn: var(--secondary);
 
   --color-cursor: var(--font-color);
 

@@ -13,7 +13,7 @@ const Options = () => {
   }, [state]);
 
   const egalisationDetails = 'Si l\'équipe A égalise le score de l\'équipe B, le score de l\'équipe B retombe à 0 ou à 25 si l\'équipe B a déjà dépassé 25';
-  const eliminationDetails = 'Si une des équipe ne touche aucune quilles 3 fois d\'affilé, elle est éliminée. La dernière équipe qui n\'est pas éliminée gagne. Si cette option n\'est pas activée, si une équipe ne touche aucune quille 3 fois d\'affilé, son score retombera soit à 0 soit à 25';
+  const eliminationDetails = 'Si une des équipes ne touche aucune quille 3 fois d\'affilé, elle est éliminée. La dernière équipe qui n\'est pas éliminée gagne la partie. Si cette option n\'est pas activée, si une équipe ne touche aucune quille 3 fois d\'affilé, son score retombera soit à 0 soit à 25';
 
   if(localState){
     return (

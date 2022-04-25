@@ -12,8 +12,6 @@ const Modale = ({title, text, setModal, listTitle}) => {
     setModal(false);
   };
 
-  console.log(typeof(text));
-
   return (
     <div className='modale__background'>
       <div className={open? 'modale': 'modale__hidden'}>

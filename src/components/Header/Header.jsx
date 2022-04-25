@@ -21,8 +21,10 @@ const Header = () => {
     }
     // check localStorage
     const rawLocalStorage = getLocalStorage('molkking_param');
+    // check localStorage
+    const rawLocalStorage2 = getLocalStorage('previousState');
     // si il y a quelqueChose dans le localStorage
-    if (rawLocalStorage !== null) {
+    if (rawLocalStorage && rawLocalStorage2 !== null) {
       removeLocalStorage();
     }
   };

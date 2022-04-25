@@ -10,7 +10,7 @@ import Skittles from '../../components/Skittles/Skittles';
 import Subtitle from '../../components/Subtitle/Subtitle';
 import Teams from '../../components/Teams/Teams';
 import Title from '../../components/Title/Title';
-import { setLocalStorage } from '../../utils/localStorage';
+import { setLocalStorage, getLocalStorage } from '../../utils/localStorage';
 import './Game.scss';
 
 
@@ -134,7 +134,6 @@ const Game = () => {
     }
   };
 
-
   useEffect(() => {
 
     const handleStateManagment = (previousTeam) => {
@@ -178,7 +177,15 @@ const Game = () => {
     handleSelectedPin();
   });
 
+  const handleCancelPrevious = () => {
+    const previousState = JSON.parse(getLocalStorage('previousState'));
+    navigate(`/game/${previousState.teams[previousTeamId].name}/${previousTeamId}/${previousState.teams[previousTeamId].players[previousState.teams[previousTeamId].playerTurn]}`, { replace: true });
+    dispatch({type: 'cancelPrevious', team: parseInt(previousTeamId)});
+    setPreviousTeamId(null);
+  };
+
   const handleNextTeam = (i) => {
+    localStorage.setItem('previousState', JSON.stringify(state));
     navigate(`/game/${nextTeam.name}/${nextTeamId}/${nextTeam.players[nextTeam.playerTurn]}`, { replace: true });
     dispatch({type: 'nextPlayer', team: parseInt(id)});
     dispatch({type: 'setTurn', team: i});
@@ -188,7 +195,7 @@ const Game = () => {
   };
 
   const calculateScore = () => {
-    const falledPins = [];
+    let falledPins = [];
     state.pins.forEach(skittle => {
       if (skittle.value === true) {
         falledPins.push(skittle);
@@ -208,6 +215,26 @@ const Game = () => {
     if (falledPins.length === 0 && quantity > 0) {
       dispatch({type: 'scored', score: quantity, team: id, player: playerId});
       dispatch({type: 'unFail', team: id});
+    }
+    falledPins = [];
+  };
+
+  const buttonStyleGray = {
+    frontStyle: {
+      'background': '#6c6c6c',
+      'transition': '200ms'
+    },
+    frontHoverStyle: {
+      'background': '#6c6c6c',
+      'transition': '200ms'
+    },
+    backStyle: {
+      'background': '#4e4e4e',
+      'transition': '200ms'
+    },
+    backHoverStyle: {
+      'background': '#4c4c4c',
+      'transition': '200ms'
     }
   };
 
@@ -237,6 +264,7 @@ const Game = () => {
                 <NumberPicker value={quantity} onChange={value => setQuantity(value)}  min={0} max={12} disabled={selectedPin? true : false}/>
                 <div className='navBtns'>
                   <Button text='Equipe suivante'action={() => handleNextTeam(i)} ico={'fas fa-share'} animation/>
+                  {previousTeamId !== null && <Button text='Annuler l&apos;action précédente' action={() => handleCancelPrevious(i)} ico={'fas fa-ban'} style={buttonStyleGray}/>}
                 </div>
 
               </section>
@@ -261,7 +289,8 @@ const Game = () => {
                 <NumberPicker value={quantity} onChange={value => setQuantity(value)}  min={0} max={12} disabled={selectedPin? true : false}/>
                 <Skittles color={state.teams[i].color} setQuantity={setQuantity} disabled={quantity!== 0 ? true : false} />
                 <div className='navBtns'>
-                  <Button text='Equipe suivante'action={() => handleNextTeam(i)} ico={'fas fa-share'} animation/>
+                  <Button text='Equipe suivante' action={() => handleNextTeam(i)} ico={'fas fa-share'} animation/>
+                  {previousTeamId !== null && <Button text='Annuler l&apos;action précédente' action={() => handleCancelPrevious(i)} ico={'fas fa-ban'} style={buttonStyleGray}/>}
                 </div>
                 <PlayingDatas previousTeam team={state.teams[previousTeamId]}/>
                 <div className='subtitle__infos' onClick={openModal}>
