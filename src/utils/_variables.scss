@@ -30,15 +30,13 @@
   --red: rgba(199, 26, 26, 1);
   --light-red: rgba(203, 74, 74, 0.14);
 
-  --primary: #AF8C5E; 
-  --secondary: #219653;
-  // --secondary: #5bc881;
-  
-  --tertiary: rgba(246, 165, 42, .7);
+  --primary: #dcdde1; 
+  --secondary: #AF8C5E;
+  --tertiary: #219653;
 
   --light-blue: rgba(25, 81, 121, 0.07);
   --dark-gray: #cccccc;
-  --light-gray: #F2F2F2;
+  --light-gray: #f2f2f2;
 
   --dark-overlay: rgba(0, 0, 0, 0.8);
   --light-overlay: rgba(140, 140, 140, 0.8);
@@ -62,14 +60,6 @@
   --line-height-large: 35px;
 
   /* Buttons */
-  // --primary-frontcolor: #f0003c;
-  // --primary-backcolor: #A30036;
-
-  --secondary-frontcolor: #219653; 
-  --secondary-backcolor: #00672a;
-
-  --tertiary-frontcolor: #af8c5e;
-  --tertiary-backcolor: #7e5f33;
 
   --width-btn-small: 5rem;
   --width-btn-medium: 10rem;
@@ -92,32 +82,8 @@
 
 }
 
-// .theme-dark {
-//   --color-background: var(--white);
-//   --color-background-rev: var(--light-gray);
-//   --background-app: url("../utils/img/escheresque-dark.png");
-
-//   --font-color: var(--black);
-//   --font-color-rev: var(--white);
-//   --hover-color: var(--tertiary);
-  
-//   --color-card-background: var(--black);
-//   --color-country-row: var(--dark-gray);
-//   --color-card-overlay: var(--dark-overlay);
-
-//   --color-btn: var(--primary);
-
-//   --color-cursor: var(--font-color);
-
-//   --skelton-background: var(--dark-gray);
-//   --skeleton-font: var(--color-card-background);
-//   --skeleton-lightning: rgba(102, 102, 102, 0.5);
-
-//   --box-shadow: var(--box-shadow-dark);
-// }
-
 .theme-light {
-  --color-background: var(--light-gray);
+  --color-background: var(--white);
   --color-background-rev: var(--light-gray);
   --background-app: url("../utils/img/escheresque.png");
 

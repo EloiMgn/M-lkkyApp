@@ -13,7 +13,7 @@ const PlayingDatas = ({team, previousTeam}) => {
       <>
 
         {previousTeam && <span> Score de l&apos;équipe précédente </span>}
-        <div className='playingDatas' style={previousTeam ? {'background': '#cccccc'}: {'background': '#AF8C5E'}}>
+        <div className='playingDatas' style={previousTeam ? {'background': 'var(--tertiary)'}: {'background': 'var(--primary)'}}>
           <div className='playingDatas__player'>
             <div className='playingDatas__team__datas'>
               <p>équipe:</p>
