@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import RandomTeamsForm from '../../components/RandomTeamsForm/RandomTeamsForm';
 import TeamForm from '../../components/TeamForm/TeamForm';
@@ -7,10 +7,14 @@ import './NewTeam.scss';
 
 const NewTeam = () => {
   const navigate= useNavigate();
+  const dispatch = useDispatch();
   const state = useSelector((state) => state);
 
   const handleCancel = ()=> {
-    navigate('/dashboard', { replace: true });
+    if(state.randomTeams){
+      dispatch({type: 'startNewGame'});
+      navigate('/dashboard', { replace: true });
+    } else navigate('/dashboard', { replace: true });
   };
 
   return (

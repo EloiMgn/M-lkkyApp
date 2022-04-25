@@ -12,7 +12,7 @@
   box-shadow: var(--box-shadow-light);
   @media screen and (min-width:767px) {
     min-width: 0;
-    max-width: 100%;
+    max-width: 95%;
   }
   &-score, &__player{
     display: flex;

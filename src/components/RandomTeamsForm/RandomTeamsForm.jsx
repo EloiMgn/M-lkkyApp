@@ -5,6 +5,7 @@ import NumberPicker from 'react-widgets/NumberPicker';
 import { setLocalStorage } from '../../utils/localStorage';
 import { shuffleArray } from '../../utils/tools';
 import Button from '../Button/Button';
+import Options from '../Options/Options';
 import Player from '../Player/Player';
 import PlayerForm from '../PlayerForm/PlayerForm';
 import Teams from '../Teams/Teams';
@@ -114,6 +115,7 @@ const RandomTeamsForm = () => {
         </div>
       </>}
       {state.teams.length > 0 && <Teams/>}
+      <Options />
       {teamsNumber && !validTeams && <Button text={'Valider les équipes'} action={handleValidateTeams} ico={'fas fa-users'} style={buttonStyleGreen}/>}
       {validTeams && <Button text={'Commencer à jouer'} action={handleStart} ico={'fas fa-users'} style={buttonStyleGreen}/>}
       {/* <Button text={'Annuler'} action={handleCancel} style={buttonStyleGray}/> */}

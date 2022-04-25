@@ -92,7 +92,7 @@ const Dashboard = () => {
     }
   };
 
-
+  console.log(state);
   return (
     <div className='Dashboard'>
       <Title text={'Tableau de Bord'}/>
@@ -102,7 +102,7 @@ const Dashboard = () => {
             {(!state.playing || state.teams.length < 1) && <Subtitle text={'Créez vos équipes'}/>}
             {(state.playing || state.teams.length >= 1) && <Subtitle text={'Equipes'}/>}
             <Teams/>
-            {!state.playing && <>
+            {!state.playing && !state.randomTeams && <>
               <Button text={'Ajouter une nouvelle équipe'} ico={'fas fa-users'} action={addNewTeam} />
               <Button text={'Créer des équipes aléatoires'} ico={'fas fa-users'} action={addRandomTeams} />
             </>}
