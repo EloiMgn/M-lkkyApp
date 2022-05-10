@@ -1,13 +1,14 @@
 {
   "short_name": "MölkKing",
   "name": "MölkKing, le King du Mölkky!",
-  "description": "Grâce à Molkking, vous deviendrez les rois et reines du Mölkky! Suivez le déroulement de vos parties de Möllky, ne vous battez plus à propos des règles et découvrez le placement initial officiel des quilles.",
+  "description": "Grâce à Molkking, vous deviendrez les rois et reines du Mölkky! Suivez le déroulement de vos parties de Mölkky, ne vous battez plus à propos des règles et découvrez le placement initial officiel des quilles.",
   "lang": "fr",
   "orientation": "portrait",
-  "star_url": "https://www.molkking.com",
+  "star_url": "/?utm_source=web_app_manifest",
   "theme_color": "#F6F6F7",
   "background_color": "#ffffff",
   "display": "standalone",
+  "scope": "/",
   "icons": [
     {
         "src": "/fav/android-chrome-36x36.png",
@@ -53,6 +54,12 @@
         "src": "/fav/android-chrome-512x512.png",
         "sizes": "512x512",
         "type": "image/png"
-    }
+    },
+    {
+        "src": "/fav/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "maskable"
+      }
 ]
 }

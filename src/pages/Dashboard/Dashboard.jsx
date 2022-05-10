@@ -92,7 +92,6 @@ const Dashboard = () => {
     }
   };
 
-  console.log(state);
   return (
     <div className='Dashboard'>
       <Title text={'Tableau de Bord'}/>

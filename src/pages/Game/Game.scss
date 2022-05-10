@@ -95,3 +95,32 @@
   height: var(--height-btn-regular);
   background-color: var(--secondary);
 }
+.skittles__container{
+  position: relative;
+  height: 90vw;
+  max-height: 360px;
+  width: 90vw;
+  max-width: 365px;
+  overflow: hidden;
+  margin: auto;
+  margin: var(--margin-small) 0;
+  padding: var(--margin-small);
+  text-align: center;
+  background: var(--primary);
+  border-radius: var(--border-radius);
+  box-shadow: 2px 3px 5px #9b9b9b;
+  @media screen and (min-width:767px) {
+    margin: var(--margin-small) auto;
+    }
+  .select:nth-child(2) {
+    left: 500px;
+  }
+  &.animated{
+    .select:nth-child(2) {
+      left: 0px;
+    }
+    .select:nth-child(1) {
+      left: -1000px;
+    }
+  }
+}

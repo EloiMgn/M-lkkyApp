@@ -10,7 +10,7 @@ import Skittles from '../../components/Skittles/Skittles';
 import Subtitle from '../../components/Subtitle/Subtitle';
 import Teams from '../../components/Teams/Teams';
 import Title from '../../components/Title/Title';
-import { setLocalStorage, getLocalStorage } from '../../utils/localStorage';
+import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
 import './Game.scss';
 
 
@@ -27,6 +27,7 @@ const Game = () => {
   const [previousTeamId, setPreviousTeamId] = useState(null);
   const [quantity, setQuantity] = useState(0);
   const [selectedPin, setSelectedPin] = useState(false);
+  const [animate, setAnimate] = useState(false);
 
   const [infos, setInfos] = useState(false);
   const explicationsInfos = 'Pour calculer vos points vous pouvez sélectionner la ou les quilles tombées directement sur le schéma. Sinon, si vous avez fait tomber plus d\'une quille, entrez le nombre total de quilles tombées dans la zone prévue à cet effet puis cliquez sur \'équipe suivante\' pour confirmer';
@@ -186,12 +187,18 @@ const Game = () => {
 
   const handleNextTeam = (i) => {
     localStorage.setItem('previousState', JSON.stringify(state));
-    navigate(`/game/${nextTeam.name}/${nextTeamId}/${nextTeam.players[nextTeam.playerTurn]}`, { replace: true });
+    setAnimate(true);
     dispatch({type: 'nextPlayer', team: parseInt(id)});
     dispatch({type: 'setTurn', team: i});
     calculateScore();
     handleResetSkittles();
     setPreviousTeamId(i);
+    // modifier aussi dans le css select transition
+    setTimeout(()=> {
+      navigate(`/game/${nextTeam.name}/${nextTeamId}/${nextTeam.players[nextTeam.playerTurn]}`, { replace: true });
+      setAnimate(false);
+    }, 1000);
+
   };
 
   const calculateScore = () => {
@@ -257,7 +264,10 @@ const Game = () => {
               <section className='Game__content__playingArea'>
                 <Title text={'Partie en cours'}/>
                 <Subtitle text={`Equipe : ${team.name}`}/>
-                <Skittles color={state.teams[i].color} setQuantity={setQuantity} disabled={quantity!== 0 ? true : false} />
+                <div className={animate? 'skittles__container animated': 'skittles__container'}>
+                  <Skittles color={state.teams[i].color} setQuantity={setQuantity} disabled={quantity!== 0 ? true : false} />
+                  <Skittles color={nextTeam.color} />
+                </div>
                 <div className='select__text' style={{backgroundColor: `${state.teams[i].color}`}}>
                   <p>Sélectionnez sur le schéma les quilles tombées ou entrez le nombre de quilles tombées puis cliquez sur &quot;Equipe suivante&quot; pour valider</p>
                 </div>
@@ -287,7 +297,10 @@ const Game = () => {
               <section className='Game__content__playingArea'>
                 <PlayingDatas team={team}/>
                 <NumberPicker value={quantity} onChange={value => setQuantity(value)}  min={0} max={12} disabled={selectedPin? true : false}/>
-                <Skittles color={state.teams[i].color} setQuantity={setQuantity} disabled={quantity!== 0 ? true : false} />
+                <div className={animate? 'skittles__container animated': 'skittles__container'}>
+                  <Skittles color={state.teams[i].color} setQuantity={setQuantity} disabled={quantity!== 0 ? true : false} />
+                  <Skittles color={nextTeam.color} />
+                </div>
                 <div className='navBtns'>
                   <Button text='Equipe suivante' action={() => handleNextTeam(i)} ico={'fas fa-share'} animation/>
                   {previousTeamId !== null && <Button text='Annuler l&apos;action précédente' action={() => handleCancelPrevious(i)} ico={'fas fa-ban'} style={buttonStyleGray}/>}

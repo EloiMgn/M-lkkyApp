@@ -1,23 +1,32 @@
 .select{
   @media screen and (min-width:767px) {
-    height: 40vh;
-    width: auto;
-    max-width: fit-content;
+    // height: 40vh;
+    // width: auto;
+    // max-width: fit-content;
     margin: var(--margin-medium) auto;
     }
-  height: fit-content;
-  width: 85vw;
-  margin: var(--margin-small) 0;
-  padding: var(--margin-small);
-  text-align: center;
-  background: var(--primary);
-  border-radius: var(--border-radius);
-  box-shadow: 2px 3px 5px #9b9b9b;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    height: 90vw;
+    max-height: 365px;
+    width: 90vw;
+    max-width: 365px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 1s;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
   &__container{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     padding: var(--margin-small);
     margin: var(--margin-small) 0;
   }
