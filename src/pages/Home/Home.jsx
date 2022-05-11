@@ -21,7 +21,7 @@ const Home = () => {
   };
 
   const isIphone = () => {
-    if(navigator.userAgent.match(/Chrome/i)
+    if(navigator.userAgent.match(/iPhone/i)
       || navigator.userAgent.match(/iPad/i)
       || navigator.userAgent.match(/iPod/i)) {
       return true;
