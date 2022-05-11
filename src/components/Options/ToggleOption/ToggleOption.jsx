@@ -9,6 +9,7 @@ const ToggleOption = ({action, details, stateValue, explication}) => {
   const [text, setText] = useState('OFF');
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
+
   const handleToggle = () => {
     setOption(!option);
   };

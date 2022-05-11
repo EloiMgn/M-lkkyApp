@@ -208,3 +208,43 @@
     align-items: center;
   }
 }
+
+.iphoneModale{
+  background: var(--primary);
+  border-radius: var(--border-radius);
+  position: fixed;
+  padding: var(--margin-small);
+  width: 80vw;
+  box-shadow: var(--box-shadow-dark);
+  bottom: 20px;
+  h3{
+    font-weight: var(--fontweight-bold);
+    text-align: center;
+  }
+  &__close{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    
+    i{
+      margin: 0;
+      font-size: var(--fontsize-h2);
+      height: 20px;
+    }
+  }
+  &__content-top{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  &__arrow{
+    position: absolute;
+    bottom: -10px;
+    left: 180px;
+    background: var(--primary);
+    transform: rotate(45deg);
+    height: 20px;
+    width: 20px;
+  }
+}

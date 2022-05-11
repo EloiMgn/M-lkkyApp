@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
@@ -14,6 +14,25 @@ const Home = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(true);
+
+  const closeModal = ()=> {
+    setIsOpen(false);
+  };
+
+  const isIphone = () => {
+    if(navigator.userAgent.match(/Chrome/i)
+      || navigator.userAgent.match(/iPad/i)
+      || navigator.userAgent.match(/iPod/i)) {
+      return true;
+    }
+  };
+
+  useEffect(() => {
+    isIphone();
+  }, []);
+
+  // const modalText = 'Vous pouvez m\'ajouter à l\'écran d\'accueil en suivant ces instructions très simples: ';
 
   const handleStartNewGame = () => {
     dispatch({type: 'startNewGame'});
@@ -69,6 +88,19 @@ const Home = () => {
             <Button text='Démarrer une nouvelle partie' action={handleStartNewGame}  ico={'fas fa-play'} />
             :
             <Button text='Nouvelle partie' action={handleStartNewGame} ico={'fas fa-play'} style={buttonStyleGreen}/>}
+          {isIphone && isOpen &&
+          <div className='iphoneModale'>
+            <div className='iphoneModale__content'>
+              <div className='iphoneModale__content-top'>
+                <div className="iphoneModale__close">
+                  <i className="fas fa-times modale__close__icon" onClick={closeModal}></i>
+                </div>
+                <h3>Ajoutez moi à votre écran d&apos;accueil pour un accès plus rapide!</h3>
+              </div>
+              <p>Cliquez sur <img src="https://img.icons8.com/ios-glyphs/30/000000/share-rounded.png"/>, puis &quot;Ajouter à l&apos;écran d&apos;accueil&quot;</p>
+            </div>
+            <div className='iphoneModale__arrow'></div>
+          </div>}
           <div className='Home__links'>
             <h3>Liens utiles:</h3>
             <ul className='Home__links-list'>
