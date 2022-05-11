@@ -8,8 +8,7 @@
   min-height: 100vh;
   font-family: var(--font-text);
   font-weight: var(--fontweight-light);
-  background: var(--color-background);
-  background-image: var(--background-app);
+  background: var(--background-app), linear-gradient(180deg, #f8efba, #eef7b5, #d9f5b0, #c2f4ac, #aaf2a7, #a3f0b5, #9eeec7, #9aecdb);
   color: var(--font-color);
   display: flex;
   flex-direction: column;
