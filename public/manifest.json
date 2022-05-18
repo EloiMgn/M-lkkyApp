@@ -4,11 +4,12 @@
   "description": "Grâce à Molkking, vous deviendrez les rois et reines du Mölkky! Suivez le déroulement de vos parties de Mölkky, ne vous battez plus à propos des règles et découvrez le placement initial officiel des quilles.",
   "lang": "fr",
   "orientation": "portrait",
-  "star_url": "/?utm_source=web_app_manifest",
+  "start_url": "/",
   "theme_color": "#F6F6F7",
   "background_color": "#ffffff",
   "display": "standalone",
-  "scope": "/",
+  "scope": ".",
+  "id": "/",
   "icons": [
     {
         "src": "/fav/android-chrome-36x36.png",

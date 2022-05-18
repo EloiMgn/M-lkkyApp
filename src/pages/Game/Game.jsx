@@ -128,6 +128,7 @@ const Game = () => {
     if(state.teams.length-state.eliminatedTeams.length === 1) {
       state.teams.forEach((team, i) => {
         if(!team.eliminated){
+          console.log('winner');
           dispatch({type: 'setWinner', team: i});
           navigate(`/winner/${i}`, { replace: true });
         }
@@ -150,7 +151,26 @@ const Game = () => {
     if(previousTeamId !== null){
       handleStateManagment(state.teams[previousTeamId]);
     }
-  },);
+  });
+
+  const handleNextTeam = (i) => {
+    localStorage.setItem('previousState', JSON.stringify(state));
+    setAnimate(true);
+    handleResetSkittles();
+    setPreviousTeamId(i);
+    dispatch({type: 'nextPlayer', team: parseInt(id)});
+    dispatch({type: 'setTurn', team: i});
+    // si changement de timeout, chnager ici + ligne 154 + css select component transition : Skittles\Skittles.scss:14
+    setTimeout(()=> {
+      state.winner === null &&
+      navigate(`/game/${nextTeam.name}/${nextTeamId}/${nextTeam.players[nextTeam.playerTurn]}`, { replace: true });
+      setAnimate(false);
+    }, 600);
+    // calcul du score 100ms plus tard pour éviter affichage trop rapide du score dans Playingdatas
+    setTimeout(()=> {
+      calculateScore();
+    }, 700);
+  };
 
 
   const handleResetSkittles = () => {
@@ -174,6 +194,7 @@ const Game = () => {
     } else setSelectedPin(true);
   };
 
+
   useEffect(() =>{
     handleSelectedPin();
   });
@@ -185,21 +206,6 @@ const Game = () => {
     setPreviousTeamId(null);
   };
 
-  const handleNextTeam = (i) => {
-    localStorage.setItem('previousState', JSON.stringify(state));
-    setAnimate(true);
-    dispatch({type: 'nextPlayer', team: parseInt(id)});
-    dispatch({type: 'setTurn', team: i});
-    calculateScore();
-    handleResetSkittles();
-    setPreviousTeamId(i);
-    // modifier aussi dans le css select transition
-    setTimeout(()=> {
-      navigate(`/game/${nextTeam.name}/${nextTeamId}/${nextTeam.players[nextTeam.playerTurn]}`, { replace: true });
-      setAnimate(false);
-    }, 1000);
-
-  };
 
   const calculateScore = () => {
     let falledPins = [];
