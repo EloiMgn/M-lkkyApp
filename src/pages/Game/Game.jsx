@@ -157,10 +157,9 @@ const Game = () => {
     localStorage.setItem('previousState', JSON.stringify(state));
     setAnimate(true);
     handleResetSkittles();
-    setPreviousTeamId(i);
     dispatch({type: 'nextPlayer', team: parseInt(id)});
     dispatch({type: 'setTurn', team: i});
-    // si changement de timeout, chnager ici + ligne 154 + css select component transition : Skittles\Skittles.scss:14
+    // si changement de timeout, changer ici + ligne 154 + css select component transition : Skittles\Skittles.scss:14
     setTimeout(()=> {
       state.winner === null &&
       navigate(`/game/${nextTeam.name}/${nextTeamId}/${nextTeam.players[nextTeam.playerTurn]}`, { replace: true });
@@ -169,7 +168,8 @@ const Game = () => {
     // calcul du score 100ms plus tard pour éviter affichage trop rapide du score dans Playingdatas
     setTimeout(()=> {
       calculateScore();
-    }, 700);
+      setPreviousTeamId(i);
+    }, 1000);
   };
 
 
@@ -187,8 +187,8 @@ const Game = () => {
     state.pins.forEach(pin => {
       if(pin.value){
         selectedPins.push(pin);
-      }
-    });
+      }});
+
     if(selectedPins.length === 0){
       setSelectedPin(false);
     } else setSelectedPin(true);

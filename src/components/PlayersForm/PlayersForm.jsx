@@ -38,7 +38,6 @@ const PlayersForm = () => {
     shuffleArray(pickableColors);
     splitArray(playerNames, playerList.length-1, teamsList);
     teamsList.forEach((team, i) => {
-      console.log(team);
       dispatch({ type: 'createNewTeam', team: {name: `${team[0]}`, players: team, score: 0, fails: 0, playerTurn: 0, level: false, stats:[], eliminated: false, color:`${pickableColors[i+1]}`} });
     });
     navigate('/dashboard', { replace: true });
