@@ -35,6 +35,15 @@ const Home = () => {
   }, []);
 
   // const modalText = 'Vous pouvez m\'ajouter à l\'écran d\'accueil en suivant ces instructions très simples: ';
+  const handleResetTeams = () => {
+    dispatch({type: 'startNewGameTeam'});
+    const rawLocalStorage = getLocalStorage('molkking_param');
+    // si il y a quelqueChose dans le localStorage
+    if (rawLocalStorage !== null) {
+      removeLocalStorage();
+    }
+    navigate('/', {replace: true});    // check localStorage
+  };
 
   const handleStartNewGameSolo = () => {
     dispatch({type: 'startNewGameSolo'});
@@ -106,7 +115,7 @@ const Home = () => {
         <div className='bottom__container'>
           {state.teams.length > 1 && <Button text='Continuer la partie en cours' action={handleContinueGame} style={buttonStyleGreen} ico={'fas fa-redo'} animation/>}
           {state.teams.length > 1?
-            <Button text='Démarrer une nouvelle partie' action={handleStartNewGameTeam}  ico={'fas fa-play'} />
+            <Button text='Supprimer les équipes' action={handleResetTeams}  ico={'fas fa-play'} />
             :
             <>
               <Button text='Nouvelle partie' action={handleStartNewGameSolo} ico={'fas fa-user'} style={buttonStyleGreen}/>

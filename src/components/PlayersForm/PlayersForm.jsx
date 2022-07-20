@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 // import { NumberPicker } from 'react-widgets';
-import { setLocalStorage } from '../../utils/localStorage';
+// import { setLocalStorage } from '../../utils/localStorage';
 import { shuffleArray } from '../../utils/tools';
 import Button from '../Button/Button';
 import Options from '../Options/Options';
@@ -51,15 +51,15 @@ const PlayersForm = () => {
     }
   };
 
-  const handleStart = () => {
-    dispatch({ type: 'startGame'});
-    setNewLocalStorage();
-    state.teams[0].name && navigate(`/game/${state.teams[0].name}/0/${state.teams[0].players[0]}`, { replace: true });
-  };
+  // const handleStart = () => {
+  //   dispatch({ type: 'startGame'});
+  //   setNewLocalStorage();
+  //   state.teams[0].name && navigate(`/game/${state.teams[0].name}/0/${state.teams[0].players[0]}`, { replace: true });
+  // };
 
-  const setNewLocalStorage = () => {
-    setLocalStorage({ date: new Date().toDateString(), state });
-  };
+  // const setNewLocalStorage = () => {
+  //   setLocalStorage({ date: new Date().toDateString(), state });
+  // };
 
   const pickableColors = [
     '#12CBC4', // light-blue
@@ -105,9 +105,6 @@ const PlayersForm = () => {
         </div>
         <div className='randomTeams__addPlayerForm'>
           <PlayerForm list={playerList} setList={setplayerList}/>
-          <div className='randomTeams__teamNumberSelect'>
-            <h2>Nombre de joueurs : {playerList.length-1}</h2>
-          </div>
         </div>
       </>}
       {playerList.length-1 >= 2 && <Button text={'Valider les joueurs'} action={handleValidateTeams} ico={'fas fa-users'} style={buttonStyleGreen}/>}

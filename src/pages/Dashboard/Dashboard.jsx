@@ -65,11 +65,6 @@ const Dashboard = () => {
     dispatch({type: 'randomTeams', value: false});
   };
 
-  const addNewPlayer = () => {
-    window.innerWidth < 767? navigate('/new-player', {replace: true}) : setAddTeam(!addTeam);
-    dispatch({type: 'randomTeams', value: false});
-  };
-
   const addRandomTeams = () => {
     dispatch({type: 'startNewGame'});
     window.innerWidth < 767? navigate('/new-team', {replace: true}) : setAddTeam(!addTeam);
@@ -107,17 +102,14 @@ const Dashboard = () => {
       <main className='Dashboard__content'>
         <section className='Dashboard__teams'>
           <>
-            {(!state.playing || state.teams.length < 1) && <Subtitle text={'Créez vos équipes'}/>}
-            {(state.playing || state.teams.length >= 1) && <Subtitle text={'Equipes'}/>}
+            {(!state.playing || state.teams.length < 1) && !state.solo && <Subtitle text={'Créez vos équipes'}/>}
+            {(state.playing || state.teams.length >= 1) && !state.solo && <Subtitle text={'Equipes'}/>}
+            {(state.playing || state.teams.length >= 1) && state.solo && <Subtitle text={'Joueurs'}/>}
             <Teams/>
-            {!state.playing &&
-            !state.solo?
+            {!state.playing && !state.solo &&
               <>
                 <Button text={'Ajouter une nouvelle équipe'} ico={'fas fa-users'} action={addNewTeam} />
                 {state.randomTeams && <Button text={'Créer des équipes aléatoires'} ico={'fas fa-users'} action={addRandomTeams} />}
-              </>:
-              <>
-                <Button text={'Ajouter nouveau joueur'} ico={'fas fa-users'} action={addNewPlayer} />
               </>}
             <Options/>
           </>
