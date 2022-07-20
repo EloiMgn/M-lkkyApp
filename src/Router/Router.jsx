@@ -6,6 +6,7 @@ import Dashboard from '../pages/Dashboard/Dashboard';
 import Game from '../pages/Game/Game';
 import Home from '../pages/Home/Home';
 import Mentions from '../pages/Mentions/Mentions';
+import Newplayer from '../pages/NewPlayer/NewPlayer';
 import NewTeam from '../pages/NewTeam/NewTeam';
 import Rules from '../pages/Rules/Rules';
 import Skittles from '../pages/Skittles/Skittles';
@@ -21,6 +22,7 @@ const Routing = () => (
       <Route path="/rules" element={<Rules/>} />
       <Route path="/skittles" element={<Skittles/>} />
       <Route path="/new-team" element={<NewTeam/>} />
+      <Route path="/new-player" element={<Newplayer/>} />
       <Route path="/game/:name/:id/:playerId" element={<Game/>} />
       <Route path="/winner/:id" element={<Winner/>} />
       <Route path="/stats" element={<Stats/>} />

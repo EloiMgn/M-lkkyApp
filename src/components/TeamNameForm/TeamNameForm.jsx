@@ -54,13 +54,14 @@ const TeamNameForm = ({name, setName,  team, setTeam, setTeamNameValid, teamName
               <input
                 id="team"
                 name="team"
-                placeholder="Entrez le nom de votre équipe"
+                placeholder="Entrez le nom du joueur"
                 onChange={e => handleNameChange(e)}
                 onBlur={e => handleNameClick(e)}
                 onKeyPress={e => handleNameEnter(e)}
                 autoFocus={true}
                 value={name}
               />
+
               {name.length > 0 && <button className='teamName__btn teamBtn' onClick={e => handleNameClick(e)}>Valider</button>}
             </div>
           </div>}

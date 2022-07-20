@@ -18,15 +18,17 @@
   }
   &__link{
     display: block;
-    color: var(--white);
+    color: var(--black);
+    font-size: var(--fontsize-h1);
+    font-weight: var(--fontweight-bold);
     max-width: 50vw;
     height: fit-content;
-    img{
-      max-width: 50vw;
-      max-height: 4rem;
-      @media screen and (min-width:767px) {
-        height: 6rem;
-      }
-    }
+    // img{
+    //   max-width: 50vw;
+    //   max-height: 4rem;
+    //   @media screen and (min-width:767px) {
+    //     height: 6rem;
+    //   }
+    // }
   }
 }

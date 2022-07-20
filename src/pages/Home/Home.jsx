@@ -6,6 +6,7 @@ import Subtitle from '../../components/Subtitle/Subtitle';
 import Title from '../../components/Title/Title';
 import molkkyImg from '../../utils/img/iStock-1324002091.jpg';
 import { getLocalStorage, removeLocalStorage } from '../../utils/localStorage';
+import { isToday } from '../../utils/tools';
 import './Home.scss';
 // import HomeModale from '../../components/HomeModale/HomeModale';
 
@@ -35,9 +36,9 @@ const Home = () => {
 
   // const modalText = 'Vous pouvez m\'ajouter à l\'écran d\'accueil en suivant ces instructions très simples: ';
 
-  const handleStartNewGame = () => {
-    dispatch({type: 'startNewGame'});
-    setTimeout(navigate('/dashboard', {replace: true}), 5000);
+  const handleStartNewGameSolo = () => {
+    dispatch({type: 'startNewGameSolo'});
+    setTimeout(()=> {navigate('/new-player', {replace: true});}, 250);
     // check localStorage
     const rawLocalStorage = getLocalStorage('molkking_param');
     // si il y a quelqueChose dans le localStorage
@@ -46,15 +47,34 @@ const Home = () => {
     }
   };
 
+  const handleStartNewGameTeam = () => {
+    dispatch({type: 'startNewGameTeam'});
+    setTimeout(()=> {navigate('/dashboard', {replace: true});}, 250);
+    // check localStorage
+    const rawLocalStorage = getLocalStorage('molkking_param');
+    // si il y a quelqueChose dans le localStorage
+    if (rawLocalStorage !== null) {
+      removeLocalStorage();
+    }
+  };
+
+
   const handleContinueGame = () => {
     navigate(`/game/${state.teams[state.turn].name}/${state.turn}/${state.teams[state.turn].players[state.teams[state.turn].playerTurn]}`, { replace: true });
   };
 
   useEffect(() => {
     const rawLocalStorage = getLocalStorage('molkking_param');
+    if(rawLocalStorage !== null ) {
+      const locaStorageDate = JSON.parse(rawLocalStorage).date;
+      if(!isToday(locaStorageDate)) {
+        removeLocalStorage();
+      }
+    }
     if (state.teams.length <= 1 && rawLocalStorage) {
       dispatch({ type: 'setState'});
     }
+
   }, [dispatch, state]);
 
   const buttonStyleGreen = {
@@ -86,9 +106,12 @@ const Home = () => {
         <div className='bottom__container'>
           {state.teams.length > 1 && <Button text='Continuer la partie en cours' action={handleContinueGame} style={buttonStyleGreen} ico={'fas fa-redo'} animation/>}
           {state.teams.length > 1?
-            <Button text='Démarrer une nouvelle partie' action={handleStartNewGame}  ico={'fas fa-play'} />
+            <Button text='Démarrer une nouvelle partie' action={handleStartNewGameTeam}  ico={'fas fa-play'} />
             :
-            <Button text='Nouvelle partie' action={handleStartNewGame} ico={'fas fa-play'} style={buttonStyleGreen}/>}
+            <>
+              <Button text='Nouvelle partie' action={handleStartNewGameSolo} ico={'fas fa-user'} style={buttonStyleGreen}/>
+              <Button text='Nouvelle partie en équipe' action={handleStartNewGameTeam} ico={'fas fa-users'} style={buttonStyleGreen}/>
+            </>}
           {isIphone() && isOpen &&
             <div className='iphoneModale'>
               <div className='iphoneModale__content'>

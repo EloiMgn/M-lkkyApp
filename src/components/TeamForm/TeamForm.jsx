@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import Button from '../Button/Button';
 import ColorForm from '../ColorForm/ColorForm';
@@ -21,6 +21,8 @@ const TeamForm = ({addTeam, setAddTeam}) => {
 
   const navigate= useNavigate();
   const dispatch = useDispatch();
+
+  const state = useSelector((state) => state);
 
   const handleValidate = () => {
     if (window.innerWidth > 765){
@@ -120,6 +122,7 @@ const TeamForm = ({addTeam, setAddTeam}) => {
           team={Team}
           setTeam={setTeam}
           setTeamNameValid={setTeamNameValid}
+          solo = {state.solo}
           teamNameValid={teamNameValid}/>
         {teamNameValid &&
         <ColorForm
@@ -138,7 +141,7 @@ const TeamForm = ({addTeam, setAddTeam}) => {
             );
           } return null;
         })}
-        {!toogle && teamNameValid && teamColorValid && <Button text={'Ajouter un joueur'} action={tooglePlayer} ico={'fas fa-user-plus'} /> }
+        {!toogle && teamNameValid && teamColorValid  && <Button text={'Ajouter un joueur'} action={tooglePlayer} ico={'fas fa-user-plus'} /> }
         {toogle && <PlayerForm list={playerList} setList={setplayerList} setToogle={setToogle}/>}
         {validate && <Button text={'Valider l\'équipe'} action={handleValidate} ico={'fas fa-users'} style={buttonStyleGreen}/>}
         {/* <Button text={"Annuler"} action={handleCancel} style={buttonStyleGray}/> */}

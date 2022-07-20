@@ -14,7 +14,12 @@ const NewTeam = () => {
     if(state.randomTeams){
       dispatch({type: 'startNewGame'});
       navigate('/dashboard', { replace: true });
-    } else navigate('/dashboard', { replace: true });
+    } else if(state.teams.length === 0 && !state.randomTeams) {
+      navigate('/dashboard', { replace: true });
+      dispatch({type: 'randomTeams', value: true});
+    } else if(state.teams.length !== 0 && !state.randomTeams) {
+      navigate('/dashboard', { replace: true });
+    }
   };
 
   return (

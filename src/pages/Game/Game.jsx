@@ -35,7 +35,7 @@ const Game = () => {
   // == Handle recovering datas from localstorage if page refreshment ==
   useEffect(() => {
     if (state.teams.length > 1) {
-      setLocalStorage({ date: new Date(), state });
+      setLocalStorage({ date: new Date().toDateString(), state });
     } else if (state.teams.length <= 1) {
       dispatch({ type: 'setState'});
     }

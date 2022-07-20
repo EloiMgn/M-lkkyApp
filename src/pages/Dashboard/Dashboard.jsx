@@ -21,6 +21,8 @@ const Dashboard = () => {
 
   const dispatch = useDispatch();
   const navigate= useNavigate();
+
+
   /**
    * Check availability to use localStorage
    */
@@ -55,11 +57,16 @@ const Dashboard = () => {
   };
 
   const setNewLocalStorage = () => {
-    setLocalStorage({ date: new Date(), state });
+    setLocalStorage({ date: new Date().toDateString(), state });
   };
 
   const addNewTeam = () => {
     window.innerWidth < 767? navigate('/new-team', {replace: true}) : setAddTeam(!addTeam);
+    dispatch({type: 'randomTeams', value: false});
+  };
+
+  const addNewPlayer = () => {
+    window.innerWidth < 767? navigate('/new-player', {replace: true}) : setAddTeam(!addTeam);
     dispatch({type: 'randomTeams', value: false});
   };
 
@@ -92,6 +99,8 @@ const Dashboard = () => {
     }
   };
 
+  // console.log(state);
+
   return (
     <div className='Dashboard'>
       <Title text={'Tableau de Bord'}/>
@@ -101,10 +110,15 @@ const Dashboard = () => {
             {(!state.playing || state.teams.length < 1) && <Subtitle text={'Créez vos équipes'}/>}
             {(state.playing || state.teams.length >= 1) && <Subtitle text={'Equipes'}/>}
             <Teams/>
-            {!state.playing && !state.randomTeams && <>
-              <Button text={'Ajouter une nouvelle équipe'} ico={'fas fa-users'} action={addNewTeam} />
-              <Button text={'Créer des équipes aléatoires'} ico={'fas fa-users'} action={addRandomTeams} />
-            </>}
+            {!state.playing &&
+            !state.solo?
+              <>
+                <Button text={'Ajouter une nouvelle équipe'} ico={'fas fa-users'} action={addNewTeam} />
+                {state.randomTeams && <Button text={'Créer des équipes aléatoires'} ico={'fas fa-users'} action={addRandomTeams} />}
+              </>:
+              <>
+                <Button text={'Ajouter nouveau joueur'} ico={'fas fa-users'} action={addNewPlayer} />
+              </>}
             <Options/>
           </>
           {state.teams.length > 1?

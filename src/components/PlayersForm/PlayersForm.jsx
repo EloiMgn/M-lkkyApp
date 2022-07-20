@@ -1,23 +1,22 @@
+
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import NumberPicker from 'react-widgets/NumberPicker';
+import { useNavigate } from 'react-router';
+// import { NumberPicker } from 'react-widgets';
 import { setLocalStorage } from '../../utils/localStorage';
 import { shuffleArray } from '../../utils/tools';
 import Button from '../Button/Button';
 import Options from '../Options/Options';
 import Player from '../Player/Player';
 import PlayerForm from '../PlayerForm/PlayerForm';
-import Teams from '../Teams/Teams';
-import './RandomTeamsForm.scss';
+import './PlayersForm.scss';
 
-const RandomTeamsForm = () => {
-
+const PlayersForm = () => {
   const state = useSelector((state) => state);
   const [playerList, setplayerList] = useState([{player: '', hide: false}]);
-  const [teamsNumber, setTeamsnumber] = useState(null);
+  // const [teamsNumber, setTeamsnumber] = useState(null);
   const teamsList = [];
-  const [validTeams, setValidTeams] = useState(false);
+  // const [validTeams, setValidTeams] = useState(false);
   const navigate= useNavigate();
   const dispatch = useDispatch();
 
@@ -37,11 +36,12 @@ const RandomTeamsForm = () => {
     playerNames.pop();
     shuffleArray(playerNames);
     shuffleArray(pickableColors);
-    splitArray(playerNames, teamsNumber, teamsList);
+    splitArray(playerNames, playerList.length-1, teamsList);
     teamsList.forEach((team, i) => {
-      dispatch({ type: 'createNewTeam', team: {name: `Equipe ${i+1}`, players: team, score: 0, fails: 0, playerTurn: 0, level: false, stats:[], eliminated: false, color:`${pickableColors[i+1]}`} });
+      console.log(team);
+      dispatch({ type: 'createNewTeam', team: {name: `${team[0]}`, players: team, score: 0, fails: 0, playerTurn: 0, level: false, stats:[], eliminated: false, color:`${pickableColors[i+1]}`} });
     });
-    setValidTeams(true);
+    navigate('/dashboard', { replace: true });
   };
 
   const splitArray = (array, arraysCount, arrayOfArrays) => {
@@ -90,7 +90,6 @@ const RandomTeamsForm = () => {
       'background': 'linear-gradient(to left, #00672a 0%, #003314 8%, #003314 92%, #00672a 100%)'
     }
   };
-
   return (
     <div className='randomTeams'>
       {state.teams.length === 0 &&
@@ -106,21 +105,16 @@ const RandomTeamsForm = () => {
         </div>
         <div className='randomTeams__addPlayerForm'>
           <PlayerForm list={playerList} setList={setplayerList}/>
-          {playerList.length >= 3 &&
-            <div className='randomTeams__teamNumberSelect'>
-              <h2>Nombre d&apos;équipes :</h2>
-              <NumberPicker value={teamsNumber} placeholder='Entrez un nombre d&apos;équipes' onChange={value => setTeamsnumber(value)} defaultValue={2}  min={2} max={playerList.length-1}/>
-            </div>
-          }
+          <div className='randomTeams__teamNumberSelect'>
+            <h2>Nombre de joueurs : {playerList.length-1}</h2>
+          </div>
         </div>
       </>}
-      {state.teams.length > 0 && <Teams/>}
+      {playerList.length-1 >= 2 && <Button text={'Valider les joueurs'} action={handleValidateTeams} ico={'fas fa-users'} style={buttonStyleGreen}/>}
       <Options />
-      {teamsNumber && !validTeams && <Button text={'Valider les équipes'} action={handleValidateTeams} ico={'fas fa-users'} style={buttonStyleGreen}/>}
-      {validTeams && <Button text={'Commencer à jouer'} action={handleStart} ico={'fas fa-users'} style={buttonStyleGreen}/>}
       {/* <Button text={'Annuler'} action={handleCancel} style={buttonStyleGray}/> */}
     </div>
   );
 };
 
-export default RandomTeamsForm;
+export default PlayersForm;

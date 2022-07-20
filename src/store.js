@@ -3,7 +3,39 @@ import { createStore } from 'redux';
 import { getLocalStorage } from './utils/localStorage';
 
 const initialState = {
-  randomTeams: false,
+  solo: false,
+  randomTeams: true,
+  previousAction: [],
+  options: {
+    elimination: false,
+    egalisation: true,
+    // maxPoints: 50,
+  },
+  theme: 'light',
+  playing: false,
+  turn: 0,
+  teams: [],
+  eliminatedTeams: [],
+  winner: null,
+  pins: [
+    {value: false, id: 1},
+    {value: false, id: 2},
+    {value: false, id: 3},
+    {value: false, id: 4},
+    {value: false, id: 5},
+    {value: false, id: 6},
+    {value: false, id: 7},
+    {value: false, id: 8},
+    {value: false, id: 9},
+    {value: false, id: 10},
+    {value: false, id: 11},
+    {value: false, id: 12}
+  ]
+};
+
+const initialStateSolo = {
+  solo: true,
+  randomTeams: true,
   previousAction: [],
   options: {
     elimination: false,
@@ -51,9 +83,13 @@ function reducer(state = initialState, action) {
 
   // ===== HANDLE GAMES STATES MANAGMENT ========
 
-  // == init new game ==
-  if (action.type === 'startNewGame') {
+  // == init new game with teams ==
+  if (action.type === 'startNewGameTeam') {
     return initialState;
+  }
+  // == init new game with solo players ==
+  if (action.type === 'startNewGameSolo') {
+    return initialStateSolo;
   }
 
   // == resart Game with same players ==

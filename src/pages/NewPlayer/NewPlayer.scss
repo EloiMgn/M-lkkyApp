@@ -1,0 +1,35 @@
+.newTeam{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  &__content{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 80vh;
+    margin: 10vh 5vw;
+    @media screen and(min-width: 765px) {
+      margin-left: 14vw;
+      width: auto;
+      // justify-content: center;
+      align-items: center;
+    }
+    // h1{
+    //   font-size: var(--fontsize-h1);
+    //   font-weight: var(--fontweight-bold);
+    //   margin: var(--margin-medium) 0;
+    //   color: var(--font-color);
+    // }
+    &__title{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: var(--margin-small);
+      i{
+        font-size: var(--fontsize-h1);
+      }
+    }
+  }
+}
